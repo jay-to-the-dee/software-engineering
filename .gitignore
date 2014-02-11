@@ -7,3 +7,5 @@
 
 #Netbeans added this
 /nbproject/private/
+/build/
+/dist/
