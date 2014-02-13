@@ -4,11 +4,11 @@ package worldparser;
  *
  * @author Main User
  */
-public class RockToken extends Token implements GetType{
+public class RockToken extends TerrainToken implements GetType{
 
     @Override
     public void getType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

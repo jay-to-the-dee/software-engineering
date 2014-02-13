@@ -4,6 +4,6 @@ package worldparser;
  *
  * @author Main User
  */
-class Token {
+abstract class Token implements GetType{
     
 }

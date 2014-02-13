@@ -4,6 +4,6 @@ package worldparser;
  *
  * @author Main User
  */
-public class SymbolNotFoundException {
+public class SymbolNotFoundException extends Exception{
     
 }
