@@ -1,0 +1,1054 @@
+sense here 32 1 home
+sense here 3 2 marker 4
+sense here 8 3 marker 5
+flip 10 5 4
+move 1 5
+flip 2 6 7
+turn left 1
+turn right 1
+sense ahead 9 10 marker 4
+sense ahead 11 10 marker 5
+turn right 11
+sense ahead 12 13 marker 4
+sense ahead 14 13 marker 5
+turn right 14
+sense ahead 15 16 marker 4
+sense ahead 17 16 marker 5
+turn right 17
+sense ahead 18 19 marker 4
+sense ahead 20 19 marker 5
+turn right 20
+sense ahead 21 22 marker 4
+sense ahead 23 22 marker 5
+turn right 23
+sense ahead 24 25 marker 4
+sense ahead 26 25 marker 5
+turn right 26
+sense ahead 27 31 marker 4
+sense ahead 28 31 marker 5
+turn right 29
+sense ahead 30 31 marker 4
+sense ahead 107 31 marker 5
+flip 20 134 1
+sense ahead 34 33 home
+turn right 32
+sense ahead 35 36 home
+turn right 36
+sense ahead 37 38 home
+turn right 38
+sense ahead 39 40 home
+turn right 40
+sense ahead 41 42 home
+turn right 42
+sense ahead 43 44 home
+turn right 44
+sense ahead 45 46 home
+turn right 46
+sense ahead 47 51 home
+flip 2 48 49
+turn left 50
+turn right 50
+move 46 46
+sense leftahead 53 52 home
+turn left 51
+sense here 54 54 home ; label__value__aligned_
+mark 4 55 ; label__value__mark_1_right_
+sense ahead 56 57 food
+sense ahead 57 135 home
+sense leftahead 58 59 food
+sense leftahead 59 135 home
+sense rightahead 60 61 food
+sense rightahead 61 135 home
+sense here 135 62 marker 2
+sense here 135 63 marker 3
+flip 10 65 64
+move 67 65
+turn right 66
+move 107 135
+mark 5 68 ; label__value__mark_2_right_
+sense ahead 69 70 food
+sense ahead 70 135 home
+sense leftahead 71 72 food
+sense leftahead 72 135 home
+sense rightahead 73 74 food
+sense rightahead 74 135 home
+sense here 135 75 marker 2
+sense here 135 76 marker 3
+flip 10 78 77
+move 80 78
+turn right 79
+move 120 135
+mark 4 81 ; label__value__mark_3_right_
+mark 5 82
+sense ahead 83 84 food
+sense ahead 84 135 home
+sense leftahead 85 86 food
+sense leftahead 86 135 home
+sense rightahead 87 88 food
+sense rightahead 88 135 home
+sense here 135 89 marker 2
+sense here 135 90 marker 3
+flip 10 92 91
+move 54 92
+turn right 93
+move 94 135
+mark 4 95 ; label__value__mark_1_left_
+sense ahead 96 97 food
+sense ahead 97 135 home
+sense leftahead 98 99 food
+sense leftahead 99 135 home
+sense rightahead 100 101 food
+sense rightahead 101 135 home
+sense here 135 102 marker 2
+sense here 135 103 marker 3
+flip 10 105 104
+move 107 105
+turn left 106
+move 67 135
+mark 5 108 ; label__value__mark_2_left_
+sense ahead 109 110 food
+sense ahead 110 135 home
+sense leftahead 111 112 food
+sense leftahead 112 135 home
+sense rightahead 113 114 food
+sense rightahead 114 135 home
+sense here 135 115 marker 2
+sense here 135 116 marker 3
+flip 10 118 117
+move 120 118
+turn left 119
+move 80 135
+mark 4 121 ; label__value__mark_3_left_
+mark 5 122
+sense ahead 123 124 food
+sense ahead 124 135 home
+sense leftahead 125 126 food
+sense leftahead 126 135 home
+sense rightahead 127 128 food
+sense rightahead 128 135 home
+sense here 135 129 marker 2
+sense here 135 130 marker 3
+flip 10 132 131
+move 94 132
+turn left 133
+move 54 135
+sense here 135 135 home ; label__value__break_out_
+sense here 147 136 marker 2 ; restart_find_food_rmdm2
+sense here 147 137 marker 3
+sense ahead 147 138 food
+sense ahead 141 139 foehome
+sense leftahead 141 140 foehome
+sense rightahead 141 142 foehome
+sense here 142 806 foehome
+flip 10 144 143
+move 135 144
+flip 3 145 146
+turn right 135
+turn left 135
+sense here 148 148 home ; label__value__done_
+sense ahead 330 149 food ; label__value__walk_home_restart_
+sense ahead 161 150 food
+turn right 151
+sense ahead 161 152 food
+turn right 153
+sense ahead 161 154 food
+turn right 155
+sense ahead 161 156 food
+turn right 157
+sense ahead 161 158 food
+turn right 159
+sense ahead 161 160 food
+turn right 161
+sense here 162 162 home ; label__value__orient_towards_exit_
+sense ahead 330 163 food
+sense here 164 203 marker 2
+sense here 165 184 marker 3
+sense ahead 166 167 marker 3
+sense ahead 167 183 marker 2
+turn right 168
+sense ahead 169 170 marker 3
+sense ahead 170 183 marker 2
+turn right 171
+sense ahead 172 173 marker 3
+sense ahead 173 183 marker 2
+turn right 174
+sense ahead 175 176 marker 3
+sense ahead 176 183 marker 2
+turn right 177
+sense ahead 178 179 marker 3
+sense ahead 179 183 marker 2
+turn right 180
+sense ahead 181 182 marker 3
+sense ahead 182 183 marker 2
+turn right 183
+sense here 223 223 home ; label__value__orient_towards_exit_x
+sense ahead 185 186 marker 2
+sense ahead 202 186 marker 3
+turn right 187
+sense ahead 188 189 marker 2
+sense ahead 202 189 marker 3
+turn right 190
+sense ahead 191 192 marker 2
+sense ahead 202 192 marker 3
+turn right 193
+sense ahead 194 195 marker 2
+sense ahead 202 195 marker 3
+turn right 196
+sense ahead 197 198 marker 2
+sense ahead 202 198 marker 3
+turn right 199
+sense ahead 200 201 marker 2
+sense ahead 202 201 marker 3
+turn right 202
+sense here 281 281 home ; label__value__orient_towards_exit_xx
+sense here 204 135 marker 3
+sense ahead 205 206 marker 2
+sense ahead 206 222 marker 3
+turn right 207
+sense ahead 208 209 marker 2
+sense ahead 209 222 marker 3
+turn right 210
+sense ahead 211 212 marker 2
+sense ahead 212 222 marker 3
+turn right 213
+sense ahead 214 215 marker 2
+sense ahead 215 222 marker 3
+turn right 216
+sense ahead 217 218 marker 2
+sense ahead 218 222 marker 3
+turn right 219
+sense ahead 220 221 marker 2
+sense ahead 221 222 marker 3
+turn right 222
+sense here 252 252 home ; label__value__orient_towards_exit_xxx
+sense ahead 224 230 marker 3 ; label__value__walk_home_from_3_
+sense ahead 230 225 marker 2
+move 226 229
+sense ahead 330 227 food
+sense leftahead 330 228 food
+sense rightahead 330 252 food
+turn right 223
+sense ahead 232 231 marker 2
+sense ahead 248 232 marker 3
+turn right 233
+sense ahead 235 234 marker 2
+sense ahead 248 235 marker 3
+turn right 236
+sense ahead 238 237 marker 2
+sense ahead 248 238 marker 3
+turn right 239
+sense ahead 241 240 marker 2
+sense ahead 248 241 marker 3
+turn right 242
+sense ahead 244 243 marker 2
+sense ahead 248 244 marker 3
+turn right 245
+sense ahead 247 246 marker 2
+sense ahead 248 247 marker 3
+turn right 248
+sense here 249 249 home ; label__value__orient_towards_exit_xxxx
+sense ahead 330 250 marker 2
+sense ahead 251 330 marker 3
+flip 50 310 223
+sense ahead 253 259 marker 2 ; label__value__walk_home_from_2_
+sense ahead 259 254 marker 3
+move 255 258
+sense ahead 330 256 food
+sense leftahead 330 257 food
+sense rightahead 330 281 food
+turn right 252
+sense ahead 260 261 marker 2
+sense ahead 261 277 marker 3
+turn right 262
+sense ahead 263 264 marker 2
+sense ahead 264 277 marker 3
+turn right 265
+sense ahead 266 267 marker 2
+sense ahead 267 277 marker 3
+turn right 268
+sense ahead 269 270 marker 2
+sense ahead 270 277 marker 3
+turn right 271
+sense ahead 272 273 marker 2
+sense ahead 273 277 marker 3
+turn right 274
+sense ahead 275 276 marker 2
+sense ahead 276 277 marker 3
+turn right 277
+sense here 278 278 home ; label__value__orient_towards_exit_xxxxx
+sense ahead 279 330 marker 2
+sense ahead 330 280 marker 3
+flip 50 310 252
+sense ahead 282 288 marker 3 ; label__value__walk_home_from_1_
+sense ahead 283 288 marker 2
+move 284 287
+sense ahead 330 285 food
+sense leftahead 330 286 food
+sense rightahead 330 223 food
+turn right 281
+sense ahead 289 290 marker 3
+sense ahead 306 290 marker 2
+turn right 291
+sense ahead 292 293 marker 3
+sense ahead 306 293 marker 2
+turn right 294
+sense ahead 295 296 marker 3
+sense ahead 306 296 marker 2
+turn right 297
+sense ahead 298 299 marker 3
+sense ahead 306 299 marker 2
+turn right 300
+sense ahead 301 302 marker 3
+sense ahead 306 302 marker 2
+turn right 303
+sense ahead 304 305 marker 3
+sense ahead 306 305 marker 2
+turn right 306
+sense here 307 307 home ; label__value__orient_towards_exit_xxxxxx
+sense ahead 308 330 marker 2
+sense ahead 309 330 marker 3
+flip 50 310 281
+flip 10 312 311 ; label__value__avoid_traps_
+move 315 312
+flip 3 313 314
+turn right 315
+turn left 315
+flip 10 317 316
+move 320 317
+flip 3 318 319
+turn right 320
+turn left 320
+flip 10 322 321
+move 325 322
+flip 3 323 324
+turn right 325
+turn left 325
+flip 10 327 326
+move 148 327
+flip 3 328 329
+turn right 148
+turn left 148
+sense ahead 334 331 food ; label__value__exit_
+sense leftahead 332 333 food
+turn left 334
+turn right 334
+sense ahead 337 335 food ; restart_find_food
+sense rightahead 337 336 food
+sense leftahead 337 340 food
+sense ahead 340 338 home
+sense leftahead 340 339 home
+sense rightahead 340 405 home
+turn left 341
+sense ahead 344 342 food
+sense rightahead 344 343 food
+sense leftahead 344 347 food
+sense ahead 347 345 home
+sense leftahead 347 346 home
+sense rightahead 347 405 home
+turn left 348
+sense ahead 351 349 food
+sense rightahead 351 350 food
+sense leftahead 351 354 food
+sense ahead 354 352 home
+sense leftahead 354 353 home
+sense rightahead 354 405 home
+turn left 355
+sense ahead 358 356 food
+sense rightahead 358 357 food
+sense leftahead 358 361 food
+sense ahead 361 359 home
+sense leftahead 361 360 home
+sense rightahead 361 405 home
+turn left 362
+sense ahead 365 363 food
+sense rightahead 365 364 food
+sense leftahead 365 368 food
+sense ahead 368 366 home
+sense leftahead 368 367 home
+sense rightahead 368 405 home
+turn left 369
+sense ahead 372 370 food
+sense rightahead 372 371 food
+sense leftahead 372 375 food
+sense ahead 375 373 home
+sense leftahead 375 374 home
+sense rightahead 375 405 home
+turn left 376
+sense ahead 379 377 food
+sense rightahead 379 378 food
+sense leftahead 379 382 food
+sense ahead 382 380 home
+sense leftahead 382 381 home
+sense rightahead 382 405 home
+flip 15 383 400
+sense ahead 386 384 food
+sense rightahead 386 385 food
+sense leftahead 386 389 food
+sense ahead 389 387 home
+sense leftahead 389 388 home
+sense rightahead 389 399 home
+flip 100 399 390
+sense ahead 393 391 foehome
+sense leftahead 393 392 foehome
+sense rightahead 393 394 foehome
+sense here 394 806 foehome
+flip 10 396 395
+move 383 396
+flip 3 397 398
+turn right 383
+turn left 383
+sense here 405 405 home ; label__value__done_xx
+flip 2 402 401
+move 376 402
+flip 5 403 404
+turn right 376
+turn left 376
+sense here 406 406 home ; label__value__done_x
+sense rightahead 407 409 food
+sense rightahead 409 408 home
+turn right 409
+sense leftahead 410 412 food
+sense leftahead 412 411 home
+turn left 412
+sense ahead 413 135 food
+sense ahead 135 414 home
+move 415 334
+pickup 416 135
+flip 2 417 419
+turn left 418
+turn left 474
+turn right 420
+turn right 474
+sense here 453 422 home
+sense here 424 423 marker 2
+sense here 429 424 marker 3
+flip 10 426 425
+move 422 426
+flip 2 427 428
+turn left 422
+turn right 422
+sense ahead 430 431 marker 2
+sense ahead 432 431 marker 3
+turn right 432
+sense ahead 433 434 marker 2
+sense ahead 435 434 marker 3
+turn right 435
+sense ahead 436 437 marker 2
+sense ahead 438 437 marker 3
+turn right 438
+sense ahead 439 440 marker 2
+sense ahead 441 440 marker 3
+turn right 441
+sense ahead 442 443 marker 2
+sense ahead 444 443 marker 3
+turn right 444
+sense ahead 445 446 marker 2
+sense ahead 447 446 marker 3
+turn right 447
+sense ahead 448 452 marker 2
+sense ahead 449 452 marker 3
+turn right 450
+sense ahead 451 452 marker 2
+sense ahead 536 452 marker 3
+flip 20 567 422
+sense ahead 455 454 home
+turn right 453
+sense ahead 456 457 home
+turn right 457
+sense ahead 458 459 home
+turn right 459
+sense ahead 460 461 home
+turn right 461
+sense ahead 462 463 home
+turn right 463
+sense ahead 464 465 home
+turn right 465
+sense ahead 466 467 home
+turn right 467
+sense ahead 468 472 home
+flip 2 469 470
+turn left 471
+turn right 471
+move 467 467
+sense leftahead 474 473 home
+turn left 472
+sense here 475 475 home ; label__value__aligned_x
+sense ahead 568 476 marker 2 ; label__value__mark_1_right_x
+sense ahead 568 477 marker 3
+sense leftahead 568 478 marker 2
+sense leftahead 568 479 marker 3
+sense rightahead 568 480 marker 2
+sense rightahead 568 481 marker 3
+mark 2 482
+sense ahead 568 483 home
+sense leftahead 568 484 home
+sense rightahead 568 485 home
+flip 16 568 486
+flip 10 488 487
+move 490 488
+turn right 489
+move 536 568
+sense ahead 568 491 marker 2 ; label__value__mark_2_right_x
+sense ahead 568 492 marker 3
+sense leftahead 568 493 marker 2
+sense leftahead 568 494 marker 3
+sense rightahead 568 495 marker 2
+sense rightahead 568 496 marker 3
+mark 3 497
+sense ahead 568 498 home
+sense leftahead 568 499 home
+sense rightahead 568 500 home
+flip 16 568 501
+flip 10 503 502
+move 505 503
+turn right 504
+move 551 568
+sense ahead 568 506 marker 2 ; label__value__mark_3_right_x
+sense ahead 568 507 marker 3
+sense leftahead 568 508 marker 2
+sense leftahead 568 509 marker 3
+sense rightahead 568 510 marker 2
+sense rightahead 568 511 marker 3
+mark 2 512
+mark 3 513
+sense ahead 568 514 home
+sense leftahead 568 515 home
+sense rightahead 568 516 home
+flip 16 568 517
+flip 10 519 518
+move 475 519
+turn right 520
+move 521 568
+sense ahead 568 522 marker 2 ; label__value__mark_1_left_x
+sense ahead 568 523 marker 3
+sense leftahead 568 524 marker 2
+sense leftahead 568 525 marker 3
+sense rightahead 568 526 marker 2
+sense rightahead 568 527 marker 3
+mark 2 528
+sense ahead 568 529 home
+sense leftahead 568 530 home
+sense rightahead 568 531 home
+flip 16 568 532
+flip 10 534 533
+move 536 534
+turn left 535
+move 490 568
+sense ahead 568 537 marker 2 ; label__value__mark_2_left_x
+sense ahead 568 538 marker 3
+sense leftahead 568 539 marker 2
+sense leftahead 568 540 marker 3
+sense rightahead 568 541 marker 2
+sense rightahead 568 542 marker 3
+mark 3 543
+sense ahead 568 544 home
+sense leftahead 568 545 home
+sense rightahead 568 546 home
+flip 16 568 547
+flip 10 549 548
+move 551 549
+turn left 550
+move 505 568
+sense ahead 568 552 marker 2 ; label__value__mark_3_left_x
+sense ahead 568 553 marker 3
+sense leftahead 568 554 marker 2
+sense leftahead 568 555 marker 3
+sense rightahead 568 556 marker 2
+sense rightahead 568 557 marker 3
+mark 2 558
+mark 3 559
+sense ahead 568 560 home
+sense leftahead 568 561 home
+sense rightahead 568 562 home
+flip 16 568 563
+flip 10 565 564
+move 521 565
+turn left 566
+move 475 568
+sense here 568 568 home ; label__value__break_out_x
+sense here 579 569 marker 5 ; restart_go_home
+sense here 579 570 marker 4
+sense ahead 573 571 foehome
+sense leftahead 573 572 foehome
+sense rightahead 573 574 foehome
+sense here 574 806 foehome
+flip 10 576 575
+move 568 576
+flip 3 577 578
+turn right 568
+turn left 568
+sense here 580 580 home ; label__value__done_xxx
+sense ahead 762 581 home ; label__value__walk_home_restart_x
+sense ahead 593 582 home
+turn right 583
+sense ahead 593 584 home
+turn right 585
+sense ahead 593 586 home
+turn right 587
+sense ahead 593 588 home
+turn right 589
+sense ahead 593 590 home
+turn right 591
+sense ahead 593 592 home
+turn right 593
+sense here 594 594 home ; label__value__orient_towards_exit_xxxxxxx
+sense ahead 762 595 home
+sense here 596 635 marker 4
+sense here 597 616 marker 5
+sense ahead 598 599 marker 5
+sense ahead 599 615 marker 4
+turn right 600
+sense ahead 601 602 marker 5
+sense ahead 602 615 marker 4
+turn right 603
+sense ahead 604 605 marker 5
+sense ahead 605 615 marker 4
+turn right 606
+sense ahead 607 608 marker 5
+sense ahead 608 615 marker 4
+turn right 609
+sense ahead 610 611 marker 5
+sense ahead 611 615 marker 4
+turn right 612
+sense ahead 613 614 marker 5
+sense ahead 614 615 marker 4
+turn right 615
+sense here 655 655 home ; label__value__orient_towards_exit_xxxxxxxx
+sense ahead 617 618 marker 4
+sense ahead 634 618 marker 5
+turn right 619
+sense ahead 620 621 marker 4
+sense ahead 634 621 marker 5
+turn right 622
+sense ahead 623 624 marker 4
+sense ahead 634 624 marker 5
+turn right 625
+sense ahead 626 627 marker 4
+sense ahead 634 627 marker 5
+turn right 628
+sense ahead 629 630 marker 4
+sense ahead 634 630 marker 5
+turn right 631
+sense ahead 632 633 marker 4
+sense ahead 634 633 marker 5
+turn right 634
+sense here 713 713 home ; label__value__orient_towards_exit_xxxxxxxxx
+sense here 636 568 marker 5
+sense ahead 637 638 marker 4
+sense ahead 638 654 marker 5
+turn right 639
+sense ahead 640 641 marker 4
+sense ahead 641 654 marker 5
+turn right 642
+sense ahead 643 644 marker 4
+sense ahead 644 654 marker 5
+turn right 645
+sense ahead 646 647 marker 4
+sense ahead 647 654 marker 5
+turn right 648
+sense ahead 649 650 marker 4
+sense ahead 650 654 marker 5
+turn right 651
+sense ahead 652 653 marker 4
+sense ahead 653 654 marker 5
+turn right 654
+sense here 684 684 home ; label__value__orient_towards_exit_xxxxxxxxxx
+sense ahead 656 662 marker 5 ; label__value__walk_home_from_3_x
+sense ahead 662 657 marker 4
+move 658 661
+sense ahead 762 659 home
+sense leftahead 762 660 home
+sense rightahead 762 684 home
+turn right 655
+sense ahead 664 663 marker 4
+sense ahead 680 664 marker 5
+turn right 665
+sense ahead 667 666 marker 4
+sense ahead 680 667 marker 5
+turn right 668
+sense ahead 670 669 marker 4
+sense ahead 680 670 marker 5
+turn right 671
+sense ahead 673 672 marker 4
+sense ahead 680 673 marker 5
+turn right 674
+sense ahead 676 675 marker 4
+sense ahead 680 676 marker 5
+turn right 677
+sense ahead 679 678 marker 4
+sense ahead 680 679 marker 5
+turn right 680
+sense here 681 681 home ; label__value__orient_towards_exit_xxxxxxxxxxx
+sense ahead 762 682 marker 4
+sense ahead 683 762 marker 5
+flip 50 742 655
+sense ahead 685 691 marker 4 ; label__value__walk_home_from_2_x
+sense ahead 691 686 marker 5
+move 687 690
+sense ahead 762 688 home
+sense leftahead 762 689 home
+sense rightahead 762 713 home
+turn right 684
+sense ahead 692 693 marker 4
+sense ahead 693 709 marker 5
+turn right 694
+sense ahead 695 696 marker 4
+sense ahead 696 709 marker 5
+turn right 697
+sense ahead 698 699 marker 4
+sense ahead 699 709 marker 5
+turn right 700
+sense ahead 701 702 marker 4
+sense ahead 702 709 marker 5
+turn right 703
+sense ahead 704 705 marker 4
+sense ahead 705 709 marker 5
+turn right 706
+sense ahead 707 708 marker 4
+sense ahead 708 709 marker 5
+turn right 709
+sense here 710 710 home ; label__value__orient_towards_exit_xxxxxxxxxxxx
+sense ahead 711 762 marker 4
+sense ahead 762 712 marker 5
+flip 50 742 684
+sense ahead 714 720 marker 5 ; label__value__walk_home_from_1_x
+sense ahead 715 720 marker 4
+move 716 719
+sense ahead 762 717 home
+sense leftahead 762 718 home
+sense rightahead 762 655 home
+turn right 713
+sense ahead 721 722 marker 5
+sense ahead 738 722 marker 4
+turn right 723
+sense ahead 724 725 marker 5
+sense ahead 738 725 marker 4
+turn right 726
+sense ahead 727 728 marker 5
+sense ahead 738 728 marker 4
+turn right 729
+sense ahead 730 731 marker 5
+sense ahead 738 731 marker 4
+turn right 732
+sense ahead 733 734 marker 5
+sense ahead 738 734 marker 4
+turn right 735
+sense ahead 736 737 marker 5
+sense ahead 738 737 marker 4
+turn right 738
+sense here 739 739 home ; label__value__orient_towards_exit_xxxxxxxxxxxxx
+sense ahead 740 762 marker 4
+sense ahead 741 762 marker 5
+flip 50 742 713
+flip 10 744 743 ; label__value__avoid_traps_x
+move 747 744
+flip 3 745 746
+turn right 747
+turn left 747
+flip 10 749 748
+move 752 749
+flip 3 750 751
+turn right 752
+turn left 752
+flip 10 754 753
+move 757 754
+flip 3 755 756
+turn right 757
+turn left 757
+flip 10 759 758
+move 580 759
+flip 3 760 761
+turn right 580
+turn left 580
+sense ahead 766 763 home ; label__value__exit_x
+sense leftahead 764 765 home
+turn left 766
+turn right 766
+sense leftahead 767 769 marker 1
+sense leftahead 768 769 home
+turn left 769
+sense rightahead 770 772 marker 1
+sense rightahead 771 772 home
+turn right 772
+sense ahead 773 778 marker 1
+sense ahead 774 778 home
+sense here 775 776 marker 1
+sense here 777 776 home
+move 774 774
+drop 790
+sense here 779 788 home
+sense ahead 781 780 home
+drop 790
+sense ahead 782 787 friend
+sense leftahead 783 786 friend
+turn right 784
+sense ahead 785 766 friend
+turn right 784
+turn left 766
+move 766 766
+sense here 766 789 home
+move 788 788
+mark 1 791 ; label__value__squat_
+sense ahead 792 804 friendwithfood ; label__value__rotate_
+sense leftahead 793 797 friend
+sense rightahead 794 795 friend
+turn left 791
+turn right 796
+move 799 791
+turn left 798
+move 799 791
+turn left 800
+turn left 801
+turn left 802
+move 790 803
+sense ahead 805 802 friend
+turn left 790
+sense here 0 0 home ; label__value__donesquat_
+sense leftahead 807 809 foehome ; surround
+sense ahead 809 808 foehome
+sense rightahead 809 810 foehome
+turn left 806
+turn left 811
+sense leftahead 823 812 foehome
+turn right 813
+turn right 814
+move 815 814
+turn left 816
+mark 0 817
+move 818 817
+move 819 818
+move 820 819
+move 821 820
+move 822 821
+move 825 822
+turn right 824
+move 806 806
+turn left 826 ; ring
+move 827 826
+move 828 827
+move 829 828
+move 830 829
+move 831 830
+move 832 831
+move 833 832
+flip 5 834 835
+mark 0 835
+sense here 836 1006 marker 0
+sense here 837 839 marker 3
+sense here 838 839 marker 2
+sense here 839 825 marker 1
+sense here 840 847 marker 1
+unmark 1 841
+sense here 842 846 marker 2
+unmark 2 843
+sense here 844 845 marker 3
+unmark 3 848
+mark 3 848
+mark 2 848
+mark 1 848
+sense here 849 855 marker 3
+sense here 855 850 marker 2
+sense here 851 855 marker 1
+move 852 851
+move 853 852
+turn left 854
+unmark 0 1012
+sense here 856 885 marker 3
+sense here 885 857 marker 2
+sense here 885 858 marker 1
+move 859 858
+move 860 859
+move 861 860
+move 862 861
+move 863 862
+move 864 863
+move 865 864
+move 866 865
+move 867 866
+move 868 867
+move 869 868
+unmark 0 870
+unmark 0 871
+turn left 872
+turn left 873
+turn left 874
+mark 0 875
+move 876 875
+move 877 876
+move 878 877
+move 879 878
+move 880 879
+move 881 880
+move 882 881
+move 883 882
+turn right 884
+unmark 0 1012
+sense here 921 886 marker 3
+sense here 887 921 marker 2
+sense here 888 921 marker 1
+move 889 888
+move 890 889
+move 891 890
+move 892 891
+move 893 892
+move 894 893
+move 895 894
+move 896 895
+move 897 896
+move 898 897
+move 899 898
+unmark 0 900
+turn left 901
+unmark 0 902
+move 903 902
+unmark 0 904
+turn left 905
+turn left 906
+turn left 907
+sense ahead 909 908 marker 0
+sense ahead 907 907 food
+mark 0 910
+turn right 911
+move 912 911
+move 913 912
+move 914 913
+move 915 914
+move 916 915
+move 917 916
+move 918 917
+move 919 918
+move 920 919
+unmark 0 1010
+sense here 961 922 marker 3
+sense here 923 961 marker 2
+sense here 961 924 marker 1
+move 925 924
+move 926 925
+move 927 926
+move 928 927
+move 929 928
+move 930 929
+move 931 930
+move 932 931
+move 933 932
+move 934 933
+move 935 934
+unmark 0 936
+turn left 937
+unmark 0 938
+move 939 938
+unmark 0 940
+turn left 941
+move 942 941
+unmark 0 943
+turn left 944
+turn left 945
+turn left 946
+sense ahead 948 947 marker 0
+sense ahead 946 946 food
+mark 0 949
+turn right 950
+turn right 951
+move 952 951
+move 953 952
+move 954 953
+move 955 954
+move 956 955
+move 957 956
+move 958 957
+move 959 958
+turn left 960
+unmark 0 1012
+sense here 825 962 marker 3
+sense here 825 963 marker 2
+sense here 964 825 marker 1
+move 965 964
+move 966 965
+move 967 966
+move 968 967
+move 969 968
+move 970 969
+move 971 970
+move 972 971
+move 973 972
+move 974 973
+move 975 974
+unmark 0 976
+turn left 977
+unmark 0 978
+move 979 978
+turn left 980
+unmark 0 981
+move 982 981
+turn left 983
+unmark 0 984
+move 985 984
+turn left 986
+unmark 0 987
+turn left 988
+turn left 989
+sense ahead 991 990 marker 0
+sense ahead 989 989 food
+mark 0 992
+turn right 993
+turn right 994
+turn right 995
+move 996 995
+move 997 996
+move 998 997
+move 999 998
+move 1000 999
+move 1001 1000
+move 1002 1001
+move 1003 1002
+turn left 1004
+turn left 1005
+unmark 0 1012
+unmark 0 1007
+unmark 1 1008
+unmark 2 1009
+unmark 3 825
+sense here 1010 1010 food ; sit
+turn left 1011 ; spin
+sense leftahead 1013 1023 foe ; attack
+mark 0 1014
+turn left 1015
+turn left 1016
+move 1017 1016
+turn left 1018
+turn left 1019
+turn left 1020
+move 1021 1020
+unmark 0 1022
+turn left 1012
+sense rightahead 1024 1034 foe
+mark 0 1025
+turn right 1026
+turn right 1027
+move 1028 1027
+turn left 1029
+turn left 1030
+turn left 1031
+move 1032 1031
+unmark 0 1033
+turn right 1012
+sense leftahead 1035 1044 marker 0
+turn left 1036
+move 1037 1036
+unmark 0 1038
+turn left 1039
+turn left 1040
+turn left 1041
+move 1042 1041
+turn left 1043
+turn left 1012
+sense rightahead 1045 1012 marker 0
+turn right 1046
+move 1047 1046
+unmark 0 1048
+turn left 1049
+turn left 1050
+turn left 1051
+move 1052 1051
+turn right 1053
+turn right 1012
