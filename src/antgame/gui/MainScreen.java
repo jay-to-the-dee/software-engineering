@@ -33,9 +33,9 @@ public class MainScreen extends javax.swing.JFrame
         roundPerSecondSetter = new javax.swing.JSlider();
         roundPerSecondDisplay = new javax.swing.JTextField();
         simulationOverallProgess = new javax.swing.JProgressBar();
-        jPanel1 = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        worldPanelPlaceHolder = new javax.swing.JPanel();
+        mainMenuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
         loadWorldMenuItem = new javax.swing.JMenuItem();
         editWorldMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -43,13 +43,13 @@ public class MainScreen extends javax.swing.JFrame
         loadRedAntBrainMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        simulationMenu = new javax.swing.JMenu();
         startMenuItem = new javax.swing.JMenuItem();
         pauseMenuItem = new javax.swing.JMenuItem();
         resetMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ant Game");
+        setTitle("Up The Ante!");
         setMaximumSize(new java.awt.Dimension(5120, 3200));
         setMinimumSize(new java.awt.Dimension(1024, 768));
         setName("mainFrame"); // NOI18N
@@ -93,21 +93,21 @@ public class MainScreen extends javax.swing.JFrame
         });
         gameSpeedToolbar.add(simulationOverallProgess);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 102));
-        jPanel1.setToolTipText("DRAW HERE");
+        worldPanelPlaceHolder.setBackground(new java.awt.Color(204, 255, 102));
+        worldPanelPlaceHolder.setToolTipText("DRAW HERE");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout worldPanelPlaceHolderLayout = new javax.swing.GroupLayout(worldPanelPlaceHolder);
+        worldPanelPlaceHolder.setLayout(worldPanelPlaceHolderLayout);
+        worldPanelPlaceHolderLayout.setHorizontalGroup(
+            worldPanelPlaceHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        worldPanelPlaceHolderLayout.setVerticalGroup(
+            worldPanelPlaceHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 548, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
+        fileMenu.setText("File");
 
         loadWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
         loadWorldMenuItem.setText("Load World");
@@ -118,7 +118,7 @@ public class MainScreen extends javax.swing.JFrame
                 loadWorldMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(loadWorldMenuItem);
+        fileMenu.add(loadWorldMenuItem);
 
         editWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         editWorldMenuItem.setText("Edit World");
@@ -129,8 +129,8 @@ public class MainScreen extends javax.swing.JFrame
                 editWorldMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(editWorldMenuItem);
-        jMenu1.add(jSeparator1);
+        fileMenu.add(editWorldMenuItem);
+        fileMenu.add(jSeparator1);
 
         loadBlackAntBrainMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         loadBlackAntBrainMenuItem.setText("Load Black Ant Brain");
@@ -141,7 +141,7 @@ public class MainScreen extends javax.swing.JFrame
                 loadBlackAntBrainMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(loadBlackAntBrainMenuItem);
+        fileMenu.add(loadBlackAntBrainMenuItem);
 
         loadRedAntBrainMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         loadRedAntBrainMenuItem.setText("Load Red Ant Brain");
@@ -152,8 +152,8 @@ public class MainScreen extends javax.swing.JFrame
                 loadRedAntBrainMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(loadRedAntBrainMenuItem);
-        jMenu1.add(jSeparator2);
+        fileMenu.add(loadRedAntBrainMenuItem);
+        fileMenu.add(jSeparator2);
 
         jMenuItem5.setText("Exit");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener()
@@ -163,11 +163,11 @@ public class MainScreen extends javax.swing.JFrame
                 exitApplication(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        fileMenu.add(jMenuItem5);
 
-        jMenuBar1.add(jMenu1);
+        mainMenuBar.add(fileMenu);
 
-        jMenu2.setText("Simulation");
+        simulationMenu.setText("Simulation");
 
         startMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         startMenuItem.setText("Start");
@@ -178,7 +178,7 @@ public class MainScreen extends javax.swing.JFrame
                 startMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(startMenuItem);
+        simulationMenu.add(startMenuItem);
 
         pauseMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         pauseMenuItem.setText("Pause");
@@ -190,27 +190,27 @@ public class MainScreen extends javax.swing.JFrame
                 pauseMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(pauseMenuItem);
+        simulationMenu.add(pauseMenuItem);
 
         resetMenuItem.setText("Reset");
         resetMenuItem.setEnabled(false);
-        jMenu2.add(resetMenuItem);
+        simulationMenu.add(resetMenuItem);
 
-        jMenuBar1.add(jMenu2);
+        mainMenuBar.add(simulationMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(mainMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(gameSpeedToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(worldPanelPlaceHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(worldPanelPlaceHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gameSpeedToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -326,23 +326,23 @@ public class MainScreen extends javax.swing.JFrame
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem editWorldMenuItem;
+    private javax.swing.JMenu fileMenu;
     private javax.swing.JToolBar gameSpeedToolbar;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuItem loadBlackAntBrainMenuItem;
     private javax.swing.JMenuItem loadRedAntBrainMenuItem;
     private javax.swing.JMenuItem loadWorldMenuItem;
+    private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenuItem pauseMenuItem;
     private javax.swing.JMenuItem resetMenuItem;
     private javax.swing.JTextField roundPerSecondDisplay;
     private javax.swing.JSlider roundPerSecondSetter;
+    private javax.swing.JMenu simulationMenu;
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
+    private javax.swing.JPanel worldPanelPlaceHolder;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

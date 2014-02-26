@@ -2,9 +2,9 @@
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+    <Menu class="javax.swing.JMenuBar" name="mainMenuBar">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="fileMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
@@ -67,7 +67,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="simulationMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Simulation"/>
           </Properties>
@@ -108,7 +108,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Ant Game"/>
+    <Property name="title" type="java.lang.String" value="Up The Ante!"/>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[5120, 3200]"/>
     </Property>
@@ -118,7 +118,7 @@
     <Property name="name" type="java.lang.String" value="mainFrame" noResource="true"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="mainMenuBar"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -138,13 +138,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="gameSpeedToolbar" pref="800" max="32767" attributes="0"/>
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="worldPanelPlaceHolder" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="worldPanelPlaceHolder" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="gameSpeedToolbar" min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
@@ -202,7 +202,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="worldPanelPlaceHolder">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="ff" red="cc" type="rgb"/>
