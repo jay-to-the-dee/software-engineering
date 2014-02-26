@@ -1,5 +1,8 @@
 package antgame.gui;
 
+import java.text.NumberFormat;
+import org.jdesktop.beansbinding.Converter;
+
 /**
  *
  * @author jd318
@@ -24,11 +27,24 @@ public class MainScreen extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
     {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jToolBar1 = new javax.swing.JToolBar();
+        gameSpeedToolbar = new javax.swing.JToolBar();
         roundPerSecondSetter = new javax.swing.JSlider();
         roundPerSecondDisplay = new javax.swing.JTextField();
         simulationOverallProgess = new javax.swing.JProgressBar();
+        jPanel1 = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        startMenuItem = new javax.swing.JMenuItem();
+        pauseMenuItem = new javax.swing.JMenuItem();
+        resetMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ant Game");
@@ -36,16 +52,22 @@ public class MainScreen extends javax.swing.JFrame
         setMinimumSize(new java.awt.Dimension(1024, 768));
         setName("mainFrame"); // NOI18N
 
-        jToolBar1.setRollover(true);
+        gameSpeedToolbar.setName("Game Speed Toolbar"); // NOI18N
 
+        roundPerSecondSetter.setMaximum(1000);
         roundPerSecondSetter.setToolTipText("Game rounds/second");
+        roundPerSecondSetter.setValue(200);
         roundPerSecondSetter.setName("roundPerSecondSetter"); // NOI18N
-        jToolBar1.add(roundPerSecondSetter);
+        gameSpeedToolbar.add(roundPerSecondSetter);
 
         roundPerSecondDisplay.setEditable(false);
         roundPerSecondDisplay.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        roundPerSecondDisplay.setText("200 r/s");
+        roundPerSecondDisplay.setMaximumSize(getMinimumSize());
         roundPerSecondDisplay.setName("roundPerSecondDisplay"); // NOI18N
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, roundPerSecondSetter, org.jdesktop.beansbinding.ELProperty.create("${value} r/s"), roundPerSecondDisplay, org.jdesktop.beansbinding.BeanProperty.create("text"), "");
+        bindingGroup.addBinding(binding);
+
         roundPerSecondDisplay.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -53,7 +75,7 @@ public class MainScreen extends javax.swing.JFrame
                 roundPerSecondDisplayActionPerformed(evt);
             }
         });
-        jToolBar1.add(roundPerSecondDisplay);
+        gameSpeedToolbar.add(roundPerSecondDisplay);
 
         simulationOverallProgess.setMaximum(300000);
         simulationOverallProgess.setToolTipText("Current simulation progress");
@@ -67,20 +89,120 @@ public class MainScreen extends javax.swing.JFrame
                 simulationOverallProgessStateChanged(evt);
             }
         });
-        jToolBar1.add(simulationOverallProgess);
+        gameSpeedToolbar.add(simulationOverallProgess);
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 102));
+        jPanel1.setToolTipText("DRAW HERE");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Load World");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("Edit World");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+        jMenu1.add(jSeparator1);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setText("Load Black Ant Brain");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem4.setText("Load Red Ant Brain");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Simulation");
+
+        startMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        startMenuItem.setText("Start");
+        startMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                startMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(startMenuItem);
+
+        pauseMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        pauseMenuItem.setText("Pause");
+        pauseMenuItem.setEnabled(false);
+        pauseMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                pauseMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(pauseMenuItem);
+
+        resetMenuItem.setText("Reset");
+        resetMenuItem.setEnabled(false);
+        jMenu2.add(resetMenuItem);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(gameSpeedToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 575, Short.MAX_VALUE)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gameSpeedToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -95,10 +217,44 @@ public class MainScreen extends javax.swing.JFrame
         simulationOverallProgess.setString(simulationOverallProgessStringUpdate());
     }//GEN-LAST:event_simulationOverallProgessStateChanged
 
+    private void startMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startMenuItemActionPerformed
+    {//GEN-HEADEREND:event_startMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startMenuItemActionPerformed
+
+    private void pauseMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_pauseMenuItemActionPerformed
+    {//GEN-HEADEREND:event_pauseMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pauseMenuItemActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem1ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem3ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem2ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem4ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     private String simulationOverallProgessStringUpdate()
     {
+        NumberFormat nf = NumberFormat.getInstance();
+
         //value / maximum
-        return simulationOverallProgess.getValue() + " / " + simulationOverallProgess.getMaximum();
+        return nf.format(simulationOverallProgess.getValue())
+                + " / "
+                + nf.format(simulationOverallProgess.getMaximum());
     }
 
     /**
@@ -115,10 +271,11 @@ public class MainScreen extends javax.swing.JFrame
         {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
             {
-                if ("Nimbus".equals(info.getName()))
+                System.out.println(info);
+                if ("Windows".equals(info.getName()) || "Nimbus".equals(info.getName()))
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+                    //break;
                 }
             }
         }
@@ -150,9 +307,22 @@ public class MainScreen extends javax.swing.JFrame
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar gameSpeedToolbar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem pauseMenuItem;
+    private javax.swing.JMenuItem resetMenuItem;
     private javax.swing.JTextField roundPerSecondDisplay;
     private javax.swing.JSlider roundPerSecondSetter;
     private javax.swing.JProgressBar simulationOverallProgess;
+    private javax.swing.JMenuItem startMenuItem;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
