@@ -42,7 +42,7 @@ public class MainScreen extends javax.swing.JFrame
         loadBlackAntBrainMenuItem = new javax.swing.JMenuItem();
         loadRedAntBrainMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        exitMenuItem = new javax.swing.JMenuItem();
         simulationMenu = new javax.swing.JMenu();
         startMenuItem = new javax.swing.JMenuItem();
         pauseMenuItem = new javax.swing.JMenuItem();
@@ -155,15 +155,15 @@ public class MainScreen extends javax.swing.JFrame
         fileMenu.add(loadRedAntBrainMenuItem);
         fileMenu.add(jSeparator2);
 
-        jMenuItem5.setText("Exit");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener()
+        exitMenuItem.setText("Exit");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 exitApplication(evt);
             }
         });
-        fileMenu.add(jMenuItem5);
+        fileMenu.add(exitMenuItem);
 
         mainMenuBar.add(fileMenu);
 
@@ -263,6 +263,7 @@ public class MainScreen extends javax.swing.JFrame
     private void exitApplication(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitApplication
     {//GEN-HEADEREND:event_exitApplication
         this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_exitApplication
 
     private String simulationOverallProgessStringUpdate()
@@ -326,9 +327,9 @@ public class MainScreen extends javax.swing.JFrame
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem editWorldMenuItem;
+    private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JToolBar gameSpeedToolbar;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuItem loadBlackAntBrainMenuItem;
