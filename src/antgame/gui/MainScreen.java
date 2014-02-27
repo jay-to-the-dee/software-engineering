@@ -114,9 +114,11 @@ public class MainScreen extends javax.swing.JFrame
 
         hexagonPanelScrollPane.setViewportView(hexagonPanel);
 
+        fileMenu.setMnemonic('f');
         fileMenu.setText("File");
 
         loadWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        loadWorldMenuItem.setMnemonic('l');
         loadWorldMenuItem.setText("Load World");
         loadWorldMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
@@ -128,6 +130,7 @@ public class MainScreen extends javax.swing.JFrame
         fileMenu.add(loadWorldMenuItem);
 
         editWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        editWorldMenuItem.setMnemonic('e');
         editWorldMenuItem.setText("Edit World");
         editWorldMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
@@ -140,6 +143,7 @@ public class MainScreen extends javax.swing.JFrame
         fileMenu.add(jSeparator1);
 
         loadBlackAntBrainMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
+        loadBlackAntBrainMenuItem.setMnemonic('b');
         loadBlackAntBrainMenuItem.setText("Load Black Ant Brain");
         loadBlackAntBrainMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
@@ -151,6 +155,7 @@ public class MainScreen extends javax.swing.JFrame
         fileMenu.add(loadBlackAntBrainMenuItem);
 
         loadRedAntBrainMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        loadRedAntBrainMenuItem.setMnemonic('r');
         loadRedAntBrainMenuItem.setText("Load Red Ant Brain");
         loadRedAntBrainMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
@@ -162,6 +167,7 @@ public class MainScreen extends javax.swing.JFrame
         fileMenu.add(loadRedAntBrainMenuItem);
         fileMenu.add(jSeparator2);
 
+        exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
@@ -174,9 +180,11 @@ public class MainScreen extends javax.swing.JFrame
 
         mainMenuBar.add(fileMenu);
 
+        simulationMenu.setMnemonic('s');
         simulationMenu.setText("Simulation");
 
         startMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        startMenuItem.setMnemonic('s');
         startMenuItem.setText("Start / Resume");
         startMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
@@ -188,6 +196,7 @@ public class MainScreen extends javax.swing.JFrame
         simulationMenu.add(startMenuItem);
 
         pauseMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        pauseMenuItem.setMnemonic('p');
         pauseMenuItem.setText("Pause");
         pauseMenuItem.setEnabled(false);
         pauseMenuItem.addActionListener(new java.awt.event.ActionListener()
@@ -199,6 +208,7 @@ public class MainScreen extends javax.swing.JFrame
         });
         simulationMenu.add(pauseMenuItem);
 
+        resetMenuItem.setMnemonic('r');
         resetMenuItem.setText("Reset");
         resetMenuItem.setEnabled(false);
         resetMenuItem.addActionListener(new java.awt.event.ActionListener()

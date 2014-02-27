@@ -6,6 +6,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">
           <Properties>
+            <Property name="mnemonic" type="int" value="102"/>
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
@@ -14,6 +15,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+W"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="108"/>
                 <Property name="text" type="java.lang.String" value="Load World"/>
               </Properties>
               <Events>
@@ -25,6 +27,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+E"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="101"/>
                 <Property name="text" type="java.lang.String" value="Edit World"/>
               </Properties>
               <Events>
@@ -38,6 +41,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+B"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="98"/>
                 <Property name="text" type="java.lang.String" value="Load Black Ant Brain"/>
               </Properties>
               <Events>
@@ -49,6 +53,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+R"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="114"/>
                 <Property name="text" type="java.lang.String" value="Load Red Ant Brain"/>
               </Properties>
               <Events>
@@ -59,6 +64,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="exitMenuItem">
               <Properties>
+                <Property name="mnemonic" type="int" value="120"/>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
@@ -69,6 +75,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="simulationMenu">
           <Properties>
+            <Property name="mnemonic" type="int" value="115"/>
             <Property name="text" type="java.lang.String" value="Simulation"/>
           </Properties>
           <SubComponents>
@@ -77,6 +84,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+S"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="115"/>
                 <Property name="text" type="java.lang.String" value="Start / Resume"/>
               </Properties>
               <Events>
@@ -88,6 +96,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+P"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="112"/>
                 <Property name="text" type="java.lang.String" value="Pause"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -97,6 +106,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="resetMenuItem">
               <Properties>
+                <Property name="mnemonic" type="int" value="114"/>
                 <Property name="text" type="java.lang.String" value="Reset"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
