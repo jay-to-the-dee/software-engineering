@@ -290,7 +290,7 @@ public class MainScreen extends javax.swing.JFrame
         @Override
         public Integer convertReverse(Integer value)
         {
-            for (int i = 1; i <= conversionTable.length; i++)
+            for (int i = 1; i < conversionTable.length; i++)
             {
                 if (conversionTable[i] == value)
                 {
