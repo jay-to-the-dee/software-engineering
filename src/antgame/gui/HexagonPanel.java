@@ -43,7 +43,7 @@ public class HexagonPanel extends JPanel implements MouseWheelListener
         this.repaint();
     }
 
-    private GeneralPath hexagonPath(int hexagonSize)
+    private static GeneralPath hexagonPath(int hexagonSize)
     {
         GeneralPath path = new GeneralPath();
         path.moveTo(0, (Math.sqrt(3) / 6) * hexagonSize);
@@ -69,6 +69,9 @@ public class HexagonPanel extends JPanel implements MouseWheelListener
     {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+        
+        GeneralPath hexagonShape = hexagonPath(hexagonSize);
+        
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         final BasicStroke stroke = new BasicStroke(STROKE_WIDTH, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
         g2d.setStroke(stroke);
@@ -96,9 +99,9 @@ public class HexagonPanel extends JPanel implements MouseWheelListener
                 //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows * j / columns, 1, 1)));
                 //Functional colours
                 g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) j / columns, 1)));
-                g2d.fill(hexagonPath(hexagonSize));
+                g2d.fill(hexagonShape);
                 g2d.setColor(Color.BLACK);
-                g2d.draw(hexagonPath(hexagonSize));
+                g2d.draw(hexagonShape);
                 g2d.translate(hexagonSize, 0);
             }
             g2d.translate(-hexagonSize * columns, 0);
