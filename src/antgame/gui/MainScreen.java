@@ -58,7 +58,7 @@ public class MainScreen extends javax.swing.JFrame
 
         roundPerSecondSetter.setMaximum(1000);
         roundPerSecondSetter.setToolTipText("Game rounds/second");
-        roundPerSecondSetter.setValue(200);
+        roundPerSecondSetter.setValue(1000);
         roundPerSecondSetter.setName("roundPerSecondSetter"); // NOI18N
         gameSpeedToolbar.add(roundPerSecondSetter);
 
@@ -70,13 +70,6 @@ public class MainScreen extends javax.swing.JFrame
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, roundPerSecondSetter, org.jdesktop.beansbinding.ELProperty.create("${value} r/s"), roundPerSecondDisplay, org.jdesktop.beansbinding.BeanProperty.create("text"), "");
         bindingGroup.addBinding(binding);
 
-        roundPerSecondDisplay.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                roundPerSecondDisplayActionPerformed(evt);
-            }
-        });
         gameSpeedToolbar.add(roundPerSecondDisplay);
 
         simulationOverallProgess.setMaximum(300000);
@@ -219,11 +212,6 @@ public class MainScreen extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void roundPerSecondDisplayActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_roundPerSecondDisplayActionPerformed
-    {//GEN-HEADEREND:event_roundPerSecondDisplayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roundPerSecondDisplayActionPerformed
 
     private void simulationOverallProgessStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_simulationOverallProgessStateChanged
     {//GEN-HEADEREND:event_simulationOverallProgessStateChanged
