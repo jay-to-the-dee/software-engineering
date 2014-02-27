@@ -57,18 +57,20 @@ public class MainScreen extends javax.swing.JFrame
 
         gameSpeedToolbar.setName("Game Speed Toolbar"); // NOI18N
 
-        roundPerSecondSetter.setMaximum(1000);
+        roundPerSecondSetter.setMaximum(60);
         roundPerSecondSetter.setToolTipText("Game rounds/second");
-        roundPerSecondSetter.setValue(1000);
+        roundPerSecondSetter.setValue(42);
         roundPerSecondSetter.setName("roundPerSecondSetter"); // NOI18N
         gameSpeedToolbar.add(roundPerSecondSetter);
 
         roundPerSecondDisplay.setEditable(false);
+        roundPerSecondDisplay.setColumns(8);
         roundPerSecondDisplay.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        roundPerSecondDisplay.setMaximumSize(getMinimumSize());
+        roundPerSecondDisplay.setFocusable(false);
         roundPerSecondDisplay.setName("roundPerSecondDisplay"); // NOI18N
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, roundPerSecondSetter, org.jdesktop.beansbinding.ELProperty.create("${value} r/s"), roundPerSecondDisplay, org.jdesktop.beansbinding.BeanProperty.create("text"), "");
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, roundPerSecondSetter, org.jdesktop.beansbinding.ELProperty.create("${value}"), roundPerSecondDisplay, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding.setConverter(new RoundPerSecondSetterLogConverterString());
         bindingGroup.addBinding(binding);
 
         gameSpeedToolbar.add(roundPerSecondDisplay);
@@ -270,6 +272,58 @@ public class MainScreen extends javax.swing.JFrame
         return nf.format(simulationOverallProgess.getValue())
                 + " / "
                 + nf.format(simulationOverallProgess.getMaximum());
+    }
+
+    public class RoundPerSecondSetterLogConverter extends Converter<Integer, Integer>
+    {
+        private final int[] conversionTable =
+        {
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2500, 3000, 4000, 5000, 6000, 7500, 10000, 15000, 20000, 25000, 35000, 50000, 100000
+        };
+
+        @Override
+        public Integer convertForward(Integer value)
+        {
+            return conversionTable[value];
+        }
+
+        @Override
+        public Integer convertReverse(Integer value)
+        {
+            for (int i = 1; i <= conversionTable.length; i++)
+            {
+                if (conversionTable[i] == value)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+    }
+
+    public class RoundPerSecondSetterLogConverterString extends Converter<Integer, String>
+    {
+        RoundPerSecondSetterLogConverter converter;
+        NumberFormat nf;
+
+        public RoundPerSecondSetterLogConverterString()
+        {
+            converter = new RoundPerSecondSetterLogConverter();
+            nf = NumberFormat.getInstance();
+        }
+
+        @Override
+        public String convertForward(Integer value)
+        {
+            return nf.format(converter.convertForward(value)) + " r/s";
+        }
+
+        @Override
+        public Integer convertReverse(String value)
+        {
+            return converter.convertReverse( Integer.parseInt(value.replaceAll("[\\D]", "")) );
+        }
+
     }
 
     /**
