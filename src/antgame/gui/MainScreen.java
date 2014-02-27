@@ -66,6 +66,7 @@ public class MainScreen extends javax.swing.JFrame
         roundPerSecondDisplay.setEditable(false);
         roundPerSecondDisplay.setColumns(8);
         roundPerSecondDisplay.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        roundPerSecondDisplay.setToolTipText(roundPerSecondSetter.getToolTipText());
         roundPerSecondDisplay.setFocusable(false);
         roundPerSecondDisplay.setName("roundPerSecondDisplay"); // NOI18N
 
