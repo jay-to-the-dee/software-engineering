@@ -33,7 +33,8 @@ public class MainScreen extends javax.swing.JFrame
         roundPerSecondSetter = new javax.swing.JSlider();
         roundPerSecondDisplay = new javax.swing.JTextField();
         simulationOverallProgess = new javax.swing.JProgressBar();
-        worldPanelPlaceHolder = new javax.swing.JPanel();
+        hexagonPanelScrollPane = new javax.swing.JScrollPane();
+        hexagonPanel = new antgame.gui.HexagonPanel();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadWorldMenuItem = new javax.swing.JMenuItem();
@@ -86,19 +87,22 @@ public class MainScreen extends javax.swing.JFrame
         });
         gameSpeedToolbar.add(simulationOverallProgess);
 
-        worldPanelPlaceHolder.setBackground(new java.awt.Color(204, 255, 102));
-        worldPanelPlaceHolder.setToolTipText("DRAW HERE");
+        hexagonPanelScrollPane.setAutoscrolls(true);
 
-        javax.swing.GroupLayout worldPanelPlaceHolderLayout = new javax.swing.GroupLayout(worldPanelPlaceHolder);
-        worldPanelPlaceHolder.setLayout(worldPanelPlaceHolderLayout);
-        worldPanelPlaceHolderLayout.setHorizontalGroup(
-            worldPanelPlaceHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        hexagonPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        javax.swing.GroupLayout hexagonPanelLayout = new javax.swing.GroupLayout(hexagonPanel);
+        hexagonPanel.setLayout(hexagonPanelLayout);
+        hexagonPanelLayout.setHorizontalGroup(
+            hexagonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
-        worldPanelPlaceHolderLayout.setVerticalGroup(
-            worldPanelPlaceHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 548, Short.MAX_VALUE)
+        hexagonPanelLayout.setVerticalGroup(
+            hexagonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
+
+        hexagonPanelScrollPane.setViewportView(hexagonPanel);
 
         fileMenu.setText("File");
 
@@ -198,12 +202,16 @@ public class MainScreen extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(gameSpeedToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-            .addComponent(worldPanelPlaceHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(hexagonPanelScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(worldPanelPlaceHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(hexagonPanelScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gameSpeedToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -318,6 +326,8 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JToolBar gameSpeedToolbar;
+    private antgame.gui.HexagonPanel hexagonPanel;
+    private javax.swing.JScrollPane hexagonPanelScrollPane;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuItem loadBlackAntBrainMenuItem;
@@ -331,7 +341,6 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenu simulationMenu;
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
-    private javax.swing.JPanel worldPanelPlaceHolder;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
