@@ -1,6 +1,9 @@
 package antgame.gui;
 
 import java.text.NumberFormat;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 import org.jdesktop.beansbinding.Converter;
 
 /**
@@ -9,6 +12,10 @@ import org.jdesktop.beansbinding.Converter;
  */
 public class MainScreen extends javax.swing.JFrame
 {
+    final private static int UPDATES_PER_SECOND = 10;
+    final private static int TOTAL_ROUNDS = 300000;
+
+    private GameExecutionThread simulateGameRun;
 
     /**
      * Creates new form MainScreen
@@ -76,7 +83,7 @@ public class MainScreen extends javax.swing.JFrame
 
         gameSpeedToolbar.add(roundPerSecondDisplay);
 
-        simulationOverallProgess.setMaximum(300000);
+        simulationOverallProgess.setMaximum(TOTAL_ROUNDS);
         simulationOverallProgess.setToolTipText("Current simulation progress");
         simulationOverallProgess.setName("simulationOverallProgess"); // NOI18N
         simulationOverallProgess.setString(simulationOverallProgessStringUpdate());
@@ -170,7 +177,7 @@ public class MainScreen extends javax.swing.JFrame
         simulationMenu.setText("Simulation");
 
         startMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        startMenuItem.setText("Start");
+        startMenuItem.setText("Start / Resume");
         startMenuItem.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -194,6 +201,13 @@ public class MainScreen extends javax.swing.JFrame
 
         resetMenuItem.setText("Reset");
         resetMenuItem.setEnabled(false);
+        resetMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                resetMenuItemActionPerformed(evt);
+            }
+        });
         simulationMenu.add(resetMenuItem);
 
         mainMenuBar.add(simulationMenu);
@@ -231,12 +245,29 @@ public class MainScreen extends javax.swing.JFrame
 
     private void startMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startMenuItemActionPerformed
     {//GEN-HEADEREND:event_startMenuItemActionPerformed
-        // TODO add your handling code here:
+        startMenuItem.setEnabled(false);
+        pauseMenuItem.setEnabled(true);
+        resetMenuItem.setEnabled(false);
+
+        if (simulateGameRun != null)
+        {
+            //Resume
+            simulateGameRun.setIsPaused(false);
+        }
+        else
+        {
+            //Start
+            (simulateGameRun = new GameExecutionThread()).execute();
+        }
     }//GEN-LAST:event_startMenuItemActionPerformed
 
     private void pauseMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_pauseMenuItemActionPerformed
     {//GEN-HEADEREND:event_pauseMenuItemActionPerformed
-        // TODO add your handling code here:
+        startMenuItem.setEnabled(true);
+        pauseMenuItem.setEnabled(false);
+        resetMenuItem.setEnabled(true);
+
+        simulateGameRun.setIsPaused(true);
     }//GEN-LAST:event_pauseMenuItemActionPerformed
 
     private void loadWorldMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadWorldMenuItemActionPerformed
@@ -264,6 +295,17 @@ public class MainScreen extends javax.swing.JFrame
         this.dispose();
         System.exit(0);
     }//GEN-LAST:event_exitApplication
+
+    private void resetMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_resetMenuItemActionPerformed
+    {//GEN-HEADEREND:event_resetMenuItemActionPerformed
+        startMenuItem.setEnabled(true);
+        pauseMenuItem.setEnabled(false);
+        resetMenuItem.setEnabled(false);
+
+        simulateGameRun.cancel(true);
+        simulateGameRun = null;
+        simulationOverallProgess.setValue(0);
+    }//GEN-LAST:event_resetMenuItemActionPerformed
 
     private String simulationOverallProgessStringUpdate()
     {
@@ -322,7 +364,7 @@ public class MainScreen extends javax.swing.JFrame
         @Override
         public Integer convertReverse(String value)
         {
-            return converter.convertReverse( Integer.parseInt(value.replaceAll("[\\D]", "")) );
+            return converter.convertReverse(Integer.parseInt(value.replaceAll("[\\D]", "")));
         }
 
     }
@@ -376,6 +418,61 @@ public class MainScreen extends javax.swing.JFrame
             }
         });
     }
+
+    private class GameExecutionThread extends SwingWorker<Void, Void>
+    {
+        volatile boolean isPaused = false;
+        private float completedRuns = 0;
+
+        public void setIsPaused(boolean isPaused)
+        {
+            this.isPaused = isPaused;
+        }
+
+        @Override
+        protected Void doInBackground() throws Exception
+        {
+            while (!isCancelled() && completedRuns < TOTAL_ROUNDS)
+            {
+                while (!isCancelled() && isPaused)
+                {
+                    //Wait for thread to become unpaused
+                }
+                float presentRoundsPerSecond = new RoundPerSecondSetterLogConverter().convertForward(roundPerSecondSetter.getValue());
+                completedRuns += presentRoundsPerSecond / UPDATES_PER_SECOND;
+
+                /* TODO ItsTheRai : Do your stuff here!
+                 Call your Brain Exectutor method!
+                 Note that completedRuns is a float not an int! Deal with it! :L
+                 */
+                // TODO jay-to-the-dee : re-draw method stuff here
+                Thread.sleep(1000 / UPDATES_PER_SECOND);
+                publish();
+            }
+            return null;
+        }
+
+        @Override
+        protected void process(List<Void> runs)
+        {
+            simulationOverallProgess.setValue((int) completedRuns);
+        }
+
+        @Override
+        protected void done()
+        {
+            if (!isCancelled())
+            {
+                startMenuItem.setEnabled(false);
+                pauseMenuItem.setEnabled(false);
+                resetMenuItem.setEnabled(true);
+
+                JOptionPane.showMessageDialog(null, "Game complete! " + completedRuns + " rounds completed!");
+            }
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem editWorldMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
