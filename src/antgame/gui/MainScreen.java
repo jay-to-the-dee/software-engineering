@@ -22,6 +22,7 @@ public class MainScreen extends javax.swing.JFrame
      */
     public MainScreen()
     {
+        setLayout(new MultiBorderLayout());
         initComponents();
     }
 
@@ -42,6 +43,8 @@ public class MainScreen extends javax.swing.JFrame
         simulationOverallProgess = new javax.swing.JProgressBar();
         hexagonPanelScrollPane = new javax.swing.JScrollPane();
         hexagonPanel = new antgame.gui.HexagonPanel();
+        zoomToolbar = new javax.swing.JToolBar();
+        zoomSlider = new javax.swing.JSlider();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadWorldMenuItem = new javax.swing.JMenuItem();
@@ -117,6 +120,16 @@ public class MainScreen extends javax.swing.JFrame
         hexagonPanelScrollPane.setViewportView(hexagonPanel);
 
         getContentPane().add(hexagonPanelScrollPane, java.awt.BorderLayout.CENTER);
+
+        zoomToolbar.setRollover(true);
+        zoomToolbar.setName("Zoom Toolbar"); // NOI18N
+
+        zoomSlider.setMaximum(50);
+        zoomSlider.setToolTipText("Zoom Slider");
+        zoomSlider.setValue(20);
+        zoomToolbar.add(zoomSlider);
+
+        getContentPane().add(zoomToolbar, java.awt.BorderLayout.SOUTH);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -488,6 +501,8 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenu simulationMenu;
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
+    private javax.swing.JSlider zoomSlider;
+    private javax.swing.JToolBar zoomToolbar;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
