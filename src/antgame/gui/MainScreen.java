@@ -449,6 +449,12 @@ public class MainScreen extends javax.swing.JFrame
                 float presentRoundsPerSecond = new RoundPerSecondSetterLogConverter().convertForward(roundPerSecondSetter.getValue());
                 completedRuns += presentRoundsPerSecond / UPDATES_PER_SECOND;
 
+                if (completedRuns > TOTAL_ROUNDS)
+                {
+                    //Fix for #7
+                    completedRuns = TOTAL_ROUNDS;
+                }
+
                 /* TODO ItsTheRai : Do your stuff here!
                  Call your Brain Exectutor method!
                  Note that completedRuns is a float not an int! Deal with it! :L
