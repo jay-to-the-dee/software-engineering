@@ -97,6 +97,8 @@ public class MainScreen extends javax.swing.JFrame
         });
         gameSpeedToolbar.add(simulationOverallProgess);
 
+        getContentPane().add(gameSpeedToolbar, java.awt.BorderLayout.SOUTH);
+
         hexagonPanelScrollPane.setAutoscrolls(true);
 
         hexagonPanel.setMinimumSize(new java.awt.Dimension(400, 400));
@@ -113,6 +115,8 @@ public class MainScreen extends javax.swing.JFrame
         );
 
         hexagonPanelScrollPane.setViewportView(hexagonPanel);
+
+        getContentPane().add(hexagonPanelScrollPane, java.awt.BorderLayout.CENTER);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -223,25 +227,6 @@ public class MainScreen extends javax.swing.JFrame
         mainMenuBar.add(simulationMenu);
 
         setJMenuBar(mainMenuBar);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gameSpeedToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(hexagonPanelScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(hexagonPanelScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(gameSpeedToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
 
         bindingGroup.bind();
 
