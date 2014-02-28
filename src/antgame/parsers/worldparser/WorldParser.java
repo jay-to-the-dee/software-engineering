@@ -11,8 +11,8 @@ public class WorldParser {
     public static void main(String[] args) {
         // TODO code application logic here
         Parser p = new ParserImp();
-        String input=new String("123\n123\n"
-                + ".........................#-+  .#   +-");
+        String input=new String("2\n2\n"
+                + ". .\n. .");
         try{
         System.out.println(p.parse(input));
         }

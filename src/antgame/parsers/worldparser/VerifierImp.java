@@ -18,14 +18,14 @@ public class VerifierImp implements Verifier{
         
         //if success 
         //make sure this always works
-        int xsize = ((MapSizeToken)world.get(0)).getSize();
-        int ysize = ((MapSizeToken)world.get(1)).getSize();
+        //int xsize = ((MapSizeToken)world.get(0)).getSize();
+        //int ysize = ((MapSizeToken)world.get(1)).getSize();
         //////////////////////////////
         List l = new ArrayList<>();
         for (int i = 2; i<world.size();i++){
             l.add(world.get(i));
         }
-        return new World(xsize,ysize,l);
+        return null;//new World();//xsize,ysize,l);
         //else trow exception
         
     }

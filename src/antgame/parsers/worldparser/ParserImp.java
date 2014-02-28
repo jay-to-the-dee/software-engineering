@@ -22,7 +22,7 @@ public class ParserImp implements Parser{
     private static final Character terrain='.';
     //init list that stores all parsed tokens
     private List<Token> world = new ArrayList<>();
-    public List<Token> parse(String input) throws SomeException{
+    public List<Token> parse(String input) throws SomeException,SymbolNotFoundException,TokenSizeMismatchException{
         input = input.trim();
         //should get n+2
         for (String s: input.split("\\r?\\n|\\r")){
@@ -32,18 +32,35 @@ public class ParserImp implements Parser{
         //not sure if works when
         //line 1 for xsize
         //line 2 for ysize
-        world.add(getSize(q.remove().toString()));
-        world.add(getSize(q.remove().toString()));
         
+        
+        world.add(getSize(q.remove().toString()));
+        world.add(getSize(q.remove().toString()));
+        //now each object in the queue should contain xsize number of elements
+        //and there should be ysize number of objects in the queue alltogether
+        //so do a check
+        if(q.size()!=((MapSizeToken)world.get(1)).getSizeAsInt()){
+            throw new TokenSizeMismatchException();
+        }
         //parses all world tokens in queue
         
-        while(!q.isEmpty()){  
-            input=getWorldTokens(input);
-            System.out.println(input);
-            input=input.trim();
-        }
+        while(!q.isEmpty()){
+            Queue queue = new LinkedList();
+            //s contains all row objects
+            for(String s:q.remove().toString().trim().split("\\n|\\t")){
+                queue.add(s.trim());
+            }
+            if (queue.size()!=((MapSizeToken)world.get(0)).getSizeAsInt()){
+                throw new TokenSizeMismatchException();
+            }
+            else {
+                while(!queue.isEmpty()){
+                    getWorldTokens(queue.remove().toString());
+                }
+            }
+        //clean up and returna
         
-        //clean up and return
+        }
         List<Token> returnTokens = world;
         System.out.println(returnTokens);
         world.clear();
@@ -61,18 +78,19 @@ public class ParserImp implements Parser{
         else{
             int i = 0;
             ///keep reading input untill no ints are found
-            while(input.charAt(i) >=48 && input.charAt(i) <= 57 && i<=(input.length())){
+            while(input.charAt(i) >=48 && input.charAt(i) < 57 && i<(input.length())){
 		i++;
             }
             if (i<input.length()){
                 throw new SomeException();
             }
             else size = input;
+            return new MapSizeToken(size);
         }
-        return new MapSizeToken(size);
     }
     
     public String getWorldTokens(String s) throws SomeException{
+        s.trim();
         if(s.charAt(0)==redAnthill){
             world.add(new RedAnthillToken());
             s=s.substring(1);

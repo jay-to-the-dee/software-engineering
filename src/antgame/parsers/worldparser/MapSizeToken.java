@@ -12,7 +12,7 @@ public class MapSizeToken extends Token{
         public void getType() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-        public int getSize(){
+        public int getSizeAsInt(){
             return Integer.parseInt(size);
         }
     

@@ -12,6 +12,6 @@ public class ParseAndValidate {
     Parser p = new ParserImp();
     Verifier v = new VerifierImp();
     public World parseAndValidate(String input,WorldRequirements req)throws SomeException, SymbolNotFoundException{
-        return v.verify(p.parse(input), req); 
+        return null;//v.verify(p.parse(input), req); 
     }
 }
