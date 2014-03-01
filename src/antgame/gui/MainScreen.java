@@ -46,8 +46,8 @@ public class MainScreen extends javax.swing.JFrame
         roundPerSecondSetter = new javax.swing.JSlider();
         roundPerSecondDisplay = new javax.swing.JTextField();
         simulationOverallProgess = new javax.swing.JProgressBar();
-        hexagonPanelScrollPane = new javax.swing.JScrollPane();
-        hexagonPanel = new antgame.gui.HexagonPanel();
+        worldPanelScrollPane = new javax.swing.JScrollPane();
+        worldPanel = new antgame.gui.WorldPanel();
         zoomToolbar = new javax.swing.JToolBar();
         zoomSlider = new javax.swing.JSlider();
         mainMenuBar = new javax.swing.JMenuBar();
@@ -107,48 +107,48 @@ public class MainScreen extends javax.swing.JFrame
 
         getContentPane().add(gameSpeedToolbar, java.awt.BorderLayout.SOUTH);
 
-        hexagonPanel.setMinimumSize(new java.awt.Dimension(400, 400));
-        hexagonPanel.setRowsAndColumns(new java.awt.Dimension(150, 150));
+        worldPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        worldPanel.setRowsAndColumns(new java.awt.Dimension(150, 150));
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, zoomSlider, org.jdesktop.beansbinding.ELProperty.create("${value}"), hexagonPanel, org.jdesktop.beansbinding.BeanProperty.create("hexagonSize"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, zoomSlider, org.jdesktop.beansbinding.ELProperty.create("${value}"), worldPanel, org.jdesktop.beansbinding.BeanProperty.create("hexagonSize"));
         bindingGroup.addBinding(binding);
 
-        hexagonPanel.addMouseWheelListener(new java.awt.event.MouseWheelListener()
+        worldPanel.addMouseWheelListener(new java.awt.event.MouseWheelListener()
         {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt)
             {
-                hexagonPanelMouseWheelMoved(evt);
+                worldPanelMouseWheelMoved(evt);
             }
         });
-        hexagonPanel.addMouseListener(new java.awt.event.MouseAdapter()
+        worldPanel.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseReleased(java.awt.event.MouseEvent evt)
             {
-                hexagonPanelMouseReleased(evt);
+                worldPanelMouseReleased(evt);
             }
         });
-        hexagonPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter()
+        worldPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter()
         {
             public void mouseDragged(java.awt.event.MouseEvent evt)
             {
-                worldPanelViewMoveDragCode(evt);
+                worldPanelMouseDragged(evt);
             }
         });
 
-        javax.swing.GroupLayout hexagonPanelLayout = new javax.swing.GroupLayout(hexagonPanel);
-        hexagonPanel.setLayout(hexagonPanelLayout);
-        hexagonPanelLayout.setHorizontalGroup(
-            hexagonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout worldPanelLayout = new javax.swing.GroupLayout(worldPanel);
+        worldPanel.setLayout(worldPanelLayout);
+        worldPanelLayout.setHorizontalGroup(
+            worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 3011, Short.MAX_VALUE)
         );
-        hexagonPanelLayout.setVerticalGroup(
-            hexagonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        worldPanelLayout.setVerticalGroup(
+            worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 2142, Short.MAX_VALUE)
         );
 
-        hexagonPanelScrollPane.setViewportView(hexagonPanel);
+        worldPanelScrollPane.setViewportView(worldPanel);
 
-        getContentPane().add(hexagonPanelScrollPane, java.awt.BorderLayout.CENTER);
+        getContentPane().add(worldPanelScrollPane, java.awt.BorderLayout.CENTER);
 
         zoomToolbar.setRollover(true);
         zoomToolbar.setName("Zoom Toolbar"); // NOI18N
@@ -345,15 +345,21 @@ public class MainScreen extends javax.swing.JFrame
         simulationOverallProgess.setValue(0);
     }//GEN-LAST:event_resetMenuItemActionPerformed
 
-    private void hexagonPanelMouseWheelMoved(java.awt.event.MouseWheelEvent evt)//GEN-FIRST:event_hexagonPanelMouseWheelMoved
-    {//GEN-HEADEREND:event_hexagonPanelMouseWheelMoved
+    private void worldPanelMouseWheelMoved(java.awt.event.MouseWheelEvent evt)//GEN-FIRST:event_worldPanelMouseWheelMoved
+    {//GEN-HEADEREND:event_worldPanelMouseWheelMoved
         int notches = evt.getWheelRotation();
 
         zoomSlider.setValue(zoomSlider.getValue() - notches);
-    }//GEN-LAST:event_hexagonPanelMouseWheelMoved
+    }//GEN-LAST:event_worldPanelMouseWheelMoved
 
-    private void worldPanelViewMoveDragCode(java.awt.event.MouseEvent evt)//GEN-FIRST:event_worldPanelViewMoveDragCode
-    {//GEN-HEADEREND:event_worldPanelViewMoveDragCode
+    private void worldPanelMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_worldPanelMouseReleased
+    {//GEN-HEADEREND:event_worldPanelMouseReleased
+        dragStart = true;
+        this.setCursor(null);
+    }//GEN-LAST:event_worldPanelMouseReleased
+
+    private void worldPanelMouseDragged(java.awt.event.MouseEvent evt)//GEN-FIRST:event_worldPanelMouseDragged
+    {//GEN-HEADEREND:event_worldPanelMouseDragged
         if (dragStart == true)
         {
             dragStart = false;
@@ -366,18 +372,18 @@ public class MainScreen extends javax.swing.JFrame
         int X = startX - evt.getX();
         int Y = startY - evt.getY();
 
-        Point currentPoint = hexagonPanelScrollPane.getViewport().getViewPosition();
+        Point currentPoint = worldPanelScrollPane.getViewport().getViewPosition();
 
         int newX = (int) (currentPoint.getX() + X);
         int newY = (int) (currentPoint.getY() + Y);
 
-        if (newX > hexagonPanel.getPreferredSize().getWidth() - hexagonPanelScrollPane.getViewport().getWidth())
+        if (newX > worldPanel.getPreferredSize().getWidth() - worldPanelScrollPane.getViewport().getWidth())
         {
-            newX = (int) hexagonPanel.getPreferredSize().getWidth() - hexagonPanelScrollPane.getViewport().getWidth();
+            newX = (int) worldPanel.getPreferredSize().getWidth() - worldPanelScrollPane.getViewport().getWidth();
         }
-        if (newY > hexagonPanel.getPreferredSize().getHeight() - hexagonPanelScrollPane.getViewport().getHeight())
+        if (newY > worldPanel.getPreferredSize().getHeight() - worldPanelScrollPane.getViewport().getHeight())
         {
-            newY = (int) hexagonPanel.getPreferredSize().getHeight() - hexagonPanelScrollPane.getViewport().getHeight();
+            newY = (int) worldPanel.getPreferredSize().getHeight() - worldPanelScrollPane.getViewport().getHeight();
         }
         if (newX < 0)
         {
@@ -390,14 +396,8 @@ public class MainScreen extends javax.swing.JFrame
 
         Point newPoint = new Point(newX, newY);
 
-        hexagonPanelScrollPane.getViewport().setViewPosition(newPoint);
-    }//GEN-LAST:event_worldPanelViewMoveDragCode
-
-    private void hexagonPanelMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_hexagonPanelMouseReleased
-    {//GEN-HEADEREND:event_hexagonPanelMouseReleased
-        dragStart = true;
-        this.setCursor(null);
-    }//GEN-LAST:event_hexagonPanelMouseReleased
+        worldPanelScrollPane.getViewport().setViewPosition(newPoint);
+    }//GEN-LAST:event_worldPanelMouseDragged
 
     private String simulationOverallProgessStringUpdate()
     {
@@ -534,7 +534,7 @@ public class MainScreen extends javax.swing.JFrame
                  Note that completedRuns is a float not an int! Deal with it! :L
                  */
                 // TODO jay-to-the-dee : re-draw method stuff here
-                hexagonPanel.repaint();
+                worldPanel.repaint();
 
                 Thread.sleep(1000 / UPDATES_PER_SECOND);
                 publish();
@@ -568,8 +568,6 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JToolBar gameSpeedToolbar;
-    private antgame.gui.HexagonPanel hexagonPanel;
-    private javax.swing.JScrollPane hexagonPanelScrollPane;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuItem loadBlackAntBrainMenuItem;
@@ -583,6 +581,8 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenu simulationMenu;
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
+    private antgame.gui.WorldPanel worldPanel;
+    private javax.swing.JScrollPane worldPanelScrollPane;
     private javax.swing.JSlider zoomSlider;
     private javax.swing.JToolBar zoomToolbar;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;

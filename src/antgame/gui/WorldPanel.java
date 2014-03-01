@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author Jonathan Dilks
  */
-public class HexagonPanel extends JPanel
+public class WorldPanel extends JPanel
 {
     private static final int STROKE_WIDTH = 1;
     private int rows;
@@ -21,7 +21,7 @@ public class HexagonPanel extends JPanel
     //Zoom fields
     private int hexagonSize;
 
-    public HexagonPanel()
+    public WorldPanel()
     {
         //addMouseMotionListener(this);
         //addMouseListener(this);

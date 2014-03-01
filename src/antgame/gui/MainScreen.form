@@ -208,7 +208,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="hexagonPanelScrollPane">
+    <Container class="javax.swing.JScrollPane" name="worldPanelScrollPane">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Center"/>
@@ -217,7 +217,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Container class="antgame.gui.HexagonPanel" name="hexagonPanel">
+        <Container class="antgame.gui.WorldPanel" name="worldPanel">
           <Properties>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[400, 400]"/>
@@ -227,12 +227,12 @@
             </Property>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="hexagonSize" source="zoomSlider" sourcePath="${value}" target="hexagonPanel" targetPath="hexagonSize" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="hexagonSize" source="zoomSlider" sourcePath="${value}" target="worldPanel" targetPath="hexagonSize" updateStrategy="0" immediately="false"/>
           </BindingProperties>
           <Events>
-            <EventHandler event="mouseWheelMoved" listener="java.awt.event.MouseWheelListener" parameters="java.awt.event.MouseWheelEvent" handler="hexagonPanelMouseWheelMoved"/>
-            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="hexagonPanelMouseReleased"/>
-            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="worldPanelViewMoveDragCode"/>
+            <EventHandler event="mouseWheelMoved" listener="java.awt.event.MouseWheelListener" parameters="java.awt.event.MouseWheelEvent" handler="worldPanelMouseWheelMoved"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="worldPanelMouseReleased"/>
+            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="worldPanelMouseDragged"/>
           </Events>
 
           <Layout>
