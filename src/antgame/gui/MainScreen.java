@@ -419,27 +419,15 @@ public class MainScreen extends javax.swing.JFrame
                 }
             }
         }
-        catch (ClassNotFoundException ex)
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (InstantiationException ex)
-        {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (IllegalAccessException ex)
-        {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
+            @Override
             public void run()
             {
                 new MainScreen().setVisible(true);
@@ -479,7 +467,10 @@ public class MainScreen extends javax.swing.JFrame
                  Call your Brain Exectutor method!
                  Note that completedRuns is a float not an int! Deal with it! :L
                  */
+                
                 // TODO jay-to-the-dee : re-draw method stuff here
+                hexagonPanel.repaint();
+
                 Thread.sleep(1000 / UPDATES_PER_SECOND);
                 publish();
             }
