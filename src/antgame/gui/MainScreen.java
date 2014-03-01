@@ -105,16 +105,28 @@ public class MainScreen extends javax.swing.JFrame
         hexagonPanelScrollPane.setAutoscrolls(true);
 
         hexagonPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        hexagonPanel.setRowsAndColumns(new java.awt.Dimension(150, 150));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, zoomSlider, org.jdesktop.beansbinding.ELProperty.create("${value}"), hexagonPanel, org.jdesktop.beansbinding.BeanProperty.create("hexagonSize"));
+        bindingGroup.addBinding(binding);
+
+        hexagonPanel.addMouseWheelListener(new java.awt.event.MouseWheelListener()
+        {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt)
+            {
+                hexagonPanelMouseWheelMoved(evt);
+            }
+        });
 
         javax.swing.GroupLayout hexagonPanelLayout = new javax.swing.GroupLayout(hexagonPanel);
         hexagonPanel.setLayout(hexagonPanelLayout);
         hexagonPanelLayout.setHorizontalGroup(
             hexagonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGap(0, 3011, Short.MAX_VALUE)
         );
         hexagonPanelLayout.setVerticalGroup(
             hexagonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGap(0, 2142, Short.MAX_VALUE)
         );
 
         hexagonPanelScrollPane.setViewportView(hexagonPanel);
@@ -124,7 +136,8 @@ public class MainScreen extends javax.swing.JFrame
         zoomToolbar.setRollover(true);
         zoomToolbar.setName("Zoom Toolbar"); // NOI18N
 
-        zoomSlider.setMaximum(50);
+        zoomSlider.setMaximum(60);
+        zoomSlider.setMinimum(5);
         zoomSlider.setToolTipText("Zoom Slider");
         zoomSlider.setValue(20);
         zoomToolbar.add(zoomSlider);
@@ -314,6 +327,13 @@ public class MainScreen extends javax.swing.JFrame
         simulateGameRun = null;
         simulationOverallProgess.setValue(0);
     }//GEN-LAST:event_resetMenuItemActionPerformed
+
+    private void hexagonPanelMouseWheelMoved(java.awt.event.MouseWheelEvent evt)//GEN-FIRST:event_hexagonPanelMouseWheelMoved
+    {//GEN-HEADEREND:event_hexagonPanelMouseWheelMoved
+        int notches = evt.getWheelRotation();
+
+        zoomSlider.setValue(zoomSlider.getValue() - notches);
+    }//GEN-LAST:event_hexagonPanelMouseWheelMoved
 
     private String simulationOverallProgessStringUpdate()
     {
