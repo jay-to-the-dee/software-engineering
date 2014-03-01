@@ -9,9 +9,10 @@ import java.awt.geom.GeneralPath;
 import javax.swing.JPanel;
 
 /**
- * Hexagon GUI Panel
- *
- * @author Jonathan Dilks
+ * World (Hexagon game board) GUI Panel.
+ * This class contains the game's main draw method and code.
+ * 
+ * @author Jonathan Dilks <jay-to-the-dee@users.noreply.github.com>
  */
 public class WorldPanel extends JPanel
 {

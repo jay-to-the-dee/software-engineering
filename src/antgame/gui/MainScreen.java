@@ -9,8 +9,10 @@ import javax.swing.SwingWorker;
 import org.jdesktop.beansbinding.Converter;
 
 /**
- *
- * @author jd318
+ * Ant Game Main GUI Screen.
+ * The game play and simulation control all happens here!
+ * 
+ * @author Jonathan Dilks <jay-to-the-dee@users.noreply.github.com>
  */
 public class MainScreen extends javax.swing.JFrame
 {

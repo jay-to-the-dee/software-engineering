@@ -6,8 +6,9 @@ package antgame.gui;
 import java.beans.*;
 
 /**
- *
- * @author jay-to-the-dee <jay-to-the-dee@users.noreply.github.com>
+ * The BeanInfo to accompany the World GUI Panel.
+ * 
+ * @author Jonathan Dilks <jay-to-the-dee@users.noreply.github.com>
  */
 public class WorldPanelBeanInfo extends SimpleBeanInfo
 {
