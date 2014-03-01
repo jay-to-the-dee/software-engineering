@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.geom.GeneralPath;
 import javax.swing.JPanel;
 
@@ -21,12 +20,6 @@ public class HexagonPanel extends JPanel
     private int columns;
     //Zoom fields
     private int hexagonSize;
-    //Mouse drag fields
-    private boolean dragStart = true;
-    private int startX;
-    private int startY;
-    private int X;
-    private int Y;
 
     public HexagonPanel()
     {
@@ -52,6 +45,21 @@ public class HexagonPanel extends JPanel
         forceRedraw();
     }
 
+    public void forceRedraw()
+    {
+        setPreferredSize(currentTotalGridSize());
+        this.repaint();
+        this.revalidate();
+    }
+
+    private Dimension currentTotalGridSize()
+    {
+        return new Dimension(
+                (hexagonSize * columns) + (hexagonSize / 2) + STROKE_WIDTH, //X - Perfect
+                (int) ((hexagonSize * rows * (1 - (Math.sqrt(3) / 6))) + (hexagonSize * (1 - (Math.sqrt(3) / 3)))) //Y - Almost perfect
+        );
+    }
+
     private static GeneralPath hexagonPath(int hexagonSize)
     {
         GeneralPath path = new GeneralPath();
@@ -65,14 +73,6 @@ public class HexagonPanel extends JPanel
         return path;
     }
 
-    private Dimension currentTotalGridSize()
-    {
-        return new Dimension(
-                (hexagonSize * columns) + (hexagonSize / 2) + STROKE_WIDTH, //X - Perfect
-                (int) ((hexagonSize * rows * (1 - (Math.sqrt(3) / 6))) + (hexagonSize * (1 - (Math.sqrt(3) / 3)))) //Y - Almost perfect
-        );
-    }
-
     @Override
     public void paintComponent(Graphics g)
     {
@@ -80,7 +80,7 @@ public class HexagonPanel extends JPanel
         Graphics2D g2d = (Graphics2D) g;
 
         GeneralPath hexagonShape = hexagonPath(hexagonSize);
-        
+
         //Makes it look pretty - but too laggy for good framerate :(
         //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         final BasicStroke stroke = new BasicStroke(STROKE_WIDTH, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
@@ -118,61 +118,5 @@ public class HexagonPanel extends JPanel
             }
             g2d.translate(-hexagonSize * columns, 0);
         }
-    }
-
-    /*@Override
-     public void mouseDragged(MouseEvent e)
-     {
-     if (dragStart == true)
-     {
-     dragStart = false;
-     this.setCursor(Cursor.getPredefinedCursor((Cursor.MOVE_CURSOR)));
-     }
-     else
-     {
-     X = e.getX() - startX;
-     Y = e.getY() - startY;
-
-     //  The following two lines are to reverse the movement. i want a hand tool behaviour,
-     // so a drag to the right should actually move the canvas right... 
-     X = X * -1;
-     Y = Y * -1;
-
-     /*
-     JScrollPane currentScrollPane = scrollableHexagonPanel;
-     JScrollBar horizontalScrollBar = currentScrollPane.getHorizontalScrollBar();
-     JScrollBar verticalScrollBar = currentScrollPane.getVerticalScrollBar();
-
-            
-     // TODO Fix this buggy dragging code - temporarily disabled for now
-     if (horizontalScrollBar.getValue() + X > horizontalScrollBar.getMinimum()
-     && horizontalScrollBar.getValue() + horizontalScrollBar.getVisibleAmount() + X < horizontalScrollBar.getMaximum())
-     {
-     //horizontalScrollBar.setValue(horizontalScrollBar.getValue() + X);
-     }
-
-     if (verticalScrollBar.getValue() + Y > verticalScrollBar.getMinimum()
-     && verticalScrollBar.getValue() + verticalScrollBar.getVisibleAmount() + Y < verticalScrollBar.getMaximum())
-     {
-     verticalScrollBar.setValue(verticalScrollBar.getValue() + Y);
-     }
-             
-     }
-     startX = e.getX();
-     startY = e.getY();
-     }
-
-     @Override
-     public void mouseReleased(MouseEvent e)
-     {
-     dragStart = true;
-     this.setCursor(null);
-     }
-     */
-    public void forceRedraw()
-    {
-        setPreferredSize(currentTotalGridSize());
-        this.repaint();
-        this.revalidate();
     }
 }

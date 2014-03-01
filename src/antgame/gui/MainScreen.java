@@ -1,5 +1,7 @@
 package antgame.gui;
 
+import java.awt.Cursor;
+import java.awt.Point;
 import java.text.NumberFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -16,6 +18,9 @@ public class MainScreen extends javax.swing.JFrame
     final private static int TOTAL_ROUNDS = 300000;
 
     private GameExecutionThread simulateGameRun;
+    private boolean dragStart = true;
+    private int startX;
+    private int startY;
 
     /**
      * Creates new form MainScreen
@@ -102,8 +107,6 @@ public class MainScreen extends javax.swing.JFrame
 
         getContentPane().add(gameSpeedToolbar, java.awt.BorderLayout.SOUTH);
 
-        hexagonPanelScrollPane.setAutoscrolls(true);
-
         hexagonPanel.setMinimumSize(new java.awt.Dimension(400, 400));
         hexagonPanel.setRowsAndColumns(new java.awt.Dimension(150, 150));
 
@@ -115,6 +118,20 @@ public class MainScreen extends javax.swing.JFrame
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt)
             {
                 hexagonPanelMouseWheelMoved(evt);
+            }
+        });
+        hexagonPanel.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                hexagonPanelMouseReleased(evt);
+            }
+        });
+        hexagonPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter()
+        {
+            public void mouseDragged(java.awt.event.MouseEvent evt)
+            {
+                worldPanelViewMoveDragCode(evt);
             }
         });
 
@@ -335,6 +352,53 @@ public class MainScreen extends javax.swing.JFrame
         zoomSlider.setValue(zoomSlider.getValue() - notches);
     }//GEN-LAST:event_hexagonPanelMouseWheelMoved
 
+    private void worldPanelViewMoveDragCode(java.awt.event.MouseEvent evt)//GEN-FIRST:event_worldPanelViewMoveDragCode
+    {//GEN-HEADEREND:event_worldPanelViewMoveDragCode
+        if (dragStart == true)
+        {
+            dragStart = false;
+            this.setCursor(Cursor.getPredefinedCursor((Cursor.MOVE_CURSOR)));
+
+            startX = evt.getX();
+            startY = evt.getY();
+        }
+
+        int X = startX - evt.getX();
+        int Y = startY - evt.getY();
+
+        Point currentPoint = hexagonPanelScrollPane.getViewport().getViewPosition();
+
+        int newX = (int) (currentPoint.getX() + X);
+        int newY = (int) (currentPoint.getY() + Y);
+
+        if (newX > hexagonPanel.getPreferredSize().getWidth() - hexagonPanelScrollPane.getViewport().getWidth())
+        {
+            newX = (int) hexagonPanel.getPreferredSize().getWidth() - hexagonPanelScrollPane.getViewport().getWidth();
+        }
+        if (newY > hexagonPanel.getPreferredSize().getHeight() - hexagonPanelScrollPane.getViewport().getHeight())
+        {
+            newY = (int) hexagonPanel.getPreferredSize().getHeight() - hexagonPanelScrollPane.getViewport().getHeight();
+        }
+        if (newX < 0)
+        {
+            newX = 0;
+        }
+        if (newY < 0)
+        {
+            newY = 0;
+        }
+
+        Point newPoint = new Point(newX, newY);
+
+        hexagonPanelScrollPane.getViewport().setViewPosition(newPoint);
+    }//GEN-LAST:event_worldPanelViewMoveDragCode
+
+    private void hexagonPanelMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_hexagonPanelMouseReleased
+    {//GEN-HEADEREND:event_hexagonPanelMouseReleased
+        dragStart = true;
+        this.setCursor(null);
+    }//GEN-LAST:event_hexagonPanelMouseReleased
+
     private String simulationOverallProgessStringUpdate()
     {
         NumberFormat nf = NumberFormat.getInstance();
@@ -343,6 +407,7 @@ public class MainScreen extends javax.swing.JFrame
         return nf.format(simulationOverallProgess.getValue())
                 + " / "
                 + nf.format(simulationOverallProgess.getMaximum());
+
     }
 
     public class RoundPerSecondSetterLogConverter extends Converter<Integer, Integer>
@@ -433,6 +498,7 @@ public class MainScreen extends javax.swing.JFrame
                 new MainScreen().setVisible(true);
             }
         });
+
     }
 
     private class GameExecutionThread extends SwingWorker<Void, Void>
@@ -467,7 +533,6 @@ public class MainScreen extends javax.swing.JFrame
                  Call your Brain Exectutor method!
                  Note that completedRuns is a float not an int! Deal with it! :L
                  */
-                
                 // TODO jay-to-the-dee : re-draw method stuff here
                 hexagonPanel.repaint();
 
