@@ -65,6 +65,8 @@ public class MainScreen extends javax.swing.JFrame
         startMenuItem = new javax.swing.JMenuItem();
         pauseMenuItem = new javax.swing.JMenuItem();
         resetMenuItem = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Up The Ante!");
@@ -271,6 +273,23 @@ public class MainScreen extends javax.swing.JFrame
 
         mainMenuBar.add(simulationMenu);
 
+        helpMenu.setMnemonic('h');
+        helpMenu.setText("Help");
+        helpMenu.setToolTipText("");
+
+        aboutMenuItem.setMnemonic('a');
+        aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(aboutMenuItem);
+
+        mainMenuBar.add(helpMenu);
+
         setJMenuBar(mainMenuBar);
 
         bindingGroup.bind();
@@ -400,6 +419,13 @@ public class MainScreen extends javax.swing.JFrame
 
         worldPanelScrollPane.getViewport().setViewPosition(newPoint);
     }//GEN-LAST:event_worldPanelMouseDragged
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_aboutMenuItemActionPerformed
+    {//GEN-HEADEREND:event_aboutMenuItemActionPerformed
+        AboutDialog dialog = new AboutDialog(this, true);
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private String simulationOverallProgessStringUpdate()
     {
@@ -566,10 +592,12 @@ public class MainScreen extends javax.swing.JFrame
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem editWorldMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JToolBar gameSpeedToolbar;
+    private javax.swing.JMenu helpMenu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuItem loadBlackAntBrainMenuItem;
