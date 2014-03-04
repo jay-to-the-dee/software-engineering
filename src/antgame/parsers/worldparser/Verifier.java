@@ -11,5 +11,5 @@ import java.util.List;
  * @author rg293
  */
 public interface Verifier {
-    public World verify(List<Token> world,WorldRequirements requirements);
+    public World verify(int xsize,int ysize,List<WorldToken> world,List<CheckRequirement> requirements);
 }

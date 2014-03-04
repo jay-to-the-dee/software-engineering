@@ -6,6 +6,8 @@ package antgame.parsers.worldparser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,20 +16,21 @@ import java.util.List;
 public class VerifierImp implements Verifier{
 
     @Override
-    public World verify(List<Token> world,WorldRequirements requirements) {
+    public World verify(int xsize,int ysize,List<WorldToken> world,List<CheckRequirement> requirements) {
         
         //if success 
         //make sure this always works
         //int xsize = ((MapSizeToken)world.get(0)).getSize();
         //int ysize = ((MapSizeToken)world.get(1)).getSize();
         //////////////////////////////
-        List l = new ArrayList<>();
-        for (int i = 2; i<world.size();i++){
-            l.add(world.get(i));
+        for(CheckRequirement req:requirements){
+            try {
+                req.checkRequirements(xsize,ysize,world);
+            } catch (SomeException ex) {
+                System.out.println("verifier error");
+            }
         }
         return null;//new World();//xsize,ysize,l);
         //else trow exception
-        
     }
-    
 }

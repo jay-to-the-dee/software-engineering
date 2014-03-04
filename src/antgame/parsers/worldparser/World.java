@@ -10,13 +10,13 @@ import java.util.List;
 public class World {
     private int width;
     private int height;
-    private List<Token> worldTokens = new ArrayList<>();
+    private List<WorldToken> worldTokens = new ArrayList<>();
     
     
-    public World(int xsize,int ysize, List<Token> world){
+    public World(int xsize,int ysize, List<WorldToken> world){
         //needs refactoring
-        width = xsize;///Integer.parseInt(String.valueOf(size).substring(0,  String.valueOf(size).length()/2-1));
-        height = ysize;//Integer.parseInt(String.valueOf(size).substring(String.valueOf(size).length()/2,String.valueOf(size).length()));
+        width = xsize;
+        height = ysize;
         worldTokens=world;
     }
 
@@ -28,7 +28,7 @@ public class World {
         return height;
     }
 
-    public List<Token> getWorldTokens() {
+    public List<WorldToken> getWorldTokens() {
         return worldTokens;
     }
 }

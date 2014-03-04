@@ -4,12 +4,13 @@
  */
 package antgame.parsers.worldparser;
 
+import java.util.List;
+
 /**
  *
  * @author Main User
  */
-public class WorldRequirements {
-    public WorldRequirements(){
-        
-    }
+public interface CheckRequirement {
+    
+    public abstract boolean checkRequirements(int xsize,int ysize,List<WorldToken> tokens) throws SomeException;
 }
