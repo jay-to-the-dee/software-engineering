@@ -4,14 +4,13 @@ import java.awt.Cursor;
 import java.awt.Point;
 import java.text.NumberFormat;
 import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 import org.jdesktop.beansbinding.Converter;
 
 /**
  * Ant Game Main GUI Screen.
  * The game play and simulation control all happens here!
- * 
+ *
  * @author Jonathan Dilks <jay-to-the-dee@users.noreply.github.com>
  */
 public class MainScreen extends javax.swing.JFrame
@@ -495,25 +494,30 @@ public class MainScreen extends javax.swing.JFrame
      */
     public static void main(String args[])
     {
-        /* Set the Nimbus look and feel */
+        /* Set the Default System look and feel, else try Nimbus */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try
         {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e)
+        {
+            try
             {
-                System.out.println(info);
-                if ("Windows".equals(info.getName()) || "Nimbus".equals(info.getName()))
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
                 {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    //break;
+                    if ("Nimbus".equals(info.getName()))
+                    {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        //break;
+                    }
                 }
             }
-        }
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex)
-        {
+            catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex)
+            {
+            }
         }
         //</editor-fold>
 
