@@ -1,4 +1,6 @@
-package antgame.parsers.worldparser;
+package antgame.model;
+
+import antgame.parsers.worldparser.GetType;
 
 /**
  *

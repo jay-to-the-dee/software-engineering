@@ -19,7 +19,7 @@ public class WorldParser {
         Verifier v = new VerifierImp();
         ReadFile file = new ReadFile();
         //choose file path
-        String input =ReadFile.readFile("C:\\Users\\Main User\\Downloads\\sample5.world",Charset.defaultCharset());
+        String input =ReadFile.readFile("./data/worlds/uni-examples/a.world",Charset.defaultCharset());
          
         /*String input=new String(""
                 + "3\n"
@@ -34,7 +34,7 @@ public class WorldParser {
             ParseAndValidate pav = new ParseAndValidate();
             List<CheckRequirement> ls = new LinkedList();
             ls.add(new RequirementDimension(100,100));
-            ls.add(new RequirementBorder());
+            ls.add(new RequirementBorder(1));
             System.out.println(pav.parseAndValidate(input, ls));
                     //<Token> l=new LinkedList<>(p.parse(input));
                     //System.out.println(l);

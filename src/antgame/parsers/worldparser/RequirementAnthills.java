@@ -6,6 +6,7 @@
 
 package antgame.parsers.worldparser;
 
+import antgame.model.TerrainToken;
 import java.util.List;
 
 /**
@@ -17,6 +18,11 @@ public class RequirementAnthills implements CheckRequirement{
     private static int numberOfAnthills = 2;
     private static int anthillSideLength = 7;
     
+    
+    public RequirementAnthills(int numberOfAnthills,int anthillSideLength) {
+        this.numberOfAnthills = numberOfAnthills;
+        this.anthillSideLength = anthillSideLength;
+    }
     @Override
     public boolean checkRequirements(int xsize, int ysize, List<WorldToken> tokens) throws SomeException {
         boolean match = true;

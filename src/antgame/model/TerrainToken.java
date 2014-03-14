@@ -1,4 +1,7 @@
-package antgame.parsers.worldparser;
+package antgame.model;
+
+import antgame.parsers.worldparser.WorldToken;
+import antgame.parsers.worldparser.GetType;
 
 /**
  *

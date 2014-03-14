@@ -1,5 +1,6 @@
-package antgame.parsers.worldparser;
+package antgame.model;
 
+import antgame.parsers.worldparser.WorldToken;
 import java.util.ArrayList;
 import java.util.List;
 
