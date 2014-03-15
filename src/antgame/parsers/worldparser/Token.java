@@ -1,9 +1,11 @@
 package antgame.parsers.worldparser;
 
+import antgame.parsers.worldparser.GetType;
+
 /**
  *
  * @author Main User
  */
-abstract class Token implements GetType{
+abstract public class Token implements GetType{
     
 }

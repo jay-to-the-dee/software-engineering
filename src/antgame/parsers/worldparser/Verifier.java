@@ -4,6 +4,7 @@
  */
 package antgame.parsers.worldparser;
 
+import antgame.model.World;
 import java.util.List;
 
 /**
