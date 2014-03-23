@@ -70,7 +70,7 @@ public class MainScreen extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Up The Ante!");
         setMaximumSize(new java.awt.Dimension(5120, 3200));
-        setMinimumSize(new java.awt.Dimension(1024, 768));
+        setMinimumSize(new java.awt.Dimension(800, 600));
         setName("mainFrame"); // NOI18N
 
         gameSpeedToolbar.setName("Game Speed Toolbar"); // NOI18N
