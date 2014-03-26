@@ -2,8 +2,12 @@ package antgame.gui;
 
 import java.awt.Cursor;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import org.jdesktop.beansbinding.Converter;
 
@@ -16,7 +20,8 @@ import org.jdesktop.beansbinding.Converter;
 public class MainScreen extends javax.swing.JFrame
 {
     final private static int UPDATES_PER_SECOND = 10;
-    final private static int TOTAL_ROUNDS = 300000;
+    final public static int TOTAL_ROUNDS = 300000;
+    final private static String ICON_IMAGE_PATH = "resources/images/App_Icon/icon128.png";
 
     private GameExecutionThread simulateGameRun;
     private boolean dragStart = true;
@@ -28,6 +33,7 @@ public class MainScreen extends javax.swing.JFrame
      */
     public MainScreen()
     {
+        setApplicationIcon();
         setLayout(new MultiBorderLayout());
         initComponents();
     }
@@ -435,6 +441,20 @@ public class MainScreen extends javax.swing.JFrame
                 + " / "
                 + nf.format(simulationOverallProgess.getMaximum());
 
+    }
+
+    private void setApplicationIcon()
+    {
+        try
+        {
+            File file = new File(ICON_IMAGE_PATH);
+            BufferedImage image = ImageIO.read(file);
+            setIconImage(image);
+        }
+        catch (IOException ex)
+        {
+            //Can safely ignore any kind of exception in this method
+        }
     }
 
     public class RoundPerSecondSetterLogConverter extends Converter<Integer, Integer>
