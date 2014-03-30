@@ -152,7 +152,7 @@ public class MainScreen extends javax.swing.JFrame
         );
         worldPanelLayout.setVerticalGroup(
             worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2142, Short.MAX_VALUE)
+            .addGap(0, 79001, 79001)
         );
 
         worldPanelScrollPane.setViewportView(worldPanel);
@@ -162,8 +162,9 @@ public class MainScreen extends javax.swing.JFrame
         zoomToolbar.setRollover(true);
         zoomToolbar.setName("Zoom Toolbar"); // NOI18N
 
+        zoomSlider.setMajorTickSpacing(2);
         zoomSlider.setMaximum(60);
-        zoomSlider.setMinimum(5);
+        zoomSlider.setMinimum(4);
         zoomSlider.setToolTipText("Zoom Slider");
         zoomSlider.setValue(20);
         zoomToolbar.add(zoomSlider);
@@ -375,7 +376,7 @@ public class MainScreen extends javax.swing.JFrame
     {//GEN-HEADEREND:event_worldPanelMouseWheelMoved
         int notches = evt.getWheelRotation();
 
-        zoomSlider.setValue(zoomSlider.getValue() - notches);
+        zoomSlider.setValue(zoomSlider.getValue() - notches * 2);
     }//GEN-LAST:event_worldPanelMouseWheelMoved
 
     private void worldPanelMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_worldPanelMouseReleased

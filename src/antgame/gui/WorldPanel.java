@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 /**
  * World (Hexagon game board) GUI Panel.
  * This class contains the game's main draw method and code.
- * 
+ *
  * @author Jonathan Dilks <jay-to-the-dee@users.noreply.github.com>
  */
 public class WorldPanel extends JPanel
@@ -21,6 +21,7 @@ public class WorldPanel extends JPanel
     private int columns;
     //Zoom fields
     private int hexagonSize;
+    private float singleSideSize;
 
     public WorldPanel()
     {
@@ -34,6 +35,7 @@ public class WorldPanel extends JPanel
     public void setHexagonSize(int hexagonSize)
     {
         this.hexagonSize = hexagonSize;
+        singleSideSize = (float) (hexagonSize / 2 / Math.cos(Math.toRadians(30)));
 
         forceRedraw();
     }
@@ -56,20 +58,21 @@ public class WorldPanel extends JPanel
     private Dimension currentTotalGridSize()
     {
         return new Dimension(
-                (hexagonSize * columns) + (hexagonSize / 2) + STROKE_WIDTH, //X - Perfect
-                (int) ((hexagonSize * rows * (1 - (Math.sqrt(3) / 6))) + (hexagonSize * (1 - (Math.sqrt(3) / 3)))) //Y - Almost perfect
-        );
+                (hexagonSize * columns) + (hexagonSize / 2) + STROKE_WIDTH,
+                (int) ((int) (((singleSideSize * 2) - (Math.sqrt(3) / 6) * hexagonSize) * rows) + ((Math.sqrt(3) / 6) * hexagonSize) + STROKE_WIDTH * 2));
     }
 
     private static GeneralPath hexagonPath(int hexagonSize)
     {
+        final float singleSideSize = (float) (hexagonSize / 2 / Math.cos(Math.toRadians(30)));
+
         GeneralPath path = new GeneralPath();
         path.moveTo(0, (Math.sqrt(3) / 6) * hexagonSize);
         path.lineTo(0.5 * hexagonSize, 0);
         path.lineTo(1 * hexagonSize, (Math.sqrt(3) / 6) * hexagonSize);
-        path.lineTo(1 * hexagonSize, (1 - (Math.sqrt(3) / 6)) * hexagonSize);
-        path.lineTo(0.5 * hexagonSize, 1 * hexagonSize);
-        path.lineTo(0, (1 - (Math.sqrt(3) / 6)) * hexagonSize);
+        path.lineTo(1 * hexagonSize, (singleSideSize * 2) - ((Math.sqrt(3) / 6) * hexagonSize));
+        path.lineTo(0.5 * hexagonSize, singleSideSize * 2);
+        path.lineTo(0, (singleSideSize * 2) - ((Math.sqrt(3) / 6) * hexagonSize));
         path.lineTo(0, (Math.sqrt(3) / 6) * hexagonSize);
         return path;
     }
@@ -91,7 +94,7 @@ public class WorldPanel extends JPanel
         {
             if (i != 0)
             {
-                g2d.translate(0, (1 - (Math.sqrt(3) / 6)) * hexagonSize);
+                g2d.translate(0, (singleSideSize * 2) - (Math.sqrt(3) / 6) * hexagonSize);
             }
             for (int j = 0; j < columns; j++)
             {
