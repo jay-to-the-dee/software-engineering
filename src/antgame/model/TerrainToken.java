@@ -14,6 +14,8 @@ public class TerrainToken extends WorldToken implements GetType{
     private final boolean rocky;
     private boolean ant;
     private boolean food;
+    private boolean antCarriyingFood;
+    private int foodCount;
     public TerrainToken (boolean predicate){
         rocky=predicate;
     }

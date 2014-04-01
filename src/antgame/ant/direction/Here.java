@@ -6,6 +6,9 @@
 
 package antgame.ant.direction;
 
+import antgame.model.TerrainToken;
+import antgame.model.World;
+
 /**
  *
  * @author Main User
@@ -13,7 +16,7 @@ package antgame.ant.direction;
 public class Here implements Direction{
 
     @Override
-    public String getTileInDirection() {
+    public TerrainToken getTileInDirection(World world, int position) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

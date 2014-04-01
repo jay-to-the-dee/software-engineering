@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package antgame.model;
+package antgame.ant.markers;
 
 /**
  *
@@ -29,5 +29,4 @@ public class SingleAntColorMarkers
         {
             markers[index] = value;
         }
-        
     }

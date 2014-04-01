@@ -4,17 +4,12 @@
  * and open the template in the editor.
  */
 
-package antgame.model;
+package antgame.ant.markers;
 
 /**
  *
  * @author Main User
  */
-public class ChemicalMarkers
-{
-    SingleAntColorMarkers blackAnts;
-    SingleAntColorMarkers redAnts;
+public class Marker3 extends Marker{
     
-    
-
 }
