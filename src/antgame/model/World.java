@@ -32,4 +32,13 @@ public class World {
     public List<WorldToken> getWorldTokens() {
         return worldTokens;
     }
+    
+    //need to test functionality
+    
+    
+    //xposition - index starting from 0 to width -1
+    //yposition - index starting from 0 to heigth -1
+    public WorldToken getTokenAt(int xposition, int yposition){
+        return getWorldTokens().get(yposition*getWidth()+xposition);
+    }
 }

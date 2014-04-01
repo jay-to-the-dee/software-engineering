@@ -1,9 +1,10 @@
 package antgame.parsers.worldparser;
 
-import antgame.model.RockToken;
-import antgame.model.RedAnthillToken;
-import antgame.model.BlackAnthillToken;
+import antgame.world.tokens.RockToken;
+import antgame.world.tokens.RedAnthillToken;
+import antgame.world.tokens.BlackAnthillToken;
 import antgame.model.TerrainToken;
+import antgame.world.tokens.PlainToken;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -120,7 +121,7 @@ public class ParserImp implements Parser{
             world.add(new RockToken());
         }
         else if(s.charAt(0)==terrain){
-            world.add(new TerrainToken());
+            world.add(new PlainToken());
         }
         else if(s.charAt(0) >=48 && s.charAt(0) <= 57){
             world.add(new TerrainWithFoodToken(5));

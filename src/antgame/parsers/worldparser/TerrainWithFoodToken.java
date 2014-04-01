@@ -11,7 +11,9 @@ public class TerrainWithFoodToken extends TerrainToken implements GetType{
     private int numberOfFood;
     
     public TerrainWithFoodToken(int numberOfFood){
+        super(false);
         this.numberOfFood = numberOfFood;
+        
     }
     @Override
     public void getType() {

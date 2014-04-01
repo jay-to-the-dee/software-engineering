@@ -1,17 +1,21 @@
 package antgame.model;
 
-import antgame.parsers.worldparser.WorldToken;
+import antgame.ant.conditions.checkCondition;
 import antgame.parsers.worldparser.GetType;
+import antgame.parsers.worldparser.WorldToken;
+import java.util.concurrent.locks.Condition;
 
 /**
  *
  * @author Main User
  */
 public class TerrainToken extends WorldToken implements GetType{
-    private /*final???*/ boolean rocky;
+    private int antNumber;
+    private final boolean rocky;
     private boolean ant;
-    public TerrainToken (){
-        rocky=false;
+    private boolean food;
+    public TerrainToken (boolean predicate){
+        rocky=predicate;
     }
         public void getType() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -21,17 +25,21 @@ public class TerrainToken extends WorldToken implements GetType{
         return rocky;
     }
 
-    public boolean isAnt() {
-        return ant;
+    private boolean hasAnt(){
+        if(antNumber>=0){
+            return true;
+        }
+        else return false;
+    }
+    public int getAnt(){
+            return antNumber;
     }
 
-    public void setRocky() {
-        rocky=true;
+    public void putAnt(int antNumber) {
+        this.antNumber = antNumber;
     }
 
-    public void setAnt(boolean ant) {
-        this.ant = ant;
+    public boolean hasFood() {
+        return food;
     }
-    
-    
 }

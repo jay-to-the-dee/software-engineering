@@ -6,7 +6,7 @@
 
 package antgame.parsers.worldparser;
 
-import antgame.model.RockToken;
+import antgame.world.tokens.RockToken;
 import antgame.model.TerrainToken;
 import java.util.List;
 

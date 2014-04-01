@@ -1,4 +1,4 @@
-package antgame.model;
+package antgame.world.tokens;
 
 import antgame.parsers.worldparser.GetType;
 
