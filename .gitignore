@@ -1,9 +1,5 @@
 *.class
 
-# Package Files #
-*.jar
-*.war
-*.ear
 
 #Netbeans added this
 /nbproject/private/
