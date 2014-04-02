@@ -6,7 +6,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
+import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.*;
 import javax.swing.JPanel;
+import org.imgscalr.Scalr;
+import static org.imgscalr.Scalr.*;
 
 /**
  * World (Hexagon game board) GUI Panel.
@@ -22,21 +28,37 @@ public class WorldPanel extends JPanel
     //Zoom fields
     private int hexagonSize;
     private float singleSideSize;
+    private BufferedImage antImg;
+    private BufferedImage rockImg;
+    private BufferedImage antScaled;
+    private BufferedImage rockScaled;
+    
 
     public WorldPanel()
     {
         //addMouseMotionListener(this);
         //addMouseListener(this);
-
+        loadImages();
         setPreferredSize(currentTotalGridSize());
         this.repaint();
+    }
+    
+    public void loadImages()
+    {
+       try {
+           //antImg = ImageIO.read(getClass().getResource("/resources/images/Sprites/Ant_rotate_0.png"));
+           antImg = ImageIO.read(new File("resources/images/Sprites/Ant/Ant_rotate_0.png"));
+           rockImg = ImageIO.read(new File("resources/images/Sprites/Rock/Rock.png"));
+       } catch (IOException e) {
+           System.out.println("Image not found.");
+       }
     }
 
     public void setHexagonSize(int hexagonSize)
     {
         this.hexagonSize = hexagonSize;
         singleSideSize = (float) (hexagonSize / 2 / Math.cos(Math.toRadians(30)));
-
+        
         forceRedraw();
     }
 
@@ -84,7 +106,10 @@ public class WorldPanel extends JPanel
         Graphics2D g2d = (Graphics2D) g;
 
         GeneralPath hexagonShape = hexagonPath(hexagonSize);
-
+        
+        
+        antScaled = Scalr.resize(antImg,Scalr.Method.SPEED,(int)(2 * hexagonSize * Math.sqrt(3)/2));
+        rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED,(int)(2 * hexagonSize * Math.sqrt(3)/2));
         //Makes it look pretty - but too laggy for good framerate :(
         //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         final BasicStroke stroke = new BasicStroke(STROKE_WIDTH, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
@@ -117,6 +142,12 @@ public class WorldPanel extends JPanel
                 g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) j / columns, 1)));
                 g2d.fill(hexagonShape);
                 g2d.setColor(Color.BLACK);
+                if (i%2 == 0) {
+                    g2d.drawImage(antScaled, null, 0, 0);
+                }
+                else {
+                    g2d.drawImage(rockScaled, null, 0, 0);
+                }
                 g2d.draw(hexagonShape);
                 g2d.translate(hexagonSize, 0);
             }
