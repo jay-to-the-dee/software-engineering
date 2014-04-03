@@ -1,14 +1,22 @@
 package antgame.gui;
 
+import antgame.model.TerrainToken;
+import antgame.model.World;
+import antgame.parsers.worldparser.Token;
+import antgame.parsers.worldparser.WorldToken;
+import antgame.textworldgenerator.GenRandomMap;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.*;
 import javax.swing.JPanel;
 import org.imgscalr.Scalr;
@@ -32,6 +40,12 @@ public class WorldPanel extends JPanel
     private BufferedImage rockImg;
     private BufferedImage antScaled;
     private BufferedImage rockScaled;
+    private int dirrect;
+    private BufferedImage foodImg;
+    private BufferedImage foodScaled;
+    private final World world;
+    private final List<WorldToken> worldtokens;
+    
     
 
     public WorldPanel()
@@ -39,6 +53,9 @@ public class WorldPanel extends JPanel
         //addMouseMotionListener(this);
         //addMouseListener(this);
         loadImages();
+        GenRandomMap newWorld = new GenRandomMap(150);
+        world = newWorld.createWorld();
+        worldtokens = world.getWorldTokens();
         setPreferredSize(currentTotalGridSize());
         this.repaint();
     }
@@ -49,6 +66,7 @@ public class WorldPanel extends JPanel
            //antImg = ImageIO.read(getClass().getResource("/resources/images/Sprites/Ant_rotate_0.png"));
            antImg = ImageIO.read(new File("resources/images/Sprites/Ant/Ant_rotate_0.png"));
            rockImg = ImageIO.read(new File("resources/images/Sprites/Rock/Rock.png"));
+           foodImg = ImageIO.read(new File("resources/images/Sprites/Food/Food.png"));
        } catch (IOException e) {
            System.out.println("Image not found.");
        }
@@ -108,8 +126,36 @@ public class WorldPanel extends JPanel
         GeneralPath hexagonShape = hexagonPath(hexagonSize);
         
         
-        antScaled = Scalr.resize(antImg,Scalr.Method.SPEED,(int)(2 * hexagonSize * Math.sqrt(3)/2));
-        rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED,(int)(2 * hexagonSize * Math.sqrt(3)/2));
+        antScaled = Scalr.resize(antImg,Scalr.Method.SPEED,(int)(1.5155 * hexagonSize ));
+        rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED,(int)(1.5155 * hexagonSize));
+        foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED,(int)(1.5155 * hexagonSize));
+        AffineTransform tx = new AffineTransform();
+        tx.rotate(Math.PI/3);
+        AffineTransformOp op60 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        tx.rotate(Math.PI/3);
+        AffineTransformOp op120 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        tx.rotate(Math.PI/3);
+        AffineTransformOp op180 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        tx.rotate(Math.PI/3);
+        AffineTransformOp op240 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        tx.rotate(Math.PI/3);
+        AffineTransformOp op300 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        
+        BufferedImage antScaledRotate60 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op60.filter(antScaled, antScaledRotate60);
+        
+        BufferedImage antScaledRotate120 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op120.filter(antScaled, antScaledRotate120);
+        
+        BufferedImage antScaledRotate180 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op180.filter(antScaled, antScaledRotate180);
+        
+        BufferedImage antScaledRotate240 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op240.filter(antScaled, antScaledRotate240);
+        
+        BufferedImage antScaledRotate300 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op300.filter(antScaled, antScaledRotate300);
+        
         //Makes it look pretty - but too laggy for good framerate :(
         //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         final BasicStroke stroke = new BasicStroke(STROKE_WIDTH, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
@@ -142,12 +188,162 @@ public class WorldPanel extends JPanel
                 g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) j / columns, 1)));
                 g2d.fill(hexagonShape);
                 g2d.setColor(Color.BLACK);
-                if (i%2 == 0) {
-                    g2d.drawImage(antScaled, null, 0, 0);
+               
+                TerrainToken token = (TerrainToken) worldtokens.get(j + i*(world.getWidth()));
+                if (token.isRocky()) {
+                    g2d.drawImage(rockScaled, null, 0 ,0);
+                  
+                } 
+                else if (token.hasAnt()) {
+
+                    dirrect = token.getAnt();//getDirection
+
+                    if (token.getAnt()>=0) { //.isHasFood
+                        if (token.hasFood()) {
+                            if (token.getAnt()>50) {//.getColour
+                                switch (dirrect) {
+                                    case 0:
+                                        g2d.drawImage(antScaled, null, 0 , 0);
+                                        break;
+                                    case 1:
+                                        g2d.drawImage(antScaledRotate60, null, 0 , 0);
+                                        break;
+                                    case 2:
+                                        g2d.drawImage(antScaledRotate120, null, 0 , 0);
+                                        break;
+                                    case 3:
+                                        g2d.drawImage(antScaledRotate180, null, 0 , 0);
+                                        break;
+                                    case 4:
+                                        g2d.drawImage(antScaledRotate240, null, 0 , 0);
+                                        break;
+                                    case 5:
+                                        g2d.drawImage(antScaledRotate300, null, 0 , 0);
+                                        break;
+                                }
+                            } else {
+                                switch (dirrect) {
+                                    case 0:
+                                        g2d.drawImage(antScaled, null, 0 , 0);
+                                        break;
+                                    case 1:
+                                        g2d.drawImage(antScaledRotate60, null, 0 , 0);
+                                        break;
+                                    case 2:
+                                        g2d.drawImage(antScaledRotate120, null, 0 , 0);
+                                        break;
+                                    case 3:
+                                        g2d.drawImage(antScaledRotate180, null, 0 , 0);
+                                        break;
+                                    case 4:
+                                        g2d.drawImage(antScaledRotate240, null, 0 , 0);
+                                        break;
+                                    case 5:
+                                        g2d.drawImage(antScaledRotate300, null, 0 , 0);
+                                        break;
+                                }
+                            }
+                        } else {
+                            if (token.getAnt()>50) {
+                                switch (dirrect) {
+                                    case 0:
+                                        g2d.drawImage(antScaled, null, 0 , 0);
+                                        break;
+                                    case 1:
+                                        g2d.drawImage(antScaledRotate60, null, 0 , 0);
+                                        break;
+                                    case 2:
+                                        g2d.drawImage(antScaledRotate120, null, 0 , 0);
+                                        break;
+                                    case 3:
+                                        g2d.drawImage(antScaledRotate180, null, 0 , 0);
+                                        break;
+                                    case 4:
+                                        g2d.drawImage(antScaledRotate240, null, 0 , 0);
+                                        break;
+                                    case 5:
+                                        g2d.drawImage(antScaledRotate300, null, 0 , 0);
+                                        break;
+                                }
+                                
+                            } else {
+                                switch (dirrect) {
+                                    case 0:
+                                        g2d.drawImage(antScaled, null, 0 , 0);
+                                        break;
+                                    case 1:
+                                        g2d.drawImage(antScaledRotate60, null, 0 , 0);
+                                        break;
+                                    case 2:
+                                        g2d.drawImage(antScaledRotate120, null, 0 , 0);
+                                        break;
+                                    case 3:
+                                        g2d.drawImage(antScaledRotate180, null, 0 , 0);
+                                        break;
+                                    case 4:
+                                        g2d.drawImage(antScaledRotate240, null, 0 , 0);
+                                        break;
+                                    case 5:
+                                        g2d.drawImage(antScaledRotate300, null, 0 , 0);
+                                        break;
+                                }
+                                //Draw red ant with food.
+                            }
+                        }
+                    } else {
+                        if (token.getAnt() > 50) {
+                            switch (dirrect) {
+                                    case 0:
+                                        g2d.drawImage(antScaled, null, 0 , 0);
+                                        break;
+                                    case 1:
+                                        g2d.drawImage(antScaledRotate60, null, 0 , 0);
+                                        break;
+                                    case 2:
+                                        g2d.drawImage(antScaledRotate120, null, 0 , 0);
+                                        break;
+                                    case 3:
+                                        g2d.drawImage(antScaledRotate180, null, 0 , 0);
+                                        break;
+                                    case 4:
+                                        g2d.drawImage(antScaledRotate240, null, 0 , 0);
+                                        break;
+                                    case 5:
+                                        g2d.drawImage(antScaledRotate300, null, 0 , 0);
+                                        break;
+                            }
+                            //Draw black ant.
+                        } else {
+                            switch (dirrect) {
+                                    case 0:
+                                        g2d.drawImage(antScaled, null, 0 , 0);
+                                        break;
+                                    case 1:
+                                        g2d.drawImage(antScaledRotate60, null, 0 , 0);
+                                        break;
+                                    case 2:
+                                        g2d.drawImage(antScaledRotate120, null, 0 , 0);
+                                        break;
+                                    case 3:
+                                        g2d.drawImage(antScaledRotate180, null, 0 , 0);
+                                        break;
+                                    case 4:
+                                        g2d.drawImage(antScaledRotate240, null, 0 , 0);
+                                        break;
+                                    case 5:
+                                        g2d.drawImage(antScaledRotate300, null, 0 , 0);
+                                        break;
+                            }
+                            //Draw red ant.
+                        }
+                    }
+                } else if (token.hasFood()) {
+                    g2d.drawImage(foodScaled, null, 0 , 0);
                 }
                 else {
-                    g2d.drawImage(rockScaled, null, 0, 0);
+
                 }
+                
                 g2d.draw(hexagonShape);
                 g2d.translate(hexagonSize, 0);
             }
