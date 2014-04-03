@@ -10,10 +10,10 @@ import java.util.concurrent.locks.Condition;
  * @author Main User
  */
 public class TerrainToken extends WorldToken implements GetType{
-    private int antNumber;
+    private int antNumber = -1;
     private final boolean rocky;
     private boolean ant;
-    private boolean food;
+    protected boolean food;
     private boolean antCarriyingFood;
     private int foodCount;
     public TerrainToken (boolean predicate){
@@ -27,7 +27,7 @@ public class TerrainToken extends WorldToken implements GetType{
         return rocky;
     }
 
-    private boolean hasAnt(){
+    public boolean hasAnt(){
         if(antNumber>=0){
             return true;
         }
