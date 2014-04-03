@@ -57,6 +57,8 @@ public class MainScreen extends javax.swing.JFrame
         worldPanel = new antgame.gui.WorldPanel();
         zoomToolbar = new javax.swing.JToolBar();
         zoomSlider = new javax.swing.JSlider();
+        gameStatsToolBar = new javax.swing.JToolBar();
+        gameStatsPanelFloat = new antgame.gui.GameStatsPanelFloat();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadWorldMenuItem = new javax.swing.JMenuItem();
@@ -70,12 +72,12 @@ public class MainScreen extends javax.swing.JFrame
         startMenuItem = new javax.swing.JMenuItem();
         pauseMenuItem = new javax.swing.JMenuItem();
         resetMenuItem = new javax.swing.JMenuItem();
+        viewMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Up The Ante!");
-        setMaximumSize(new java.awt.Dimension(5120, 3200));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setName("mainFrame"); // NOI18N
 
@@ -152,7 +154,7 @@ public class MainScreen extends javax.swing.JFrame
         );
         worldPanelLayout.setVerticalGroup(
             worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 79001, 79001)
+            .addGap(0, 2605, Short.MAX_VALUE)
         );
 
         worldPanelScrollPane.setViewportView(worldPanel);
@@ -170,6 +172,13 @@ public class MainScreen extends javax.swing.JFrame
         zoomToolbar.add(zoomSlider);
 
         getContentPane().add(zoomToolbar, java.awt.BorderLayout.SOUTH);
+
+        gameStatsToolBar.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        gameStatsToolBar.setRollover(true);
+        gameStatsToolBar.setFocusable(false);
+        gameStatsToolBar.add(gameStatsPanelFloat);
+
+        getContentPane().add(gameStatsToolBar, java.awt.BorderLayout.EAST);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -278,6 +287,9 @@ public class MainScreen extends javax.swing.JFrame
         simulationMenu.add(resetMenuItem);
 
         mainMenuBar.add(simulationMenu);
+
+        viewMenu.setText("View");
+        mainMenuBar.add(viewMenu);
 
         helpMenu.setMnemonic('h');
         helpMenu.setText("Help");
@@ -622,6 +634,8 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JToolBar gameSpeedToolbar;
+    private antgame.gui.GameStatsPanelFloat gameStatsPanelFloat;
+    private javax.swing.JToolBar gameStatsToolBar;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -636,6 +650,7 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenu simulationMenu;
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
+    private javax.swing.JMenu viewMenu;
     private antgame.gui.WorldPanel worldPanel;
     private javax.swing.JScrollPane worldPanelScrollPane;
     private javax.swing.JSlider zoomSlider;
