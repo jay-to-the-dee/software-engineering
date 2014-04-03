@@ -9,10 +9,11 @@ import antgame.model.TerrainToken;
 public class TerrainWithFoodToken extends TerrainToken implements GetType{
 
     private int numberOfFood;
-    
+
     public TerrainWithFoodToken(int numberOfFood){
         super(false);
         this.numberOfFood = numberOfFood;
+        this.food = true;
         
     }
     @Override
