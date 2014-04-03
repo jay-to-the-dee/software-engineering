@@ -4,6 +4,14 @@ package antgame.textworldgenerator;
  *
  * @author n
  */
+import antgame.model.World;
+import antgame.parsers.worldparser.TerrainWithFoodToken;
+import antgame.parsers.worldparser.WorldToken;
+import antgame.world.tokens.BlackAnthillToken;
+import antgame.world.tokens.PlainToken;
+import antgame.world.tokens.RedAnthillToken;
+import antgame.world.tokens.RockToken;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -216,5 +224,33 @@ public class GenRandomMap
         masterString += sb.toString();
         //System.out.println(masterString);
         return masterString;
+    }
+    
+    public World createWorld(){
+        List wlist = new ArrayList<>();
+        
+        for (String[] s1 : world)
+        {
+            for (String s2 : s1)
+            {
+                if (s2.contains(""+FOOD_STACK)){
+                    wlist.add(new TerrainWithFoodToken(FOOD_STACK));
+                }
+                if (s2.contains("#")){
+                    wlist.add(new RockToken());
+                }
+                if (s2.contains(".")){
+                    wlist.add(new PlainToken());
+                }
+                if (s2.contains("+")){
+                    wlist.add(new RedAnthillToken());
+                }
+                if (s2.contains("-")){
+                    wlist.add(new BlackAnthillToken());
+                }
+            }
+        }
+        World genWorld = new World(mapSize, mapSize, wlist);
+        return genWorld;
     }
 }
