@@ -6,10 +6,16 @@
 
 package antgame.ant.markers;
 
+import antgame.model.Position;
+import antgame.model.World;
+import antgame.model.world.Color;
+
 /**
  *
  * @author Main User
  */
-public class Marker {
-    
+public interface Marker {
+    public void mark(World w,Position p,Color c);
+    public void unmark(World w,Position p,Color c);
+    public int getMarker();
 }

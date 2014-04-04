@@ -6,10 +6,29 @@
 
 package antgame.ant.markers;
 
+import antgame.model.Position;
+import antgame.model.TerrainToken;
+import antgame.model.World;
+import antgame.model.world.Color;
+
 /**
  *
  * @author Main User
  */
-public class Marker0 extends Marker{
-    
+public class Marker0 implements Marker{
+
+    @Override
+    public void mark(World w,Position p,Color c) {
+        ((TerrainToken)w.getTokenAt(p.getXlocation(), p.getYlocation())).setMarkerAt(c,0);
+    }
+
+    @Override
+    public int getMarker() {
+return 0;
+    }
+
+    @Override
+    public void unmark(World w, Position p, Color c) {
+        ((TerrainToken)w.getTokenAt(p.getXlocation(), p.getYlocation())).removeMarkerAt(c, 0);
+    }
 }

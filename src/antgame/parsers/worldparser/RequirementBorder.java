@@ -6,7 +6,7 @@
 
 package antgame.parsers.worldparser;
 
-import antgame.world.tokens.RockToken;
+import antgame.model.world.RockToken;
 import antgame.model.TerrainToken;
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @author Main User
  */
 public class RequirementBorder implements CheckRequirement{
-    private static Token borderToken = new RockToken();
+    private static Token borderToken = new RockToken(null,null);
     private static int borderSize=1;
 
     

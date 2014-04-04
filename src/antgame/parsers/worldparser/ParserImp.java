@@ -1,14 +1,15 @@
 package antgame.parsers.worldparser;
-
-import antgame.world.tokens.RockToken;
-import antgame.world.tokens.RedAnthillToken;
-import antgame.world.tokens.BlackAnthillToken;
+import antgame.model.world.BlackAnthillToken;
+import antgame.model.world.ColorRed;
+import antgame.model.world.PlainToken;
+import antgame.model.world.RedAnthillToken;
+import antgame.model.world.RockToken;
 import antgame.model.TerrainToken;
-import antgame.world.tokens.PlainToken;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  *
@@ -112,19 +113,23 @@ public class ParserImp implements Parser{
             throw new SomeException();
         }
         if(s.charAt(0)==redAnthill){
-            world.add(new RedAnthillToken());
+            world.add(new RedAnthillToken(((TerrainToken)world.get(world.size() - 1)).getPosition()));
         }
         else if(s.charAt(0)==blackAnthill){
-            world.add(new BlackAnthillToken());
+            world.add(new BlackAnthillToken(((TerrainToken)world.get(world.size() - 1)).getPosition()));
         }
         else if(s.charAt(0)==rock){
-            world.add(new RockToken());
+            world.add(new RockToken(((TerrainToken)world.get(world.size() - 1)).getPosition(),null));
         }
         else if(s.charAt(0)==terrain){
-            world.add(new PlainToken());
+            world.add(new PlainToken(((TerrainToken)world.get(world.size() - 1)).getPosition(), new Stack()));
         }
         else if(s.charAt(0) >=48 && s.charAt(0) <= 57){
-            world.add(new TerrainWithFoodToken(5));
+            Stack food = new Stack();
+            for (int i=0;i<Character.getNumericValue(s.charAt(0));i++){
+                food.push(new Food());
+            }
+            world.add(new PlainToken(((TerrainToken)world.get(world.size() - 1)).getPosition(),food));
         }
         else throw new SomeException();
         

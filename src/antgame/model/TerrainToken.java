@@ -1,47 +1,118 @@
 package antgame.model;
 
-import antgame.ant.conditions.checkCondition;
+import antgame.ant.markers.ChemicalMarkers;
+import antgame.ant.markers.Marker;
+import antgame.model.Ant;
+import antgame.model.Position;
+import antgame.model.world.Color;
+import antgame.model.world.ColorBlack;
+import antgame.model.world.ColorRed;
+import antgame.parsers.worldparser.Food;
 import antgame.parsers.worldparser.GetType;
 import antgame.parsers.worldparser.WorldToken;
-import java.util.concurrent.locks.Condition;
+import java.util.Stack;
 
 /**
  *
  * @author Main User
  */
-public class TerrainToken extends WorldToken implements GetType{
-    private int antNumber;
+public class TerrainToken extends WorldToken{
+    public Position position;
+    private Ant ant;
     private final boolean rocky;
-    private boolean ant;
-    private boolean food;
-    private boolean antCarriyingFood;
-    private int foodCount;
-    public TerrainToken (boolean predicate){
+    private Stack food;
+    private final boolean anthill;
+    private final Color anthillColor;
+    private ChemicalMarkers markers;
+    public TerrainToken (boolean predicate, Position p,Stack food, boolean anthill,Color anthillColor){
         rocky=predicate;
+        position = p;
+        this.food = food;
+        this.anthill = anthill;
+        this.anthillColor=anthillColor;
+        markers = new ChemicalMarkers();
     }
-        public void getType() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public ChemicalMarkers getMarkers() {
+        return markers;
+    }
+
+    public void setMarkers(ChemicalMarkers markers) {
+        this.markers = markers;
+    }
+        
+    public void setMarkerAt(Color c,int m){
+        //find a better way of doing this
+        //todo
+       if(c instanceof ColorRed){
+           this.getMarkers().getRedAntsmarker().setMarker(m, true);
+       }
+       else if(c instanceof ColorBlack){
+           this.getMarkers().getBlackAntsmarker().setMarker(m, true);
+       }
+    }
+    public void removeMarkerAt(Color c,int m){
+        if(c instanceof ColorRed){
+           this.getMarkers().getRedAntsmarker().setMarker(m, false);
+       }
+       else if(c instanceof ColorBlack){
+           this.getMarkers().getBlackAntsmarker().setMarker(m, false);
+       }
+    }
+   
+    
+ 
+    
+    //////////////////////
+    ///////////////////
+    
+    public boolean isAnthill() {
+        return anthill;
     }
 
     public boolean isRocky() {
         return rocky;
     }
 
-    private boolean hasAnt(){
-        if(antNumber>=0){
-            return true;
-        }
-        else return false;
+    public boolean hasAnt(){
+        return ant!=null;
     }
-    public int getAnt(){
-            return antNumber;
+    public Ant getAnt(){
+            return ant;
     }
 
-    public void putAnt(int antNumber) {
-        this.antNumber = antNumber;
+    public void putAnt(Ant ant) throws Exception {
+        if(ant==null){
+        this.ant = ant;
+        }else throw new Exception("ant already there");
+    }
+    public void removeAnt(){
+        this.ant = null;
     }
 
     public boolean hasFood() {
-        return food;
+        return !food.empty();
     }
+    
+    public int getFoodSize(){
+        return food.size();
+    }
+
+    public boolean isAntCarriyingFood() {
+        return ant.isHasFood();
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+    public void remove1food(){
+        if(hasFood()){
+            food.pop();
+        }
+    }
+
+    public void drop1food() {
+        food.push(new Food());
+    }
+    
 }

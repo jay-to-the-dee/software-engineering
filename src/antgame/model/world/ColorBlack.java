@@ -4,16 +4,14 @@
  * and open the template in the editor.
  */
 
-package antgame.world.tokens;
-
-import antgame.model.TerrainToken;
+package antgame.model.world;
 
 /**
  *
  * @author Main User
  */
-public class PlainToken extends TerrainToken{
-    public PlainToken(){
-        super(false);
+public class ColorBlack extends Color{
+    public ColorBlack(){
+        super("Black");
     }
 }

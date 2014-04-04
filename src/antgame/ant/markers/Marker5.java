@@ -15,21 +15,20 @@ import antgame.model.world.Color;
  *
  * @author Main User
  */
-public class Marker4 implements Marker{
+public class Marker5 implements Marker{
 
-   
     @Override
     public void mark(World w,Position p,Color c) {
-        ((TerrainToken)w.getTokenAt(p.getXlocation(), p.getYlocation())).setMarkerAt(c,4);
+        ((TerrainToken)w.getTokenAt(p.getXlocation(), p.getYlocation())).setMarkerAt(c,5);
     }
 
     @Override
     public int getMarker() {
-return 4;
+return 5;
     }
     @Override
     public void unmark(World w, Position p, Color c) {
-        ((TerrainToken)w.getTokenAt(p.getXlocation(), p.getYlocation())).removeMarkerAt(c, 4);
+        ((TerrainToken)w.getTokenAt(p.getXlocation(), p.getYlocation())).removeMarkerAt(c, 5);
     }
     
 }

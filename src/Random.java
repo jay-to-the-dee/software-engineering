@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 
-package antgame.ant.conditions;
-
-import antgame.model.world.Color;
-
 /**
  *
  * @author Main User
  */
-public class Black extends Color{
-    
+public class Random {
+    public Random(){
+        
+    }
+    //input: a nonnegative int
+    public int getRandomInt(int n){
+        return 0;
+    }
 }

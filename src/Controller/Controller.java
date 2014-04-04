@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 
-package antgame.ant.conditions;
-
-import antgame.model.world.Color;
+package Controller;
 
 /**
  *
  * @author Main User
  */
-public class Black extends Color{
+public class Controller {
+    public Controller(){
+        
+    }
     
 }

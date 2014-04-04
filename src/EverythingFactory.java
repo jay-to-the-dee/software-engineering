@@ -1,5 +1,4 @@
 
-import antgame.ant.conditions.Color;
 import antgame.model.Ant;
 import antgame.model.Instruction;
 import antgame.model.World;

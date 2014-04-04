@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 
-package antgame.ant.conditions;
-
-import antgame.model.world.Color;
+package antgame.parsers.worldparser;
 
 /**
  *
  * @author Main User
  */
-public class Black extends Color{
+public class Food {
     
 }

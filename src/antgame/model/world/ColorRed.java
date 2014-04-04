@@ -4,12 +4,16 @@
  * and open the template in the editor.
  */
 
-package antgame.ant.conditions;
+package antgame.model.world;
 
 /**
  *
  * @author Main User
  */
-public class Red extends Color{
+public class ColorRed extends Color{
+
+    public ColorRed() {
+        super("Red");
+    }
     
 }

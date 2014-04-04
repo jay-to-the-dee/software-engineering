@@ -11,5 +11,8 @@ package antgame.model;
  * @author Main User
  */
 public class Instruction {
+    int state1;
+    int state2;
+    
     
 }

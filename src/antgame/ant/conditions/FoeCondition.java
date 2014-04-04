@@ -7,12 +7,13 @@
 package antgame.ant.conditions;
 
 import antgame.model.TerrainToken;
+import antgame.model.world.Color;
 
 /**
  *
  * @author Main User
  */
-public class FoeCondition implements checkCondition{
+public class FoeCondition implements Condition{
 
     @Override
     public boolean checkCondition(TerrainToken token,Color color) {

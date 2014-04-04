@@ -6,10 +6,20 @@
 
 package antgame.ant.conditions;
 
+import antgame.model.TerrainToken;
+import antgame.model.world.Color;
+
 /**
  *
  * @author Main User
  */
-public class Color {
-    
+public interface Condition {
+
+    /**
+     *
+     * @param token
+     * @param color
+     * @return
+     */
+    public boolean checkCondition(TerrainToken token, Color color);
 }

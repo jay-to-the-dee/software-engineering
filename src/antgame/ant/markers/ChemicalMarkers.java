@@ -6,18 +6,31 @@
 
 package antgame.ant.markers;
 
+import antgame.model.world.Color;
+import antgame.model.Position;
+
 /**
  *
  * @author Main User
  */
 public class ChemicalMarkers
 {
-    SingleAntColorMarkers blackAnts;
-    SingleAntColorMarkers redAnts;
+    SingleAntColorMarkers blackAntsmarker;
+    SingleAntColorMarkers redAntsmarker;
     public ChemicalMarkers(){
-        blackAnts = new SingleAntColorMarkers();
-        redAnts = new SingleAntColorMarkers();
+        blackAntsmarker = new SingleAntColorMarkers();
+        redAntsmarker = new SingleAntColorMarkers();
+    }
+    public void setMarkersAt(Position p,Color c){
+        
+    }
+
+    public SingleAntColorMarkers getBlackAntsmarker() {
+        return blackAntsmarker;
+    }
+
+    public SingleAntColorMarkers getRedAntsmarker() {
+        return redAntsmarker;
     }
     
-
 }

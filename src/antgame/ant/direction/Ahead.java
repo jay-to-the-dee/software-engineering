@@ -6,6 +6,7 @@
 
 package antgame.ant.direction;
 
+import antgame.model.Position;
 import antgame.model.TerrainToken;
 import antgame.model.World;
 
@@ -15,16 +16,8 @@ import antgame.model.World;
  */
 public class Ahead implements Direction{
 
-    public String getTileInDirection(World world) {
-        return null;
-        
+    public TerrainToken getTileInDirection(World world, Position position,int direction) {
+        return world.getAdjacentCell(direction, position);
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public TerrainToken getTileInDirection(World world, int position) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-    
 }

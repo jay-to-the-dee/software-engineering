@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 
-package antgame.ant.conditions;
+package antgame.ant.direction.turndirection;
 
-import antgame.model.world.Color;
+import antgame.ant.direction.Direction;
 
 /**
  *
  * @author Main User
  */
-public class Black extends Color{
-    
+public interface LeftOrRight {
+    public int turn(int dir);
 }

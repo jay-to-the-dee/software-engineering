@@ -4,21 +4,18 @@
  * and open the template in the editor.
  */
 
-package antgame.ant.conditions;
+package antgame.model.world;
 
+import antgame.model.Position;
 import antgame.model.TerrainToken;
+import java.util.Stack;
 
 /**
  *
  * @author Main User
  */
-public interface checkCondition {
-
-    /**
-     *
-     * @param token
-     * @param color
-     * @return
-     */
-    public boolean checkCondition(TerrainToken token, Color color);
+public class PlainToken extends TerrainToken{
+    public PlainToken(Position position,Stack food){
+        super(false,position,food,false,null);
+    }
 }
