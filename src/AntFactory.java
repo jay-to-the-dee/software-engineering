@@ -1,6 +1,6 @@
 
 import antgame.model.Ant;
-import antgame.model.Instruction;
+import antgame.instructions.InstructionSet;
 import antgame.model.Position;
 import antgame.model.World;
 import antgame.model.world.Color;
@@ -22,7 +22,7 @@ public class AntFactory {
     public AntFactory(){
     }
 
-    public List<Ant> generateAnts(int numberOfAntsPerTeam,int numberOfColors, Instruction[] brain,Position position,World world){
+    public List<Ant> generateAnts(int numberOfAntsPerTeam,int numberOfColors, InstructionSet[] brain,Position position,World world){
         int antID=0;
         List<Ant> list = new ArrayList<Ant>();
         for(int i=0;i<numberOfAntsPerTeam;i++){
@@ -38,7 +38,7 @@ public class AntFactory {
             }
         }return list;
     }
-    public Ant generateAnt(Color color, Instruction[] antBrain,Position position,World world){
+    public Ant generateAnt(Color color, InstructionSet[] antBrain,Position position,World world){
         return new Ant(color,antBrain,position,world);    //Instruction [] brain,int position,World world
         //return null;
     }

@@ -11,8 +11,8 @@ package antgame.model;
  * @author Main User
  */
 public class Position {
-    private final int xlocation;
-    private final int ylocation;
+    private int xlocation;
+    private int ylocation;
     public Position(int x, int y){
         xlocation = x;
         ylocation = y;
@@ -26,7 +26,11 @@ public class Position {
         return ylocation;
     }
     public void setXlocation(int x){
-        
+        xlocation = x;
+    }
+    
+    public void setYlocation(int y){
+        ylocation = y;
     }
     
 }

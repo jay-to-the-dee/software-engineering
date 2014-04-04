@@ -1,6 +1,6 @@
 
 import antgame.model.Ant;
-import antgame.model.Instruction;
+import antgame.instructions.InstructionSet;
 import antgame.model.World;
 import antgame.parsers.worldparser.SomeException;
 import antgame.parsers.worldparser.SymbolNotFoundException;
@@ -42,6 +42,6 @@ public class EverythingFactory {
     }
 }
 
-        //Color color, Instruction[] antBrain,int position,World world
+        //Color color, InstructionSet[] antBrain,int position,World world
     
 

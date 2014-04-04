@@ -1,10 +1,7 @@
 package antgame.model;
 
-import antgame.ant.conditions.Condition;
-import antgame.ant.direction.Ahead;
+import antgame.instructions.InstructionSet;
 import antgame.ant.direction.Direction;
-import antgame.ant.direction.turndirection.LeftOrRight;
-import antgame.ant.markers.Marker;
 import antgame.model.world.Color;
 
 /**
@@ -18,13 +15,13 @@ public class Ant {
     private int resting;
     private int facingDirection;
     private boolean hasFood;
-    private Instruction[] brain;
+    private InstructionSet[] brain;
     private int state;
     private boolean isAlive;
     private final World world;
     
-    public Ant(Color color,Instruction [] brain,Position position,World world){
-        this.brain = new Instruction[brain.length];
+    public Ant(Color color,InstructionSet [] brain,Position position,World world){
+        this.brain = new InstructionSet[brain.length];
         this.brain = brain;
         this.color = color;
         hasFood = false;
@@ -36,69 +33,19 @@ public class Ant {
         this.resting=0;
     }
     
-    public void sense(Direction sensedir, int st1, int st2, Condition condition,Marker marker) throws Exception{//Go to state st1 if cond holds in sensedir;
-                                                    //and to state st2 otherwise
-        
-        if (condition.checkCondition(senseTile(sensedir),this.color,marker)){              
-            state = st1;
-        }
-        else state = st2;
-    }
-    
     public TerrainToken senseTile(Direction sensedir){
         return sensedir.getTileInDirection(world,position,facingDirection);        
     }
     
-    public void turn(int dir,LeftOrRight lor){
-        this.facingDirection= lor.turn(dir);
-    }
-    
-    public void mark(Marker marker, int state){
-        marker.mark(this.getAntLocation(),this.color);
-        this.state=state;
-    }
-    
-    public void unmark(Marker marker,int state){
-        marker.unmark(this.getAntLocation(),this.color);
-        this.state = state;
-    }
-    
-    public void pickUp(int state1,int state2){
-        if (this.hasFood||!getAntLocation().hasFood()){
-            this.state=state2;
-        }
-        else {
-            getAntLocation().remove1food();
-            hasFood=true;
-            this.state=state1;
-        }
+    public void setPosition(int x,int y){
+        position.setXlocation(x);
+        position.setYlocation(y);
     }
     
     public TerrainToken getAntLocation(){
         return (TerrainToken)world.getTokenAt(position.getXlocation(), position.getYlocation());
     }
     
-    public void drop(int state){
-        if(this.hasFood){
-            getAntLocation().drop1food();
-            hasFood=false;
-        }
-        this.state=state;
-    }
-    
-    public void move(int state1,int state2) throws Exception{
-        TerrainToken t = senseTile(new Ahead());
-        if(t.isRocky()||t.getAnt()==null){
-            this.state=state2;
-        }
-        else{
-            t.putAnt(this);
-            getAntLocation().removeAnt();
-            this.position = new Position(this.senseTile(new Ahead()).getPosition().getXlocation(),this.senseTile(new Ahead()).getPosition().getYlocation());
-            this.resting = 14;
-            checkForSurroundedAnts(t.getPosition());
-        }
-    }
       public int adjacent_ants(Position p, Color c){
         int n=0;
         for (int i=0;i<6;i++){
@@ -127,9 +74,6 @@ public class Ant {
             }
         }
     }
-    public void flip(int n, int state1, int state2){
-        
-    }
     
     public void killAnt(){
         isAlive=false;
@@ -154,7 +98,7 @@ public class Ant {
         return hasFood;
     }
 
-    public Instruction[] getBrain() {
+    public InstructionSet[] getBrain() {
         return brain;
     }
 
@@ -177,6 +121,4 @@ public class Ant {
     public void setState(int state) {
         this.state = state;
     }
-    
-    
 }
