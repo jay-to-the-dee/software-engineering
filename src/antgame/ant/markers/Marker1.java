@@ -19,4 +19,8 @@ public class Marker1 implements Marker{
         t.removeMarkerAt(c, 1);
     }
     
+    @Override
+    public int getMarkerIndex() {
+        return 1;
+    }
 }

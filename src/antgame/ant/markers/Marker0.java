@@ -18,4 +18,9 @@ public class Marker0 implements Marker{
     public void unmark(TerrainToken t, Color c) {
         t.removeMarkerAt(c, 0);
     }
+
+    @Override
+    public int getMarkerIndex() {
+        return 0;
+    }
 }

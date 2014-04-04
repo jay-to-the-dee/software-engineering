@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package antgame.model;
 
 import antgame.ant.conditions.Condition;
@@ -11,24 +5,23 @@ import antgame.ant.direction.Ahead;
 import antgame.ant.direction.Direction;
 import antgame.ant.direction.turndirection.LeftOrRight;
 import antgame.ant.markers.Marker;
-import antgame.model.Instruction;
 import antgame.model.world.Color;
 
 /**
  *
- * @author Main User
+ * @author ItsTheRai
  */
 public class Ant {
     private int ID;
     private Position position;
-    private Color color;
+    private final Color color;
     private int resting;
     private int facingDirection;
     private boolean hasFood;
     private Instruction[] brain;
     private int state;
     private boolean isAlive;
-    private World world;
+    private final World world;
     
     public Ant(Color color,Instruction [] brain,Position position,World world){
         this.brain = new Instruction[brain.length];
@@ -43,12 +36,13 @@ public class Ant {
         this.resting=0;
     }
     
-    public void sense(Direction sensedir, int st1, int st2, Condition condition) throws Exception{//Go to state st1 if cond holds in sensedir;
+    public void sense(Direction sensedir, int st1, int st2, Condition condition,Marker marker) throws Exception{//Go to state st1 if cond holds in sensedir;
                                                     //and to state st2 otherwise
         
-        if (condition.checkCondition(senseTile(sensedir),this.color)){              
+        if (condition.checkCondition(senseTile(sensedir),this.color,marker)){              
             state = st1;
-        }else state = st2;
+        }
+        else state = st2;
     }
     
     public TerrainToken senseTile(Direction sensedir){
@@ -136,9 +130,6 @@ public class Ant {
     public void flip(int n, int state1, int state2){
         
     }
-    
-    //
-    
     
     public void killAnt(){
         isAlive=false;

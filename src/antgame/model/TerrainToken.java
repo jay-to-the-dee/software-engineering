@@ -98,10 +98,6 @@ public class TerrainToken extends WorldToken{
         return food.size();
     }
 
-    public boolean isAntCarriyingFood() {
-        return ant.isHasFood();
-    }
-
     public Position getPosition() {
         return position;
     }
@@ -114,5 +110,10 @@ public class TerrainToken extends WorldToken{
     public void drop1food() {
         food.push(new Food());
     }
+
+    public Color getAnthillColor() {
+        return anthillColor;
+    }
+    
     
 }

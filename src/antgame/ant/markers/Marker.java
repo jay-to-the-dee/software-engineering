@@ -9,4 +9,5 @@ import antgame.model.world.Color;
 public interface Marker {
     public void mark(TerrainToken t,Color c);
     public void unmark(TerrainToken t,Color c);
+    public int getMarkerIndex();
 }
