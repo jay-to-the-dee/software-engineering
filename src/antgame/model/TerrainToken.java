@@ -2,25 +2,22 @@ package antgame.model;
 
 import antgame.ant.markers.ChemicalMarkers;
 import antgame.ant.markers.Marker;
-import antgame.model.Ant;
-import antgame.model.Position;
 import antgame.model.world.Color;
 import antgame.model.world.ColorBlack;
 import antgame.model.world.ColorRed;
 import antgame.parsers.worldparser.Food;
-import antgame.parsers.worldparser.GetType;
 import antgame.parsers.worldparser.WorldToken;
 import java.util.Stack;
 
 /**
  *
- * @author Main User
+ * @author ItsTheRai
  */
 public class TerrainToken extends WorldToken{
     public Position position;
     private Ant ant;
     private final boolean rocky;
-    private Stack food;
+    private final Stack food;
     private final boolean anthill;
     private final Color anthillColor;
     private ChemicalMarkers markers;
@@ -39,6 +36,9 @@ public class TerrainToken extends WorldToken{
 
     public void setMarkers(ChemicalMarkers markers) {
         this.markers = markers;
+    }
+    public void mark(Color c,Marker m){
+        m.mark(this, c);
     }
         
     public void setMarkerAt(Color c,int m){

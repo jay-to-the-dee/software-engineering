@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package antgame.ant.markers;
-
-import antgame.model.Position;
-import antgame.model.World;
+import antgame.model.TerrainToken;
 import antgame.model.world.Color;
 
 /**
  *
- * @author Main User
+ * @author ItsTheRai
  */
 public interface Marker {
-    public void mark(World w,Position p,Color c);
-    public void unmark(World w,Position p,Color c);
-    public int getMarker();
+    public void mark(TerrainToken t,Color c);
+    public void unmark(TerrainToken t,Color c);
 }

@@ -60,12 +60,12 @@ public class Ant {
     }
     
     public void mark(Marker marker, int state){
-        marker.mark(world,this.position,this.color);
+        marker.mark(this.getAntLocation(),this.color);
         this.state=state;
     }
     
     public void unmark(Marker marker,int state){
-        marker.unmark(world,position,this.color);
+        marker.unmark(this.getAntLocation(),this.color);
         this.state = state;
     }
     
