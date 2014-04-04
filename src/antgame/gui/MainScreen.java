@@ -295,7 +295,8 @@ public class MainScreen extends javax.swing.JFrame
         viewMenu.setMnemonic('v');
         viewMenu.setText("View");
 
-        gameStatsToolbarCheckBoxMenuItem.setMnemonic('g');
+        gameStatsToolbarCheckBoxMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        gameStatsToolbarCheckBoxMenuItem.setMnemonic('t');
         gameStatsToolbarCheckBoxMenuItem.setSelected(true);
         gameStatsToolbarCheckBoxMenuItem.setText("Game Stats");
         gameStatsToolbarCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener()
