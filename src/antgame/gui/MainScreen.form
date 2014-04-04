@@ -118,8 +118,41 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="viewMenu">
           <Properties>
+            <Property name="mnemonic" type="int" value="118"/>
             <Property name="text" type="java.lang.String" value="View"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="gameStatsToolbarCheckBoxMenuItem">
+              <Properties>
+                <Property name="mnemonic" type="int" value="103"/>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Game Stats"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gameStatsToolbarCheckBoxMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="zoomToolbarCheckBoxMenuItem">
+              <Properties>
+                <Property name="mnemonic" type="int" value="122"/>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Zoom Toolbar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="zoomToolbarCheckBoxMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="gameSpeedToolbarCheckBoxMenuItem">
+              <Properties>
+                <Property name="mnemonic" type="int" value="112"/>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Game Speed Toolbar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gameSpeedToolbarCheckBoxMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">
           <Properties>
@@ -294,11 +327,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JToolBar" name="gameStatsToolBar">
+    <Container class="javax.swing.JToolBar" name="gameStatsToolbar">
       <Properties>
         <Property name="orientation" type="int" value="1"/>
         <Property name="rollover" type="boolean" value="true"/>
         <Property name="focusable" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="Game Stats" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
