@@ -4,8 +4,18 @@ package antgame.textworldgenerator;
  *
  * @author n
  */
+import antgame.model.Position;
+import antgame.model.World;
+import antgame.model.world.BlackAnthillToken;
+import antgame.model.world.PlainToken;
+import antgame.model.world.RedAnthillToken;
+import antgame.model.world.RockToken;
+import antgame.parsers.worldparser.Food;
+import antgame.parsers.worldparser.WorldToken;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 public class GenRandomMap
 {
@@ -216,5 +226,43 @@ public class GenRandomMap
         masterString += sb.toString();
         //System.out.println(masterString);
         return masterString;
+    }
+    
+    public World createWorld(){
+        List wlist = new ArrayList<>();
+        int x=0;
+        int y=0;
+        for (String[] s1 : world)
+        {
+            for (String s2 : s1)
+            {
+                if (s2.contains(""+FOOD_STACK)){
+                    Stack s = new Stack();
+                    for (int i=0;i<FOOD_STACK;i++){
+                        s.push(new Food());
+                    }
+                
+                    wlist.add(new PlainToken(new Position(x,y),s));
+                }
+                if (s2.contains("#")){
+                    wlist.add(new RockToken(new Position(x,y),null));
+                }
+                if (s2.contains(".")){
+                    wlist.add(new PlainToken(new Position(x,y),new Stack()));
+                }
+                if (s2.contains("+")){
+                    wlist.add(new RedAnthillToken(new Position(x,y)));
+                }
+                if (s2.contains("-")){
+                    wlist.add(new BlackAnthillToken(new Position(x,y)));
+                }
+                x++;
+            }
+            x=0;
+            y++;
+        }
+        y=0;
+        World genWorld = new World(mapSize, mapSize, wlist);
+        return genWorld;
     }
 }

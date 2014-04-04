@@ -57,6 +57,8 @@ public class MainScreen extends javax.swing.JFrame
         worldPanel = new antgame.gui.WorldPanel();
         zoomToolbar = new javax.swing.JToolBar();
         zoomSlider = new javax.swing.JSlider();
+        gameStatsToolbar = new javax.swing.JToolBar();
+        gameStatsPanelFloat = new antgame.gui.GameStatsPanelFloat();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadWorldMenuItem = new javax.swing.JMenuItem();
@@ -70,12 +72,15 @@ public class MainScreen extends javax.swing.JFrame
         startMenuItem = new javax.swing.JMenuItem();
         pauseMenuItem = new javax.swing.JMenuItem();
         resetMenuItem = new javax.swing.JMenuItem();
+        viewMenu = new javax.swing.JMenu();
+        gameStatsToolbarCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        zoomToolbarCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
+        gameSpeedToolbarCheckBoxMenuItem = new javax.swing.JCheckBoxMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Up The Ante!");
-        setMaximumSize(new java.awt.Dimension(5120, 3200));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setName("mainFrame"); // NOI18N
 
@@ -152,7 +157,7 @@ public class MainScreen extends javax.swing.JFrame
         );
         worldPanelLayout.setVerticalGroup(
             worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 79001, 79001)
+            .addGap(0, 2605, Short.MAX_VALUE)
         );
 
         worldPanelScrollPane.setViewportView(worldPanel);
@@ -170,6 +175,14 @@ public class MainScreen extends javax.swing.JFrame
         zoomToolbar.add(zoomSlider);
 
         getContentPane().add(zoomToolbar, java.awt.BorderLayout.SOUTH);
+
+        gameStatsToolbar.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        gameStatsToolbar.setRollover(true);
+        gameStatsToolbar.setFocusable(false);
+        gameStatsToolbar.setName("Game Stats"); // NOI18N
+        gameStatsToolbar.add(gameStatsPanelFloat);
+
+        getContentPane().add(gameStatsToolbar, java.awt.BorderLayout.EAST);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -278,6 +291,48 @@ public class MainScreen extends javax.swing.JFrame
         simulationMenu.add(resetMenuItem);
 
         mainMenuBar.add(simulationMenu);
+
+        viewMenu.setMnemonic('v');
+        viewMenu.setText("View");
+
+        gameStatsToolbarCheckBoxMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        gameStatsToolbarCheckBoxMenuItem.setMnemonic('t');
+        gameStatsToolbarCheckBoxMenuItem.setSelected(true);
+        gameStatsToolbarCheckBoxMenuItem.setText("Game Stats");
+        gameStatsToolbarCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                gameStatsToolbarCheckBoxMenuItemActionPerformed(evt);
+            }
+        });
+        viewMenu.add(gameStatsToolbarCheckBoxMenuItem);
+
+        zoomToolbarCheckBoxMenuItem.setMnemonic('z');
+        zoomToolbarCheckBoxMenuItem.setSelected(true);
+        zoomToolbarCheckBoxMenuItem.setText("Zoom Toolbar");
+        zoomToolbarCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                zoomToolbarCheckBoxMenuItemActionPerformed(evt);
+            }
+        });
+        viewMenu.add(zoomToolbarCheckBoxMenuItem);
+
+        gameSpeedToolbarCheckBoxMenuItem.setMnemonic('p');
+        gameSpeedToolbarCheckBoxMenuItem.setSelected(true);
+        gameSpeedToolbarCheckBoxMenuItem.setText("Game Speed Toolbar");
+        gameSpeedToolbarCheckBoxMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                gameSpeedToolbarCheckBoxMenuItemActionPerformed(evt);
+            }
+        });
+        viewMenu.add(gameSpeedToolbarCheckBoxMenuItem);
+
+        mainMenuBar.add(viewMenu);
 
         helpMenu.setMnemonic('h');
         helpMenu.setText("Help");
@@ -432,6 +487,25 @@ public class MainScreen extends javax.swing.JFrame
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
+
+    private void gameStatsToolbarCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_gameStatsToolbarCheckBoxMenuItemActionPerformed
+    {//GEN-HEADEREND:event_gameStatsToolbarCheckBoxMenuItemActionPerformed
+        JCheckBoxMenuItem checkBox = (JCheckBoxMenuItem) evt.getSource();
+        gameStatsToolbar.setVisible(checkBox.getState());
+    }//GEN-LAST:event_gameStatsToolbarCheckBoxMenuItemActionPerformed
+
+    private void zoomToolbarCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_zoomToolbarCheckBoxMenuItemActionPerformed
+    {//GEN-HEADEREND:event_zoomToolbarCheckBoxMenuItemActionPerformed
+        JCheckBoxMenuItem checkBox = (JCheckBoxMenuItem) evt.getSource();
+        zoomToolbar.setVisible(checkBox.getState());
+    }//GEN-LAST:event_zoomToolbarCheckBoxMenuItemActionPerformed
+
+    private void gameSpeedToolbarCheckBoxMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_gameSpeedToolbarCheckBoxMenuItemActionPerformed
+    {//GEN-HEADEREND:event_gameSpeedToolbarCheckBoxMenuItemActionPerformed
+
+        JCheckBoxMenuItem checkBox = (JCheckBoxMenuItem) evt.getSource();
+        gameSpeedToolbar.setVisible(checkBox.getState());
+    }//GEN-LAST:event_gameSpeedToolbarCheckBoxMenuItemActionPerformed
 
     private String simulationOverallProgessStringUpdate()
     {
@@ -622,6 +696,10 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JToolBar gameSpeedToolbar;
+    private javax.swing.JCheckBoxMenuItem gameSpeedToolbarCheckBoxMenuItem;
+    private antgame.gui.GameStatsPanelFloat gameStatsPanelFloat;
+    private javax.swing.JToolBar gameStatsToolbar;
+    private javax.swing.JCheckBoxMenuItem gameStatsToolbarCheckBoxMenuItem;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -636,10 +714,12 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenu simulationMenu;
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
+    private javax.swing.JMenu viewMenu;
     private antgame.gui.WorldPanel worldPanel;
     private javax.swing.JScrollPane worldPanelScrollPane;
     private javax.swing.JSlider zoomSlider;
     private javax.swing.JToolBar zoomToolbar;
+    private javax.swing.JCheckBoxMenuItem zoomToolbarCheckBoxMenuItem;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
