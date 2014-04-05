@@ -7,8 +7,11 @@ import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import mainPackage.GameEngine;
 import org.jdesktop.beansbinding.Converter;
 
 /**
@@ -27,6 +30,10 @@ public class MainScreen extends javax.swing.JFrame
     private boolean dragStart = true;
     private int startX;
     private int startY;
+
+    private File worldFile;
+    private File blackBrainFile;
+    private File redBrainFile;
 
     /**
      * Creates new form MainScreen
@@ -392,7 +399,14 @@ public class MainScreen extends javax.swing.JFrame
 
     private void loadWorldMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadWorldMenuItemActionPerformed
     {//GEN-HEADEREND:event_loadWorldMenuItemActionPerformed
-        // TODO add your handling code here:
+        final JFileChooser fc = new JFileChooser();
+
+        if (fc.showOpenDialog(MainScreen.this) != JFileChooser.APPROVE_OPTION)
+        {
+            return;
+        }
+
+        worldFile = fc.getSelectedFile();
     }//GEN-LAST:event_loadWorldMenuItemActionPerformed
 
     private void loadBlackAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadBlackAntBrainMenuItemActionPerformed
