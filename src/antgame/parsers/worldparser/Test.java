@@ -1,26 +1,36 @@
 package antgame.parsers.worldparser;
 
+import antgame.instructions.Instruction;
+import antgame.instructions.InstructionSet;
+import antgame.parsers.antbrainparser.AntBrainParserImp;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  *
  * @author Main User
  */
-public class WorldParser {
+public class Test {
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
         Parser p = new ParserImp();
-        Verifier v = new VerifierImp();
+        //Verifier v = new VerifierImp();
         ReadFile file = new ReadFile();
+        AntBrainParserImp parser = new AntBrainParserImp();
+        
         //choose file path
-        String input =ReadFile.readFile("./data/worlds/uni-examples/a.world",Charset.defaultCharset());
+        String input =ReadFile.readFile("./data/brains/uni-examples/sampleant.brain",Charset.defaultCharset());
+        
+        //System.out.println(parser.parseAntBrain(input));
          
+        Instruction[] v = parser.parseAntBrain(input);
+        System.out.println(v.length);
+        for (int i=0;i<v.length;i++){
+            System.out.println(v[i]);
+        }
         /*String input=new String(""
                 + "3\n"
                 + "4\n"
@@ -29,13 +39,13 @@ public class WorldParser {
                 + ". . .\n"
                 + " . . .");
                 */
-        try{
+        //try{
                     //List<Token> l= new LinkedList<Token>();
-            ParseAndValidate pav = new ParseAndValidate();
-            List<CheckRequirement> ls = new LinkedList();
-            ls.add(new RequirementDimension(100,100));
-            ls.add(new RequirementBorder(1));
-            System.out.println(pav.parseAndValidate(input, ls));
+            //ParseAndValidate pav = new ParseAndValidate();
+            //List<CheckRequirement> ls = new LinkedList();
+            //ls.add(new RequirementDimension(100,100));
+            //ls.add(new RequirementBorder(1));
+            //System.out.println(pav.parseAndValidate(input, ls));
                     //<Token> l=new LinkedList<>(p.parse(input));
                     //System.out.println(l);
                     //int x = ((MapSizeToken)l.get(0)).getSizeAsInt();
@@ -48,9 +58,9 @@ public class WorldParser {
                     
                     //v.verify(x, y, list,ls);
                     //success so  
-        }
-        catch(Exception e){
-                System.out.println("sumin happened");
-            }
+        //}
+        //catch(Exception e){
+             //   System.out.println("sumin happened");
+            //}
     }
 }

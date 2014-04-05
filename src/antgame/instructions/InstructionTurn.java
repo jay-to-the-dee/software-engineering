@@ -9,6 +9,12 @@ import antgame.model.Ant;
  */
 public class InstructionTurn extends InstructionSet implements Instruction{
     private LeftOrRight lor;
+    private int state;
+    
+    public InstructionTurn(LeftOrRight lor, int state){
+        this.lor = lor;
+        this.state = state;
+    }
 
     @Override
     public void executeInstruction(Ant ant) {

@@ -7,6 +7,5 @@ package antgame.instructions;
 public class InstructionSet {
     public static final int RESTING = 14;
     public InstructionSet(){
-        
     }
 }

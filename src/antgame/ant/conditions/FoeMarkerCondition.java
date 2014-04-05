@@ -12,6 +12,7 @@ import antgame.model.world.ColorRed;
  */
 public class FoeMarkerCondition  implements Condition{
 
+    //TODO may need to change this according to the spec
     @Override
     public boolean checkCondition(TerrainToken token, Color color, Marker m) {
         //may need refactoring
