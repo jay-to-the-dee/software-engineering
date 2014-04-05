@@ -6,11 +6,11 @@
 
 package antgame.ant.direction.turndirection;
 
-import antgame.ant.direction.Direction;
+import antgame.ant.direction.sensedireciton.Direction;
 
 /**
  *
- * @author Main User
+ * @author ItsTheRai
  */
 public class Left implements LeftOrRight{
 

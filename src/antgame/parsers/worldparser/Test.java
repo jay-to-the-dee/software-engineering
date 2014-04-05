@@ -1,8 +1,8 @@
 package antgame.parsers.worldparser;
 
 import mainPackage.GameEngine;
-import antgame.instructions.Instruction;
-import antgame.instructions.InstructionSet;
+import antgame.ant.instructions.Instruction;
+import antgame.ant.instructions.InstructionSet;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -25,6 +25,7 @@ public class Test {
         String input =ReadFile.readFile("./data/brains/uni-examples/sampleant.brain",Charset.defaultCharset());
         
         //System.out.println(parser.parseAntBrain(input));
+        
          GameEngine e = new GameEngine();
          e.run();
          

@@ -1,10 +1,10 @@
 package antgame.parsers.worldparser;
 
-import antgame.parsers.worldparser.Token;
+import antgame.world.worldTokens.Token;
 
 /**
  *
- * @author Main User
+ * @author ItsTheRai
  */
 public class WorldToken extends Token{
     

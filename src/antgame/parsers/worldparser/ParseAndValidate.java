@@ -1,12 +1,18 @@
 package antgame.parsers.worldparser;
 
-import antgame.model.World;
+import antgame.parsers.exceptions.TokenSizeMismatchException;
+import antgame.parsers.exceptions.SymbolNotFoundException;
+import antgame.parsers.exceptions.SomeException;
+import antgame.world.worldTokens.MapSizeToken;
+import antgame.world.worldTokens.Token;
+import antgame.world.requirements.CheckRequirement;
+import antgame.world.worldTokens.World;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  *
- * @author rg293
+ * @author ItsTheRai
  */
 public class ParseAndValidate {
     Parser p = new ParserImp();

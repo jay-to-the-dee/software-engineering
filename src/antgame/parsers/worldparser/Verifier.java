@@ -1,15 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package antgame.parsers.worldparser;
 
-import antgame.model.World;
+import antgame.world.requirements.CheckRequirement;
+import antgame.world.worldTokens.World;
 import java.util.List;
 
 /**
  *
- * @author rg293
+ * @author ItsTheRai
  */
 public interface Verifier {
     public World verify(int xsize,int ysize,List<WorldToken> world,List<CheckRequirement> requirements);

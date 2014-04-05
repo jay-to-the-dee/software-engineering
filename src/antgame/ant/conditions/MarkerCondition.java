@@ -1,10 +1,10 @@
 package antgame.ant.conditions;
 
 import antgame.ant.markers.Marker;
-import antgame.model.TerrainToken;
-import antgame.model.world.Color;
-import antgame.model.world.ColorBlack;
-import antgame.model.world.ColorRed;
+import antgame.world.worldTokens.TerrainToken;
+import antgame.ant.color.Color;
+import antgame.ant.color.ColorBlack;
+import antgame.ant.color.ColorRed;
 
 /**
  *

@@ -1,15 +1,18 @@
 package mainPackage;
 
 
-import antgame.instructions.Instruction;
+import antgame.ant.instructions.Instruction;
 import antgame.model.Ant;
-import antgame.model.TerrainToken;
-import antgame.model.World;
+import antgame.world.worldTokens.TerrainToken;
+import antgame.world.worldTokens.World;
+import antgame.world.requirements.CheckRequirement;
+import antgame.parsers.worldparser.ParseAndValidate;
 import antgame.parsers.worldparser.ReadFile;
-import antgame.parsers.worldparser.SomeException;
-import antgame.parsers.worldparser.SymbolNotFoundException;
-import antgame.parsers.worldparser.TokenSizeMismatchException;
-import antgame.textworldgenerator.GenRandomMap;
+import antgame.world.requirements.RequirementBorder;
+import antgame.parsers.exceptions.SomeException;
+import antgame.parsers.exceptions.SymbolNotFoundException;
+import antgame.parsers.exceptions.TokenSizeMismatchException;
+import antgame.world.textworldgenerator.GenRandomMap;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -42,12 +45,16 @@ public class GameEngine {
         worldFactory = new WorldFactory();
         brainFactory = new AntBrainFactory();
         currentGameWorlds = new ArrayList<>();
-        currentBrains = new ArrayList<Instruction[]>();
+        currentBrains = new ArrayList<>();
     }
     
     public void run() throws IOException, Exception{
+        List<CheckRequirement> list = new ArrayList<>();
+        list.add(new RequirementBorder(1));
         Instruction[] redBrain = brainFactory.generataAntBrainFromString(ReadFile.readFile("./data/brains/uni-examples/sampleant.brain",Charset.defaultCharset()));
-        currentGameWorlds.add(worldFactory.generateRandomWorld(null, new GenRandomMap(worldSize)));
+        currentGameWorlds.add(worldFactory.loadWorld(new ParseAndValidate(),
+                ReadFile.readFile("./data/worlds/uni-examples/a.world",Charset.defaultCharset()),
+                list));
         for (int i=0;i<currentGameWorlds.get(0).getWorldTokens().size();i++){
             TerrainToken t = ((TerrainToken)currentGameWorlds.get(0).getWorldTokens().get(i));
             if(t.isAnthill()){
@@ -59,7 +66,8 @@ public class GameEngine {
             }
         }
         World w = (World)currentGameWorlds.get(0);
-        for (int j=0;j<300000;j++){
+        //run the simulation
+        for (int j=0;j<1000;j++){
             w.executeOneRound();
         }
     }

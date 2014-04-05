@@ -1,6 +1,6 @@
 package antgame.parsers.antbrainparser;
 
-import antgame.instructions.Instruction;
+import antgame.ant.instructions.Instruction;
 
 /**
  *

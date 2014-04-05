@@ -1,11 +1,11 @@
 package mainPackage;
 
 
-import antgame.instructions.Instruction;
+import antgame.ant.instructions.Instruction;
 import antgame.model.Ant;
 import antgame.model.Position;
-import antgame.model.World;
-import antgame.model.world.Color;
+import antgame.world.worldTokens.World;
+import antgame.ant.color.Color;
 import java.util.ArrayList;
 import java.util.List;
 

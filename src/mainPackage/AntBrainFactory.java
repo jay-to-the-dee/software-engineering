@@ -1,7 +1,7 @@
 package mainPackage;
 
 
-import antgame.instructions.Instruction;
+import antgame.ant.instructions.Instruction;
 import antgame.parsers.antbrainparser.AntBrainParser;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
 

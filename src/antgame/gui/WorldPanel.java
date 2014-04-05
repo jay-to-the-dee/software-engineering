@@ -1,12 +1,12 @@
 package antgame.gui;
 
-import antgame.model.TerrainToken;
-import antgame.model.World;
-import antgame.model.world.ColorBlack;
-import antgame.model.world.ColorRed;
-import antgame.parsers.worldparser.Token;
+import antgame.world.worldTokens.TerrainToken;
+import antgame.world.worldTokens.World;
+import antgame.ant.color.ColorBlack;
+import antgame.ant.color.ColorRed;
+import antgame.world.worldTokens.Token;
 import antgame.parsers.worldparser.WorldToken;
-import antgame.textworldgenerator.GenRandomMap;
+import antgame.world.textworldgenerator.GenRandomMap;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;

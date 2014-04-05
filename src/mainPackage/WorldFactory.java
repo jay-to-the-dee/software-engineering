@@ -1,13 +1,13 @@
 package mainPackage;
 
 
-import antgame.model.World;
-import antgame.parsers.worldparser.CheckRequirement;
+import antgame.world.worldTokens.World;
+import antgame.world.requirements.CheckRequirement;
 import antgame.parsers.worldparser.ParseAndValidate;
-import antgame.parsers.worldparser.SomeException;
-import antgame.parsers.worldparser.SymbolNotFoundException;
-import antgame.parsers.worldparser.TokenSizeMismatchException;
-import antgame.textworldgenerator.GenRandomMap;
+import antgame.parsers.exceptions.SomeException;
+import antgame.parsers.exceptions.SymbolNotFoundException;
+import antgame.parsers.exceptions.TokenSizeMismatchException;
+import antgame.world.textworldgenerator.GenRandomMap;
 import java.util.List;
 
 /*

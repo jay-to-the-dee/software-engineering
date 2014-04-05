@@ -1,10 +1,15 @@
 package antgame.parsers.worldparser;
-import antgame.model.world.BlackAnthillToken;
-import antgame.model.world.ColorRed;
-import antgame.model.world.PlainToken;
-import antgame.model.world.RedAnthillToken;
-import antgame.model.world.RockToken;
-import antgame.model.TerrainToken;
+import antgame.parsers.exceptions.TokenSizeMismatchException;
+import antgame.parsers.exceptions.SymbolNotFoundException;
+import antgame.parsers.exceptions.SomeException;
+import antgame.world.worldTokens.MapSizeToken;
+import antgame.world.worldTokens.Token;
+import antgame.model.Food;
+import antgame.model.Position;
+import antgame.world.worldTokens.BlackAnthillToken;
+import antgame.world.worldTokens.PlainToken;
+import antgame.world.worldTokens.RedAnthillToken;
+import antgame.world.worldTokens.RockToken;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,9 +18,10 @@ import java.util.Stack;
 
 /**
  *
- * @author Raimonds Grismanausks
+ * @author ItsTheRai
  */
 //lexing and parsing combined because of very simple hierarchy of world
+//note: rows and columns are numbered starting from 1
 public class ParserImp implements Parser{
     Queue rowQueue = new LinkedList();
     
@@ -57,7 +63,7 @@ public class ParserImp implements Parser{
                 }
                 else throw new TokenSizeMismatchException();
             }
-            
+            int column=1;
             for(String s:rowString.split("\\s")){
                 
                 comlumnQueue.add(s);
@@ -68,7 +74,8 @@ public class ParserImp implements Parser{
             //parse the current row
             else {
                 while(!comlumnQueue.isEmpty()){
-                    getWorldTokens(comlumnQueue.remove().toString());
+                    getWorldTokens(comlumnQueue.remove().toString(),row-1,column-1);
+                    column++;
                 }
             }
             row++;
@@ -108,28 +115,29 @@ public class ParserImp implements Parser{
         }
     }
     
-    public void getWorldTokens(String s) throws SomeException{
+    public void getWorldTokens(String s,int xposition, int yposition) throws SomeException{
         if(s.length()!=1){
             throw new SomeException();
         }
         if(s.charAt(0)==redAnthill){
-            world.add(new RedAnthillToken(((TerrainToken)world.get(world.size() - 1)).getPosition()));
+            
+            world.add(new RedAnthillToken(new Position(xposition,yposition)));
         }
         else if(s.charAt(0)==blackAnthill){
-            world.add(new BlackAnthillToken(((TerrainToken)world.get(world.size() - 1)).getPosition()));
+            world.add(new BlackAnthillToken(new Position(xposition,yposition)));
         }
         else if(s.charAt(0)==rock){
-            world.add(new RockToken(((TerrainToken)world.get(world.size() - 1)).getPosition(),null));
+            world.add(new RockToken(new Position(xposition,yposition),null));
         }
         else if(s.charAt(0)==terrain){
-            world.add(new PlainToken(((TerrainToken)world.get(world.size() - 1)).getPosition(), new Stack()));
+            world.add(new PlainToken(new Position(xposition,yposition), new Stack()));
         }
         else if(s.charAt(0) >=48 && s.charAt(0) <= 57){
             Stack food = new Stack();
             for (int i=0;i<Character.getNumericValue(s.charAt(0));i++){
                 food.push(new Food());
             }
-            world.add(new PlainToken(((TerrainToken)world.get(world.size() - 1)).getPosition(),food));
+            world.add(new PlainToken(new Position(xposition,yposition),food));
         }
         else throw new SomeException();
         

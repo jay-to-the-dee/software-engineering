@@ -1,8 +1,10 @@
 package antgame.model;
 
-import antgame.ant.direction.Direction;
-import antgame.instructions.Instruction;
-import antgame.model.world.Color;
+import antgame.world.worldTokens.World;
+import antgame.world.worldTokens.TerrainToken;
+import antgame.ant.direction.sensedireciton.Direction;
+import antgame.ant.instructions.Instruction;
+import antgame.ant.color.Color;
 
 /**
  *
