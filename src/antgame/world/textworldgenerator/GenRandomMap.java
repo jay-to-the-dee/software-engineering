@@ -11,7 +11,7 @@ import antgame.world.worldTokens.PlainToken;
 import antgame.world.worldTokens.RedAnthillToken;
 import antgame.world.worldTokens.RockToken;
 import antgame.model.Food;
-import antgame.parsers.worldparser.WorldToken;
+import antgame.world.worldTokens.WorldToken;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

@@ -8,7 +8,7 @@ import antgame.ant.color.Color;
 import antgame.ant.color.ColorBlack;
 import antgame.ant.color.ColorRed;
 import antgame.model.Food;
-import antgame.parsers.worldparser.WorldToken;
+import java.util.Objects;
 import java.util.Stack;
 
 /**
@@ -31,7 +31,8 @@ public class TerrainToken extends WorldToken{
         this.anthillColor=anthillColor;
         markers = new ChemicalMarkers();
     }
-
+    
+    
     public ChemicalMarkers getMarkers() {
         return markers;
     }
@@ -61,6 +62,54 @@ public class TerrainToken extends WorldToken{
            this.getMarkers().getBlackAntsmarker().setMarker(m, false);
        }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.position);
+        hash = 67 * hash + Objects.hashCode(this.ant);
+        hash = 67 * hash + (this.rocky ? 1 : 0);
+        hash = 67 * hash + Objects.hashCode(this.food);
+        hash = 67 * hash + (this.anthill ? 1 : 0);
+        hash = 67 * hash + Objects.hashCode(this.anthillColor);
+        hash = 67 * hash + Objects.hashCode(this.markers);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TerrainToken other = (TerrainToken) obj;
+        if (!Objects.equals(this.position, other.position)) {
+            return false;
+        }
+        if (!Objects.equals(this.ant, other.ant)) {
+            return false;
+        }
+        if (this.rocky != other.rocky) {
+            return false;
+        }
+        if (!Objects.equals(this.food, other.food)) {
+            return false;
+        }
+        if (this.anthill != other.anthill) {
+            return false;
+        }
+        if (!Objects.equals(this.anthillColor, other.anthillColor)) {
+            return false;
+        }
+        if (!Objects.equals(this.markers, other.markers)) {
+            return false;
+        }
+        return true;
+    }
+
+    
    
     
  

@@ -4,7 +4,7 @@ import antgame.world.worldTokens.RockToken;
 import antgame.world.worldTokens.TerrainToken;
 import antgame.parsers.exceptions.SomeException;
 import antgame.world.worldTokens.Token;
-import antgame.parsers.worldparser.WorldToken;
+import antgame.world.worldTokens.WorldToken;
 import java.util.List;
 
 /**

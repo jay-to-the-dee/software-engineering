@@ -1,15 +1,16 @@
 package antgame.parsers.worldparser;
-import antgame.parsers.exceptions.TokenSizeMismatchException;
-import antgame.parsers.exceptions.SymbolNotFoundException;
-import antgame.parsers.exceptions.SomeException;
-import antgame.world.worldTokens.MapSizeToken;
-import antgame.world.worldTokens.Token;
 import antgame.model.Food;
 import antgame.model.Position;
+import antgame.parsers.exceptions.SomeException;
+import antgame.parsers.exceptions.SymbolNotFoundException;
+import antgame.parsers.exceptions.TokenSizeMismatchException;
 import antgame.world.worldTokens.BlackAnthillToken;
+import antgame.world.worldTokens.MapSizeToken;
 import antgame.world.worldTokens.PlainToken;
 import antgame.world.worldTokens.RedAnthillToken;
 import antgame.world.worldTokens.RockToken;
+import antgame.world.worldTokens.Token;
+import antgame.world.worldTokens.WorldToken;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,8 +32,8 @@ public class ParserImp implements Parser{
     private static final Character rock='#';
     private static final Character terrain='.';
     //init list that stores all parsed tokens
-    private List<Token> world = new ArrayList<>();
-    public List<Token> parse(String input) throws SomeException,SymbolNotFoundException,TokenSizeMismatchException{
+    private List<WorldToken> world = new ArrayList<>();
+    public List<WorldToken> parse(String input) throws SomeException,SymbolNotFoundException,TokenSizeMismatchException{
         //should get n+2
         for (String s: input.split("\\r?\\n|\\r")){
             rowQueue.add(s);
@@ -40,48 +41,48 @@ public class ParserImp implements Parser{
         }
         //line 1 for xsize
         //line 2 for ysize
-        world.add(getSize(rowQueue.remove().toString()));
+        world.add((getSize(rowQueue.remove().toString())));
         world.add(getSize(rowQueue.remove().toString()));
         //now each object in the queue should contain xsize number of elements
         //and there should be ysize number of objects in the queue alltogether
         //so do a check
-        if(rowQueue.size()!=((MapSizeToken)world.get(1)).getSizeAsInt()){
+        if(rowQueue.size()!=((MapSizeToken)world.get(1)).getSize()){
             throw new TokenSizeMismatchException();
         }
         //initialise row  counter
         //parses all world tokens in queue
-        int row =1;
+        int column =1;
         while(!rowQueue.isEmpty()){
             Queue comlumnQueue = new LinkedList();
             //rowString contains all row objects
             String rowString = rowQueue.remove().toString();
             //check if the row number is even, if it is
             //the first element has to be a whitespace
-            if (row%2==0){
+            if (column%2==0){
                 if (rowString.charAt(0)==' '){
                     rowString=rowString.substring(1);
                 }
                 else throw new TokenSizeMismatchException();
             }
-            int column=1;
+            int row=1;
             for(String s:rowString.split("\\s")){
                 
                 comlumnQueue.add(s);
             }
-            if (comlumnQueue.size()!=((MapSizeToken)world.get(0)).getSizeAsInt()){
+            if (comlumnQueue.size()!=((MapSizeToken)world.get(0)).getSize()){
                 throw new TokenSizeMismatchException();
             }
             //parse the current row
             else {
                 while(!comlumnQueue.isEmpty()){
                     getWorldTokens(comlumnQueue.remove().toString(),row-1,column-1);
-                    column++;
+                    row++;
                 }
             }
-            row++;
+            column++;
         }
         //clean up and return
-        List<Token> returnTokens =new LinkedList<>(world);
+        List<WorldToken> returnTokens =new LinkedList<>(world);
         world.clear();
         System.out.println(returnTokens);
         return returnTokens;
@@ -94,7 +95,8 @@ public class ParserImp implements Parser{
      * @throws SomeException
      */
     public MapSizeToken getSize(String input) throws SomeException{
-        String size = new String();
+        int size;
+        //String size = new String();
         if(input.isEmpty()){
             throw new SomeException();
         }
@@ -110,7 +112,7 @@ public class ParserImp implements Parser{
             if (i<input.length()){
                 throw new SomeException();
             }
-            else size = input;
+            else size = Integer.parseInt(input);
             return new MapSizeToken(size);
         }
     }
@@ -127,7 +129,7 @@ public class ParserImp implements Parser{
             world.add(new BlackAnthillToken(new Position(xposition,yposition)));
         }
         else if(s.charAt(0)==rock){
-            world.add(new RockToken(new Position(xposition,yposition),null));
+            world.add(new RockToken(new Position(xposition,yposition),new Stack()));
         }
         else if(s.charAt(0)==terrain){
             world.add(new PlainToken(new Position(xposition,yposition), new Stack()));

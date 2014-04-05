@@ -26,8 +26,10 @@ public class Test {
         
         //System.out.println(parser.parseAntBrain(input));
         
-         GameEngine e = new GameEngine();
-         e.run();
+         //GameEngine e = new GameEngine();
+         
+        //e.run();
+        
          
         //Instruction[] v = parser.parseAntBrain(input);
         //System.out.println(v.length);

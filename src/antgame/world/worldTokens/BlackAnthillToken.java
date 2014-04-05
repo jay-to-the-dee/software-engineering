@@ -15,5 +15,21 @@ public class BlackAnthillToken extends AnthillToken{
         super(p, new ColorBlack());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof BlackAnthillToken){
+        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+        }
+        else return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+    
+    
+
     
 }

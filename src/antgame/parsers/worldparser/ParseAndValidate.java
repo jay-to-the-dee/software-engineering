@@ -1,5 +1,6 @@
 package antgame.parsers.worldparser;
 
+import antgame.world.worldTokens.WorldToken;
 import antgame.parsers.exceptions.TokenSizeMismatchException;
 import antgame.parsers.exceptions.SymbolNotFoundException;
 import antgame.parsers.exceptions.SomeException;
@@ -19,9 +20,9 @@ public class ParseAndValidate {
     Verifier v = new VerifierImp();
     
     public World parseAndValidate(String input,List<CheckRequirement> req)throws SomeException, SymbolNotFoundException, TokenSizeMismatchException{
-        List<Token> tokens = p.parse(input);
-        int xsize= ((MapSizeToken) tokens.get(0)).getSizeAsInt();
-        int ysize = ((MapSizeToken)tokens.get(1)).getSizeAsInt();
+        List<WorldToken> tokens = p.parse(input);
+        int xsize= ((MapSizeToken) tokens.get(0)).getSize();
+        int ysize = ((MapSizeToken)tokens.get(1)).getSize();
         List<WorldToken>list = new LinkedList<>();
         for (int i=2;i<tokens.size();i++){
             list.add((WorldToken)tokens.get(i));

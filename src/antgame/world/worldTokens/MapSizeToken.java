@@ -1,21 +1,48 @@
 package antgame.world.worldTokens;
 
-import antgame.parsers.worldparser.WorldToken;
+import java.util.Objects;
 
 /**
  *
  * @author ItsTheRai
  */
 public class MapSizeToken extends WorldToken{
-    private String size;
-    public MapSizeToken(String size){
+    private int size;
+    
+    public MapSizeToken(int size){
         this.size = size;
     }
-        public void getType() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + this.size;
+        return hash;
     }
-        public int getSizeAsInt(){
-            return Integer.parseInt(size);
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MapSizeToken other = (MapSizeToken) obj;
+        if (this.size != other.size) {
+            return false;
+        }
+        return true;
+    }
+
     
+    
+    
+    
+    public int getSize(){
+        return size;
+    }
+        //public int getSizeAsInt(){
+        //    return Integer.parseInt(size);
+        //}
 }

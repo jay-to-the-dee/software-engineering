@@ -15,8 +15,20 @@ public class AnthillToken extends TerrainToken{
         
         super(false,p,new Stack(),true,color);
     }
-        public void getType() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+  
     }
+
+    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+    
     
 }

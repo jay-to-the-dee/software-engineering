@@ -5,7 +5,7 @@ import antgame.world.worldTokens.World;
 import antgame.ant.color.ColorBlack;
 import antgame.ant.color.ColorRed;
 import antgame.world.worldTokens.Token;
-import antgame.parsers.worldparser.WorldToken;
+import antgame.world.worldTokens.WorldToken;
 import antgame.world.textworldgenerator.GenRandomMap;
 import java.awt.BasicStroke;
 import java.awt.Color;

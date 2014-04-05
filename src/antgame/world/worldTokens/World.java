@@ -2,7 +2,6 @@ package antgame.world.worldTokens;
 
 import antgame.model.Ant;
 import antgame.model.Position;
-import antgame.parsers.worldparser.WorldToken;
 import java.util.ArrayList;
 import java.util.List;
 
