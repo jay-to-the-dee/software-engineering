@@ -21,7 +21,7 @@ public class ReadFile {
         
     }
     
-    static String readFile(String path, Charset encoding) throws IOException {
+    public static String readFile(String path, Charset encoding) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return encoding.decode(ByteBuffer.wrap(encoded)).toString();
     }

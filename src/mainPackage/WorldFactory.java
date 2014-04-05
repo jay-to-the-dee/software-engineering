@@ -1,3 +1,5 @@
+package mainPackage;
+
 
 import antgame.model.World;
 import antgame.parsers.worldparser.CheckRequirement;
@@ -16,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author Main User
+ * @author ItsTheRai
  */
 public class WorldFactory {
     

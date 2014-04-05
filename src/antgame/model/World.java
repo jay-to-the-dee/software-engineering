@@ -34,7 +34,23 @@ public class World {
         return worldTokens;
     }
     
-    //need to test functionality
+    public void executeOneRound(){
+        //goes through the whole terrain to check if an ant is present, update if need to improve performance
+        for(int i = 0; i < this.worldTokens.size();i++){
+            if(((TerrainToken)worldTokens.get(i)).hasAnt()){
+                step(((TerrainToken)worldTokens.get(i)).getAnt());
+            }
+        }
+    }
+    
+    public void step(Ant ant){
+        if(ant.isAlive()){
+            if(ant.isResting()){
+                ant.rest();
+            }
+            else ant.getCurrentInstruction().executeInstruction(ant);
+        }
+    }
     
     
     //xposition - index starting from 0 to width -1

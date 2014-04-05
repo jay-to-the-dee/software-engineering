@@ -1,7 +1,7 @@
 package antgame.model;
 
-import antgame.instructions.InstructionSet;
 import antgame.ant.direction.Direction;
+import antgame.instructions.Instruction;
 import antgame.model.world.Color;
 
 /**
@@ -15,13 +15,13 @@ public class Ant {
     private int resting;
     private int facingDirection;
     private boolean hasFood;
-    private InstructionSet[] brain;
+    private Instruction[] brain;
     private int state;
     private boolean isAlive;
     private final World world;
     
-    public Ant(Color color,InstructionSet [] brain,Position position,World world){
-        this.brain = new InstructionSet[brain.length];
+    public Ant(Color color,Instruction [] brain,Position position,World world){
+        this.brain = new Instruction[brain.length];
         this.brain = brain;
         this.color = color;
         hasFood = false;
@@ -40,6 +40,18 @@ public class Ant {
     public void setPosition(int x,int y){
         position.setXlocation(x);
         position.setYlocation(y);
+    }
+    
+    public Instruction getCurrentInstruction(){
+        return getInstruction(state);
+    }
+    
+    public Instruction getInstruction(int s){
+        return brain[s];
+    }
+    
+    public boolean isAlive(){
+        return this.isAlive;
     }
     
     public TerrainToken getAntLocation(){
@@ -98,7 +110,7 @@ public class Ant {
         return hasFood;
     }
 
-    public InstructionSet[] getBrain() {
+    public Instruction[] getBrain() {
         return brain;
     }
 
@@ -106,8 +118,10 @@ public class Ant {
         return state;
     }
 
-    public void setResting(int resting) {
-        this.resting = resting;
+    public void rest(){
+        if(resting>0){
+            resting--;
+        }
     }
 
     public void setDirection(int direction) {
@@ -120,5 +134,13 @@ public class Ant {
 
     public void setState(int state) {
         this.state = state;
+    }
+    
+    public boolean isResting(){
+        return resting>0;
+    }
+
+    public void setResting(int RESTING) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,11 +1,11 @@
 package antgame.parsers.worldparser;
 
+import mainPackage.GameEngine;
 import antgame.instructions.Instruction;
 import antgame.instructions.InstructionSet;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
 import java.io.IOException;
 import java.nio.charset.Charset;
-
 /**
  *
  * @author Main User
@@ -15,7 +15,7 @@ public class Test {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, Exception {
         Parser p = new ParserImp();
         //Verifier v = new VerifierImp();
         ReadFile file = new ReadFile();
@@ -25,12 +25,14 @@ public class Test {
         String input =ReadFile.readFile("./data/brains/uni-examples/sampleant.brain",Charset.defaultCharset());
         
         //System.out.println(parser.parseAntBrain(input));
+         GameEngine e = new GameEngine();
+         e.run();
          
-        Instruction[] v = parser.parseAntBrain(input);
-        System.out.println(v.length);
-        for (int i=0;i<v.length;i++){
-            System.out.println(v[i]);
-        }
+        //Instruction[] v = parser.parseAntBrain(input);
+        //System.out.println(v.length);
+        //for (int i=0;i<v.length;i++){
+        //    System.out.println(v[i]);
+        //}
         /*String input=new String(""
                 + "3\n"
                 + "4\n"
