@@ -1,5 +1,6 @@
 package antgame.world.worldTokens;
 
+import antgame.ant.instructions.Instruction;
 import antgame.model.Ant;
 import antgame.model.Position;
 import java.util.ArrayList;
@@ -89,5 +90,8 @@ public class World {
                 else t= (TerrainToken)getTokenAt(position.getXlocation()+1, position.getYlocation()-1);
         }
         return t;
+    }
+
+    public void putAnts(Instruction[] brain1,Instruction[] brain2) {
     }
 }

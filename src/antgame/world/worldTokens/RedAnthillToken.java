@@ -1,7 +1,8 @@
 package antgame.world.worldTokens;
 
-import antgame.model.Position;
 import antgame.ant.color.Color;
+import antgame.ant.color.ColorRed;
+import antgame.model.Position;
 
 /**
  *
@@ -10,7 +11,7 @@ import antgame.ant.color.Color;
 public class RedAnthillToken extends AnthillToken{
 
     public RedAnthillToken(Position p) {
-        super(p, new Color());
+        super(p, new ColorRed());
     }
     
     @Override

@@ -6,24 +6,15 @@
 
 package antgame.ant.color;
 
+import antgame.ant.instructions.Instruction;
+import mainPackage.GameFile;
+
 /**
  *
  * @author ItsTheRai
  */
-public class Color {
-    String color;
-    public Color(String c){
-        color=c;
-    }
-
-    public Color() {
-        
-    }
-    public Color otherColor(Color c){
-        if(c instanceof ColorBlack){
-            return new ColorRed();
-        }
-        else return new ColorBlack();
-    }
+public interface Color {
+    public Color otherColor(Color c);
+    public Instruction[] getBrain(GameFile f);
     
 }

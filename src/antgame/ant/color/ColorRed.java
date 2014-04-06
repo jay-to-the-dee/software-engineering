@@ -1,13 +1,24 @@
 package antgame.ant.color;
 
+import antgame.ant.instructions.Instruction;
+import mainPackage.GameFile;
+
 /**
  *
  * @author ItsTheRai
  */
-public class ColorRed extends Color{
+public class ColorRed implements Color{
 
     public ColorRed() {
-        super("Red");
     }
     
+    @Override
+    public Color otherColor(Color c) {
+        return new ColorBlack();
+    }
+
+    @Override
+    public Instruction[] getBrain(GameFile f) {
+        return f.getRedBrain();
+    }
 }
