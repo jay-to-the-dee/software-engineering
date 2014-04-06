@@ -1,6 +1,5 @@
 package mainPackage;
 
-
 import antgame.model.World;
 import antgame.world.requirements.CheckRequirement;
 import antgame.parsers.worldparser.ParseAndValidate;
@@ -15,18 +14,22 @@ import java.util.List;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ItsTheRai
  */
-public class WorldFactory {
-    
-    public static World loadWorld(ParseAndValidate p,String input,List<CheckRequirement> req) throws SomeException, SymbolNotFoundException, TokenSizeMismatchException{
+public class WorldFactory
+{
+
+    public static World loadWorld(ParseAndValidate p, String input, List<CheckRequirement> req) throws SomeException, SymbolNotFoundException, TokenSizeMismatchException
+    {
         return p.parseAndValidate(input, req);
     }
-    
-    public static World generateRandomWorld(List<CheckRequirement> req, GenRandomMap generator){
-        return generator.createWorld();//generator.createString(); nick needs to sort this out
+
+    public static World generateRandomWorld(List<CheckRequirement> req)
+    {
+        GenRandomMap generator = new GenRandomMap(150);
+
+        return generator.createWorld(); //nick needs to sort this out
     }
 }

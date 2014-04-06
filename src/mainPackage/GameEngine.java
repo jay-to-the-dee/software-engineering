@@ -1,11 +1,15 @@
 package mainPackage;
 
 import antgame.model.World;
+import antgame.parsers.exceptions.SomeException;
+import antgame.parsers.exceptions.SymbolNotFoundException;
+import antgame.parsers.exceptions.TokenSizeMismatchException;
 import antgame.parsers.worldparser.ParseAndValidate;
 import antgame.parsers.worldparser.ReadFile;
 import antgame.world.requirements.*;
 import antgame.world.worldTokens.*;
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,19 +28,12 @@ public class GameEngine
 
     public GameEngine()
     {
-        executedRounds=0;
-    }    
-    
+        executedRounds = 0;
+    }
+
     public void initEngine(File worldFile, File blackBrainFile, File redBrainFile) throws Exception
     {
-        ParseAndValidate pav = new ParseAndValidate();
-        List<CheckRequirement> ls = new LinkedList();
-        ls.add(new RequirementDimension(10, 10));
-        ls.add(new RequirementBorder(1));
-
-        String input = ReadFile.readFile(worldFile.getPath(), Charset.defaultCharset());
-        
-        gameFile.setWorld(WorldFactory.loadWorld(pav, input, ls));
+        loadWorld(worldFile);
 
         gameFile.setBlackBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(blackBrainFile.getPath(), Charset.defaultCharset())));
         gameFile.setRedBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(redBrainFile.getPath(), Charset.defaultCharset())));
@@ -46,6 +43,27 @@ public class GameEngine
         //populate world with ants
         putAnts();
 
+    }
+
+    public void loadWorld(File worldFile) throws IOException, SomeException, SymbolNotFoundException, TokenSizeMismatchException
+    {
+        ParseAndValidate pav = new ParseAndValidate();
+        List<CheckRequirement> ls = new LinkedList();
+        ls.add(new RequirementDimension(100, 100));
+        ls.add(new RequirementBorder(1));
+
+        String input = ReadFile.readFile(worldFile.getPath(), Charset.defaultCharset());
+
+        gameFile.setWorld(WorldFactory.loadWorld(pav, input, ls));
+    }
+
+    public void loadRandomWorld()
+    {
+        List<CheckRequirement> ls = new LinkedList();
+        ls.add(new RequirementDimension(100, 100));
+        ls.add(new RequirementBorder(1));
+
+        gameFile.setWorld(WorldFactory.generateRandomWorld(ls));
     }
 
     private void putAnts() throws Exception

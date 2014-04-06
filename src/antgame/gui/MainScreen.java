@@ -1,5 +1,8 @@
 package antgame.gui;
 
+import antgame.parsers.exceptions.SomeException;
+import antgame.parsers.exceptions.SymbolNotFoundException;
+import antgame.parsers.exceptions.TokenSizeMismatchException;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -72,6 +75,7 @@ public class MainScreen extends javax.swing.JFrame
         fileMenu = new javax.swing.JMenu();
         loadWorldMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        loadRandomWorldMenuItem = new javax.swing.JMenuItem();
         loadBlackAntBrainMenuItem = new javax.swing.JMenuItem();
         loadRedAntBrainMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -207,6 +211,18 @@ public class MainScreen extends javax.swing.JFrame
         });
         fileMenu.add(loadWorldMenuItem);
         fileMenu.add(jSeparator1);
+
+        loadRandomWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        loadRandomWorldMenuItem.setMnemonic('g');
+        loadRandomWorldMenuItem.setText("Generate Random World");
+        loadRandomWorldMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                loadRandomWorldMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(loadRandomWorldMenuItem);
 
         loadBlackAntBrainMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         loadBlackAntBrainMenuItem.setMnemonic('b');
@@ -427,11 +443,19 @@ public class MainScreen extends javax.swing.JFrame
         }
 
         worldFile = fc.getSelectedFile();
-
-        if (true)
+        try
         {
+            gameEngine = new GameEngine();
+            gameEngine.loadWorld(worldFile);
             gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
             gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            worldFile = null;
+            gameStatsPanelFloat.worldFilename.setText("");
+            gameStatsPanelFloat.worldFilename.setToolTipText("");
         }
     }//GEN-LAST:event_loadWorldMenuItemActionPerformed
 
@@ -568,6 +592,23 @@ public class MainScreen extends javax.swing.JFrame
         gameSpeedToolbar.setVisible(checkBox.getState());
     }//GEN-LAST:event_gameSpeedToolbarCheckBoxMenuItemActionPerformed
 
+    private void loadRandomWorldMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadRandomWorldMenuItemActionPerformed
+    {//GEN-HEADEREND:event_loadRandomWorldMenuItemActionPerformed
+        try
+        {
+            gameEngine = new GameEngine();
+            gameEngine.loadRandomWorld();
+            gameStatsPanelFloat.worldFilename.setText("GENERATED WORLD");
+            gameStatsPanelFloat.worldFilename.setToolTipText("This world was randomly generated and not loaded from a file. ");
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            gameStatsPanelFloat.worldFilename.setText("");
+            gameStatsPanelFloat.worldFilename.setToolTipText("");
+        }
+    }//GEN-LAST:event_loadRandomWorldMenuItemActionPerformed
+
     private String simulationOverallProgessStringUpdate()
     {
         NumberFormat nf = NumberFormat.getInstance();
@@ -696,7 +737,7 @@ public class MainScreen extends javax.swing.JFrame
 
         public GameExecutionThread() throws Exception
         {
-            gameEngine = new GameEngine();
+            gameEngine = new GameEngine(); //Clear everything out
             gameEngine.initEngine(worldFile, blackBrainFile, redBrainFile);
         }
 
@@ -771,6 +812,7 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuItem loadBlackAntBrainMenuItem;
+    private javax.swing.JMenuItem loadRandomWorldMenuItem;
     private javax.swing.JMenuItem loadRedAntBrainMenuItem;
     private javax.swing.JMenuItem loadWorldMenuItem;
     private javax.swing.JMenuBar mainMenuBar;
