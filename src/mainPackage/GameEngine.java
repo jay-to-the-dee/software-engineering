@@ -29,6 +29,7 @@ public class GameEngine
     public GameEngine()
     {
         executedRounds = 0;
+        gameFile = new GameFile();
     }
 
     public void initEngine(File worldFile, File blackBrainFile, File redBrainFile) throws Exception

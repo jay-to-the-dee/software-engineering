@@ -450,7 +450,7 @@ public class MainScreen extends javax.swing.JFrame
             gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
             gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
         }
-        catch (Exception ex)
+        catch (IOException | SomeException | SymbolNotFoundException | TokenSizeMismatchException ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
             worldFile = null;

@@ -25,6 +25,10 @@ public class GameFile {
         this.emptyWorld = world;
     }
 
+    public GameFile()
+    {
+    }
+
     public Instruction[] getRedBrain() {
         return redBrain;
     }
