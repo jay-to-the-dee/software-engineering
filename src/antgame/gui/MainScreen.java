@@ -418,7 +418,7 @@ public class MainScreen extends javax.swing.JFrame
 
     private void loadWorldMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadWorldMenuItemActionPerformed
     {//GEN-HEADEREND:event_loadWorldMenuItemActionPerformed
-        final JFileChooser fc = new JFileChooser();
+        final JFileChooser fc = new JFileChooser(new File("./data/worlds"));
 
         if (fc.showOpenDialog(MainScreen.this) != JFileChooser.APPROVE_OPTION)
         {
@@ -430,7 +430,7 @@ public class MainScreen extends javax.swing.JFrame
 
     private void loadBlackAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadBlackAntBrainMenuItemActionPerformed
     {//GEN-HEADEREND:event_loadBlackAntBrainMenuItemActionPerformed
-        final JFileChooser fc = new JFileChooser();
+        final JFileChooser fc = new JFileChooser(new File("./data/brains"));
 
         if (fc.showOpenDialog(MainScreen.this) != JFileChooser.APPROVE_OPTION)
         {
@@ -442,7 +442,7 @@ public class MainScreen extends javax.swing.JFrame
 
     private void loadRedAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadRedAntBrainMenuItemActionPerformed
     {//GEN-HEADEREND:event_loadRedAntBrainMenuItemActionPerformed
-        final JFileChooser fc = new JFileChooser();
+        final JFileChooser fc = new JFileChooser(new File("./data/brains"));
 
         if (fc.showOpenDialog(MainScreen.this) != JFileChooser.APPROVE_OPTION)
         {
@@ -704,7 +704,7 @@ public class MainScreen extends javax.swing.JFrame
                  Note that completedRuns is a float not an int! Deal with it! :L
                  */
                 
-                gameEngine.runSimulator(completedRuns);
+                gameEngine.runSimulator((int) completedRuns);
                 
                 worldPanel.repaint();
 
