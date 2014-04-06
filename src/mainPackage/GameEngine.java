@@ -20,7 +20,13 @@ public class GameEngine
     private static World currentWorld;
     //load stuff from GUI into here
     private GameFile gameFile;
+    private int executedRounds;
 
+    public GameEngine()
+    {
+        executedRounds=0;
+    }    
+    
     public void initEngine(File worldFile, File blackBrainFile, File redBrainFile) throws Exception
     {
         ParseAndValidate pav = new ParseAndValidate();
@@ -54,11 +60,12 @@ public class GameEngine
         }
     }
 
-    private void runSimulator(int numberOfRounds)
+    public void runSimulator(int getToThisManyCompletedRuns)
     {
-        for (int i = 0; i < numberOfRounds; i++)
+        for (int i = executedRounds; i < getToThisManyCompletedRuns; i++)
         {
             currentWorld.executeOneRound();
+            executedRounds++;
         }
     }
 

@@ -703,7 +703,9 @@ public class MainScreen extends javax.swing.JFrame
                  Call your Brain Exectutor method!
                  Note that completedRuns is a float not an int! Deal with it! :L
                  */
-                // TODO jay-to-the-dee : re-draw method stuff here
+                
+                gameEngine.runSimulator(completedRuns);
+                
                 worldPanel.repaint();
 
                 Thread.sleep(1000 / UPDATES_PER_SECOND);
