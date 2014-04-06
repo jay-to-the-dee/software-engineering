@@ -23,7 +23,7 @@ public class RequirementDimension implements CheckRequirement{
      * @return
      */
     @Override
-    public boolean checkRequirements(int xsize,int ysize,List<WorldToken> tokens) throws SomeException{
+    public boolean checkRequirements(int xsize,int ysize,List<WorldToken> tokens){
         if (this.xsize!=xsize ||this.ysize!=ysize){
             System.out.println("validation error");
             return false;

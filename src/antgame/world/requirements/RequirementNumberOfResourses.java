@@ -28,7 +28,7 @@ public class RequirementNumberOfResourses implements CheckRequirement{
     
     
     @Override
-    public boolean checkRequirements(int xsize, int ysize, List<WorldToken> tokens) throws SomeException {
+    public boolean checkRequirements(int xsize, int ysize, List<WorldToken> tokens){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

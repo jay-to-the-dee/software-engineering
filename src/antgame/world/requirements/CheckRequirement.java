@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface CheckRequirement {
     
-    public abstract boolean checkRequirements(int xsize,int ysize,List<WorldToken> tokens) throws SomeException;
+    public abstract boolean checkRequirements(int xsize,int ysize,List<WorldToken> tokens);
 }
