@@ -427,6 +427,12 @@ public class MainScreen extends javax.swing.JFrame
         }
 
         worldFile = fc.getSelectedFile();
+
+        if (true)
+        {
+            gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
+            gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
+        }
     }//GEN-LAST:event_loadWorldMenuItemActionPerformed
 
     private void loadBlackAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadBlackAntBrainMenuItemActionPerformed
@@ -439,8 +445,12 @@ public class MainScreen extends javax.swing.JFrame
         }
 
         blackBrainFile = fc.getSelectedFile();
-        gameStatsPanelFloat.blackBrainFilename.setText(blackBrainFile.getName());
 
+        if (true)
+        {
+            gameStatsPanelFloat.blackBrainFilename.setText(blackBrainFile.getName());
+            gameStatsPanelFloat.blackBrainFilename.setToolTipText(blackBrainFile.getPath());
+        }
     }//GEN-LAST:event_loadBlackAntBrainMenuItemActionPerformed
 
     private void loadRedAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadRedAntBrainMenuItemActionPerformed
@@ -453,7 +463,12 @@ public class MainScreen extends javax.swing.JFrame
         }
 
         redBrainFile = fc.getSelectedFile();
-        gameStatsPanelFloat.redBrainFilename.setText(redBrainFile.getName());
+
+        if (true)
+        {
+            gameStatsPanelFloat.redBrainFilename.setText(redBrainFile.getName());
+            gameStatsPanelFloat.redBrainFilename.setToolTipText(redBrainFile.getPath());
+        }
     }//GEN-LAST:event_loadRedAntBrainMenuItemActionPerformed
 
     private void exitApplication(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitApplication

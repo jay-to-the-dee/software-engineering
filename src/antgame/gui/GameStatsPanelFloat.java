@@ -46,18 +46,20 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         redFoodCount = new javax.swing.JLabel();
         redBrainFilename = new javax.swing.JTextField();
         blackBrainFilename = new javax.swing.JTextField();
+        worldLabel = new javax.swing.JLabel();
+        worldFilename = new javax.swing.JTextField();
 
         setName("Game Stats"); // NOI18N
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWidths = new int[] {0, 10, 0};
-        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
         setLayout(layout);
 
         blackLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         blackLabel.setText("Black");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         add(blackLabel, gridBagConstraints);
 
@@ -66,35 +68,35 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         redLabel.setText("Red");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 20;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         add(redLabel, gridBagConstraints);
 
         foodBlackLabel.setText("Food");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(foodBlackLabel, gridBagConstraints);
 
         aliveAntsBlackLabel.setText("Alive ants");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(aliveAntsBlackLabel, gridBagConstraints);
 
         restingBlackLabel.setText("Resting");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(restingBlackLabel, gridBagConstraints);
 
         foodRedLabel.setText("Food");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridy = 26;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(foodRedLabel, gridBagConstraints);
@@ -102,7 +104,7 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         aliveAntsRedLabel.setText("Alive ants");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridy = 28;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(aliveAntsRedLabel, gridBagConstraints);
@@ -110,49 +112,49 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         restingRedLabel.setText("Resting");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridy = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(restingRedLabel, gridBagConstraints);
 
         blackFoodCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(blackFoodCount, gridBagConstraints);
 
         redAliveAntsCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridy = 28;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(redAliveAntsCount, gridBagConstraints);
 
         redRestingCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridy = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(redRestingCount, gridBagConstraints);
 
         blackRestingCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(blackRestingCount, gridBagConstraints);
 
         blackAliveAntsCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(blackAliveAntsCount, gridBagConstraints);
 
         redFoodCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridy = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(redFoodCount, gridBagConstraints);
 
@@ -161,7 +163,7 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         redBrainFilename.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 22;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         add(redBrainFilename, gridBagConstraints);
 
@@ -177,15 +179,45 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         add(blackBrainFilename, gridBagConstraints);
+
+        worldLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        worldLabel.setForeground(new java.awt.Color(15, 166, 47));
+        worldLabel.setText("World");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        add(worldLabel, gridBagConstraints);
+
+        worldFilename.setEditable(false);
+        worldFilename.setColumns(10);
+        worldFilename.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        worldFilename.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                worldFilenameActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        add(worldFilename, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void blackBrainFilenameActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blackBrainFilenameActionPerformed
     {//GEN-HEADEREND:event_blackBrainFilenameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_blackBrainFilenameActionPerformed
+
+    private void worldFilenameActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_worldFilenameActionPerformed
+    {//GEN-HEADEREND:event_worldFilenameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_worldFilenameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -205,5 +237,7 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
     private javax.swing.JLabel redRestingCount;
     private javax.swing.JLabel restingBlackLabel;
     private javax.swing.JLabel restingRedLabel;
+    javax.swing.JTextField worldFilename;
+    private javax.swing.JLabel worldLabel;
     // End of variables declaration//GEN-END:variables
 }
