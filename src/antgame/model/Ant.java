@@ -76,7 +76,7 @@ public class Ant {
         if(world.getCell(p).hasAnt()){
             //a bit messy
             
-            if(world.getCell(p).getAnt().adjacent_ants(this.position, this.getColour().otherColor(color))>=5){
+            if(world.getCell(p).getAnt().adjacent_ants(this.position, this.getColour().otherColor())>=5){
                 this.getAntLocation().removeAnt();
                 if (this.isHasFood()){
                     foodParticles++;

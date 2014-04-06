@@ -14,7 +14,7 @@ import mainPackage.GameFile;
  * @author ItsTheRai
  */
 public interface Color {
-    public Color otherColor(Color c);
+    public Color otherColor();
     public Instruction[] getBrain(GameFile f);
     
 }

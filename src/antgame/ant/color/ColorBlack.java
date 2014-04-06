@@ -12,7 +12,7 @@ public class ColorBlack implements Color{
     }
 
     @Override
-    public Color otherColor(Color c) {
+    public Color otherColor() {
         return new ColorRed();
     }
 
