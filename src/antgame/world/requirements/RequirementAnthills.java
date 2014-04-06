@@ -11,8 +11,8 @@ import java.util.List;
  */
 public class RequirementAnthills implements CheckRequirement{
 
-    private static int numberOfAnthills = 2;
-    private static int anthillSideLength = 7;
+    private static int numberOfAnthills;
+    private static int anthillSideLength;
     
     
     public RequirementAnthills(int numberOfAnthills,int anthillSideLength) {

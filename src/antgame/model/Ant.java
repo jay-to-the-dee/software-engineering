@@ -1,6 +1,5 @@
 package antgame.model;
 
-import antgame.world.worldTokens.World;
 import antgame.world.worldTokens.TerrainToken;
 import antgame.ant.direction.sensedireciton.Direction;
 import antgame.ant.instructions.Instruction;

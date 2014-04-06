@@ -1,7 +1,7 @@
 package antgame.gui;
 
 import antgame.world.worldTokens.TerrainToken;
-import antgame.world.worldTokens.World;
+import antgame.model.World;
 import antgame.ant.color.ColorBlack;
 import antgame.ant.color.ColorRed;
 import antgame.world.worldTokens.Token;

@@ -7,7 +7,7 @@ import antgame.parsers.exceptions.SomeException;
 import antgame.world.worldTokens.MapSizeToken;
 import antgame.world.worldTokens.Token;
 import antgame.world.requirements.CheckRequirement;
-import antgame.world.worldTokens.World;
+import antgame.model.World;
 import java.util.LinkedList;
 import java.util.List;
 

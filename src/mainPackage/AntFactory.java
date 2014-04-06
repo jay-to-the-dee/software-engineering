@@ -4,7 +4,7 @@ package mainPackage;
 import antgame.ant.instructions.Instruction;
 import antgame.model.Ant;
 import antgame.model.Position;
-import antgame.world.worldTokens.World;
+import antgame.model.World;
 import antgame.ant.color.Color;
 import java.util.ArrayList;
 import java.util.List;

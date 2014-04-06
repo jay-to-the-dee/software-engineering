@@ -7,7 +7,7 @@
 package mainPackage;
 
 import antgame.ant.instructions.Instruction;
-import antgame.world.worldTokens.World;
+import antgame.model.World;
 
 /**
  *

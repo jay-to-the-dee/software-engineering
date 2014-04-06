@@ -1,8 +1,10 @@
-package antgame.world.worldTokens;
+package antgame.model;
 
 import antgame.ant.instructions.Instruction;
 import antgame.model.Ant;
 import antgame.model.Position;
+import antgame.world.worldTokens.TerrainToken;
+import antgame.world.worldTokens.WorldToken;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package mainPackage;
 
 
-import antgame.world.worldTokens.World;
+import antgame.model.World;
 import antgame.world.requirements.CheckRequirement;
 import antgame.parsers.worldparser.ParseAndValidate;
 import antgame.parsers.exceptions.SomeException;
