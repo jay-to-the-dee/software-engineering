@@ -378,6 +378,7 @@ public class MainScreen extends javax.swing.JFrame
                 catch (Exception ex)
                 {
                     JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+                    return; //To stop the menu enabled selection down below from changing
                 }
             }
             else
