@@ -44,11 +44,13 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         blackRestingCount = new javax.swing.JLabel();
         blackAliveAntsCount = new javax.swing.JLabel();
         redFoodCount = new javax.swing.JLabel();
+        redBrainFilename = new javax.swing.JTextField();
+        blackBrainFilename = new javax.swing.JTextField();
 
         setName("Game Stats"); // NOI18N
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWidths = new int[] {0, 10, 0};
-        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
         setLayout(layout);
 
         blackLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
@@ -64,35 +66,35 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         redLabel.setText("Red");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         add(redLabel, gridBagConstraints);
 
         foodBlackLabel.setText("Food");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(foodBlackLabel, gridBagConstraints);
 
         aliveAntsBlackLabel.setText("Alive ants");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(aliveAntsBlackLabel, gridBagConstraints);
 
         restingBlackLabel.setText("Resting");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(restingBlackLabel, gridBagConstraints);
 
         foodRedLabel.setText("Food");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(foodRedLabel, gridBagConstraints);
@@ -100,7 +102,7 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         aliveAntsRedLabel.setText("Alive ants");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 20;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(aliveAntsRedLabel, gridBagConstraints);
@@ -108,61 +110,96 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         restingRedLabel.setText("Resting");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridy = 22;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(restingRedLabel, gridBagConstraints);
 
         blackFoodCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(blackFoodCount, gridBagConstraints);
 
         redAliveAntsCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(redAliveAntsCount, gridBagConstraints);
 
         redRestingCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridy = 22;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(redRestingCount, gridBagConstraints);
 
         blackRestingCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(blackRestingCount, gridBagConstraints);
 
         blackAliveAntsCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(blackAliveAntsCount, gridBagConstraints);
 
         redFoodCount.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(redFoodCount, gridBagConstraints);
+
+        redBrainFilename.setEditable(false);
+        redBrainFilename.setColumns(10);
+        redBrainFilename.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        add(redBrainFilename, gridBagConstraints);
+
+        blackBrainFilename.setEditable(false);
+        blackBrainFilename.setColumns(10);
+        blackBrainFilename.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        blackBrainFilename.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                blackBrainFilenameActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        add(blackBrainFilename, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void blackBrainFilenameActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_blackBrainFilenameActionPerformed
+    {//GEN-HEADEREND:event_blackBrainFilenameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blackBrainFilenameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel aliveAntsBlackLabel;
     private javax.swing.JLabel aliveAntsRedLabel;
     private javax.swing.JLabel blackAliveAntsCount;
+    javax.swing.JTextField blackBrainFilename;
     private javax.swing.JLabel blackFoodCount;
     private javax.swing.JLabel blackLabel;
     private javax.swing.JLabel blackRestingCount;
     private javax.swing.JLabel foodBlackLabel;
     private javax.swing.JLabel foodRedLabel;
     private javax.swing.JLabel redAliveAntsCount;
+    javax.swing.JTextField redBrainFilename;
     private javax.swing.JLabel redFoodCount;
     private javax.swing.JLabel redLabel;
     private javax.swing.JLabel redRestingCount;

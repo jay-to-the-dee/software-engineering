@@ -439,6 +439,8 @@ public class MainScreen extends javax.swing.JFrame
         }
 
         blackBrainFile = fc.getSelectedFile();
+        gameStatsPanelFloat.blackBrainFilename.setText(blackBrainFile.getName());
+
     }//GEN-LAST:event_loadBlackAntBrainMenuItemActionPerformed
 
     private void loadRedAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadRedAntBrainMenuItemActionPerformed
@@ -451,6 +453,7 @@ public class MainScreen extends javax.swing.JFrame
         }
 
         redBrainFile = fc.getSelectedFile();
+        gameStatsPanelFloat.redBrainFilename.setText(redBrainFile.getName());
     }//GEN-LAST:event_loadRedAntBrainMenuItemActionPerformed
 
     private void exitApplication(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitApplication
@@ -704,9 +707,8 @@ public class MainScreen extends javax.swing.JFrame
                  Call your Brain Exectutor method!
                  Note that completedRuns is a float not an int! Deal with it! :L
                  */
-                
                 gameEngine.runSimulator((int) completedRuns);
-                
+
                 worldPanel.repaint();
 
                 Thread.sleep(1000 / UPDATES_PER_SECOND);
