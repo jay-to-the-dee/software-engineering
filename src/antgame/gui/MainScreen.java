@@ -69,7 +69,6 @@ public class MainScreen extends javax.swing.JFrame
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadWorldMenuItem = new javax.swing.JMenuItem();
-        editWorldMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         loadBlackAntBrainMenuItem = new javax.swing.JMenuItem();
         loadRedAntBrainMenuItem = new javax.swing.JMenuItem();
@@ -205,18 +204,6 @@ public class MainScreen extends javax.swing.JFrame
             }
         });
         fileMenu.add(loadWorldMenuItem);
-
-        editWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
-        editWorldMenuItem.setMnemonic('e');
-        editWorldMenuItem.setText("Edit World");
-        editWorldMenuItem.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                editWorldMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(editWorldMenuItem);
         fileMenu.add(jSeparator1);
 
         loadBlackAntBrainMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
@@ -372,10 +359,6 @@ public class MainScreen extends javax.swing.JFrame
 
     private void startMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startMenuItemActionPerformed
     {//GEN-HEADEREND:event_startMenuItemActionPerformed
-        startMenuItem.setEnabled(false);
-        pauseMenuItem.setEnabled(true);
-        resetMenuItem.setEnabled(false);
-
         if (simulateGameRun != null)
         {
             //Resume
@@ -384,8 +367,35 @@ public class MainScreen extends javax.swing.JFrame
         else
         {
             //Start
-            (simulateGameRun = new GameExecutionThread()).execute();
+            if (worldFile != null && blackBrainFile != null && redBrainFile != null)
+            {
+                (simulateGameRun = new GameExecutionThread()).execute();
+            }
+            else
+            {
+                String errorString = "The simulation can be started until the following errors are resolved: \n\n";
+
+                if (worldFile == null)
+                {
+                    errorString += "World file must be loaded.\n";
+                }
+                if (blackBrainFile == null)
+                {
+                    errorString += "Black brain file must be loaded.\n";
+                }
+                if (redBrainFile == null)
+                {
+                    errorString += "Red brain file must be loaded.\n";
+                }
+
+                JOptionPane.showMessageDialog(this, errorString);
+                return;
+            }
         }
+
+        startMenuItem.setEnabled(false);
+        pauseMenuItem.setEnabled(true);
+        resetMenuItem.setEnabled(false);
     }//GEN-LAST:event_startMenuItemActionPerformed
 
     private void pauseMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_pauseMenuItemActionPerformed
@@ -411,17 +421,26 @@ public class MainScreen extends javax.swing.JFrame
 
     private void loadBlackAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadBlackAntBrainMenuItemActionPerformed
     {//GEN-HEADEREND:event_loadBlackAntBrainMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loadBlackAntBrainMenuItemActionPerformed
+        final JFileChooser fc = new JFileChooser();
 
-    private void editWorldMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_editWorldMenuItemActionPerformed
-    {//GEN-HEADEREND:event_editWorldMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editWorldMenuItemActionPerformed
+        if (fc.showOpenDialog(MainScreen.this) != JFileChooser.APPROVE_OPTION)
+        {
+            return;
+        }
+
+        blackBrainFile = fc.getSelectedFile();
+    }//GEN-LAST:event_loadBlackAntBrainMenuItemActionPerformed
 
     private void loadRedAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadRedAntBrainMenuItemActionPerformed
     {//GEN-HEADEREND:event_loadRedAntBrainMenuItemActionPerformed
-        // TODO add your handling code here:
+        final JFileChooser fc = new JFileChooser();
+
+        if (fc.showOpenDialog(MainScreen.this) != JFileChooser.APPROVE_OPTION)
+        {
+            return;
+        }
+
+        redBrainFile = fc.getSelectedFile();
     }//GEN-LAST:event_loadRedAntBrainMenuItemActionPerformed
 
     private void exitApplication(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitApplication
@@ -706,7 +725,6 @@ public class MainScreen extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem editWorldMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JToolBar gameSpeedToolbar;
