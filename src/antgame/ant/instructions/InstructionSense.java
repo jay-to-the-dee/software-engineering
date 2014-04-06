@@ -9,7 +9,7 @@ import antgame.model.Ant;
  *
  * @author ItsTheRai
  */
-public class InstructionSense extends InstructionSet implements Instruction{
+public class InstructionSense implements Instruction{
     private final int state1;
     private final int state2;
     Direction sensedirection;

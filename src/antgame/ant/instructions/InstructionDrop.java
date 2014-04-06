@@ -6,7 +6,7 @@ import antgame.model.Ant;
  *
  * @author ItsTheRai
  */
-public class InstructionDrop extends InstructionSet implements Instruction{
+public class InstructionDrop implements Instruction{
     private final int nextState;
     
     public InstructionDrop(int state){

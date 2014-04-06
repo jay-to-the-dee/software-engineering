@@ -7,7 +7,7 @@ import antgame.model.Ant;
  *
  * @author ItsTheRai
  */
-public class InstructionTurn extends InstructionSet implements Instruction{
+public class InstructionTurn implements Instruction{
     private LeftOrRight lor;
     private int state;
     

@@ -1,16 +1,11 @@
 package antgame.parsers.worldparser;
 
-import antgame.ant.instructions.Instruction;
-import antgame.ant.instructions.InstructionSet;
 import antgame.model.World;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
 import antgame.world.requirements.CheckRequirement;
 import antgame.world.requirements.RequirementBorder;
-import antgame.world.worldTokens.WorldToken;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.List;
-import mainPackage.GameEngine;
 /**
  *
  * @author Main User

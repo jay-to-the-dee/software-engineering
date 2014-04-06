@@ -1,12 +1,13 @@
 package antgame.ant.instructions;
 
 import antgame.model.Ant;
+import mainPackage.Randomint;
 
 /**
  *
  * @author ItsTheRai
  */
-public class InstructionFlip extends InstructionSet implements Instruction{
+public class InstructionFlip implements Instruction{
     private int state1;
     private int state2;
     private int n;
@@ -19,6 +20,12 @@ public class InstructionFlip extends InstructionSet implements Instruction{
 
     @Override
     public void executeInstruction(Ant ant) {
+        Randomint r = new Randomint();
+        //TODO not sure this is right
+        if(r.getRandomInt(n)==0){
+            ant.setState(state1);
+        }
+        else ant.setState(state2);
         //TODO
     }
     

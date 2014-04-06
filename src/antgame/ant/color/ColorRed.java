@@ -25,7 +25,7 @@ public class ColorRed implements Color{
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof ColorRed){
-        return true; //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
         else return false;    
     }
@@ -33,7 +33,7 @@ public class ColorRed implements Color{
     @Override
     public int hashCode() {
         int hashCode = 32412;
-        return hashCode; //To change body of generated methods, choose Tools | Templates.
+        return hashCode;
     }
     
     

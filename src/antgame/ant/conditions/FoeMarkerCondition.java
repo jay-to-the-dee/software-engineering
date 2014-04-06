@@ -16,12 +16,21 @@ public class FoeMarkerCondition  implements Condition{
     @Override
     public boolean checkCondition(TerrainToken token, Color color, Marker m) {
         //may need refactoring
+        boolean foemarker = false;
         if (color instanceof ColorRed){
-                return token.getMarkers().getBlackAntsmarker().getMarkers()[m.getMarkerIndex()];
+            for(int i =0; i < token.getMarkers().getBlackAntsmarker().getMarkers().length;i++){
+                if(token.getMarkers().getBlackAntsmarker().getMarkers()[i]==true){
+                    foemarker = true;
+                }
+            }
         }
         else if (color instanceof ColorBlack){
-                return token.getMarkers().getRedAntsmarker().getMarkers()[m.getMarkerIndex()];
+            for(int i =0; i < token.getMarkers().getRedAntsmarker().getMarkers().length;i++){
+                if(token.getMarkers().getRedAntsmarker().getMarkers()[i]==true){
+                    foemarker = true;
+                }
+            }
         }
-        else return false;
+        return foemarker;
     }
 }
