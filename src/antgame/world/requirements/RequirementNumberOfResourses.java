@@ -1,5 +1,6 @@
 package antgame.world.requirements;
 
+import antgame.model.World;
 import antgame.world.worldTokens.WorldToken;
 import java.util.List;
 
@@ -22,13 +23,9 @@ public class RequirementNumberOfResourses implements CheckRequirement{
         this.foodBlobSize = foodBlobSize;
         this.foodInParticle = foodInParticle;
     }
-
-  
-   
-    
     
     @Override
-    public boolean checkRequirements(int xsize, int ysize, List<WorldToken> tokens){
+    public boolean checkRequirements(World world){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

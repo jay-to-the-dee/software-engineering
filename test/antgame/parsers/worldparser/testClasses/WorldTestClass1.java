@@ -9,6 +9,7 @@ package antgame.parsers.worldparser.testClasses;
 import antgame.model.Food;
 import antgame.model.FoodStack;
 import antgame.model.Position;
+import antgame.model.World;
 import antgame.world.worldTokens.MapSizeToken;
 import antgame.world.worldTokens.PlainToken;
 import antgame.world.worldTokens.RockToken;
@@ -25,10 +26,10 @@ public class WorldTestClass1 implements WorldTestClass{
     public WorldTestClass1(){
         
 }
-    public List<WorldToken> getWorld(){
-        List<WorldToken> expResult = new LinkedList<>();
-        expResult.add(new MapSizeToken(10));
-        expResult.add(new MapSizeToken(10));
+    @Override
+    public World getWorld(){
+        
+        List<TerrainToken> expResult= new LinkedList();
         FoodStack s = new FoodStack();
         for (int i = 0; i < 5; i++){
             s.push(new Food());
@@ -142,6 +143,7 @@ public class WorldTestClass1 implements WorldTestClass{
         expResult.add(new RockToken(new Position(7,9)));
         expResult.add(new RockToken(new Position(8,9)));
         expResult.add(new RockToken(new Position(9,9)));
-        return expResult;
+        World Result = new World(10,10, expResult);
+        return Result;
     }
 }

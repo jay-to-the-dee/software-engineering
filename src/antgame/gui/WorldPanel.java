@@ -46,7 +46,7 @@ public class WorldPanel extends JPanel
     private BufferedImage foodImg;
     private BufferedImage foodScaled;
     private final World world;
-    private final List<WorldToken> worldtokens;
+    private final List<TerrainToken> worldtokens;
 
     public WorldPanel()
     {

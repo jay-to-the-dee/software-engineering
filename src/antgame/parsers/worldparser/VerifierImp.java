@@ -12,7 +12,7 @@ import java.util.List;
 public class VerifierImp implements Verifier{
 
     @Override
-    public World verify(int xsize,int ysize,List<WorldToken> world,List<CheckRequirement> requirements) throws Exception{
+    public World verify(World world,List<CheckRequirement> requirements) throws Exception{
         
         //if success 
         //make sure this always works
@@ -21,7 +21,7 @@ public class VerifierImp implements Verifier{
         //////////////////////////////
         for(CheckRequirement req:requirements){
             try {
-                req.checkRequirements(xsize,ysize,world);
+                req.checkRequirements(world);
             } catch (Exception ex) {
                 System.out.println("verifier error");
             }

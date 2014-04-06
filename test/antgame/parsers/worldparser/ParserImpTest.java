@@ -9,6 +9,7 @@ package antgame.parsers.worldparser;
 import antgame.model.Food;
 import antgame.model.FoodStack;
 import antgame.model.Position;
+import antgame.model.World;
 import antgame.parsers.worldparser.testClasses.WorldTestClass1;
 import antgame.world.worldTokens.MapSizeToken;
 import antgame.world.worldTokens.PlainToken;
@@ -63,10 +64,10 @@ public class ParserImpTest {
         //generate test input strings
         String input0 =ReadFile.readFile("./data/worlds/TestingWorlds/1(1).world",Charset.defaultCharset());
         ParserImp instance = new ParserImp();
-        List<WorldToken> result = instance.parse(input0);
+        World result = instance.parse(input0);
         
         WorldTestClass1 i = new WorldTestClass1();
-        List<WorldToken> expResult = i.getWorld();
+        World expResult = i.getWorld();
         
         
         

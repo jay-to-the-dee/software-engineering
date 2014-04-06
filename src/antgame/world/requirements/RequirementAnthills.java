@@ -1,5 +1,6 @@
 package antgame.world.requirements;
 
+import antgame.model.World;
 import antgame.world.worldTokens.TerrainToken;
 import antgame.world.worldTokens.WorldToken;
 import java.util.List;
@@ -19,12 +20,12 @@ public class RequirementAnthills implements CheckRequirement{
         this.anthillSideLength = anthillSideLength;
     }
     @Override
-    public boolean checkRequirements(int xsize, int ysize, List<WorldToken> tokens){
+    public boolean checkRequirements(World world){
         boolean match = true;
         int i =0;
-        while(match && i<xsize*ysize){
+        while(match && i<world.getWorldTokens().size()){
             if(true){
-                if(!(tokens.get(i)  instanceof TerrainToken)||tokens.get(i) instanceof TerrainToken &&!((TerrainToken)tokens.get(i)).isRocky()){
+                if(!(world.getWorldTokens().get(i)  instanceof TerrainToken)||world.getWorldTokens().get(i) instanceof TerrainToken &&!((TerrainToken)world.getWorldTokens().get(i)).isRocky()){
                     //throw new SomeException();
                 }
             }

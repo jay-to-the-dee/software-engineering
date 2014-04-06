@@ -1,5 +1,6 @@
 package antgame.world.requirements;
 
+import antgame.model.World;
 import antgame.world.worldTokens.WorldToken;
 import java.util.List;
 
@@ -9,5 +10,5 @@ import java.util.List;
  */
 public interface CheckRequirement {
     
-    public abstract boolean checkRequirements(int xsize,int ysize,List<WorldToken> tokens);
+    public abstract boolean checkRequirements(World world);
 }

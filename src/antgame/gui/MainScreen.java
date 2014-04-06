@@ -1,8 +1,7 @@
 package antgame.gui;
 
-import antgame.parsers.exceptions.SomeException;
-import antgame.parsers.exceptions.SymbolNotFoundException;
-import antgame.parsers.exceptions.TokenSizeMismatchException;
+import antgame.parsers.exceptions.ColumnNumberException;
+import antgame.parsers.exceptions.RowDoesntStartWithWhitespaceException;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -444,23 +443,10 @@ public class MainScreen extends javax.swing.JFrame
         }
 
         worldFile = fc.getSelectedFile();
-        try
-        {
-            gameEngine = new GameEngine();
-            gameEngine.loadWorld(worldFile);
-            gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
-            gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
-            setWorldSizeDisplay(gameEngine);
-        }
-        catch (IOException | SomeException | SymbolNotFoundException | TokenSizeMismatchException ex)
-        {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-            worldFile = null;
-            gameStatsPanelFloat.worldFilename.setText("");
-            gameStatsPanelFloat.worldFilename.setToolTipText("");
-            setWorldSizeDisplay(null);
-
-        }
+        gameEngine = new GameEngine();
+        gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
+        gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
+        setWorldSizeDisplay(gameEngine);
     }//GEN-LAST:event_loadWorldMenuItemActionPerformed
 
     private void loadBlackAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadBlackAntBrainMenuItemActionPerformed

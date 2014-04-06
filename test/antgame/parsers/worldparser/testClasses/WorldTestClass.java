@@ -6,6 +6,7 @@
 
 package antgame.parsers.worldparser.testClasses;
 
+import antgame.model.World;
 import antgame.world.worldTokens.WorldToken;
 import java.util.List;
 
@@ -14,5 +15,5 @@ import java.util.List;
  * @author Main User
  */
 public interface WorldTestClass {
-    public List<WorldToken> getWorld();
+    public World getWorld();
 }

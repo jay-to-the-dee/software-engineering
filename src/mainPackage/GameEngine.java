@@ -47,7 +47,7 @@ public class GameEngine
 
     }
 
-    public void loadWorld(File worldFile) throws IOException, RowNumberException, RowDoesntStartWithWhitespaceException, ColumnNumberException
+    public void loadWorld(File worldFile) throws IOException, RowNumberException, RowDoesntStartWithWhitespaceException, ColumnNumberException, Exception
     {
         ParseAndValidate pav = new ParseAndValidate();
         List<CheckRequirement> ls = new LinkedList();

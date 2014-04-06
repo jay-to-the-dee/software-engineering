@@ -1,5 +1,6 @@
 package antgame.world.requirements;
 
+import antgame.model.World;
 import antgame.world.worldTokens.WorldToken;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class RequirementDimension implements CheckRequirement{
      * @return
      */
     @Override
-    public boolean checkRequirements(int xsize,int ysize,List<WorldToken> tokens){
+    public boolean checkRequirements(World world){
         if (this.xsize!=xsize ||this.ysize!=ysize){
             System.out.println("validation error");
             return false;

@@ -15,10 +15,10 @@ import java.util.List;
 public class World {
     private int width;
     private int height;
-    private List<WorldToken> worldTokens = new ArrayList<>();
+    private List<TerrainToken> worldTokens = new ArrayList<>();
     
     
-    public World(int xsize,int ysize, List<WorldToken> world){
+    public World(int xsize,int ysize, List<TerrainToken> world){
         //needs refactoring
         width = xsize;
         height = ysize;
@@ -33,7 +33,7 @@ public class World {
         return height;
     }
 
-    public List<WorldToken> getWorldTokens() {
+    public List<TerrainToken> getWorldTokens() {
         return worldTokens;
     }
     

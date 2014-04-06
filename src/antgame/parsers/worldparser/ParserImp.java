@@ -2,6 +2,7 @@ package antgame.parsers.worldparser;
 import antgame.model.Food;
 import antgame.model.FoodStack;
 import antgame.model.Position;
+import antgame.model.World;
 import antgame.parsers.exceptions.ColumnNumberException;
 import antgame.parsers.exceptions.EmptyLineException;
 import antgame.parsers.exceptions.LineHasNotJustIntegersException;
@@ -15,6 +16,7 @@ import antgame.world.worldTokens.MapSizeToken;
 import antgame.world.worldTokens.PlainToken;
 import antgame.world.worldTokens.RedAnthillToken;
 import antgame.world.worldTokens.RockToken;
+import antgame.world.worldTokens.TerrainToken;
 import antgame.world.worldTokens.WorldToken;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -40,11 +42,10 @@ public class ParserImp implements Parser{
     //init list that stores all parsed tokens
     private List<WorldToken> world = new ArrayList<>();
     @Override
-    public List<WorldToken> parse(String input) throws RowNumberException,RowDoesntStartWithWhitespaceException, ColumnNumberException{
+    public World parse(String input) throws RowNumberException,RowDoesntStartWithWhitespaceException, ColumnNumberException{
         //should get n+2
         for (String s: input.split("\\r?\\n|\\r")){
             rowQueue.add(s);
-            
         }
         try {
             //line 1 for xsize
@@ -119,8 +120,14 @@ public class ParserImp implements Parser{
         //clean up and return
         List<WorldToken> returnTokens =new LinkedList<>(world);
         world.clear();
-        System.out.println(returnTokens);
-        return returnTokens;
+        
+        int xsize= ((MapSizeToken) returnTokens.get(0)).getSize();
+        int ysize = ((MapSizeToken)returnTokens.get(1)).getSize();
+        List<TerrainToken>list = new LinkedList<>();
+        for (int i=2;i<returnTokens.size();i++){
+            list.add((TerrainToken)returnTokens.get(i));
+        }
+        return new World(xsize,ysize,list);
     }
 
     /**

@@ -1,11 +1,16 @@
 package antgame.parsers.worldparser;
 
-import mainPackage.GameEngine;
 import antgame.ant.instructions.Instruction;
 import antgame.ant.instructions.InstructionSet;
+import antgame.model.World;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
+import antgame.world.requirements.CheckRequirement;
+import antgame.world.requirements.RequirementBorder;
+import antgame.world.worldTokens.WorldToken;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.List;
+import mainPackage.GameEngine;
 /**
  *
  * @author Main User
@@ -22,9 +27,13 @@ public class Test {
         AntBrainParserImp parser = new AntBrainParserImp();
         
         //choose file path
-        String input =ReadFile.readFile("./data/worlds/properWorlds/1.world",Charset.defaultCharset());
+        String input =ReadFile.readFile("./data/worlds/TestingWorlds/1(1).world",Charset.defaultCharset());
         
-        p.parse(input);
+        World  w = p.parse(input);
+        System.out.println(w.getWorldTokens().size());
+        Verifier v = new VerifierImp();
+        CheckRequirement c = new RequirementBorder(2);
+        System.out.println(c.checkRequirements(w));
         //System.out.println(parser.parseAntBrain(input));
         
          //GameEngine e = new GameEngine();

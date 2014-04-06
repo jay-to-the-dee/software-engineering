@@ -6,6 +6,7 @@
 
 package antgame.parsers.worldparser.testClasses;
 
+import antgame.model.World;
 import antgame.world.worldTokens.WorldToken;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class WorldTestClass2 implements WorldTestClass{
 
     @Override
-    public List<WorldToken> getWorld() {
+    public World getWorld() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

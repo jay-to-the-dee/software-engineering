@@ -20,15 +20,15 @@ public class ParseAndValidate {
     Verifier v = new VerifierImp();
     
     public World parseAndValidate(String input,List<CheckRequirement> req)throws RowNumberException, RowDoesntStartWithWhitespaceException, ColumnNumberException, Exception{
-        List<WorldToken> tokens = p.parse(input);
-        int xsize= ((MapSizeToken) tokens.get(0)).getSize();
-        int ysize = ((MapSizeToken)tokens.get(1)).getSize();
-        List<WorldToken>list = new LinkedList<>();
-        for (int i=2;i<tokens.size();i++){
-            list.add((WorldToken)tokens.get(i));
+        World world = p.parse(input);
+        try{
+            v.verify(world, req);
         }
-        v.verify(xsize, ysize, list, req);
+        catch(Exception e){
+            
+        }
+        
         //sucess, so create world
-        return new World(xsize,ysize,list);
+        return world;
     }
 }
