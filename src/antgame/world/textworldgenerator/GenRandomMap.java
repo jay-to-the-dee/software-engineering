@@ -5,13 +5,12 @@ package antgame.world.textworldgenerator;
  * @author n
  */
 import antgame.model.Position;
-import antgame.world.worldTokens.World;
+import antgame.model.World;
 import antgame.world.worldTokens.BlackAnthillToken;
 import antgame.world.worldTokens.PlainToken;
 import antgame.world.worldTokens.RedAnthillToken;
 import antgame.world.worldTokens.RockToken;
 import antgame.model.Food;
-import antgame.world.worldTokens.WorldToken;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

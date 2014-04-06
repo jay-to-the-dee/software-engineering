@@ -2,7 +2,7 @@ package antgame.ant.direction.sensedireciton;
 
 import antgame.model.Position;
 import antgame.world.worldTokens.TerrainToken;
-import antgame.world.worldTokens.World;
+import antgame.model.World;
 
 /**
  *

@@ -81,9 +81,9 @@ public class TerrainToken extends WorldToken{
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+        //if (getClass() != obj.getClass()) {
+        //    return false;
+        //}
         final TerrainToken other = (TerrainToken) obj;
         if (!Objects.equals(this.position, other.position)) {
             return false;

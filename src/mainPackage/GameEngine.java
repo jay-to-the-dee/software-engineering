@@ -1,7 +1,7 @@
 package mainPackage;
 
 import antgame.world.worldTokens.TerrainToken;
-import antgame.world.worldTokens.World;
+import antgame.model.World;
 /**
  *
  * @author ItsTheRai

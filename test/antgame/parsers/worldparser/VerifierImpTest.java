@@ -8,7 +8,7 @@ package antgame.parsers.worldparser;
 
 import antgame.world.worldTokens.WorldToken;
 import antgame.world.requirements.CheckRequirement;
-import antgame.world.worldTokens.World;
+import antgame.model.World;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
