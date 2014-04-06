@@ -1,9 +1,9 @@
 package mainPackage;
 
 import antgame.model.World;
-import antgame.parsers.exceptions.SomeException;
-import antgame.parsers.exceptions.SymbolNotFoundException;
-import antgame.parsers.exceptions.TokenSizeMismatchException;
+import antgame.parsers.exceptions.ColumnNumberException;
+import antgame.parsers.exceptions.RowDoesntStartWithWhitespaceException;
+import antgame.parsers.exceptions.RowNumberException;
 import antgame.parsers.worldparser.ParseAndValidate;
 import antgame.parsers.worldparser.ReadFile;
 import antgame.world.requirements.*;
@@ -47,7 +47,7 @@ public class GameEngine
 
     }
 
-    public void loadWorld(File worldFile) throws IOException, SomeException, SymbolNotFoundException, TokenSizeMismatchException
+    public void loadWorld(File worldFile) throws IOException, RowNumberException, RowDoesntStartWithWhitespaceException, ColumnNumberException
     {
         ParseAndValidate pav = new ParseAndValidate();
         List<CheckRequirement> ls = new LinkedList();

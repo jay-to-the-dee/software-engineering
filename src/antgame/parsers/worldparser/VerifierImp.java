@@ -1,7 +1,6 @@
 package antgame.parsers.worldparser;
 
 import antgame.world.worldTokens.WorldToken;
-import antgame.parsers.exceptions.SomeException;
 import antgame.world.requirements.CheckRequirement;
 import antgame.model.World;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
 public class VerifierImp implements Verifier{
 
     @Override
-    public World verify(int xsize,int ysize,List<WorldToken> world,List<CheckRequirement> requirements) {
+    public World verify(int xsize,int ysize,List<WorldToken> world,List<CheckRequirement> requirements) throws Exception{
         
         //if success 
         //make sure this always works
@@ -23,7 +22,7 @@ public class VerifierImp implements Verifier{
         for(CheckRequirement req:requirements){
             try {
                 req.checkRequirements(xsize,ysize,world);
-            } catch (SomeException ex) {
+            } catch (Exception ex) {
                 System.out.println("verifier error");
             }
         }

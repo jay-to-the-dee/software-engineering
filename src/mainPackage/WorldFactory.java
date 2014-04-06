@@ -1,11 +1,11 @@
 package mainPackage;
 
 import antgame.model.World;
+import antgame.parsers.exceptions.ColumnNumberException;
+import antgame.parsers.exceptions.RowDoesntStartWithWhitespaceException;
+import antgame.parsers.exceptions.RowNumberException;
 import antgame.world.requirements.CheckRequirement;
 import antgame.parsers.worldparser.ParseAndValidate;
-import antgame.parsers.exceptions.SomeException;
-import antgame.parsers.exceptions.SymbolNotFoundException;
-import antgame.parsers.exceptions.TokenSizeMismatchException;
 import antgame.world.textworldgenerator.GenRandomMap;
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
 public class WorldFactory
 {
 
-    public static World loadWorld(ParseAndValidate p, String input, List<CheckRequirement> req) throws SomeException, SymbolNotFoundException, TokenSizeMismatchException
+    public static World loadWorld(ParseAndValidate p, String input, List<CheckRequirement> req) throws RowNumberException, RowDoesntStartWithWhitespaceException, ColumnNumberException, Exception
     {
         return p.parseAndValidate(input, req);
     }

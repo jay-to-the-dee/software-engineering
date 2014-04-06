@@ -1,7 +1,6 @@
 package antgame.world.requirements;
 
 import antgame.world.worldTokens.TerrainToken;
-import antgame.parsers.exceptions.SomeException;
 import antgame.world.worldTokens.WorldToken;
 import java.util.List;
 

@@ -10,5 +10,5 @@ import java.util.List;
  * @author ItsTheRai
  */
 public interface Verifier {
-    public World verify(int xsize,int ysize,List<WorldToken> world,List<CheckRequirement> requirements);
+    public World verify(int xsize,int ysize,List<WorldToken> world,List<CheckRequirement> requirements)throws Exception;
 }

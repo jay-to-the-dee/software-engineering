@@ -2,21 +2,26 @@ package antgame.parsers.worldparser;
 import antgame.model.Food;
 import antgame.model.FoodStack;
 import antgame.model.Position;
-import antgame.parsers.exceptions.SomeException;
-import antgame.parsers.exceptions.SymbolNotFoundException;
-import antgame.parsers.exceptions.TokenSizeMismatchException;
+import antgame.parsers.exceptions.ColumnNumberException;
+import antgame.parsers.exceptions.EmptyLineException;
+import antgame.parsers.exceptions.LineHasNotJustIntegersException;
+import antgame.parsers.exceptions.NotAnIntException;
+import antgame.parsers.exceptions.RowDoesntStartWithWhitespaceException;
+import antgame.parsers.exceptions.RowNumberException;
+import antgame.parsers.exceptions.SpecifierNotRecognisedException;
+import antgame.parsers.exceptions.UnsupportedSizeOfSpecifier;
 import antgame.world.worldTokens.BlackAnthillToken;
 import antgame.world.worldTokens.MapSizeToken;
 import antgame.world.worldTokens.PlainToken;
 import antgame.world.worldTokens.RedAnthillToken;
 import antgame.world.worldTokens.RockToken;
-import antgame.world.worldTokens.Token;
 import antgame.world.worldTokens.WorldToken;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,21 +39,42 @@ public class ParserImp implements Parser{
     private static final Character terrain='.';
     //init list that stores all parsed tokens
     private List<WorldToken> world = new ArrayList<>();
-    public List<WorldToken> parse(String input) throws SomeException,SymbolNotFoundException,TokenSizeMismatchException{
+    @Override
+    public List<WorldToken> parse(String input) throws RowNumberException,RowDoesntStartWithWhitespaceException, ColumnNumberException{
         //should get n+2
         for (String s: input.split("\\r?\\n|\\r")){
             rowQueue.add(s);
             
         }
-        //line 1 for xsize
-        //line 2 for ysize
-        world.add((getSize(rowQueue.remove().toString())));
-        world.add(getSize(rowQueue.remove().toString()));
+        try {
+            //line 1 for xsize
+            //line 2 for ysize
+            world.add((getSize(rowQueue.remove().toString())));
+        } catch (LineHasNotJustIntegersException ex) {
+            //TODO
+            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (EmptyLineException ex) {
+            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotAnIntException ex) {
+            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            world.add(getSize(rowQueue.remove().toString()));
+        } catch (LineHasNotJustIntegersException ex) {
+            //TODO
+            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (EmptyLineException ex) {
+            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotAnIntException ex) {
+            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //now each object in the queue should contain xsize number of elements
         //and there should be ysize number of objects in the queue alltogether
         //so do a check
         if(rowQueue.size()!=((MapSizeToken)world.get(1)).getSize()){
-            throw new TokenSizeMismatchException();
+                throw new RowNumberException("File states that there are "+((MapSizeToken)world.get(1)).getSize() + " rows but there"
+                        + "are actually "+rowQueue.size() +" rows");
+           
         }
         //initialise row  counter
         //parses all world tokens in queue
@@ -63,20 +89,28 @@ public class ParserImp implements Parser{
                 if (rowString.charAt(0)==' '){
                     rowString=rowString.substring(1);
                 }
-                else throw new TokenSizeMismatchException();
+                else throw new RowDoesntStartWithWhitespaceException(" Row "+column +" doesn't start with a whitespace");
             }
             int row=1;
-            for(String s:rowString.split("\\s")){
-                
+            //we assume that more than one whitespace is allowed between cell specifiers
+            for(String s:rowString.split("\\s+")){
                 comlumnQueue.add(s);
             }
             if (comlumnQueue.size()!=((MapSizeToken)world.get(0)).getSize()){
-                throw new TokenSizeMismatchException();
+                throw new ColumnNumberException("File states that there are "+
+                        ((MapSizeToken)world.get(0)).getSize() + " columns but there"
+                        + "are actually "+comlumnQueue.size() +" columns");
             }
             //parse the current row
             else {
                 while(!comlumnQueue.isEmpty()){
-                    getWorldTokens(comlumnQueue.remove().toString(),row-1,column-1);
+                    try {//TODO handle exceptions
+                        getWorldTokens(comlumnQueue.remove().toString(),row-1,column-1);
+                    } catch (UnsupportedSizeOfSpecifier ex) {
+                        Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SpecifierNotRecognisedException ex) {
+                        Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     row++;
                 }
             }
@@ -95,14 +129,14 @@ public class ParserImp implements Parser{
      * @return
      * @throws SomeException
      */
-    public MapSizeToken getSize(String input) throws SomeException{
+    public MapSizeToken getSize(String input) throws LineHasNotJustIntegersException, EmptyLineException, NotAnIntException{
         int size;
         //String size = new String();
         if(input.isEmpty()){
-            throw new SomeException();
+            throw new EmptyLineException("Line is empty");
         }
         else if(input.charAt(0) <48 || input.charAt(0) > 57){
-            throw new SomeException();
+            throw new NotAnIntException("Value :"+input.charAt(0)+" in not an integer");
         }
         else{
             int i = 0;
@@ -110,17 +144,18 @@ public class ParserImp implements Parser{
             while(i<(input.length())&&input.charAt(i) >=48 && input.charAt(i) < 57){
 		i++;
             }
+            //checks if the current line has just ints
             if (i<input.length()){
-                throw new SomeException();
+                throw new LineHasNotJustIntegersException("Error in line: "+input);
             }
             else size = Integer.parseInt(input);
             return new MapSizeToken(size);
         }
     }
     
-    public void getWorldTokens(String s,int xposition, int yposition) throws SomeException{
+    public void getWorldTokens(String s,int xposition, int yposition) throws UnsupportedSizeOfSpecifier, SpecifierNotRecognisedException{
         if(s.length()!=1){
-            throw new SomeException();
+            throw new UnsupportedSizeOfSpecifier(s+ "is not a valid cell specifier or is missing a whitespace");
         }
         if(s.charAt(0)==redAnthill){
             
@@ -142,7 +177,8 @@ public class ParserImp implements Parser{
             }
             world.add(new PlainToken(new Position(xposition,yposition),food));
         }
-        else throw new SomeException();
+        else throw new SpecifierNotRecognisedException(s+ " is not a valid cell specifier(line "+(yposition+1)+
+                " column "+(xposition-1)+")");
         
     }
 }
