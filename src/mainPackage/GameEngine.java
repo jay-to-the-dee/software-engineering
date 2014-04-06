@@ -3,14 +3,13 @@ package mainPackage;
 import antgame.model.World;
 import antgame.parsers.exceptions.ColumnNumberException;
 import antgame.parsers.exceptions.RowDoesntStartWithWhitespaceException;
-import antgame.parsers.exceptions.RowNumberException;
 import antgame.parsers.worldparser.ParseAndValidate;
 import antgame.parsers.worldparser.ReadFile;
 import antgame.world.requirements.*;
 import antgame.world.worldTokens.*;
 import java.awt.Dimension;
 import java.io.File;
-import java.io.IOException;
+import java.io.IOException; 
 import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.List;
 public class GameEngine
 {
     //holds the current world being used by all
-    private static World currentWorld;
+    private World currentWorld;
     //load stuff from GUI into here
     private GameFile gameFile;
     private int executedRounds;
@@ -33,9 +32,9 @@ public class GameEngine
         gameFile = new GameFile();
     }
 
-    public void initEngine(File worldFile, File blackBrainFile, File redBrainFile) throws Exception
+    public void initEngine(File blackBrainFile, File redBrainFile) throws Exception
     {
-        loadWorld(worldFile);
+        //loadWorld(worldFile);
 
         gameFile.setBlackBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(blackBrainFile.getPath(), Charset.defaultCharset())));
         gameFile.setRedBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(redBrainFile.getPath(), Charset.defaultCharset())));
@@ -47,7 +46,7 @@ public class GameEngine
 
     }
 
-    public void loadWorld(File worldFile) throws IOException, RowNumberException, RowDoesntStartWithWhitespaceException, ColumnNumberException, Exception
+    public void loadWorld(File worldFile) throws IOException, RowDoesntStartWithWhitespaceException, ColumnNumberException, Exception
     {
         ParseAndValidate pav = new ParseAndValidate();
         List<CheckRequirement> ls = new LinkedList();
@@ -89,7 +88,7 @@ public class GameEngine
         }
     }
 
-    public static World getCurrentWorld()
+    public World getCurrentWorld()
     {
         return currentWorld;
     }

@@ -47,6 +47,9 @@ public class MainScreen extends javax.swing.JFrame
     {
         setApplicationIcon();
         setLayout(new MultiBorderLayout());
+
+        gameEngine = new GameEngine();
+
         initComponents();
     }
 
@@ -100,7 +103,7 @@ public class MainScreen extends javax.swing.JFrame
 
         roundPerSecondSetter.setMaximum(60);
         roundPerSecondSetter.setToolTipText("Game rounds/second");
-        roundPerSecondSetter.setValue(42);
+        roundPerSecondSetter.setValue(10);
         roundPerSecondSetter.setName("roundPerSecondSetter"); // NOI18N
         gameSpeedToolbar.add(roundPerSecondSetter);
 
@@ -586,7 +589,6 @@ public class MainScreen extends javax.swing.JFrame
     {//GEN-HEADEREND:event_loadRandomWorldMenuItemActionPerformed
         try
         {
-            gameEngine = new GameEngine();
             gameEngine.loadRandomWorld();
             worldFile = new File(""); //Fake file so sim runs
             gameStatsPanelFloat.worldFilename.setText("GENERATED WORLD");
@@ -746,8 +748,7 @@ public class MainScreen extends javax.swing.JFrame
 
         public GameExecutionThread() throws Exception
         {
-            gameEngine = new GameEngine(); //Clear everything out
-            gameEngine.initEngine(worldFile, blackBrainFile, redBrainFile);
+            gameEngine.initEngine(blackBrainFile, redBrainFile);
         }
 
         @Override
@@ -774,8 +775,6 @@ public class MainScreen extends javax.swing.JFrame
                  */
                 gameEngine.runSimulator((int) completedRuns);
 
-                worldPanel.repaint();
-
                 Thread.sleep(1000 / UPDATES_PER_SECOND);
                 publish();
             }
@@ -785,7 +784,18 @@ public class MainScreen extends javax.swing.JFrame
         @Override
         protected void process(List<Void> runs)
         {
-            simulationOverallProgess.setValue((int) completedRuns);
+            SwingUtilities.invokeLater(new Runnable()
+            {
+
+                @Override
+                public void run()
+                {
+                    simulationOverallProgess.setValue((int) completedRuns);
+                    worldPanel.setWorld(gameEngine.getCurrentWorld());
+                    worldPanel.repaint();
+                }
+            });
+
         }
 
         @Override
