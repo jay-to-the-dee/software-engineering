@@ -4,6 +4,7 @@ import antgame.parsers.exceptions.SomeException;
 import antgame.parsers.exceptions.SymbolNotFoundException;
 import antgame.parsers.exceptions.TokenSizeMismatchException;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -449,6 +450,7 @@ public class MainScreen extends javax.swing.JFrame
             gameEngine.loadWorld(worldFile);
             gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
             gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
+            setWorldSizeDisplay(gameEngine);
         }
         catch (IOException | SomeException | SymbolNotFoundException | TokenSizeMismatchException ex)
         {
@@ -456,6 +458,8 @@ public class MainScreen extends javax.swing.JFrame
             worldFile = null;
             gameStatsPanelFloat.worldFilename.setText("");
             gameStatsPanelFloat.worldFilename.setToolTipText("");
+            setWorldSizeDisplay(null);
+
         }
     }//GEN-LAST:event_loadWorldMenuItemActionPerformed
 
@@ -598,12 +602,15 @@ public class MainScreen extends javax.swing.JFrame
         {
             gameEngine = new GameEngine();
             gameEngine.loadRandomWorld();
+            worldFile = new File(""); //Fake file so sim runs
             gameStatsPanelFloat.worldFilename.setText("GENERATED WORLD");
             gameStatsPanelFloat.worldFilename.setToolTipText("This world was randomly generated and not loaded from a file. ");
+            setWorldSizeDisplay(gameEngine);
         }
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            worldFile = null;
             gameStatsPanelFloat.worldFilename.setText("");
             gameStatsPanelFloat.worldFilename.setToolTipText("");
         }
@@ -617,6 +624,22 @@ public class MainScreen extends javax.swing.JFrame
         return nf.format(simulationOverallProgess.getValue())
                 + " / "
                 + nf.format(simulationOverallProgess.getMaximum());
+
+    }
+
+    private void setWorldSizeDisplay(GameEngine gameEngine)
+    {
+        if (gameEngine != null)
+        {
+            Dimension worldSize = gameEngine.getWorldSize();
+            gameStatsPanelFloat.width.setText((int) worldSize.getWidth() + "");
+            gameStatsPanelFloat.height.setText((int) worldSize.getHeight() + "");
+        }
+        else
+        {
+            gameStatsPanelFloat.width.setText("-");
+            gameStatsPanelFloat.height.setText("-");
+        }
 
     }
 

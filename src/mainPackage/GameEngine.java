@@ -8,6 +8,7 @@ import antgame.parsers.worldparser.ParseAndValidate;
 import antgame.parsers.worldparser.ReadFile;
 import antgame.world.requirements.*;
 import antgame.world.worldTokens.*;
+import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -91,5 +92,10 @@ public class GameEngine
     public static World getCurrentWorld()
     {
         return currentWorld;
+    }
+    
+    public Dimension getWorldSize()
+    {
+        return new Dimension(gameFile.getWorld().getWidth(), gameFile.getWorld().getHeight());
     }
 }
