@@ -16,7 +16,7 @@ public class AntBrainFactory {
         
     }
     
-    public Instruction[] generataAntBrainFromString(String input){
+    public static Instruction[] generateAntBrainFromString(String input){
         AntBrainParser parser = new AntBrainParserImp();
         return parser.parseAntBrain(input);
     }

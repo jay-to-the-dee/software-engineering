@@ -22,11 +22,11 @@ import java.util.List;
  */
 public class WorldFactory {
     
-    public World loadWorld(ParseAndValidate p,String input,List<CheckRequirement> req) throws SomeException, SymbolNotFoundException, TokenSizeMismatchException{
+    public static World loadWorld(ParseAndValidate p,String input,List<CheckRequirement> req) throws SomeException, SymbolNotFoundException, TokenSizeMismatchException{
         return p.parseAndValidate(input, req);
     }
     
-    public World generateRandomWorld(List<CheckRequirement> req, GenRandomMap generator){
+    public static World generateRandomWorld(List<CheckRequirement> req, GenRandomMap generator){
         return null;//generator.createString(); nick needs to sort this out
     }
 }

@@ -26,7 +26,9 @@ public class MainScreen extends javax.swing.JFrame
     final public static int TOTAL_ROUNDS = 300000;
     final private static String ICON_IMAGE_PATH = "resources/images/App_Icon/icon128.png";
 
-    private GameExecutionThread simulateGameRun;
+    private GameExecutionThread gameExecutionThread;
+    private GameEngine gameEngine;
+
     private boolean dragStart = true;
     private int startX;
     private int startY;
@@ -359,21 +361,28 @@ public class MainScreen extends javax.swing.JFrame
 
     private void startMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startMenuItemActionPerformed
     {//GEN-HEADEREND:event_startMenuItemActionPerformed
-        if (simulateGameRun != null)
+        if (gameExecutionThread != null)
         {
             //Resume
-            simulateGameRun.setIsPaused(false);
+            gameExecutionThread.setIsPaused(false);
         }
         else
         {
             //Start
             if (worldFile != null && blackBrainFile != null && redBrainFile != null)
             {
-                (simulateGameRun = new GameExecutionThread()).execute();
+                try
+                {
+                    (gameExecutionThread = new GameExecutionThread()).execute();
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
             else
             {
-                String errorString = "The simulation can be started until the following errors are resolved: \n\n";
+                String errorString = "The simulation can't be started until the following errors are resolved: \n\n";
 
                 if (worldFile == null)
                 {
@@ -388,8 +397,8 @@ public class MainScreen extends javax.swing.JFrame
                     errorString += "Red brain file must be loaded.\n";
                 }
 
-                JOptionPane.showMessageDialog(this, errorString);
-                return;
+                JOptionPane.showMessageDialog(this, errorString, "Can't start yet!", JOptionPane.WARNING_MESSAGE);
+                return; //To stop the menu enabled selection down below from changing:
             }
         }
 
@@ -404,7 +413,7 @@ public class MainScreen extends javax.swing.JFrame
         pauseMenuItem.setEnabled(false);
         resetMenuItem.setEnabled(true);
 
-        simulateGameRun.setIsPaused(true);
+        gameExecutionThread.setIsPaused(true);
     }//GEN-LAST:event_pauseMenuItemActionPerformed
 
     private void loadWorldMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadWorldMenuItemActionPerformed
@@ -455,8 +464,8 @@ public class MainScreen extends javax.swing.JFrame
         pauseMenuItem.setEnabled(false);
         resetMenuItem.setEnabled(false);
 
-        simulateGameRun.cancel(true);
-        simulateGameRun = null;
+        gameExecutionThread.cancel(true);
+        gameExecutionThread = null;
         simulationOverallProgess.setValue(0);
     }//GEN-LAST:event_resetMenuItemActionPerformed
 
@@ -666,9 +675,10 @@ public class MainScreen extends javax.swing.JFrame
         volatile boolean isPaused = false;
         private float completedRuns = 0;
 
-        public void setIsPaused(boolean isPaused)
+        public GameExecutionThread() throws Exception
         {
-            this.isPaused = isPaused;
+            gameEngine = new GameEngine();
+            gameEngine.initEngine(worldFile, blackBrainFile, redBrainFile);
         }
 
         @Override
@@ -719,6 +729,11 @@ public class MainScreen extends javax.swing.JFrame
 
                 JOptionPane.showMessageDialog(null, "Game complete! " + completedRuns + " rounds completed!");
             }
+        }
+
+        public void setIsPaused(boolean isPaused)
+        {
+            this.isPaused = isPaused;
         }
     }
 
