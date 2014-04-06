@@ -1,5 +1,6 @@
 package mainPackage;
 
+import antgame.model.World;
 import antgame.parsers.worldparser.ParseAndValidate;
 import antgame.parsers.worldparser.ReadFile;
 import antgame.world.requirements.*;
@@ -19,21 +20,6 @@ public class GameEngine
     private static World currentWorld;
     //load stuff from GUI into here
     private GameFile gameFile;
-    /////using these:
-    private final WorldFactory worldFactory;
-    private final AntBrainFactory brainFactory;
-    //used to populate world with ants
-    private final AntFactory antFactory;
-
-    /**
-     *
-     */
-    public GameEngine()
-    {
-        antFactory = new AntFactory();
-        worldFactory = new WorldFactory();
-        brainFactory = new AntBrainFactory();
-    }
 
     public void initEngine(File worldFile, File blackBrainFile, File redBrainFile) throws Exception
     {
@@ -63,7 +49,7 @@ public class GameEngine
             TerrainToken t = ((TerrainToken) currentWorld.getWorldTokens().get(i));
             if (t.isAnthill())
             {
-                t.putAnt(antFactory.generateAnt(t.getAnthillColor(), t.getAnthillColor().getBrain(gameFile), t.getPosition(), currentWorld));
+                t.putAnt(AntFactory.generateAnt(t.getAnthillColor(), t.getAnthillColor().getBrain(gameFile), t.getPosition(), currentWorld));
             }
         }
     }

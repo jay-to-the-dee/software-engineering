@@ -23,7 +23,7 @@ public class AntFactory {
     public AntFactory(){
     }
 
-    public Ant generateAnt(Color color, Instruction[] antBrain,Position position,World world){
+    public static Ant generateAnt(Color color, Instruction[] antBrain,Position position,World world){
         return new Ant(color,antBrain,position,world);    //Instruction [] brain,int position,World world
         //return null;
     }    
