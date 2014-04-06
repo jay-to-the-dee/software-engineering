@@ -1,13 +1,14 @@
 package antgame.world.worldTokens;
 
-import antgame.ant.markers.ChemicalMarkers;
-import antgame.ant.markers.Marker;
-import antgame.model.Ant;
-import antgame.model.Position;
 import antgame.ant.color.Color;
 import antgame.ant.color.ColorBlack;
 import antgame.ant.color.ColorRed;
+import antgame.ant.markers.ChemicalMarkers;
+import antgame.ant.markers.Marker;
+import antgame.model.Ant;
 import antgame.model.Food;
+import antgame.model.FoodStack;
+import antgame.model.Position;
 import java.util.Objects;
 import java.util.Stack;
 
@@ -23,7 +24,7 @@ public class TerrainToken extends WorldToken{
     private final boolean anthill;
     private final Color anthillColor;
     private ChemicalMarkers markers;
-    public TerrainToken (boolean predicate, Position p,Stack food, boolean anthill,Color anthillColor){
+    public TerrainToken (boolean predicate, Position p,FoodStack food, boolean anthill,Color anthillColor){
         rocky=predicate;
         position = p;
         this.food = food;
@@ -67,9 +68,13 @@ public class TerrainToken extends WorldToken{
     public int hashCode() {
         int hash = 7;
         hash = 67 * hash + Objects.hashCode(this.position);
+
         hash = 67 * hash + Objects.hashCode(this.ant);
+
         hash = 67 * hash + (this.rocky ? 1 : 0);
+
         hash = 67 * hash + Objects.hashCode(this.food);
+        
         hash = 67 * hash + (this.anthill ? 1 : 0);
         hash = 67 * hash + Objects.hashCode(this.anthillColor);
         hash = 67 * hash + Objects.hashCode(this.markers);
@@ -81,9 +86,9 @@ public class TerrainToken extends WorldToken{
         if (obj == null) {
             return false;
         }
-        //if (getClass() != obj.getClass()) {
-        //    return false;
-        //}
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         final TerrainToken other = (TerrainToken) obj;
         if (!Objects.equals(this.position, other.position)) {
             return false;
@@ -108,14 +113,6 @@ public class TerrainToken extends WorldToken{
         }
         return true;
     }
-
-    
-   
-    
- 
-    
-    //////////////////////
-    ///////////////////
     
     public boolean isAnthill() {
         return anthill;

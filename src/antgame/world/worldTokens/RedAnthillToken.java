@@ -16,16 +16,15 @@ public class RedAnthillToken extends AnthillToken{
     
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof RedAnthillToken){
+        //if(obj instanceof RedAnthillToken){
         return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
-        }
-        else return false;
+        //}
+        //else return false;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        return hash;
+        return super.hashCode();
     }
 
 }

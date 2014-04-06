@@ -1,5 +1,7 @@
 package antgame.ant.markers;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Jonathan Dilks
@@ -23,4 +25,28 @@ public class SingleAntColorMarkers
         {
             markers[index] = value;
         }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + Arrays.hashCode(this.markers);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SingleAntColorMarkers other = (SingleAntColorMarkers) obj;
+        if (!Arrays.equals(this.markers, other.markers)) {
+            return false;
+        }
+        return true;
+    }
+        
+        
     }

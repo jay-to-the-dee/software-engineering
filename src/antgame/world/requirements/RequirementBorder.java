@@ -12,7 +12,7 @@ import java.util.List;
  * @author ItsTheRai
  */
 public class RequirementBorder implements CheckRequirement{
-    private static Token borderToken = new RockToken(null,null);
+    private static Token borderToken = new RockToken(null);
     private static int borderSize=1;
 
     

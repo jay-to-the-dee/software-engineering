@@ -1,5 +1,6 @@
 package antgame.parsers.worldparser;
 import antgame.model.Food;
+import antgame.model.FoodStack;
 import antgame.model.Position;
 import antgame.parsers.exceptions.SomeException;
 import antgame.parsers.exceptions.SymbolNotFoundException;
@@ -129,13 +130,13 @@ public class ParserImp implements Parser{
             world.add(new BlackAnthillToken(new Position(xposition,yposition)));
         }
         else if(s.charAt(0)==rock){
-            world.add(new RockToken(new Position(xposition,yposition),new Stack()));
+            world.add(new RockToken(new Position(xposition,yposition)));
         }
         else if(s.charAt(0)==terrain){
-            world.add(new PlainToken(new Position(xposition,yposition), new Stack()));
+            world.add(new PlainToken(new Position(xposition,yposition), new FoodStack()));
         }
         else if(s.charAt(0) >=48 && s.charAt(0) <= 57){
-            Stack food = new Stack();
+            FoodStack food = new FoodStack();
             for (int i=0;i<Character.getNumericValue(s.charAt(0));i++){
                 food.push(new Food());
             }

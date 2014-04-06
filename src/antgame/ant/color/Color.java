@@ -16,5 +16,11 @@ import mainPackage.GameFile;
 public interface Color {
     public Color otherColor();
     public Instruction[] getBrain(GameFile f);
+
+    @Override
+    public boolean equals(Object obj);
+
+    @Override
+    public int hashCode();
     
 }

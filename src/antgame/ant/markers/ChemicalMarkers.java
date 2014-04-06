@@ -2,6 +2,7 @@ package antgame.ant.markers;
 
 import antgame.ant.color.Color;
 import antgame.model.Position;
+import java.util.Objects;
 
 /**
  *
@@ -25,6 +26,32 @@ public class ChemicalMarkers
 
     public SingleAntColorMarkers getRedAntsmarker() {
         return redAntsmarker;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.blackAntsmarker);
+        hash = 53 * hash + Objects.hashCode(this.redAntsmarker);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ChemicalMarkers other = (ChemicalMarkers) obj;
+        if (!Objects.equals(this.blackAntsmarker, other.blackAntsmarker)) {
+            return false;
+        }
+        if (!Objects.equals(this.redAntsmarker, other.redAntsmarker)) {
+            return false;
+        }
+        return true;
     }
     
 }

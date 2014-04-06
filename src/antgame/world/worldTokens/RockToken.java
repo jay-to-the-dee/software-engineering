@@ -1,5 +1,6 @@
 package antgame.world.worldTokens;
 
+import antgame.model.FoodStack;
 import antgame.model.Position;
 import java.util.Stack;
 
@@ -9,8 +10,8 @@ import java.util.Stack;
  */
 public class RockToken extends TerrainToken{
     //
-    public RockToken(Position position, Stack food){
-        super(true,position,food,false,null);
+    public RockToken(Position position){
+        super(true,position,new FoodStack(),false,null);
     }
     
     @Override

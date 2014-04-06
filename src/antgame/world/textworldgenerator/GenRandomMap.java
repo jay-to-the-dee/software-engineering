@@ -4,13 +4,14 @@ package antgame.world.textworldgenerator;
  *
  * @author n
  */
+import antgame.model.Food;
+import antgame.model.FoodStack;
 import antgame.model.Position;
 import antgame.model.World;
 import antgame.world.worldTokens.BlackAnthillToken;
 import antgame.world.worldTokens.PlainToken;
 import antgame.world.worldTokens.RedAnthillToken;
 import antgame.world.worldTokens.RockToken;
-import antgame.model.Food;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -236,7 +237,7 @@ public class GenRandomMap
             for (String s2 : s1)
             {
                 if (s2.contains(""+FOOD_STACK)){
-                    Stack s = new Stack();
+                    FoodStack s = new FoodStack();
                     for (int i=0;i<FOOD_STACK;i++){
                         s.push(new Food());
                     }
@@ -244,10 +245,10 @@ public class GenRandomMap
                     wlist.add(new PlainToken(new Position(x,y),s));
                 }
                 if (s2.contains("#")){
-                    wlist.add(new RockToken(new Position(x,y),null));
+                    wlist.add(new RockToken(new Position(x,y)));
                 }
                 if (s2.contains(".")){
-                    wlist.add(new PlainToken(new Position(x,y),new Stack()));
+                    wlist.add(new PlainToken(new Position(x,y),new FoodStack()));
                 }
                 if (s2.contains("+")){
                     wlist.add(new RedAnthillToken(new Position(x,y)));
