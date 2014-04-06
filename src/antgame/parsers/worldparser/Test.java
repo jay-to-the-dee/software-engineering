@@ -22,8 +22,9 @@ public class Test {
         AntBrainParserImp parser = new AntBrainParserImp();
         
         //choose file path
-        String input =ReadFile.readFile("./data/brains/uni-examples/sampleant.brain",Charset.defaultCharset());
+        String input =ReadFile.readFile("./data/worlds/properWorlds/1.world",Charset.defaultCharset());
         
+        p.parse(input);
         //System.out.println(parser.parseAntBrain(input));
         
          //GameEngine e = new GameEngine();
