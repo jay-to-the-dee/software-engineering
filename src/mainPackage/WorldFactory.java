@@ -27,6 +27,6 @@ public class WorldFactory {
     }
     
     public static World generateRandomWorld(List<CheckRequirement> req, GenRandomMap generator){
-        return null;//generator.createString(); nick needs to sort this out
+        return generator.createWorld();//generator.createString(); nick needs to sort this out
     }
 }
