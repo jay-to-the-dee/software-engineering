@@ -159,7 +159,7 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         add(redFoodCount, gridBagConstraints);
 
         redBrainFilename.setEditable(false);
-        redBrainFilename.setColumns(10);
+        redBrainFilename.setColumns(14);
         redBrainFilename.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -168,7 +168,7 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         add(redBrainFilename, gridBagConstraints);
 
         blackBrainFilename.setEditable(false);
-        blackBrainFilename.setColumns(10);
+        blackBrainFilename.setColumns(14);
         blackBrainFilename.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         blackBrainFilename.addActionListener(new java.awt.event.ActionListener()
         {
@@ -193,7 +193,7 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         add(worldLabel, gridBagConstraints);
 
         worldFilename.setEditable(false);
-        worldFilename.setColumns(10);
+        worldFilename.setColumns(14);
         worldFilename.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         worldFilename.addActionListener(new java.awt.event.ActionListener()
         {
