@@ -221,7 +221,7 @@ public final class WorldPanel extends JPanel
                 {
                     dirrect = token.getAnt().getDirection();//getDirection
 
-                    if (token.hasAnt())
+                    if (token.getAnt().isHasFood())
                     { //.isHasFood
                         if (token.hasFood())
                         {
