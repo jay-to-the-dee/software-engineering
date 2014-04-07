@@ -38,7 +38,8 @@ public class Test {
         g.loadWorld(f);
         File brain = new File("./data/brains/uni-examples/cleverbrain1.brain");
         
-        g.initEngine(f,brain,brain);
+        g.loadWorld(f);
+        g.initEngine(brain,brain);
         System.out.println("Here we go");
         AntBrainParser antbrain = new AntBrainParserImp();
         InstructionSet[] braa = antbrain.parseAntBrain(ReadFile.readFile(brain.getPath(), Charset.defaultCharset()));
