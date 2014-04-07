@@ -8,8 +8,10 @@ import antgame.world.requirements.CheckRequirement;
 import antgame.world.requirements.RequirementBorder;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.charset.Charset;
 import mainPackage.GameEngine;
+import mainPackage.RandomIntGenerator;
 /**
  *
  * @author Main User
@@ -34,18 +36,30 @@ public class Test {
         //CheckRequirement c = new RequirementBorder(2);
         //System.out.println(c.checkRequirements(w));
         GameEngine g = new GameEngine();
-        File f=new File("./data/worlds/TestingWorlds/1(1).world");
+        File f=new File("./data/worlds/TestingWorlds/tiny.world");
         g.loadWorld(f);
-        File brain = new File("./data/brains/uni-examples/cleverbrain1.brain");
+        File brain = new File("./data/brains/uni-examples/sample.brain");
         
         g.initEngine(f,brain,brain);
         System.out.println("Here we go");
         AntBrainParser antbrain = new AntBrainParserImp();
         InstructionSet[] braa = antbrain.parseAntBrain(ReadFile.readFile(brain.getPath(), Charset.defaultCharset()));
         //for (int i = 0 ; i < 100; i++){
-        g.runSimulator(1000);
+        g.runSimulator(2);
         //}
-        
+        System.out.print(f);
+       //RandomIntGenerator r = new RandomIntGenerator(new BigInteger("12345"));
+        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        ///System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+        //System.out.println(r.getRandomInt(new BigInteger("16389")));
         System.out.println(g.getCurrentWorld());
         
         //System.out.println(parser.parseAntBrain(input));

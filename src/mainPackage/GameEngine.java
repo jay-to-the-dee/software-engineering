@@ -11,9 +11,10 @@ import antgame.model.World;
  import java.awt.Dimension;
  import java.io.File;
  import java.io.IOException;
+ import java.math.BigInteger;
  import java.nio.charset.Charset;
  import java.util.LinkedList;
- import java.util.List;
+import java.util.List;
  
  /**
   *
@@ -29,6 +30,7 @@ import antgame.model.World;
  
      public GameEngine()
      {
+         RandomIntGenerator f = new RandomIntGenerator(new BigInteger("12345"));
          executedRounds = 0;
          gameFile = new GameFile();
      }
@@ -36,6 +38,7 @@ import antgame.model.World;
      public void initEngine(File worldFile, File blackBrainFile, File redBrainFile) throws Exception
      {
          loadWorld(worldFile);
+         
  
          gameFile.setBlackBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(blackBrainFile.getPath(), Charset.defaultCharset())));
          gameFile.setRedBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(redBrainFile.getPath(), Charset.defaultCharset())));
@@ -77,7 +80,7 @@ import antgame.model.World;
              {
                  t.putAnt(AntFactory.generateAnt(t.getAnthillColor(), t.getAnthillColor().getBrain(gameFile), t.getPosition(), currentWorld));
                  //break is for testing remove for final version
-                 break;
+                 //break;
                  //TODO need to remove this
              }
          }

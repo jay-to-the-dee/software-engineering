@@ -1,7 +1,9 @@
 package antgame.ant.instructions;
 
 import antgame.model.Ant;
-import mainPackage.Randomint;
+import java.math.BigInteger;
+import java.util.Random;
+import mainPackage.RandomIntGenerator;
 
 /**
  *
@@ -12,7 +14,7 @@ public class InstructionFlip extends InstructionSet implements Instruction{
     private int state2;
     private int n;
 
-    public InstructionFlip(int state1, int state2, int n) {
+    public InstructionFlip(int n,int state1, int state2) {
         this.state1 = state1;
         this.state2 = state2;
         this.n = n;
@@ -20,15 +22,10 @@ public class InstructionFlip extends InstructionSet implements Instruction{
 
     @Override
     public void executeInstruction(Ant ant) {
-        Randomint r = new Randomint();
-        //TODO not sure this is right
-        if(r.getRandomInt(n)==0){
+        BigInteger random =RandomIntGenerator.getRandomInt(new BigInteger(Integer.toString(n)));
+        if(random.intValue()==0){
             ant.setState(state1);
         }
         else ant.setState(state2);
-        //TODO
-    }
-    
-    
-    
+    }   
 }

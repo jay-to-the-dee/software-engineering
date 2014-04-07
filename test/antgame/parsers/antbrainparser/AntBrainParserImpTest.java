@@ -1,12 +1,13 @@
 package antgame.parsers.antbrainparser;
 
 import antgame.ant.instructions.Instruction;
+import antgame.ant.instructions.InstructionSet;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -42,7 +43,7 @@ public class AntBrainParserImpTest {
         String input = "";
         AntBrainParserImp instance = new AntBrainParserImp();
         Instruction[] expResult = null;
-        Instruction[] result = instance.parseAntBrain(input);
+        InstructionSet[] result = instance.parseAntBrain(input);
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

@@ -24,13 +24,14 @@ public class InstructionMove extends InstructionSet implements Instruction{
     public void executeInstruction(Ant ant){
         
                 TerrainToken t = ant.senseTile(new Ahead());
-                if(t.isRocky()||t.getAnt()!=null){
+                if(t.isRocky()||t.hasAnt()){
                     ant.setState(state2);
                 }
                 else{
                     try {
                         t.putAnt(ant);
                     } catch (Exception ex) {
+                        //cant have an exception since checked for ants, rocktokens
                         Logger.getLogger(InstructionMove.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     
