@@ -7,7 +7,7 @@ import mainPackage.Randomint;
  *
  * @author ItsTheRai
  */
-public class InstructionFlip implements Instruction{
+public class InstructionFlip extends InstructionSet implements Instruction{
     private int state1;
     private int state2;
     private int n;

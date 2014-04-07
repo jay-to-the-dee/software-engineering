@@ -7,7 +7,7 @@ import antgame.model.Ant;
  *
  * @author ItsTheRai
  */
-public class InstructionUnmark implements Instruction{
+public class InstructionUnmark extends InstructionSet implements Instruction{
     private final Marker marker;
     private final int nextState;
     

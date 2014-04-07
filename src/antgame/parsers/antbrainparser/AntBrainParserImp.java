@@ -19,6 +19,16 @@ import antgame.ant.direction.sensedireciton.RightAhead;
 import antgame.ant.direction.turndirection.Left;
 import antgame.ant.direction.turndirection.LeftOrRight;
 import antgame.ant.direction.turndirection.Right;
+import antgame.ant.instructions.Instruction;
+import antgame.ant.instructions.InstructionDrop;
+import antgame.ant.instructions.InstructionFlip;
+import antgame.ant.instructions.InstructionMark;
+import antgame.ant.instructions.InstructionMove;
+import antgame.ant.instructions.InstructionPickUp;
+import antgame.ant.instructions.InstructionSense;
+import antgame.ant.instructions.InstructionSet;
+import antgame.ant.instructions.InstructionTurn;
+import antgame.ant.instructions.InstructionUnmark;
 import antgame.ant.markers.Marker;
 import antgame.ant.markers.Marker0;
 import antgame.ant.markers.Marker1;
@@ -26,14 +36,6 @@ import antgame.ant.markers.Marker2;
 import antgame.ant.markers.Marker3;
 import antgame.ant.markers.Marker4;
 import antgame.ant.markers.Marker5;
-import antgame.ant.instructions.Instruction;
-import antgame.ant.instructions.InstructionDrop;
-import antgame.ant.instructions.InstructionMark;
-import antgame.ant.instructions.InstructionMove;
-import antgame.ant.instructions.InstructionPickUp;
-import antgame.ant.instructions.InstructionSense;
-import antgame.ant.instructions.InstructionTurn;
-import antgame.ant.instructions.InstructionUnmark;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -54,12 +56,12 @@ public class AntBrainParserImp implements AntBrainParser{
     Queue rowQueue = new LinkedList();
 
     @Override
-    public Instruction[] parseAntBrain(String input) {
+    public InstructionSet[] parseAntBrain(String input) {
         int state = 0;
         
         rowQueue.addAll(Arrays.asList(input.split("\\r?\\n|\\r")));
         
-        Instruction[] brain= new Instruction[rowQueue.size()];
+        InstructionSet[] brain= new InstructionSet[rowQueue.size()];
         while(!rowQueue.isEmpty()){
             try {
                 System.out.println("see whole row: "+ rowQueue.peek());
@@ -73,16 +75,16 @@ public class AntBrainParserImp implements AntBrainParser{
         return brain;
     }
     
-    private Instruction parseLine(String row) throws Exception{
+    private InstructionSet parseLine(String row) throws Exception{
             Queue columnQueue = new LinkedList();
         //rowString contains all row objects
             columnQueue.addAll(Arrays.asList(row.split("\\s+")));
            return getInstruction(columnQueue);
     }
     
-    private Instruction getInstruction(Queue q) throws Exception{
+    private InstructionSet getInstruction(Queue q) throws Exception{
         //get instruction
-        System.out.println("show instruction: "+q.peek());
+        //System.out.println("show instruction: "+q.peek());
         
         if(q.peek().toString().equalsIgnoreCase(senseInstruction)){
             q.remove();
@@ -114,7 +116,7 @@ public class AntBrainParserImp implements AntBrainParser{
                 else if(marker==5){
                     m= new Marker5();
                 }
-                else throw new Exception("marker not recognised");
+                //else throw new Exception("marker not recognised");
                 return new InstructionSense(state1,state2,sensedirection,c,m);
             }
             else return new InstructionSense(state1,state2,sensedirection,c,null);
@@ -204,12 +206,15 @@ public class AntBrainParserImp implements AntBrainParser{
         }
         else if (q.peek().toString().equalsIgnoreCase(flipInstruction)){
             q.remove();
+            int n = getState(q.remove().toString());
+            int state1 = getState(q.remove().toString());
+            int state2 = getState(q.remove().toString());
+            return new InstructionFlip(n,state1,state2);
             //TODO collect tokens for case flip
             // not implemented yet
             
         }
         else throw new Exception();
-        return null;
     }
     
     private Direction getSenseDirection(String s) throws Exception{

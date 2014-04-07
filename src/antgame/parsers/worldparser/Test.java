@@ -1,6 +1,7 @@
 package antgame.parsers.worldparser;
 
 import antgame.model.World;
+import antgame.parsers.antbrainparser.AntBrainParser;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
 import antgame.world.requirements.CheckRequirement;
 import antgame.world.requirements.RequirementBorder;
@@ -35,9 +36,13 @@ public class Test {
         File f=new File("./data/worlds/TestingWorlds/1(1).world");
         g.loadWorld(f);
         File brain = new File("./data/brains/uni-examples/cleverbrain1.brain");
+        
         g.initEngine(f,brain,brain);
         System.out.println("Here we go");
-        g.runSimulator(1);
+        AntBrainParser antbrain = new AntBrainParserImp();
+        antbrain.parseAntBrain(ReadFile.readFile(brain.getPath(), Charset.defaultCharset()));
+        //g.runSimulator(1);
+        
         System.out.println(g.getCurrentWorld());
         
         //System.out.println(parser.parseAntBrain(input));

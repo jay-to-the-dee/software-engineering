@@ -7,6 +7,7 @@
 package mainPackage;
 
 import antgame.ant.instructions.Instruction;
+import antgame.ant.instructions.InstructionSet;
 import antgame.model.World;
 
 /**
@@ -14,12 +15,12 @@ import antgame.model.World;
  * @author Main User
  */
 public class GameFile {
-    private Instruction[] redBrain;
-    private Instruction[] blackBrain;
+    private InstructionSet[] redBrain;
+    private InstructionSet[] blackBrain;
     private World emptyWorld;
     private static final int NUMBER_OF_STEPS = 300000;
 
-    public GameFile(Instruction[] redBrain, Instruction[] blackBrain, World world) {
+    public GameFile(InstructionSet[] redBrain, InstructionSet[] blackBrain, World world) {
         this.redBrain = redBrain;
         this.blackBrain = blackBrain;
         this.emptyWorld = world;
@@ -29,19 +30,19 @@ public class GameFile {
     {
     }
 
-    public Instruction[] getRedBrain() {
+    public InstructionSet[] getRedBrain() {
         return redBrain;
     }
 
-    public void setRedBrain(Instruction[] redBrain) {
+    public void setRedBrain(InstructionSet[] redBrain) {
         this.redBrain = redBrain;
     }
 
-    public Instruction[] getBlackBrain() {
+    public InstructionSet[] getBlackBrain() {
         return blackBrain;
     }
 
-    public void setBlackBrain(Instruction[] blackBrain) {
+    public void setBlackBrain(InstructionSet[] blackBrain) {
         this.blackBrain = blackBrain;
     }
 

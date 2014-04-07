@@ -2,6 +2,7 @@ package mainPackage;
 
 
 import antgame.ant.instructions.Instruction;
+import antgame.ant.instructions.InstructionSet;
 import antgame.parsers.antbrainparser.AntBrainParser;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
 
@@ -16,7 +17,7 @@ public class AntBrainFactory {
         
     }
     
-    public static Instruction[] generateAntBrainFromString(String input){
+    public static InstructionSet[] generateAntBrainFromString(String input){
         AntBrainParser parser = new AntBrainParserImp();
         return parser.parseAntBrain(input);
     }

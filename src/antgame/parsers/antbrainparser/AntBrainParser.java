@@ -1,11 +1,11 @@
 package antgame.parsers.antbrainparser;
 
-import antgame.ant.instructions.Instruction;
+import antgame.ant.instructions.InstructionSet;
 
 /**
  *
  * @author ItsTheRai
  */
 public interface AntBrainParser {
-    public Instruction[] parseAntBrain(String input);
+    public InstructionSet[] parseAntBrain(String input);
 }

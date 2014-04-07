@@ -7,6 +7,7 @@
 package antgame.ant.color;
 
 import antgame.ant.instructions.Instruction;
+import antgame.ant.instructions.InstructionSet;
 import mainPackage.GameFile;
 
 /**
@@ -15,7 +16,7 @@ import mainPackage.GameFile;
  */
 public interface Color {
     public Color otherColor();
-    public Instruction[] getBrain(GameFile f);
+    public InstructionSet[] getBrain(GameFile f);
 
     @Override
     public boolean equals(Object obj);

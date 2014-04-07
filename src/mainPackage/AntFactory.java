@@ -1,11 +1,12 @@
 package mainPackage;
 
 
+import antgame.ant.color.Color;
 import antgame.ant.instructions.Instruction;
+import antgame.ant.instructions.InstructionSet;
 import antgame.model.Ant;
 import antgame.model.Position;
 import antgame.model.World;
-import antgame.ant.color.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class AntFactory {
     public AntFactory(){
     }
 
-    public static Ant generateAnt(Color color, Instruction[] antBrain,Position position,World world){
+    public static Ant generateAnt(Color color, InstructionSet[] antBrain,Position position,World world){
         return new Ant(color,antBrain,position,world);    //Instruction [] brain,int position,World world
         //return null;
     }    

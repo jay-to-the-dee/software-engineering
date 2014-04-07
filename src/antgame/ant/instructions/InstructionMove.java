@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  *
  * @author ItsTheRai
  */
-public class InstructionMove implements Instruction{
+public class InstructionMove extends InstructionSet implements Instruction{
     private final int state1;
     private final int state2;
     private final int RESTING = 14;

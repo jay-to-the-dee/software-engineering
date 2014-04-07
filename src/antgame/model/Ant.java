@@ -1,9 +1,10 @@
 package antgame.model;
 
-import antgame.world.worldTokens.TerrainToken;
+import antgame.ant.color.Color;
 import antgame.ant.direction.sensedireciton.Direction;
 import antgame.ant.instructions.Instruction;
-import antgame.ant.color.Color;
+import antgame.ant.instructions.InstructionSet;
+import antgame.world.worldTokens.TerrainToken;
 
 /**
  *
@@ -16,13 +17,13 @@ public class Ant {
     private int resting;
     private int facingDirection;
     private boolean hasFood;
-    private Instruction[] brain;
+    private InstructionSet[] brain;
     private int state;
     private boolean isAlive;
     private final World world;
     
-    public Ant(Color color,Instruction [] brain,Position position,World world){
-        this.brain = new Instruction[brain.length];
+    public Ant(Color color,InstructionSet [] brain,Position position,World world){
+        this.brain = new InstructionSet[brain.length];
         this.brain = brain;
         this.color = color;
         hasFood = false;
@@ -43,11 +44,11 @@ public class Ant {
         position.setYlocation(y);
     }
     
-    public Instruction getCurrentInstruction(){
+    public InstructionSet getCurrentInstruction(){
         return getInstruction(state);
     }
     
-    public Instruction getInstruction(int s){
+    public InstructionSet getInstruction(int s){
         return brain[s];
     }
     
@@ -111,7 +112,7 @@ public class Ant {
         return hasFood;
     }
 
-    public Instruction[] getBrain() {
+    public InstructionSet[] getBrain() {
         return brain;
     }
 

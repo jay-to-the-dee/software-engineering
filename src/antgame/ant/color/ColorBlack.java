@@ -1,6 +1,7 @@
 package antgame.ant.color;
 
 import antgame.ant.instructions.Instruction;
+import antgame.ant.instructions.InstructionSet;
 import mainPackage.GameFile;
 
 /**
@@ -17,7 +18,7 @@ public class ColorBlack implements Color{
     }
 
     @Override
-    public Instruction[] getBrain(GameFile f) {
+    public InstructionSet[] getBrain(GameFile f) {
         return f.getBlackBrain();
     }
 
