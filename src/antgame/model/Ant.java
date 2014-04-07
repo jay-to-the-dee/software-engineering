@@ -11,7 +11,8 @@ import antgame.world.worldTokens.TerrainToken;
  * @author ItsTheRai
  */
 public class Ant {
-    private int ID;
+    private int ID=0;
+    private static int antid = 0;
     private Position position;
     private final Color color;
     private int resting;
@@ -33,10 +34,11 @@ public class Ant {
         this.position = position;
         this.world = world;
         this.resting=0;
+        this.ID=antid++;
     }
     
     public TerrainToken senseTile(Direction sensedir){
-        return sensedir.getTileInDirection(world,position,facingDirection);        
+        return sensedir.getTileInDirection(world,position,facingDirection);
     }
     
     public void setPosition(int x,int y){

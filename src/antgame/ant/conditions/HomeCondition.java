@@ -13,7 +13,7 @@ public class HomeCondition  implements Condition{
     @Override
     public boolean checkCondition(TerrainToken token, Color color, Marker m) {
         if(token.isAnthill()){
-            return token.getAnthillColor()==color;
+            return token.getAnthillColor().equals(color);
         }
         else return false;
     }

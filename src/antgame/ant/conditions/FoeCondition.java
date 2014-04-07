@@ -12,7 +12,7 @@ public class FoeCondition implements Condition{
 
     @Override
     public boolean checkCondition(TerrainToken token, Color color, Marker m) {
-        if(token.hasAnt()&&token.getAnt().getColour()!=color){
+        if(token.hasAnt()&&token.getAnt().getColour().equals(color)){
             return true;
         }
         else return false;

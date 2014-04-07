@@ -132,9 +132,7 @@ public class TerrainToken extends WorldToken{
     }
 
     public void putAnt(Ant ant) throws Exception {
-        System.out.println("getting there");
-        if(!this.hasAnt()){
-            System.out.println("something hapening");
+        if(!this.hasAnt){
         this.ant = ant;
         this.hasAnt = true;
         }

@@ -9,15 +9,16 @@ import antgame.model.Ant;
  */
 public class InstructionTurn extends InstructionSet implements Instruction{
     private LeftOrRight lor;
-    private int state;
+    private int nextState;
     
     public InstructionTurn(LeftOrRight lor, int state){
         this.lor = lor;
-        this.state = state;
+        this.nextState = state;
     }
 
     @Override
     public void executeInstruction(Ant ant) {
             ant.setDirection(lor.turn(ant.getDirection()));
+            ant.setState(this.nextState);
     }
 }

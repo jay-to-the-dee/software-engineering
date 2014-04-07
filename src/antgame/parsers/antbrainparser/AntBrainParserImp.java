@@ -64,7 +64,7 @@ public class AntBrainParserImp implements AntBrainParser{
         InstructionSet[] brain= new InstructionSet[rowQueue.size()];
         while(!rowQueue.isEmpty()){
             try {
-                System.out.println("see whole row: "+ rowQueue.peek());
+                //System.out.println("see whole row: "+ rowQueue.peek());
                 brain[state++]=parseLine((String)rowQueue.remove());
             } catch (Exception ex) {
                 System.out.println("line error");

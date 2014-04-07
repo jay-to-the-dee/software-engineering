@@ -12,7 +12,7 @@ public class FriendWithFoodCondition  implements Condition{
 
     @Override
     public boolean checkCondition(TerrainToken token, Color color, Marker m) {
-        if(token.hasAnt()&&token.getAnt().getColour()==color &&token.getAnt().isHasFood()){
+        if(token.hasAnt()&&token.getAnt().getColour().equals(color) &&token.getAnt().isHasFood()){
             return true;
         }
         else return false;

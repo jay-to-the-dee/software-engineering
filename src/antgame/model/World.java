@@ -39,6 +39,16 @@ public class World {
         //goes through the whole terrain to check if an ant is present, update if need to improve performance
         for(int i = 0; i < this.worldTokens.size();i++){
             if(((TerrainToken)worldTokens.get(i)).hasAnt()){
+                Ant ant = ((TerrainToken)worldTokens.get(i)).getAnt();
+                System.out.println("ant "+ant.getID()+" at row "+ant.getAntLocation().getPosition().getYlocation()+
+                        " column "+
+                ant.getAntLocation().getPosition().getXlocation()+
+                        " state :"+ant.getState()+" facing difection "+ant.getDirection());
+                if (ant.isHasFood()){
+                    System.out.println();
+                    System.out.println("Ant found food!");
+                    System.out.println();
+                }
                 step(((TerrainToken)worldTokens.get(i)).getAnt());
             }
         }
@@ -56,7 +66,7 @@ public class World {
     
     //xposition - index starting from 0 to width -1
     //yposition - index starting from 0 to heigth -1
-    public WorldToken getTokenAt(int xposition, int yposition){
+    public TerrainToken getTokenAt(int xposition, int yposition){
         return getWorldTokens().get(yposition*getWidth()+xposition);
     }
     public TerrainToken getCell(Position p){
@@ -66,28 +76,35 @@ public class World {
         TerrainToken t =new TerrainToken(false,position,null,false,null);
         switch(direction){
             case 0:t= (TerrainToken)getTokenAt(position.getXlocation()+1, position.getYlocation());
+                break;
             case 1:
                 if (position.getYlocation()%2==0){
                 t=(TerrainToken)getTokenAt(position.getXlocation(), position.getYlocation()+1);
+                
                 }
                 else t= (TerrainToken)getTokenAt(position.getXlocation()+1, position.getYlocation()+1);
+                break;
             case 2:
                 if (position.getYlocation()%2==0){
                     t=(TerrainToken)getTokenAt(position.getXlocation()-1, position.getYlocation()+1);
                     }
                 else t= (TerrainToken)getTokenAt(position.getXlocation(), position.getYlocation()+1);
+                break;
             case 3:
                 t= (TerrainToken)getTokenAt(position.getXlocation()-1, position.getYlocation());
+                break;
             case 4:
                 if (position.getYlocation()%2==0){
                     t=(TerrainToken)getTokenAt(position.getXlocation()-1, position.getYlocation()-1);
                     }
                 else t= (TerrainToken)getTokenAt(position.getXlocation(), position.getYlocation()-1);
+                break;
             case 5:
                 if (position.getYlocation()%2==0){
                     t=(TerrainToken)getTokenAt(position.getXlocation(), position.getYlocation()-1);
                     }
                 else t= (TerrainToken)getTokenAt(position.getXlocation()+1, position.getYlocation()-1);
+                break;
         }
         return t;
     }

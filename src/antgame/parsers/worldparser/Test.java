@@ -1,5 +1,6 @@
 package antgame.parsers.worldparser;
 
+import antgame.ant.instructions.InstructionSet;
 import antgame.model.World;
 import antgame.parsers.antbrainparser.AntBrainParser;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
@@ -40,8 +41,10 @@ public class Test {
         g.initEngine(f,brain,brain);
         System.out.println("Here we go");
         AntBrainParser antbrain = new AntBrainParserImp();
-        antbrain.parseAntBrain(ReadFile.readFile(brain.getPath(), Charset.defaultCharset()));
-        //g.runSimulator(1);
+        InstructionSet[] braa = antbrain.parseAntBrain(ReadFile.readFile(brain.getPath(), Charset.defaultCharset()));
+        //for (int i = 0 ; i < 100; i++){
+        g.runSimulator(1000);
+        //}
         
         System.out.println(g.getCurrentWorld());
         
