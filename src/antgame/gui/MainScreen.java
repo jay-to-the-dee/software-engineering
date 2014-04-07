@@ -2,6 +2,7 @@ package antgame.gui;
 
 import antgame.parsers.exceptions.ColumnNumberException;
 import antgame.parsers.exceptions.RowDoesntStartWithWhitespaceException;
+import antgame.parsers.exceptions.RowNumberException;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -444,12 +445,24 @@ public class MainScreen extends javax.swing.JFrame
         {
             return;
         }
-
+        
         worldFile = fc.getSelectedFile();
-        gameEngine = new GameEngine();
-        gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
-        gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
-        setWorldSizeDisplay(gameEngine);
+        try
+        {
+            gameEngine = new GameEngine();
+            gameEngine.loadWorld(worldFile);
+            gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
+            gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
+            setWorldSizeDisplay(gameEngine);
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            worldFile = null;
+            gameStatsPanelFloat.worldFilename.setText("");
+            gameStatsPanelFloat.worldFilename.setToolTipText("");
+            setWorldSizeDisplay(null);
+        }
     }//GEN-LAST:event_loadWorldMenuItemActionPerformed
 
     private void loadBlackAntBrainMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadBlackAntBrainMenuItemActionPerformed
@@ -758,7 +771,7 @@ public class MainScreen extends javax.swing.JFrame
             {
                 while (!isCancelled() && isPaused)
                 {
-                    //Wait for thread to become unpaused
+                    Thread.sleep(100);
                 }
                 float presentRoundsPerSecond = new RoundPerSecondSetterLogConverter().convertForward(roundPerSecondSetter.getValue());
                 completedRuns += presentRoundsPerSecond / UPDATES_PER_SECOND;

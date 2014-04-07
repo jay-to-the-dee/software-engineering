@@ -35,10 +35,9 @@ import java.util.List;
          gameFile = new GameFile();
      }
  
-     public void initEngine(File worldFile, File blackBrainFile, File redBrainFile) throws Exception
+     public void initEngine(File blackBrainFile, File redBrainFile) throws Exception
      {
-         loadWorld(worldFile);
-         
+         //loadWorld(worldFile);
  
          gameFile.setBlackBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(blackBrainFile.getPath(), Charset.defaultCharset())));
          gameFile.setRedBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(redBrainFile.getPath(), Charset.defaultCharset())));
