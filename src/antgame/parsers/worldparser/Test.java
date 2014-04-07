@@ -4,8 +4,10 @@ import antgame.model.World;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
 import antgame.world.requirements.CheckRequirement;
 import antgame.world.requirements.RequirementBorder;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import mainPackage.GameEngine;
 /**
  *
  * @author Main User
@@ -27,8 +29,17 @@ public class Test {
         World  w = p.parse(input);
         System.out.println(w.getWorldTokens().size());
         Verifier v = new VerifierImp();
-        CheckRequirement c = new RequirementBorder(2);
-        System.out.println(c.checkRequirements(w));
+        //CheckRequirement c = new RequirementBorder(2);
+        //System.out.println(c.checkRequirements(w));
+        GameEngine g = new GameEngine();
+        File f=new File("./data/worlds/TestingWorlds/1(1).world");
+        g.loadWorld(f);
+        File brain = new File("./data/brains/uni-examples/cleverbrain1.brain");
+        g.initEngine(f,brain,brain);
+        System.out.println("Here we go");
+        g.runSimulator(1);
+        System.out.println(GameEngine.getCurrentWorld());
+        
         //System.out.println(parser.parseAntBrain(input));
         
          //GameEngine e = new GameEngine();

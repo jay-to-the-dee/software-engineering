@@ -24,6 +24,7 @@ public class TerrainToken extends WorldToken{
     private final boolean anthill;
     private final Color anthillColor;
     private ChemicalMarkers markers;
+    private boolean hasAnt;
     public TerrainToken (boolean predicate, Position p,FoodStack food, boolean anthill,Color anthillColor){
         rocky=predicate;
         position = p;
@@ -31,6 +32,7 @@ public class TerrainToken extends WorldToken{
         this.anthill = anthill;
         this.anthillColor=anthillColor;
         markers = new ChemicalMarkers();
+        hasAnt=false;
     }
     
     
@@ -123,19 +125,25 @@ public class TerrainToken extends WorldToken{
     }
 
     public boolean hasAnt(){
-        return ant!=null;
+        return hasAnt;
     }
     public Ant getAnt(){
             return ant;
     }
 
     public void putAnt(Ant ant) throws Exception {
-        if(ant==null){
+        System.out.println("getting there");
+        if(!this.hasAnt()){
+            System.out.println("something hapening");
         this.ant = ant;
-        }//else throw new Exception("ant already there");
+        this.hasAnt = true;
+        }
+//else throw new Exception("ant already there");
     }
     public void removeAnt(){
         this.ant = null;
+        this.hasAnt = false;
+        
     }
 
     public boolean hasFood() {

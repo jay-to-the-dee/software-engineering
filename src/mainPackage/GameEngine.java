@@ -51,7 +51,7 @@ public class GameEngine
     {
         ParseAndValidate pav = new ParseAndValidate();
         List<CheckRequirement> ls = new LinkedList();
-        ls.add(new RequirementDimension(100, 100));
+        //ls.add(new RequirementDimension(100, 100));
         ls.add(new RequirementBorder(1));
 
         String input = ReadFile.readFile(worldFile.getPath(), Charset.defaultCharset());
