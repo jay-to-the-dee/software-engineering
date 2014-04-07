@@ -48,6 +48,11 @@ public final class WorldPanel extends JPanel
 
     private World world;
     private List<TerrainToken> worldtokens;
+    private BufferedImage antScaledRotate60;
+    private BufferedImage antScaledRotate120;
+    private BufferedImage antScaledRotate180;
+    private BufferedImage antScaledRotate240;
+    private BufferedImage antScaledRotate300;
 
     public WorldPanel()
     {
@@ -81,6 +86,37 @@ public final class WorldPanel extends JPanel
     {
         this.hexagonSize = hexagonSize;
         singleSideSize = (float) (hexagonSize / 2 / Math.cos(Math.toRadians(30)));
+
+        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
+        rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
+        foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
+
+        AffineTransform tx = new AffineTransform();
+        tx.rotate(Math.PI / 3);
+        AffineTransformOp op60 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        tx.rotate(Math.PI / 3);
+        AffineTransformOp op120 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        tx.rotate(Math.PI / 3);
+        AffineTransformOp op180 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        tx.rotate(Math.PI / 3);
+        AffineTransformOp op240 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        tx.rotate(Math.PI / 3);
+        AffineTransformOp op300 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+
+        antScaledRotate60 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op60.filter(antScaled, antScaledRotate60);
+
+        antScaledRotate120 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op120.filter(antScaled, antScaledRotate120);
+
+        antScaledRotate180 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op180.filter(antScaled, antScaledRotate180);
+
+        antScaledRotate240 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op240.filter(antScaled, antScaledRotate240);
+
+        antScaledRotate300 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
+        op300.filter(antScaled, antScaledRotate300);
 
         forceRedraw();
     }
@@ -142,37 +178,6 @@ public final class WorldPanel extends JPanel
             return;
         }
 
-        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
-        rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
-        foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
-
-        AffineTransform tx = new AffineTransform();
-        tx.rotate(Math.PI / 3);
-        AffineTransformOp op60 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        tx.rotate(Math.PI / 3);
-        AffineTransformOp op120 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        tx.rotate(Math.PI / 3);
-        AffineTransformOp op180 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        tx.rotate(Math.PI / 3);
-        AffineTransformOp op240 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        tx.rotate(Math.PI / 3);
-        AffineTransformOp op300 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        BufferedImage antScaledRotate60 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op60.filter(antScaled, antScaledRotate60);
-
-        BufferedImage antScaledRotate120 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op120.filter(antScaled, antScaledRotate120);
-
-        BufferedImage antScaledRotate180 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op180.filter(antScaled, antScaledRotate180);
-
-        BufferedImage antScaledRotate240 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op240.filter(antScaled, antScaledRotate240);
-
-        BufferedImage antScaledRotate300 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op300.filter(antScaled, antScaledRotate300);
-
         //Makes it look pretty - but too laggy for good framerate :(
         //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         final BasicStroke stroke = new BasicStroke(STROKE_WIDTH, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
@@ -214,7 +219,6 @@ public final class WorldPanel extends JPanel
                 }
                 else if (token.hasAnt())
                 {
-
                     dirrect = token.getAnt().getDirection();//getDirection
 
                     if (token.hasAnt())

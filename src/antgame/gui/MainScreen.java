@@ -771,7 +771,7 @@ public class MainScreen extends javax.swing.JFrame
             {
                 while (!isCancelled() && isPaused)
                 {
-                    //Wait for thread to become unpaused
+                    Thread.sleep(100);
                 }
                 float presentRoundsPerSecond = new RoundPerSecondSetterLogConverter().convertForward(roundPerSecondSetter.getValue());
                 completedRuns += presentRoundsPerSecond / UPDATES_PER_SECOND;
