@@ -30,7 +30,7 @@ import static org.imgscalr.Scalr.*;
  *
  * @author Jonathan Dilks <jay-to-the-dee@users.noreply.github.com>
  */
-public class WorldPanel extends JPanel
+public final class WorldPanel extends JPanel
 {
     private static final int STROKE_WIDTH = 1;
     private int rows;
@@ -45,19 +45,21 @@ public class WorldPanel extends JPanel
     private int dirrect;
     private BufferedImage foodImg;
     private BufferedImage foodScaled;
-    private final World world;
-    private final List<TerrainToken> worldtokens;
+
+    private World world;
+    private List<TerrainToken> worldtokens;
 
     public WorldPanel()
     {
-        //addMouseMotionListener(this);
-        //addMouseListener(this);
         loadImages();
-        GenRandomMap newWorld = new GenRandomMap(150);
-        world = newWorld.createWorld();
-        worldtokens = world.getWorldTokens();
         setPreferredSize(currentTotalGridSize());
         this.repaint();
+    }
+
+    public void setWorld(World world)
+    {
+        this.world = world;
+        worldtokens = world.getWorldTokens();
     }
 
     public void loadImages()
@@ -128,10 +130,16 @@ public class WorldPanel extends JPanel
 
         GeneralPath hexagonShape = hexagonPath(hexagonSize);
 
+        if (world == null)
+        {
+            //We have nothing to draw - so don't
+            return;
+        }
+
         if (antImg == null || rockImg == null || foodImg == null)
         {
             //Needed to make GUI builder work
-           return; 
+            return;
         }
 
         antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));

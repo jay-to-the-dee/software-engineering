@@ -38,7 +38,7 @@ public class Test {
         g.initEngine(f,brain,brain);
         System.out.println("Here we go");
         g.runSimulator(1);
-        System.out.println(GameEngine.getCurrentWorld());
+        System.out.println(g.getCurrentWorld());
         
         //System.out.println(parser.parseAntBrain(input));
         
