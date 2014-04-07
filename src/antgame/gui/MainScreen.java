@@ -748,7 +748,7 @@ public class MainScreen extends javax.swing.JFrame
 
         public GameExecutionThread() throws Exception
         {
-            gameEngine.initEngine(blackBrainFile, redBrainFile);
+            gameEngine.initEngine(blackBrainFile,blackBrainFile, redBrainFile);
         }
 
         @Override
