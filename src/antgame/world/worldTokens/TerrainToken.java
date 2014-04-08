@@ -9,6 +9,7 @@ import antgame.model.Ant;
 import antgame.model.Food;
 import antgame.model.FoodStack;
 import antgame.model.Position;
+import antgame.model.World;
 import java.util.Objects;
 import java.util.Stack;
 
@@ -25,6 +26,7 @@ public class TerrainToken extends WorldToken{
     private final Color anthillColor;
     private ChemicalMarkers markers;
     private boolean hasAnt;
+    
     public TerrainToken (boolean predicate, Position p,FoodStack food, boolean anthill,Color anthillColor){
         rocky=predicate;
         position = p;
@@ -136,7 +138,6 @@ public class TerrainToken extends WorldToken{
         this.ant = ant;
         this.hasAnt = true;
         }
-//else throw new Exception("ant already there");
     }
     public void removeAnt(){
         this.ant = null;
@@ -168,6 +169,21 @@ public class TerrainToken extends WorldToken{
     public Color getAnthillColor() {
         return anthillColor;
     }
-    
-    
+
+    public void fetchFood(Color colour) {
+            if(colour instanceof ColorRed){
+                World.increseRedScore();
+            }
+            else if(colour instanceof ColorBlack){
+                World.increseRedScore();
+        }
+    }
+
+    public int getBlackScore() {
+        return World.getBlackScore();
+    }
+
+    public int getRedScore() {
+        return World.getRedScore();
+    }
 }

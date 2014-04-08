@@ -16,9 +16,6 @@ public class ChemicalMarkers
         blackAntsmarker = new SingleAntColorMarkers();
         redAntsmarker = new SingleAntColorMarkers();
     }
-    public void setMarkersAt(Position p,Color c){
-        
-    }
 
     public SingleAntColorMarkers getBlackAntsmarker() {
         return blackAntsmarker;

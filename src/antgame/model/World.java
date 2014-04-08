@@ -18,6 +18,8 @@ public class World
     private int height;
     private TerrainToken[] worldTokens;
     int count = 0;
+    private static int blackScore;
+    private static int redScore;
 
     public World(int xsize, int ysize, TerrainToken[] world)
     {
@@ -26,6 +28,8 @@ public class World
         height = ysize;
         worldTokens = new TerrainToken[world.length];
         worldTokens = world;
+        blackScore=0;
+        redScore=0;
     }
 
     public int getWidth()
@@ -159,4 +163,22 @@ public class World
     {
         return new Dimension(getWidth(), getHeight());
     }
+    
+    public static void increaseBlackScore(){
+        blackScore++;
+    }
+    
+    public static void increseRedScore(){
+        redScore++;
+    }
+
+    public static int getBlackScore() {
+        return blackScore;
+    }
+
+    public static int getRedScore() {
+        return redScore;
+    }
+    
+    
 }

@@ -16,8 +16,16 @@ public class InstructionDrop extends InstructionSet implements Instruction{
     @Override
     public void executeInstruction(Ant ant) {
         if(ant.isHasFood()){
+            if(ant.getAntLocation().isAnthill()){
+                if(ant.getColour().equals(ant.getAntLocation().getAnthillColor())){
+                    ant.getAntLocation().fetchFood(ant.getColour());
+                    ant.setHasFood(false);
+                }
+            }
+            else{
             ant.getAntLocation().drop1food();
             ant.setHasFood(false);
+            }
         }
         ant.setState(nextState);
     }

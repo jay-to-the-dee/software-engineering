@@ -36,8 +36,8 @@ public class Test {
         //CheckRequirement c = new RequirementBorder(2);
         //System.out.println(c.checkRequirements(w));
         GameEngine g = new GameEngine();
-        File f=new File("./data/worlds/properWorlds/1.world");
-        //File f=new File("./data/worlds/TestingWorlds/tiny.world");
+        //File f=new File("./data/worlds/properWorlds/1.world");
+        File f=new File("./data/worlds/TestingWorlds/tiny.world");
         g.loadWorld(f);
         File brain = new File("./data/brains/uni-examples/sample.brain");
         
@@ -47,7 +47,7 @@ public class Test {
         AntBrainParser antbrain = new AntBrainParserImp();
         InstructionSet[] braa = antbrain.parseAntBrain(ReadFile.readFile(brain.getPath(), Charset.defaultCharset()));
         //for (int i = 0 ; i < 100; i++){
-        g.runSimulator(300000
+        g.runSimulator(73145
         );
         //}
         System.out.print(f);

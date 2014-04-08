@@ -11,7 +11,7 @@ import antgame.world.worldTokens.TerrainToken;
  * @author ItsTheRai
  */
 public class Ant {
-    private int ID=0;
+    private int ID;
     private static int antid = 0;
     private Position position;
     private final Color color;
@@ -21,7 +21,7 @@ public class Ant {
     private InstructionSet[] brain;
     private int state;
     private boolean isAlive;
-    private final World world;
+    private World world;
     
     public Ant(Color color,InstructionSet [] brain,Position position,World world){
         this.brain = new InstructionSet[brain.length];
@@ -59,7 +59,7 @@ public class Ant {
     }
     
     public TerrainToken getAntLocation(){
-        return (TerrainToken)world.getTokenAt(position.getXlocation(), position.getYlocation());
+        return world.getTokenAt(position.getXlocation(), position.getYlocation());
     }
     
       public int adjacent_ants(Position p, Color c){
