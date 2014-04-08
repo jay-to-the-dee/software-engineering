@@ -55,6 +55,15 @@ public final class WorldPanel extends JPanel
     private BufferedImage antScaledRotate180;
     private BufferedImage antScaledRotate240;
     private BufferedImage antScaledRotate300;
+    private BufferedImage bantScaled;
+    private BufferedImage bantImg;
+    private BufferedImage fantImg;
+    private BufferedImage fbantImg;
+    private BufferedImage bantScaledRotate60;
+    private BufferedImage bantScaledRotate300;
+    private BufferedImage bantScaledRotate240;
+    private BufferedImage bantScaledRotate180;
+    private BufferedImage bantScaledRotate120;
 
     public WorldPanel()
     {
@@ -75,6 +84,9 @@ public final class WorldPanel extends JPanel
         {
             //antImg = ImageIO.read(getClass().getResource("/resources/images/Sprites/Ant_rotate_0.png"));
             antImg = ImageIO.read(new File("resources/images/Sprites/Ant/rant.png"));
+            bantImg = ImageIO.read(new File("resources/images/Sprites/Ant/bant.png"));
+            fantImg = ImageIO.read(new File("resources/images/Sprites/Ant/rant.png"));
+            fbantImg = ImageIO.read(new File("resources/images/Sprites/Ant/bant.png"));
             rockImg = ImageIO.read(new File("resources/images/Sprites/Rock/Rock_c.png"));
             foodImg = ImageIO.read(new File("resources/images/Sprites/Food/Food_c.png"));
         }
@@ -84,40 +96,26 @@ public final class WorldPanel extends JPanel
         }
     }
 
-    private AffineTransform findTranslation(AffineTransform tx, BufferedImage ant)
-    {
-        Point2D pin, pout;
-
-        pin = new Point2D.Double(0.0, 0.0);
-        pout = tx.transform(pin, null);
-        double ytrans = pout.getY();
-
-        pin = new Point2D.Double(0, ant.getHeight());
-        pout = tx.transform(pin, null);
-        double xtrans = pout.getX();
-
-        AffineTransform tat = new AffineTransform();
-        tat.translate(-xtrans, -ytrans);
-        return tat;
-    }
+    
 
     public void setHexagonSize(int hexagonSize)
     {
         this.hexagonSize = hexagonSize;
         singleSideSize = (float) (hexagonSize / 2 / Math.cos(Math.toRadians(30)));
 
-        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
+        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (0.5 * hexagonSize));
+        bantScaled = Scalr.resize(bantImg, Scalr.Method.SPEED, (int) (0.5 * hexagonSize));
         rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
         foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
 
         AffineTransform tx = new AffineTransform();
 
         tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
-        AffineTransform translationTransform;
 
         AffineTransformOp op60 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
         tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
+        
         AffineTransformOp op120 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
         tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
@@ -129,18 +127,27 @@ public final class WorldPanel extends JPanel
         tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op300 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
-        translationTransform = findTranslation(tx, antScaled);
-        tx.preConcatenate(translationTransform);
+        
 
-        antScaledRotate60 = op60.filter(antScaled, antScaledRotate60);
+        antScaledRotate60 = op60.filter(antScaled, null);
+        
+        
+        antScaledRotate120 = op120.filter(antScaled, null);
 
-        antScaledRotate120 = op120.filter(antScaled, antScaledRotate120);
+        antScaledRotate180 = op180.filter(antScaled, null);
 
-        antScaledRotate180 = op180.filter(antScaled, antScaledRotate180);
+        antScaledRotate240 = op240.filter(antScaled, null);
 
-        antScaledRotate240 = op240.filter(antScaled, antScaledRotate240);
+        antScaledRotate300 = op300.filter(antScaled, null);
+        
+        bantScaledRotate60 = op60.filter(bantScaled, null);
+        bantScaledRotate120 = op120.filter(bantScaled, null);
 
-        antScaledRotate300 = op300.filter(antScaled, antScaledRotate300);
+        bantScaledRotate180 = op180.filter(bantScaled, null);
+
+        bantScaledRotate240 = op240.filter(bantScaled, null);
+
+        bantScaledRotate300 = op300.filter(bantScaled, null);
 
         forceRedraw();
     }
@@ -240,6 +247,10 @@ public final class WorldPanel extends JPanel
                 g2d.setColor(Color.BLACK);
 
                 TerrainToken token = (TerrainToken) worldtokens[j + i * (world.getWidth())];
+                if (token.hasFood())
+                {
+                    g2d.drawImage(foodScaled, null, 0, 0);
+                }
                 if (token.isRocky())
                 {
                     g2d.drawImage(rockScaled, null, 0, 0);
@@ -282,22 +293,22 @@ public final class WorldPanel extends JPanel
                                 switch (dirrect)
                                 {
                                     case 0:
-                                        g2d.drawImage(antScaled, null, 0, 0);
+                                        g2d.drawImage(bantScaled, null, 0, 0);
                                         break;
                                     case 1:
-                                        g2d.drawImage(antScaledRotate60, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate60, null, 0, 0);
                                         break;
                                     case 2:
-                                        g2d.drawImage(antScaledRotate120, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate120, null, 0, 0);
                                         break;
                                     case 3:
-                                        g2d.drawImage(antScaledRotate180, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate180, null, 0, 0);
                                         break;
                                     case 4:
-                                        g2d.drawImage(antScaledRotate240, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate240, null, 0, 0);
                                         break;
                                     case 5:
-                                        g2d.drawImage(antScaledRotate300, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate300, null, 0, 0);
                                         break;
                                 }
                             }
@@ -309,22 +320,22 @@ public final class WorldPanel extends JPanel
                                 switch (dirrect)
                                 {
                                     case 0:
-                                        g2d.drawImage(antScaled, null, 0, 0);
+                                        g2d.drawImage(bantScaled, null, 0, 0);
                                         break;
                                     case 1:
-                                        g2d.drawImage(antScaledRotate60, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate60, null, 0, 0);
                                         break;
                                     case 2:
-                                        g2d.drawImage(antScaledRotate120, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate120, null, 0, 0);
                                         break;
                                     case 3:
-                                        g2d.drawImage(antScaledRotate180, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate180, null, 0, 0);
                                         break;
                                     case 4:
-                                        g2d.drawImage(antScaledRotate240, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate240, null, 0, 0);
                                         break;
                                     case 5:
-                                        g2d.drawImage(antScaledRotate300, null, 0, 0);
+                                        g2d.drawImage(bantScaledRotate300, null, 0, 0);
                                         break;
                                 }
 
@@ -363,22 +374,22 @@ public final class WorldPanel extends JPanel
                             switch (dirrect)
                             {
                                 case 0:
-                                    g2d.drawImage(antScaled, null, 0, 0);
+                                    g2d.drawImage(bantScaled, null, 0, 0);
                                     break;
                                 case 1:
-                                    g2d.drawImage(antScaledRotate60, null, 0, 0);
+                                    g2d.drawImage(bantScaledRotate60, null, 0, 0);
                                     break;
                                 case 2:
-                                    g2d.drawImage(antScaledRotate120, null, 0, 0);
+                                    g2d.drawImage(bantScaledRotate120, null, 0, 0);
                                     break;
                                 case 3:
-                                    g2d.drawImage(antScaledRotate180, null, 0, 0);
+                                    g2d.drawImage(bantScaledRotate180, null, 0, 0);
                                     break;
                                 case 4:
-                                    g2d.drawImage(antScaledRotate240, null, 0, 0);
+                                    g2d.drawImage(bantScaledRotate240, null, 0, 0);
                                     break;
                                 case 5:
-                                    g2d.drawImage(antScaledRotate300, null, 0, 0);
+                                    g2d.drawImage(bantScaledRotate300, null, 0, 0);
                                     break;
                             }
                             //Draw black ant.
@@ -410,16 +421,13 @@ public final class WorldPanel extends JPanel
                         }
                     }
                 }
-                else if (token.hasFood())
-                {
-                    g2d.drawImage(foodScaled, null, 0, 0);
-                }
+
                 else
                 {
 
                 }
 
-                //g2d.draw(hexagonShape);
+                g2d.draw(hexagonShape);
                 g2d.translate(hexagonSize, 0);
             }
             g2d.translate(-hexagonSize * columns, 0);
