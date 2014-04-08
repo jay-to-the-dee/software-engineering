@@ -200,14 +200,9 @@ public final class WorldPanel extends JPanel
             return;
         }
 
-        if (world == null)
-        {
-
-        }
-
         if (antImg == null || rockImg == null || foodImg == null)
         {
-            //Needed to make GUI builder work
+            //Workaround needed to make GUI builder work - doesnt affect actual running
             return;
         }
 
