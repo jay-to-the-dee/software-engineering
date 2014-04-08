@@ -97,4 +97,11 @@ public class GameEngine
     {
         return currentWorld;
     }
+
+    public static void resetCurrentWorld()
+    {
+        GameEngine.currentWorld = null;
+    }
+    
+    
 }
