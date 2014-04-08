@@ -676,6 +676,10 @@ public class MainScreen extends javax.swing.JFrame
         worldPanel.repaint();
     }
 
+    /**
+     * Converts the roundPerSecondSetter output from the linear number to the
+     * logarithmic rounds per second for the roundPerSecondDisplay
+     */
     public class RoundPerSecondSetterLogConverter extends Converter<Integer, Integer>
     {
         private final int[] conversionTable =
@@ -703,6 +707,11 @@ public class MainScreen extends javax.swing.JFrame
         }
     }
 
+    /**
+     * Adds the string suffix to the output from 
+     * RoundPerSecondSetterLogConverter ready for the roundPerSecondDisplay 
+     * output
+     */
     public class RoundPerSecondSetterLogConverterString extends Converter<Integer, String>
     {
         RoundPerSecondSetterLogConverter converter;
@@ -729,7 +738,8 @@ public class MainScreen extends javax.swing.JFrame
     }
 
     /**
-     * @param args the command line arguments
+     * The main class that executes the GUI
+     * @param args no arguments accepted
      */
     public static void main(String args[])
     {
@@ -777,6 +787,10 @@ public class MainScreen extends javax.swing.JFrame
         volatile boolean isPaused = false;
         private float completedRuns = 0;
 
+        /**
+         * Constructs the GameExecutionThread and initialises the GameEngine 
+         * class
+         */
         public GameExecutionThread() throws Exception
         {
             gameEngine.initEngine(blackBrainFile, redBrainFile);
@@ -828,6 +842,12 @@ public class MainScreen extends javax.swing.JFrame
             }
         }
 
+        /**
+         * Called by the GUI to pause or unpause the game execution in this 
+         * thread
+         * @param isPaused pass value true if you want to pause the 
+         * GameExecutionThread, otherwise false to resume
+         */
         public void setIsPaused(boolean isPaused)
         {
             this.isPaused = isPaused;
