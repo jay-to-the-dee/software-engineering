@@ -92,6 +92,7 @@ public class Ant {
     }
     
     public void killAnt(){
+        this.getAntLocation().removeAnt();
         isAlive=false;
     }
     public int getID() {
