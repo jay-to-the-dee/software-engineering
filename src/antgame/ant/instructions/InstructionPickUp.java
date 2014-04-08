@@ -22,12 +22,12 @@ public class InstructionPickUp extends InstructionSet implements Instruction{
     @Override
     public void executeInstruction(Ant ant){
         if (ant.isHasFood()||!ant.getAntLocation().hasFood()){
-            ant.setState(state1);
+            ant.setState(state2);
         }
         else {
             ant.getAntLocation().remove1food();
             ant.setHasFood(true);
-            ant.setState(state2);
+            ant.setState(state1);
         }
     }
 }

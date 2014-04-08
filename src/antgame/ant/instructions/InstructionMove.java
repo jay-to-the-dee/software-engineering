@@ -41,7 +41,7 @@ public class InstructionMove extends InstructionSet implements Instruction{
                     ant.setResting(RESTING);
                     // not sure wether to use terraint token of position
                     ant.checkForSurroundedAnts(t.getPosition());
-                
+                    ant.setState(state1);
                 }
     }
 }

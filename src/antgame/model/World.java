@@ -40,14 +40,14 @@ public class World {
         for(int i = 0; i < this.worldTokens.size();i++){
             if(((TerrainToken)worldTokens.get(i)).hasAnt()){
                 Ant ant = ((TerrainToken)worldTokens.get(i)).getAnt();
-                System.out.println("ant "+ant.getID()+" at row "+ant.getAntLocation().getPosition().getYlocation()+
-                        " column "+
-                ant.getAntLocation().getPosition().getXlocation()+
-                        " state :"+ant.getState()+" facing difection "+ant.getDirection());
+                //System.out.println("ant "+ant.getID()+" at row "+ant.getAntLocation().getPosition().getYlocation()+
+                //        " column "+
+                //ant.getAntLocation().getPosition().getXlocation()+
+                //        " state :"+ant.getState()+" facing difection "+ant.getDirection());
                 if (ant.isHasFood()){
-                    System.out.println();
-                    System.out.println("Ant found food!");
-                    System.out.println();
+                    //System.out.println();
+                    //System.out.println("Ant found food!");
+                    //System.out.println();
                 }
                 step(((TerrainToken)worldTokens.get(i)).getAnt());
             }

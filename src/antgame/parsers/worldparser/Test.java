@@ -46,11 +46,13 @@ public class Test {
         AntBrainParser antbrain = new AntBrainParserImp();
         InstructionSet[] braa = antbrain.parseAntBrain(ReadFile.readFile(brain.getPath(), Charset.defaultCharset()));
         //for (int i = 0 ; i < 100; i++){
-        g.runSimulator(2);
+        g.runSimulator(34
+        );
         //}
         System.out.print(f);
        //RandomIntGenerator r = new RandomIntGenerator(new BigInteger("12345"));
-        //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
+       
+        //for (int i = 0;i<100;i++){System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));}
         //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
         //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
         //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
@@ -61,7 +63,7 @@ public class Test {
         //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
         //System.out.println("\n"+r.getRandomInt(new BigInteger("16387")));
         //System.out.println(r.getRandomInt(new BigInteger("16389")));
-        System.out.println(g.getCurrentWorld());
+        //System.out.println(g.getCurrentWorld());
         
         //System.out.println(parser.parseAntBrain(input));
         
