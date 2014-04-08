@@ -73,9 +73,9 @@ public final class WorldPanel extends JPanel
         try
         {
             //antImg = ImageIO.read(getClass().getResource("/resources/images/Sprites/Ant_rotate_0.png"));
-            antImg = ImageIO.read(new File("resources/images/Sprites/Ant/Ant_rotate_0.png"));
-            rockImg = ImageIO.read(new File("resources/images/Sprites/Rock/Rock_No_Boundary.png"));
-            foodImg = ImageIO.read(new File("resources/images/Sprites/Food/Food_No_Boundary.png"));
+            antImg = ImageIO.read(new File("resources/images/Sprites/Ant/rant.png"));
+            rockImg = ImageIO.read(new File("resources/images/Sprites/Rock/Rock_c.png"));
+            foodImg = ImageIO.read(new File("resources/images/Sprites/Food/Food_c.png"));
         }
         catch (IOException e)
         {
@@ -103,9 +103,9 @@ public final class WorldPanel extends JPanel
         this.hexagonSize = hexagonSize;
         singleSideSize = (float) (hexagonSize / 2 / Math.cos(Math.toRadians(30)));
 
-        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
-        rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
-        foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
+        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
+        rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
+        foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
 
         AffineTransform tx = new AffineTransform();
  
