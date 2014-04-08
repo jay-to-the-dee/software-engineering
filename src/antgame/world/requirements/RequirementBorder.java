@@ -23,7 +23,7 @@ public class RequirementBorder implements CheckRequirement{
     public boolean checkRequirements(World world){
         boolean match = true;
         int i =0;
-        while(match && i<world.getWorldTokens().size()){
+        while(match && i<world.getWorldTokens().length){
             if(     //check left column  
                     i%world.getWidth()<borderSize
                     //check right column
@@ -33,7 +33,7 @@ public class RequirementBorder implements CheckRequirement{
                     //check bottom row
                     ||i/world.getWidth()>world.getWidth()-borderSize - 1
                     ){
-                if(!(world.getWorldTokens().get(i)  instanceof RockToken)||world.getWorldTokens().get(i) instanceof TerrainToken &&!((TerrainToken)world.getWorldTokens().get(i)).isRocky()){
+                if(!(world.getWorldTokens()[i]  instanceof RockToken)||world.getWorldTokens()[i] instanceof TerrainToken &&!((TerrainToken)world.getWorldTokens()[i]).isRocky()){
                     return false;
                 }
             }

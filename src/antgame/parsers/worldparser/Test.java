@@ -28,15 +28,16 @@ public class Test {
         AntBrainParserImp parser = new AntBrainParserImp();
         
         //choose file path
-        String input =ReadFile.readFile("./data/worlds/TestingWorlds/1(1).world",Charset.defaultCharset());
+        String input =ReadFile.readFile("./data/worlds/properWorlds/1.world",Charset.defaultCharset());
         
         World  w = p.parse(input);
-        System.out.println(w.getWorldTokens().size());
+        System.out.println(w.getWorldTokens().length);
         Verifier v = new VerifierImp();
         //CheckRequirement c = new RequirementBorder(2);
         //System.out.println(c.checkRequirements(w));
         GameEngine g = new GameEngine();
-        File f=new File("./data/worlds/TestingWorlds/tiny.world");
+        File f=new File("./data/worlds/properWorlds/1.world");
+        //File f=new File("./data/worlds/TestingWorlds/tiny.world");
         g.loadWorld(f);
         File brain = new File("./data/brains/uni-examples/sample.brain");
         
@@ -46,7 +47,7 @@ public class Test {
         AntBrainParser antbrain = new AntBrainParserImp();
         InstructionSet[] braa = antbrain.parseAntBrain(ReadFile.readFile(brain.getPath(), Charset.defaultCharset()));
         //for (int i = 0 ; i < 100; i++){
-        g.runSimulator(34
+        g.runSimulator(300000
         );
         //}
         System.out.print(f);

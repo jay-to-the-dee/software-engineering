@@ -48,7 +48,7 @@ public final class WorldPanel extends JPanel
     private BufferedImage foodScaled;
 
     private World world;
-    private List<TerrainToken> worldtokens;
+    private TerrainToken[] worldtokens;
     private BufferedImage antScaledRotate60;
     private BufferedImage antScaledRotate120;
     private BufferedImage antScaledRotate180;
@@ -237,7 +237,7 @@ public final class WorldPanel extends JPanel
                 //g2d.fill(hexagonShape);
                 g2d.setColor(Color.BLACK);
 
-                TerrainToken token = (TerrainToken) worldtokens.get(j + i * (world.getWidth()));
+                TerrainToken token = (TerrainToken) worldtokens[j + i * (world.getWidth())];
                 if (token.isRocky())
                 {
                     g2d.drawImage(rockScaled, null, 0, 0);
