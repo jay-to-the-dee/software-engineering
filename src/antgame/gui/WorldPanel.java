@@ -1,12 +1,12 @@
 package antgame.gui;
 
-import antgame.world.worldTokens.TerrainToken;
-import antgame.model.World;
 import antgame.ant.color.ColorBlack;
 import antgame.ant.color.ColorRed;
+import antgame.model.World;
+import antgame.world.textworldgenerator.GenRandomMap;
+import antgame.world.worldTokens.TerrainToken;
 import antgame.world.worldTokens.Token;
 import antgame.world.worldTokens.WorldToken;
-import antgame.world.textworldgenerator.GenRandomMap;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,6 +14,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
+import java.awt.geom.Point2D;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
@@ -81,7 +82,22 @@ public final class WorldPanel extends JPanel
             System.out.println("Image not found.");
         }
     }
+    private AffineTransform findTranslation(AffineTransform tx, BufferedImage ant) {
+        Point2D pin, pout;
 
+        pin = new Point2D.Double(0.0, 0.0);
+        pout = tx.transform(pin, null);
+        double ytrans = pout.getY();
+
+        pin = new Point2D.Double(0, ant.getHeight());
+        pout = tx.transform(pin, null);
+        double xtrans = pout.getX();
+
+        AffineTransform tat = new AffineTransform();
+        tat.translate(-xtrans, -ytrans);
+        return tat;
+    }
+    
     public void setHexagonSize(int hexagonSize)
     {
         this.hexagonSize = hexagonSize;
@@ -92,31 +108,41 @@ public final class WorldPanel extends JPanel
         foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1.5155 * hexagonSize));
 
         AffineTransform tx = new AffineTransform();
-        tx.rotate(Math.PI / 3);
+ 
+        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
+        AffineTransform translationTransform;
+        
         AffineTransformOp op60 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        tx.rotate(Math.PI / 3);
+
+        tx.rotate(60.0  * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op120 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        tx.rotate(Math.PI / 3);
+
+        tx.rotate(60.0  * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op180 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        tx.rotate(Math.PI / 3);
+  
+        tx.rotate(60.0  * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op240 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        tx.rotate(Math.PI / 3);
+
+        tx.rotate(60.0  * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op300 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        
+        translationTransform = findTranslation(tx, antScaled);
+        tx.preConcatenate(translationTransform);
 
-        antScaledRotate60 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op60.filter(antScaled, antScaledRotate60);
+        antScaledRotate60 = op60.filter(antScaled, antScaledRotate60);
+        
 
-        antScaledRotate120 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op120.filter(antScaled, antScaledRotate120);
+        antScaledRotate120 = op120.filter(antScaled, antScaledRotate120);
+        
 
-        antScaledRotate180 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op180.filter(antScaled, antScaledRotate180);
+        antScaledRotate180 = op180.filter(antScaled, antScaledRotate180);
+        
 
-        antScaledRotate240 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op240.filter(antScaled, antScaledRotate240);
+        antScaledRotate240 = op240.filter(antScaled, antScaledRotate240);
+        
 
-        antScaledRotate300 = new BufferedImage(antScaled.getHeight(), antScaled.getWidth(), antScaled.getType());
-        op300.filter(antScaled, antScaledRotate300);
+        antScaledRotate300 = op300.filter(antScaled, antScaledRotate300);
+        
 
         forceRedraw();
     }
