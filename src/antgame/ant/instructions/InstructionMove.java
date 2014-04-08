@@ -39,7 +39,6 @@ public class InstructionMove extends InstructionSet implements Instruction{
                     ant.setPosition(ant.senseTile(new Ahead()).getPosition().getXlocation()
                                    ,ant.senseTile(new Ahead()).getPosition().getYlocation());
                     ant.setResting(RESTING);
-                    // not sure wether to use terraint token of position
                     ant.checkForSurroundedAnts(t.getPosition());
                     ant.setState(state1);
                 }

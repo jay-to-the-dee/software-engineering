@@ -22,10 +22,11 @@ public class InstructionFlip extends InstructionSet implements Instruction{
 
     @Override
     public void executeInstruction(Ant ant) {
-        BigInteger random =RandomIntGenerator.getRandomInt(new BigInteger(Integer.toString(n)));
-        if(random.intValue()==0){
+        //BigInteger random =RandomIntGenerator.getRandomInt(new BigInteger(Integer.toString(n)));
+        Random r = new Random();
+        if(r.nextInt(n)==0){//.intValue()==0){
             ant.setState(state1);
         }
         else ant.setState(state2);
-    }   
+    }
 }

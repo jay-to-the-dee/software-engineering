@@ -46,7 +46,7 @@ public class World {
             
             //TODO fix this
             if((worldTokens[i]).hasAnt()){
-          //      Ant ant = ((TerrainToken)worldTokens.get(i)).getAnt();
+                Ant ant = worldTokens[i].getAnt();
                 //System.out.println("ant "+ant.getID()+" at row "+ant.getAntLocation().getPosition().getYlocation()+
                 //        " column "+
                 //ant.getAntLocation().getPosition().getXlocation()+
@@ -56,7 +56,7 @@ public class World {
                     //System.out.println("Ant found food!");
                     //System.out.println();
                 //}
-                //step(((TerrainToken)worldTokens.get(i)).getAnt());
+                step(worldTokens[i].getAnt());
             }
         }
     }
@@ -66,7 +66,11 @@ public class World {
             if(ant.isResting()){
                 ant.rest();
             }
-            else ant.getCurrentInstruction().executeInstruction(ant);
+            
+            else 
+              //  System.out.println("a");
+                ant.getCurrentInstruction().executeInstruction(ant);
+            //System.out.println("b");}
         }
     }
     
