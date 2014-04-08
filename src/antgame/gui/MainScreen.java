@@ -452,15 +452,12 @@ public class MainScreen extends javax.swing.JFrame
             gameEngine.loadWorld(worldFile);
             gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
             gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
-            setWorldSizeDisplay(gameEngine);
+            setWorldSizeAndDisplaySize();
         }
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-            worldFile = null;
-            gameStatsPanelFloat.worldFilename.setText("");
-            gameStatsPanelFloat.worldFilename.setToolTipText("");
-            setWorldSizeDisplay(null);
+            resetWorldFile();
         }
     }//GEN-LAST:event_loadWorldMenuItemActionPerformed
 
@@ -516,7 +513,18 @@ public class MainScreen extends javax.swing.JFrame
         gameExecutionThread = null;
         simulationOverallProgess.setValue(0);
 
+        //Do the resetting!
         gameEngine = new GameEngine();
+        try
+        {
+            gameEngine.loadWorld(worldFile);
+            worldPanel.repaint();
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            resetWorldFile();
+        }
     }//GEN-LAST:event_resetMenuItemActionPerformed
 
     private void worldPanelMouseWheelMoved(java.awt.event.MouseWheelEvent evt)//GEN-FIRST:event_worldPanelMouseWheelMoved
@@ -607,7 +615,7 @@ public class MainScreen extends javax.swing.JFrame
             worldFile = new File(""); //Fake file so sim runs
             gameStatsPanelFloat.worldFilename.setText("GENERATED WORLD");
             gameStatsPanelFloat.worldFilename.setToolTipText("This world was randomly generated and not loaded from a file. ");
-            setWorldSizeDisplay(gameEngine);
+            setWorldSizeAndDisplaySize();
         }
         catch (Exception ex)
         {
@@ -627,11 +635,12 @@ public class MainScreen extends javax.swing.JFrame
 
     }
 
-    private void setWorldSizeDisplay(GameEngine gameEngine)
+    private void setWorldSizeAndDisplaySize()
     {
-        if (gameEngine != null)
+        Dimension worldSize = GameEngine.getCurrentWorld().getWorldSize();
+
+        if (worldSize != null)
         {
-            Dimension worldSize = gameEngine.getWorldSize();
             gameStatsPanelFloat.width.setText((int) worldSize.getWidth() + "");
             gameStatsPanelFloat.height.setText((int) worldSize.getHeight() + "");
             worldPanel.setRowsAndColumns(worldSize);
@@ -663,6 +672,8 @@ public class MainScreen extends javax.swing.JFrame
         worldFile = null;
         gameStatsPanelFloat.worldFilename.setText("");
         gameStatsPanelFloat.worldFilename.setToolTipText("");
+        setWorldSizeAndDisplaySize();
+        worldPanel.repaint();
     }
 
     public class RoundPerSecondSetterLogConverter extends Converter<Integer, Integer>
