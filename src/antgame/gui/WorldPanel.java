@@ -3,10 +3,8 @@ package antgame.gui;
 import antgame.ant.color.ColorBlack;
 import antgame.ant.color.ColorRed;
 import antgame.model.World;
-import antgame.world.textworldgenerator.GenRandomMap;
 import antgame.world.worldTokens.TerrainToken;
-import antgame.world.worldTokens.Token;
-import antgame.world.worldTokens.WorldToken;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,17 +12,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Point2D;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.imageio.*;
 import javax.swing.JPanel;
 import mainPackage.GameEngine;
 import org.imgscalr.Scalr;
-import static org.imgscalr.Scalr.*;
 
 /**
  * World (Hexagon game board) GUI Panel.
@@ -64,6 +58,20 @@ public final class WorldPanel extends JPanel
     private BufferedImage bantScaledRotate240;
     private BufferedImage bantScaledRotate180;
     private BufferedImage bantScaledRotate120;
+    private BufferedImage rfantImg;
+    private BufferedImage bfantImg;
+    private BufferedImage rfantScaled;
+    private BufferedImage rfantScaledRotate180;
+    private BufferedImage rfantScaledRotate120;
+    private BufferedImage rfantScaledRotate240;
+    private BufferedImage rfantScaledRotate300;
+    private BufferedImage bfantScaled;
+    private BufferedImage bfantScaledRotate120;
+    private BufferedImage bfantScaledRotate60;
+    private BufferedImage bfantScaledRotate180;
+    private BufferedImage bfantScaledRotate240;
+    private BufferedImage bfantScaledRotate300;
+    private BufferedImage rfantScaledRotate60;
 
     public WorldPanel()
     {
@@ -85,8 +93,8 @@ public final class WorldPanel extends JPanel
             //antImg = ImageIO.read(getClass().getResource("/resources/images/Sprites/Ant_rotate_0.png"));
             antImg = ImageIO.read(new File("resources/images/Sprites/Ant/rant.png"));
             bantImg = ImageIO.read(new File("resources/images/Sprites/Ant/bant.png"));
-            fantImg = ImageIO.read(new File("resources/images/Sprites/Ant/rant.png"));
-            fbantImg = ImageIO.read(new File("resources/images/Sprites/Ant/bant.png"));
+            rfantImg = ImageIO.read(new File("resources/images/Sprites/Ant/rfant.png"));
+            bfantImg = ImageIO.read(new File("resources/images/Sprites/Ant/bfant.png"));
             rockImg = ImageIO.read(new File("resources/images/Sprites/Rock/Rock_c.png"));
             foodImg = ImageIO.read(new File("resources/images/Sprites/Food/Food_c.png"));
         }
@@ -103,10 +111,12 @@ public final class WorldPanel extends JPanel
         this.hexagonSize = hexagonSize;
         singleSideSize = (float) (hexagonSize / 2 / Math.cos(Math.toRadians(30)));
 
-        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (0.5 * hexagonSize));
-        bantScaled = Scalr.resize(bantImg, Scalr.Method.SPEED, (int) (0.5 * hexagonSize));
+        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (0.6 * hexagonSize));
+        bantScaled = Scalr.resize(bantImg, Scalr.Method.SPEED, (int) (0.6 * hexagonSize));
+        rfantScaled = Scalr.resize(rfantImg, Scalr.Method.SPEED, (int) (0.6 * hexagonSize));
+        bfantScaled = Scalr.resize(bfantImg, Scalr.Method.SPEED, (int) (0.6 * hexagonSize));
         rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
-        foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
+        foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (.8 * hexagonSize));
 
         AffineTransform tx = new AffineTransform();
 
@@ -141,6 +151,7 @@ public final class WorldPanel extends JPanel
         antScaledRotate300 = op300.filter(antScaled, null);
         
         bantScaledRotate60 = op60.filter(bantScaled, null);
+        
         bantScaledRotate120 = op120.filter(bantScaled, null);
 
         bantScaledRotate180 = op180.filter(bantScaled, null);
@@ -148,6 +159,26 @@ public final class WorldPanel extends JPanel
         bantScaledRotate240 = op240.filter(bantScaled, null);
 
         bantScaledRotate300 = op300.filter(bantScaled, null);
+        
+        antScaledRotate60 = op60.filter(antScaled, null);
+        
+        rfantScaledRotate60 = op60.filter(rfantScaled, null);
+        rfantScaledRotate120 = op120.filter(rfantScaled, null);
+
+        rfantScaledRotate180 = op180.filter(rfantScaled, null);
+
+        rfantScaledRotate240 = op240.filter(rfantScaled, null);
+
+        rfantScaledRotate300 = op300.filter(rfantScaled, null);
+        
+        bfantScaledRotate60 = op60.filter(bfantScaled, null);
+        bfantScaledRotate120 = op120.filter(bfantScaled, null);
+
+        bfantScaledRotate180 = op180.filter(bfantScaled, null);
+
+        bfantScaledRotate240 = op240.filter(bfantScaled, null);
+
+        bfantScaledRotate300 = op300.filter(bfantScaled, null);
 
         forceRedraw();
     }
@@ -269,22 +300,22 @@ public final class WorldPanel extends JPanel
                                 switch (dirrect)
                                 {
                                     case 0:
-                                        g2d.drawImage(antScaled, null, 0, 0);
+                                        g2d.drawImage(rfantScaled, null, 0, 0);
                                         break;
                                     case 1:
-                                        g2d.drawImage(antScaledRotate60, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate60, null, 0, 0);
                                         break;
                                     case 2:
-                                        g2d.drawImage(antScaledRotate120, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate120, null, 0, 0);
                                         break;
                                     case 3:
-                                        g2d.drawImage(antScaledRotate180, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate180, null, 0, 0);
                                         break;
                                     case 4:
-                                        g2d.drawImage(antScaledRotate240, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate240, null, 0, 0);
                                         break;
                                     case 5:
-                                        g2d.drawImage(antScaledRotate300, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate300, null, 0, 0);
                                         break;
                                 }
                             }
@@ -293,22 +324,22 @@ public final class WorldPanel extends JPanel
                                 switch (dirrect)
                                 {
                                     case 0:
-                                        g2d.drawImage(bantScaled, null, 0, 0);
+                                        g2d.drawImage(bfantScaled, null, 0, 0);
                                         break;
                                     case 1:
-                                        g2d.drawImage(bantScaledRotate60, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate60, null, 0, 0);
                                         break;
                                     case 2:
-                                        g2d.drawImage(bantScaledRotate120, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate120, null, 0, 0);
                                         break;
                                     case 3:
-                                        g2d.drawImage(bantScaledRotate180, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate180, null, 0, 0);
                                         break;
                                     case 4:
-                                        g2d.drawImage(bantScaledRotate240, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate240, null, 0, 0);
                                         break;
                                     case 5:
-                                        g2d.drawImage(bantScaledRotate300, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate300, null, 0, 0);
                                         break;
                                 }
                             }
@@ -320,22 +351,22 @@ public final class WorldPanel extends JPanel
                                 switch (dirrect)
                                 {
                                     case 0:
-                                        g2d.drawImage(bantScaled, null, 0, 0);
+                                        g2d.drawImage(bfantScaled, null, 0, 0);
                                         break;
                                     case 1:
-                                        g2d.drawImage(bantScaledRotate60, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate60, null, 0, 0);
                                         break;
                                     case 2:
-                                        g2d.drawImage(bantScaledRotate120, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate120, null, 0, 0);
                                         break;
                                     case 3:
-                                        g2d.drawImage(bantScaledRotate180, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate180, null, 0, 0);
                                         break;
                                     case 4:
-                                        g2d.drawImage(bantScaledRotate240, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate240, null, 0, 0);
                                         break;
                                     case 5:
-                                        g2d.drawImage(bantScaledRotate300, null, 0, 0);
+                                        g2d.drawImage(bfantScaledRotate300, null, 0, 0);
                                         break;
                                 }
 
@@ -345,22 +376,22 @@ public final class WorldPanel extends JPanel
                                 switch (dirrect)
                                 {
                                     case 0:
-                                        g2d.drawImage(antScaled, null, 0, 0);
+                                        g2d.drawImage(rfantScaled, null, 0, 0);
                                         break;
                                     case 1:
-                                        g2d.drawImage(antScaledRotate60, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate60, null, 0, 0);
                                         break;
                                     case 2:
-                                        g2d.drawImage(antScaledRotate120, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate120, null, 0, 0);
                                         break;
                                     case 3:
-                                        g2d.drawImage(antScaledRotate180, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate180, null, 0, 0);
                                         break;
                                     case 4:
-                                        g2d.drawImage(antScaledRotate240, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate240, null, 0, 0);
                                         break;
                                     case 5:
-                                        g2d.drawImage(antScaledRotate300, null, 0, 0);
+                                        g2d.drawImage(rfantScaledRotate300, null, 0, 0);
                                         break;
                                 }
                                 //Draw red ant with food.
@@ -427,7 +458,7 @@ public final class WorldPanel extends JPanel
 
                 }
 
-                g2d.draw(hexagonShape);
+                //g2d.draw(hexagonShape);
                 g2d.translate(hexagonSize, 0);
             }
             g2d.translate(-hexagonSize * columns, 0);
