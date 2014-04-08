@@ -449,7 +449,6 @@ public class MainScreen extends javax.swing.JFrame
         worldFile = fc.getSelectedFile();
         try
         {
-            gameEngine = new GameEngine();
             gameEngine.loadWorld(worldFile);
             gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
             gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
@@ -516,6 +515,8 @@ public class MainScreen extends javax.swing.JFrame
         gameExecutionThread.cancel(true);
         gameExecutionThread = null;
         simulationOverallProgess.setValue(0);
+
+        gameEngine = new GameEngine();
     }//GEN-LAST:event_resetMenuItemActionPerformed
 
     private void worldPanelMouseWheelMoved(java.awt.event.MouseWheelEvent evt)//GEN-FIRST:event_worldPanelMouseWheelMoved
@@ -611,9 +612,7 @@ public class MainScreen extends javax.swing.JFrame
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-            worldFile = null;
-            gameStatsPanelFloat.worldFilename.setText("");
-            gameStatsPanelFloat.worldFilename.setToolTipText("");
+            resetWorldFile();
         }
     }//GEN-LAST:event_loadRandomWorldMenuItemActionPerformed
 
@@ -635,6 +634,7 @@ public class MainScreen extends javax.swing.JFrame
             Dimension worldSize = gameEngine.getWorldSize();
             gameStatsPanelFloat.width.setText((int) worldSize.getWidth() + "");
             gameStatsPanelFloat.height.setText((int) worldSize.getHeight() + "");
+            worldPanel.setRowsAndColumns(worldSize);
         }
         else
         {
@@ -656,6 +656,13 @@ public class MainScreen extends javax.swing.JFrame
         {
             //Can safely ignore any kind of exception in this method
         }
+    }
+
+    private void resetWorldFile()
+    {
+        worldFile = null;
+        gameStatsPanelFloat.worldFilename.setText("");
+        gameStatsPanelFloat.worldFilename.setToolTipText("");
     }
 
     public class RoundPerSecondSetterLogConverter extends Converter<Integer, Integer>
