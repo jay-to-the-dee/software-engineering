@@ -445,7 +445,7 @@ public class MainScreen extends javax.swing.JFrame
         {
             return;
         }
-        
+
         worldFile = fc.getSelectedFile();
         try
         {
@@ -782,10 +782,6 @@ public class MainScreen extends javax.swing.JFrame
                     completedRuns = TOTAL_ROUNDS;
                 }
 
-                /* TODO ItsTheRai : Do your stuff here!
-                 Call your Brain Exectutor method!
-                 Note that completedRuns is a float not an int! Deal with it! :L
-                 */
                 gameEngine.runSimulator((int) completedRuns);
 
                 Thread.sleep(1000 / UPDATES_PER_SECOND);
@@ -797,18 +793,8 @@ public class MainScreen extends javax.swing.JFrame
         @Override
         protected void process(List<Void> runs)
         {
-            SwingUtilities.invokeLater(new Runnable()
-            {
-
-                @Override
-                public void run()
-                {
-                    simulationOverallProgess.setValue((int) completedRuns);
-                    worldPanel.setWorld(gameEngine.getCurrentWorld());
-                    worldPanel.repaint();
-                }
-            });
-
+            simulationOverallProgess.setValue((int) completedRuns);
+            worldPanel.repaint();
         }
 
         @Override

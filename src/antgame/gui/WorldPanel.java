@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.*;
 import javax.swing.JPanel;
+import mainPackage.GameEngine;
 import org.imgscalr.Scalr;
 import static org.imgscalr.Scalr.*;
 
@@ -62,9 +63,9 @@ public final class WorldPanel extends JPanel
         this.repaint();
     }
 
-    public void setWorld(World world)
+    public void loadWorld() throws NullPointerException
     {
-        this.world = world;
+        this.world = GameEngine.getCurrentWorld();
         worldtokens = world.getWorldTokens();
     }
 
@@ -82,7 +83,9 @@ public final class WorldPanel extends JPanel
             System.out.println("Image not found.");
         }
     }
-    private AffineTransform findTranslation(AffineTransform tx, BufferedImage ant) {
+
+    private AffineTransform findTranslation(AffineTransform tx, BufferedImage ant)
+    {
         Point2D pin, pout;
 
         pin = new Point2D.Double(0.0, 0.0);
@@ -97,7 +100,7 @@ public final class WorldPanel extends JPanel
         tat.translate(-xtrans, -ytrans);
         return tat;
     }
-    
+
     public void setHexagonSize(int hexagonSize)
     {
         this.hexagonSize = hexagonSize;
@@ -108,41 +111,36 @@ public final class WorldPanel extends JPanel
         foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
 
         AffineTransform tx = new AffineTransform();
- 
+
         tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransform translationTransform;
-        
+
         AffineTransformOp op60 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
-        tx.rotate(60.0  * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
+        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op120 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
-        tx.rotate(60.0  * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
+        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op180 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-  
-        tx.rotate(60.0  * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
+
+        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op240 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
-        tx.rotate(60.0  * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
+        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op300 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        
+
         translationTransform = findTranslation(tx, antScaled);
         tx.preConcatenate(translationTransform);
 
         antScaledRotate60 = op60.filter(antScaled, antScaledRotate60);
-        
 
         antScaledRotate120 = op120.filter(antScaled, antScaledRotate120);
-        
 
         antScaledRotate180 = op180.filter(antScaled, antScaledRotate180);
-        
 
         antScaledRotate240 = op240.filter(antScaled, antScaledRotate240);
-        
 
         antScaledRotate300 = op300.filter(antScaled, antScaledRotate300);
-        
 
         forceRedraw();
     }
@@ -192,15 +190,19 @@ public final class WorldPanel extends JPanel
 
         GeneralPath hexagonShape = hexagonPath(hexagonSize);
 
-        if (world == null)
+        try
         {
-            //We have nothing to draw - so don't
+            loadWorld();
+        }
+        catch (NullPointerException e)
+        {
+            //We have nothing to draw then - so don't
             return;
         }
 
         if (antImg == null || rockImg == null || foodImg == null)
         {
-            //Needed to make GUI builder work
+            //Workaround needed to make GUI builder work - doesnt affect actual running
             return;
         }
 
@@ -417,7 +419,7 @@ public final class WorldPanel extends JPanel
 
                 }
 
-                g2d.draw(hexagonShape);
+                //g2d.draw(hexagonShape);
                 g2d.translate(hexagonSize, 0);
             }
             g2d.translate(-hexagonSize * columns, 0);
