@@ -127,7 +127,11 @@ public class ParserImp implements Parser{
         for (int i=2;i<returnTokens.size();i++){
             list.add((TerrainToken)returnTokens.get(i));
         }
-        return new World(xsize,ysize,list);
+        TerrainToken[] t = new TerrainToken[list.size()];
+        for (int i = 0; i< list.size();i++){
+            t[i]=list.get(i);
+        }
+        return new World(xsize,ysize,t);
     }
 
     /**

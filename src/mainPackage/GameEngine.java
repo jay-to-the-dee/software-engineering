@@ -64,7 +64,7 @@ import java.util.List;
      public void loadRandomWorld()
      {
          List<CheckRequirement> ls = new LinkedList();
-         ls.add(new RequirementDimension(100, 100));
+         //ls.add(new RequirementDimension(100, 100));
          ls.add(new RequirementBorder(1));
  
          gameFile.setWorld(WorldFactory.generateRandomWorld(ls));
@@ -72,9 +72,9 @@ import java.util.List;
  
      private void putAnts() throws Exception
      {
-         for (int i = 0; i < currentWorld.getWorldTokens().size(); i++)
+         for (int i = 0; i < currentWorld.getWorldTokens().length; i++)
          {
-             TerrainToken t = ((TerrainToken) currentWorld.getWorldTokens().get(i));
+             TerrainToken t = ( currentWorld.getWorldTokens()[i]);
              if (t.isAnthill())
              {
                  t.putAnt(AntFactory.generateAnt(t.getAnthillColor(), t.getAnthillColor().getBrain(gameFile), t.getPosition(), currentWorld));

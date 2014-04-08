@@ -4,6 +4,7 @@ import antgame.ant.instructions.Instruction;
 import antgame.world.worldTokens.TerrainToken;
 import antgame.world.worldTokens.WorldToken;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,14 +14,16 @@ import java.util.List;
 public class World {
     private int width;
     private int height;
-    private List<TerrainToken> worldTokens = new ArrayList<>();
+    private TerrainToken[] worldTokens;
+    int count = 0;
     
     
-    public World(int xsize,int ysize, List<TerrainToken> world){
+    public World(int xsize,int ysize, TerrainToken[] world){
         //needs refactoring
         width = xsize;
         height = ysize;
-        worldTokens=world;
+        worldTokens = new TerrainToken[world.length];
+        worldTokens = world;
     }
 
     public int getWidth() {
@@ -31,25 +34,29 @@ public class World {
         return height;
     }
 
-    public List<TerrainToken> getWorldTokens() {
+    public TerrainToken[] getWorldTokens() {
         return worldTokens;
     }
     
     public void executeOneRound(){
+        System.out.println(count++);
         //goes through the whole terrain to check if an ant is present, update if need to improve performance
-        for(int i = 0; i < this.worldTokens.size();i++){
-            if(((TerrainToken)worldTokens.get(i)).hasAnt()){
-                Ant ant = ((TerrainToken)worldTokens.get(i)).getAnt();
+        for(int i = 0; i < this.worldTokens.length;i++){
+            //this takes too long
+            
+            //TODO fix this
+            if((worldTokens[i]).hasAnt()){
+          //      Ant ant = ((TerrainToken)worldTokens.get(i)).getAnt();
                 //System.out.println("ant "+ant.getID()+" at row "+ant.getAntLocation().getPosition().getYlocation()+
                 //        " column "+
                 //ant.getAntLocation().getPosition().getXlocation()+
                 //        " state :"+ant.getState()+" facing difection "+ant.getDirection());
-                if (ant.isHasFood()){
+                //if (ant.isHasFood()){
                     //System.out.println();
                     //System.out.println("Ant found food!");
                     //System.out.println();
-                }
-                step(((TerrainToken)worldTokens.get(i)).getAnt());
+                //}
+                //step(((TerrainToken)worldTokens.get(i)).getAnt());
             }
         }
     }
@@ -67,7 +74,7 @@ public class World {
     //xposition - index starting from 0 to width -1
     //yposition - index starting from 0 to heigth -1
     public TerrainToken getTokenAt(int xposition, int yposition){
-        return getWorldTokens().get(yposition*getWidth()+xposition);
+        return getWorldTokens()[(yposition*getWidth()+xposition)];
     }
     public TerrainToken getCell(Position p){
         return (TerrainToken)this.getTokenAt(p.getXlocation(), p.getYlocation());

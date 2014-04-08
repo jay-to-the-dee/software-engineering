@@ -23,9 +23,9 @@ public class RequirementAnthills implements CheckRequirement{
     public boolean checkRequirements(World world){
         boolean match = true;
         int i =0;
-        while(match && i<world.getWorldTokens().size()){
+        while(match && i<world.getWorldTokens().length){
             if(true){
-                if(!(world.getWorldTokens().get(i)  instanceof TerrainToken)||world.getWorldTokens().get(i) instanceof TerrainToken &&!((TerrainToken)world.getWorldTokens().get(i)).isRocky()){
+                if(!(world.getWorldTokens()[i]  instanceof TerrainToken)||world.getWorldTokens()[i] instanceof TerrainToken &&!((TerrainToken)world.getWorldTokens()[i]).isRocky()){
                     //throw new SomeException();
                 }
             }

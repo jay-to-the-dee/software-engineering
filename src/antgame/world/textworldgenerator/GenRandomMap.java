@@ -12,7 +12,10 @@ import antgame.world.worldTokens.BlackAnthillToken;
 import antgame.world.worldTokens.PlainToken;
 import antgame.world.worldTokens.RedAnthillToken;
 import antgame.world.worldTokens.RockToken;
+import antgame.world.worldTokens.TerrainToken;
+import antgame.world.worldTokens.WorldToken;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
@@ -229,7 +232,7 @@ public class GenRandomMap
     }
     
     public World createWorld(){
-        List wlist = new ArrayList<>();
+        List<TerrainToken> wlist= new LinkedList<>();
         int x=0;
         int y=0;
         for (String[] s1 : world)
@@ -262,7 +265,13 @@ public class GenRandomMap
             y++;
         }
         y=0;
-        World genWorld = new World(mapSize, mapSize, wlist);
+        TerrainToken[] list = new TerrainToken[wlist.size()];
+        
+        
+        for (int i = 0; i < wlist.size();i++){
+            list[i]=wlist.get(i);
+        }
+        World genWorld = new World(mapSize, mapSize, list);
         return genWorld;
     }
 }
