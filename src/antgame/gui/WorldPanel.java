@@ -485,7 +485,7 @@ public final class WorldPanel extends JPanel
             g2d.fill(hexagonShape);
 
         }
-        else if (token.getMarkers().getBlackAntsmarker().getSetMarkersCount() > 0 || token.getMarkers().getRedAntsmarker().getSetMarkersCount() > 0)
+        else if (token.getMarkers().getBlackAntsmarker().gotAnyMarkers() || token.getMarkers().getRedAntsmarker().gotAnyMarkers())
         {
             paintChemicalMarkers(g2d, token);
         }
