@@ -685,11 +685,11 @@ public class MainScreen extends javax.swing.JFrame
         }
         if (gameEngine.getRedScore() != 0)
         {
-            gameStatsPanelFloat.blackFoodCount.setText(gameEngine.getRedScore() + "");
+            gameStatsPanelFloat.redFoodCount.setText(gameEngine.getRedScore() + "");
         }
         else
         {
-            gameStatsPanelFloat.blackFoodCount.setText("-");
+            gameStatsPanelFloat.redFoodCount.setText("-");
         }
     }
 

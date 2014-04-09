@@ -118,31 +118,28 @@ public final class WorldPanel extends JPanel
             antImg180 = ImageIO.read(new File("resources/images/Sprites/Ant/ranten180.png"));
             antImg240 = ImageIO.read(new File("resources/images/Sprites/Ant/ranten240.png"));
             antImg300 = ImageIO.read(new File("resources/images/Sprites/Ant/ranten300.png"));
-                        
-            
+
             bantImg = ImageIO.read(new File("resources/images/Sprites/Ant/banten.png"));
             bantImg60 = ImageIO.read(new File("resources/images/Sprites/Ant/banten60.png"));
             bantImg120 = ImageIO.read(new File("resources/images/Sprites/Ant/banten120.png"));
             bantImg180 = ImageIO.read(new File("resources/images/Sprites/Ant/banten180.png"));
             bantImg240 = ImageIO.read(new File("resources/images/Sprites/Ant/banten240.png"));
             bantImg300 = ImageIO.read(new File("resources/images/Sprites/Ant/banten300.png"));
-            
+
             rfantImg = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten.png"));
             rfantImg60 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten60.png"));
             rfantImg120 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten120.png"));
             rfantImg180 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten180.png"));
             rfantImg240 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten240.png"));
             rfantImg300 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten300.png"));
-            
-            
+
             bfantImg = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten.png"));
             bfantImg60 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten60.png"));
             bfantImg120 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten120.png"));
             bfantImg180 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten180.png"));
             bfantImg240 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten240.png"));
             bfantImg300 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten300.png"));
-            
-            
+
             rockImg = ImageIO.read(new File("resources/images/Sprites/Rock/Rock_c.png"));
             foodImg = ImageIO.read(new File("resources/images/Sprites/Food/Food_f.png"));
         }
@@ -153,9 +150,10 @@ public final class WorldPanel extends JPanel
     }
 
     /**
-     * Sets the size for all the hexagons to be drawn at. Called by the 
+     * Sets the size for all the hexagons to be drawn at. Called by the
      * zooming functions
-     * @param hexagonSize the width in pixels that all the hexagons should be 
+     *
+     * @param hexagonSize the width in pixels that all the hexagons should be
      * set at
      */
     public void setHexagonSize(int hexagonSize)
@@ -170,7 +168,7 @@ public final class WorldPanel extends JPanel
         rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
         foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
 
-        antScaledRotate60 = Scalr.resize(antImg60, Scalr.Method.SPEED, (int) (1* hexagonSize));
+        antScaledRotate60 = Scalr.resize(antImg60, Scalr.Method.SPEED, (int) (1 * hexagonSize));
         antScaledRotate120 = Scalr.resize(antImg120, Scalr.Method.SPEED, (int) (1 * hexagonSize));
         antScaledRotate180 = Scalr.resize(antImg180, Scalr.Method.SPEED, (int) (1 * hexagonSize));
         antScaledRotate240 = Scalr.resize(antImg240, Scalr.Method.SPEED, (int) (1 * hexagonSize));
@@ -181,7 +179,6 @@ public final class WorldPanel extends JPanel
         bantScaledRotate240 = Scalr.resize(bantImg240, Scalr.Method.SPEED, (int) (1 * hexagonSize));
         bantScaledRotate300 = Scalr.resize(bantImg300, Scalr.Method.SPEED, (int) (1 * hexagonSize));
 
-        
         rfantScaledRotate60 = Scalr.resize(rfantImg60, Scalr.Method.SPEED, (int) (1 * hexagonSize));
         rfantScaledRotate120 = Scalr.resize(rfantImg120, Scalr.Method.SPEED, (int) (1 * hexagonSize));
         rfantScaledRotate180 = Scalr.resize(rfantImg180, Scalr.Method.SPEED, (int) (1 * hexagonSize));
@@ -199,7 +196,8 @@ public final class WorldPanel extends JPanel
 
     /**
      * Sets the rows and columns this WorldPanel is to represent
-     * @param dimension The dimension contains the height and width to set the 
+     *
+     * @param dimension The dimension contains the height and width to set the
      * WorldPanel at
      */
     public void setRowsAndColumns(Dimension dimension)
@@ -310,7 +308,7 @@ public final class WorldPanel extends JPanel
                 }
                 else if (token.hasAnt())
                 {
-                    
+
                     dirrect = token.getAnt().getDirection();//getDirection
 
                     if (token.getAnt().isHasFood())
@@ -368,55 +366,62 @@ public final class WorldPanel extends JPanel
                         }
                         else
                         {
-                            if (token.getAnt().getColour() instanceof ColorBlack)
+                            try
                             {
-                                switch (dirrect)
+                                if (token.getAnt().getColour() instanceof ColorBlack)
                                 {
-                                    case 0:
-                                        g2d.drawImage(bfantScaled, null, 0, 0);
-                                        break;
-                                    case 1:
-                                        g2d.drawImage(bfantScaledRotate60, null, 0, 0);
-                                        break;
-                                    case 2:
-                                        g2d.drawImage(bfantScaledRotate120, null, 0, 0);
-                                        break;
-                                    case 3:
-                                        g2d.drawImage(bfantScaledRotate180, null, 0, 0);
-                                        break;
-                                    case 4:
-                                        g2d.drawImage(bfantScaledRotate240, null, 0, 0);
-                                        break;
-                                    case 5:
-                                        g2d.drawImage(bfantScaledRotate300, null, 0, 0);
-                                        break;
-                                }
+                                    switch (dirrect)
+                                    {
+                                        case 0:
+                                            g2d.drawImage(bfantScaled, null, 0, 0);
+                                            break;
+                                        case 1:
+                                            g2d.drawImage(bfantScaledRotate60, null, 0, 0);
+                                            break;
+                                        case 2:
+                                            g2d.drawImage(bfantScaledRotate120, null, 0, 0);
+                                            break;
+                                        case 3:
+                                            g2d.drawImage(bfantScaledRotate180, null, 0, 0);
+                                            break;
+                                        case 4:
+                                            g2d.drawImage(bfantScaledRotate240, null, 0, 0);
+                                            break;
+                                        case 5:
+                                            g2d.drawImage(bfantScaledRotate300, null, 0, 0);
+                                            break;
+                                    }
 
-                            }
-                            else
-                            {
-                                switch (dirrect)
-                                {
-                                    case 0:
-                                        g2d.drawImage(rfantScaled, null, 0, 0);
-                                        break;
-                                    case 1:
-                                        g2d.drawImage(rfantScaledRotate60, null, 0, 0);
-                                        break;
-                                    case 2:
-                                        g2d.drawImage(rfantScaledRotate120, null, 0, 0);
-                                        break;
-                                    case 3:
-                                        g2d.drawImage(rfantScaledRotate180, null, 0, 0);
-                                        break;
-                                    case 4:
-                                        g2d.drawImage(rfantScaledRotate240, null, 0, 0);
-                                        break;
-                                    case 5:
-                                        g2d.drawImage(rfantScaledRotate300, null, 0, 0);
-                                        break;
                                 }
-                                //Draw red ant with food.
+                                else
+                                {
+                                    switch (dirrect)
+                                    {
+                                        case 0:
+                                            g2d.drawImage(rfantScaled, null, 0, 0);
+                                            break;
+                                        case 1:
+                                            g2d.drawImage(rfantScaledRotate60, null, 0, 0);
+                                            break;
+                                        case 2:
+                                            g2d.drawImage(rfantScaledRotate120, null, 0, 0);
+                                            break;
+                                        case 3:
+                                            g2d.drawImage(rfantScaledRotate180, null, 0, 0);
+                                            break;
+                                        case 4:
+                                            g2d.drawImage(rfantScaledRotate240, null, 0, 0);
+                                            break;
+                                        case 5:
+                                            g2d.drawImage(rfantScaledRotate300, null, 0, 0);
+                                            break;
+                                    }
+                                    //Draw red ant with food.
+                                }
+                            }
+                            catch (NullPointerException e)
+                            {
+                                
                             }
                         }
                     }
@@ -473,7 +478,7 @@ public final class WorldPanel extends JPanel
                             //Draw red ant.
                         }
                     }
-                    
+
                 }
 
                 else
