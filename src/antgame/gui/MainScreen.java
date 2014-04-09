@@ -21,7 +21,7 @@ import org.jdesktop.beansbinding.Converter;
  */
 public class MainScreen extends javax.swing.JFrame
 {
-    final private static int UPDATES_PER_SECOND = 10;
+    final private static int UPDATES_PER_SECOND = 20;
     final public static int TOTAL_ROUNDS = 300000;
     final private static String ICON_IMAGE_PATH = "resources/images/App_Icon/icon128.png";
 
@@ -669,7 +669,28 @@ public class MainScreen extends javax.swing.JFrame
         gameStatsPanelFloat.worldFilename.setToolTipText("");
         GameEngine.resetCurrentWorld();
         setWorldSizeAndDisplaySize();
+        updateGameStats();
         worldPanel.repaint();
+    }
+
+    private void updateGameStats()
+    {
+        if (gameEngine.getBlackScore() != 0)
+        {
+            gameStatsPanelFloat.blackFoodCount.setText(gameEngine.getBlackScore() + "");
+        }
+        else
+        {
+            gameStatsPanelFloat.blackFoodCount.setText("-");
+        }
+        if (gameEngine.getRedScore() != 0)
+        {
+            gameStatsPanelFloat.blackFoodCount.setText(gameEngine.getRedScore() + "");
+        }
+        else
+        {
+            gameStatsPanelFloat.blackFoodCount.setText("-");
+        }
     }
 
     /**
@@ -823,6 +844,7 @@ public class MainScreen extends javax.swing.JFrame
         protected void process(List<Void> runs)
         {
             simulationOverallProgess.setValue((int) completedRuns);
+            updateGameStats();
             worldPanel.repaint();
         }
 

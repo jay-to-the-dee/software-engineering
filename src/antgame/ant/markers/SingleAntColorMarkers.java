@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * This represents the chemical markers for a single ant team
+ *
  * @author Jonathan Dilks
  */
 public class SingleAntColorMarkers
@@ -31,6 +32,10 @@ public class SingleAntColorMarkers
         markers[index] = value;
     }
 
+    /**
+     * Returns the count of markers in this class
+     * @return the count of markers between 0 - 6
+     */
     public int getSetMarkersCount()
     {
         int count = 0;
@@ -44,23 +49,47 @@ public class SingleAntColorMarkers
         return count;
     }
 
+    /**
+     * Probe to see if there are 1 or more markers in this class. This is
+     * slightly faster then getSetMarkersCount()
+     *
+     * @return true if there are one or more markers in this class,
+     * otherwise false
+     */
+    public boolean gotAnyMarkers()
+    {
+        for (int i = 0; i < markers.length; i++)
+        {
+            if (markers[i] == true)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 3;
         hash = 59 * hash + Arrays.hashCode(this.markers);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
+        {
             return false;
         }
         final SingleAntColorMarkers other = (SingleAntColorMarkers) obj;
-        if (!Arrays.equals(this.markers, other.markers)) {
+        if (!Arrays.equals(this.markers, other.markers))
+        {
             return false;
         }
         return true;

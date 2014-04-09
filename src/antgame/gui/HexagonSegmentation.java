@@ -1,16 +1,25 @@
 package antgame.gui;
 
-import java.awt.Color;
 import java.awt.geom.GeneralPath;
 
 /**
- * Does all the maths to necessary correctly segment a hexagon and holds our 
- * chemical marker colour scheme
+ * Does all the maths to necessary correctly segment up a hexagon into 6 or less
  *
  * @author Jonathan Dilks
  */
 public class HexagonSegmentation
 {
+
+    /**
+     * Split's half of a hexagon up into 6 so that it can be used to represent
+     * multiple chemical markers
+     * @param hexagonSize  the width in pixels that the hexagon to be split 
+     * should be
+     * @param markerCount up to the amount  6 - the amount to split the hexagon 
+     * up into
+     * @return all the segments from the split that can be coloured in by 
+     * g2d.fill
+     */
     public static GeneralPath[] getSegments(int hexagonSize, int markerCount)
     {
         GeneralPath[] segments;

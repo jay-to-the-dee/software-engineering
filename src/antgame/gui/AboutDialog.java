@@ -25,10 +25,11 @@ public class AboutDialog extends javax.swing.JDialog
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         titleLabel = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         creditsScrollPanel = new javax.swing.JScrollPane();
         creditsTextPane = new javax.swing.JTextPane();
         okayButton = new javax.swing.JButton();
@@ -36,59 +37,48 @@ public class AboutDialog extends javax.swing.JDialog
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("About Up the Ante!");
         setAlwaysOnTop(true);
-        setPreferredSize(new java.awt.Dimension(400, 235));
         setResizable(false);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         titleLabel.setFont(titleLabel.getFont().deriveFont(titleLabel.getFont().getStyle() | java.awt.Font.BOLD, titleLabel.getFont().getSize()+24));
-        titleLabel.setText("Up the Ante!");
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/antgame/gui/Logo.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.insets = new java.awt.Insets(30, 60, 30, 60);
+        getContentPane().add(titleLabel, gridBagConstraints);
 
         creditsTextPane.setEditable(false);
-        creditsTextPane.setText("Written by:\n\nJonathan Dilks\nRaimonds Grismanausks\nNick Blake\nLuke Dove\nPeter Nugent");
+        creditsTextPane.setText("Written by:\n\nJonathan Dilks\nRaimonds Grismanausks\nNick Blake\nLuke Dove");
         creditsScrollPanel.setViewportView(creditsTextPane);
         StyledDocument doc = creditsTextPane.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        getContentPane().add(creditsScrollPanel, gridBagConstraints);
+
         okayButton.setMnemonic('o');
         okayButton.setText("Okay!");
-        okayButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        okayButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 okayButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(creditsScrollPanel)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 64, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator1))
-                            .addComponent(okayButton))
-                        .addGap(0, 65, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(creditsScrollPanel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(okayButton)
-                .addContainerGap())
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        getContentPane().add(okayButton, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -101,7 +91,6 @@ public class AboutDialog extends javax.swing.JDialog
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane creditsScrollPanel;
     private javax.swing.JTextPane creditsTextPane;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton okayButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

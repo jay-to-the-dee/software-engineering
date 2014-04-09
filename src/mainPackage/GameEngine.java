@@ -112,14 +112,18 @@ public class GameEngine
      * @param getToThisManyCompletedRuns number of round to be executed
      */
     public void runSimulator(int getToThisManyCompletedRuns)
-    {if(currentWorld==null){
-    }else{
-        for (int i = executedRounds; i < getToThisManyCompletedRuns; i++)
+    {
+        if (currentWorld == null)
         {
-            currentWorld.executeOneRound();
-            executedRounds++;
         }
-    }
+        else
+        {
+            for (int i = executedRounds; i < getToThisManyCompletedRuns; i++)
+            {
+                currentWorld.executeOneRound();
+                executedRounds++;
+            }
+        }
     }
 
     /**
@@ -130,6 +134,16 @@ public class GameEngine
     {
         return currentWorld;
     }
+   
+    public int getRedScore()
+    {
+        return currentWorld.getRedScore();
+    }
+
+    public int getBlackScore()
+    {
+        return currentWorld.getBlackScore();
+    }
 
     /**
      *resets the currentWorld to null
@@ -138,6 +152,4 @@ public class GameEngine
     {
         GameEngine.currentWorld = null;
     }
-    
-    
 }
