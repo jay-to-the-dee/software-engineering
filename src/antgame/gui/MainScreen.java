@@ -513,6 +513,7 @@ public class MainScreen extends javax.swing.JFrame
         try
         {
             gameEngine.loadWorld(worldFile);
+            updateGameStats();
             worldPanel.repaint();
         }
         catch (Exception ex)
@@ -838,11 +839,11 @@ public class MainScreen extends javax.swing.JFrame
                 long processingDuration = (endTime - startTime) / 1000000;
 
                 /* Work out how long we need to sleep for taking into account 
-                processing time */
+                 processing time */
                 int sleepTime = (int) ((1000 / UPDATES_PER_SECOND) - processingDuration);
 
                 /* User should reduce speed really - but we'll just run as quick
-                as we can */
+                 as we can */
                 if (sleepTime < 0)
                 {
                     sleepTime = 0;
