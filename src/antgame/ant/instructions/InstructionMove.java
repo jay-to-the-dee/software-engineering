@@ -39,8 +39,10 @@ public class InstructionMove extends InstructionSet implements Instruction{
                     ant.setPosition(ant.senseTile(new Ahead()).getPosition().getXlocation()
                                    ,ant.senseTile(new Ahead()).getPosition().getYlocation());
                     ant.setResting(RESTING);
-                    ant.checkForSurroundedAnts(t.getPosition());
+                    ant.checkForSurroundedAnts();
+                    if(ant.isAlive()){
                     ant.setState(state1);
+                    }
                 }
     }
 }

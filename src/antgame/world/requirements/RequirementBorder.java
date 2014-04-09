@@ -3,16 +3,13 @@ package antgame.world.requirements;
 import antgame.model.World;
 import antgame.world.worldTokens.RockToken;
 import antgame.world.worldTokens.TerrainToken;
-import antgame.world.worldTokens.Token;
-import antgame.world.worldTokens.WorldToken;
-import java.util.List;
 
 /**
  *
  * @author ItsTheRai
  */
 public class RequirementBorder implements CheckRequirement{
-    private static Token borderToken = new RockToken(null);
+    private static TerrainToken borderToken = new RockToken(null);
     private static int borderSize;
 
     

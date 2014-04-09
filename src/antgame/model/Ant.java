@@ -11,6 +11,7 @@ import antgame.world.worldTokens.TerrainToken;
  * @author ItsTheRai
  */
 public class Ant {
+
     private int ID;
     private static int antid = 0;
     private Position position;
@@ -22,8 +23,8 @@ public class Ant {
     private int state;
     private boolean isAlive;
     private World world;
-    
-    public Ant(Color color,InstructionSet [] brain,Position position,World world){
+
+    public Ant(Color color, InstructionSet[] brain, Position position, World world) {
         this.brain = new InstructionSet[brain.length];
         this.brain = brain;
         this.color = color;
@@ -33,68 +34,69 @@ public class Ant {
         isAlive = true;
         this.position = position;
         this.world = world;
-        this.resting=0;
-        this.ID=antid++;
+        this.resting = 0;
+        this.ID = antid++;
     }
-    
-    public TerrainToken senseTile(Direction sensedir){
-        return sensedir.getTileInDirection(world,position,facingDirection);
+
+    public TerrainToken senseTile(Direction sensedir) {
+        return sensedir.getTileInDirection(world, position, facingDirection);
     }
-    
-    public void setPosition(int x,int y){
+
+    public void setPosition(int x, int y) {
         position.setXlocation(x);
         position.setYlocation(y);
     }
-    
-    public InstructionSet getCurrentInstruction(){
+
+    public InstructionSet getCurrentInstruction() {
         return getInstruction(state);
     }
-    
-    public InstructionSet getInstruction(int s){
+
+    public InstructionSet getInstruction(int s) {
         return brain[s];
     }
-    
-    public boolean isAlive(){
+
+    public boolean isAlive() {
         return this.isAlive;
     }
-    
-    public TerrainToken getAntLocation(){
+
+    public TerrainToken getAntLocation() {
         return world.getTokenAt(position.getXlocation(), position.getYlocation());
     }
-    
-      public int adjacent_ants(Position p, Color c){
-        int n=0;
-        for (int i=0;i<6;i++){
-            if(world.getAdjacentCell(i, position).hasAnt()){
-                if(world.getAdjacentCell(i, position).getAnt().color ==c){
+
+    public int adjacent_ants(Color c) {
+        int n = 0;
+        for (int i = 0; i < 6; i++) {
+            if (world.getAdjacentCell(i, this.position).hasAnt()) {
+                if (world.getAdjacentCell(i, this.position).getAnt().color == c) {
                     n++;
                 }
             }
         }
         return n;
     }
-    public void checkForSurroundedAnts(Position p){
-        int foodParticles=3;
-        if(world.getCell(p).hasAnt()){
+
+    public void checkForSurroundedAnts() {
+        int foodParticles = 3;
+        if (world.getCell(this.position).hasAnt()) {
             //a bit messy
-            
-            if(world.getCell(p).getAnt().adjacent_ants(this.position, this.getColour().otherColor())>=5){
-                this.getAntLocation().removeAnt();
-                if (this.isHasFood()){
+
+            if (adjacent_ants(this.getColour().otherColor()) >= 2) {
+                if (this.isHasFood()) {
                     foodParticles++;
                 }
-                for (int i =0;i<foodParticles;i++){
-                    world.getCell(p).drop1food();
+                for (int i = 0; i < foodParticles; i++) {
+                    world.getCell(this.position).drop1food();
                 }
-                this.killAnt(); 
+                this.killAnt();
             }
         }
     }
-    
-    public void killAnt(){
+
+    public void killAnt() {
         this.getAntLocation().removeAnt();
-        isAlive=false;
+        isAlive = false;
     }
+
     public int getID() {
         return ID;
     }
@@ -123,8 +125,8 @@ public class Ant {
         return state;
     }
 
-    public void rest(){
-        if(resting>0){
+    public void rest() {
+        if (resting > 0) {
             resting--;
         }
     }
@@ -140,9 +142,9 @@ public class Ant {
     public void setState(int state) {
         this.state = state;
     }
-    
-    public boolean isResting(){
-        return resting>0;
+
+    public boolean isResting() {
+        return resting > 0;
     }
 
     public void setResting(int RESTING) {

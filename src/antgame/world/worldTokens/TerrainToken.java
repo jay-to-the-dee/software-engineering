@@ -42,9 +42,6 @@ public class TerrainToken extends WorldToken{
         return markers;
     }
 
-    public void setMarkers(ChemicalMarkers markers) {
-        this.markers = markers;
-    }
     public void mark(Color c,Marker m){
         m.mark(this, c);
     }

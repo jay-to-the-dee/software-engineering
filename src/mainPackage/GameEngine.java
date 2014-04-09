@@ -77,6 +77,7 @@ public class GameEngine
             if (t.isAnthill())
             {
                 t.putAnt(AntFactory.generateAnt(t.getAnthillColor(), t.getAnthillColor().getBrain(gameFile), t.getPosition(), currentWorld));
+                currentWorld.addAnt(t.getAnt());
                  //break is for testing remove for final version
                 //break;
                 //TODO need to remove this

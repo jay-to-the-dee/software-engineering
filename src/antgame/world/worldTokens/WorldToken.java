@@ -4,7 +4,7 @@ package antgame.world.worldTokens;
  *
  * @author ItsTheRai
  */
-public class WorldToken extends Token{
+public class WorldToken{
     public WorldToken(){
         
     }

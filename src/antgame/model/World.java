@@ -20,16 +20,22 @@ public class World
     int count = 0;
     private static int blackScore;
     private static int redScore;
+    private List<Ant> ants;
+    
 
     public World(int xsize, int ysize, TerrainToken[] world)
     {
-        //needs refactoring
         width = xsize;
         height = ysize;
         worldTokens = new TerrainToken[world.length];
         worldTokens = world;
         blackScore=0;
         redScore=0;
+        ants = new LinkedList<>();
+    }
+    
+    public void addAnt(Ant ant){
+        this.ants.add(ant);
     }
 
     public int getWidth()
@@ -49,27 +55,9 @@ public class World
 
     public void executeOneRound()
     {
-        System.out.println(count++);
-        //goes through the whole terrain to check if an ant is present, update if need to improve performance
-        for (int i = 0; i < this.worldTokens.length; i++)
+        for (int i = 0; i < this.ants.size(); i++)
         {
-            //this takes too long
-
-            //TODO fix this
-            if ((worldTokens[i]).hasAnt())
-            {
-                Ant ant = worldTokens[i].getAnt();
-                //System.out.println("ant "+ant.getID()+" at row "+ant.getAntLocation().getPosition().getYlocation()+
-                //        " column "+
-                //ant.getAntLocation().getPosition().getXlocation()+
-                //        " state :"+ant.getState()+" facing difection "+ant.getDirection());
-                //if (ant.isHasFood()){
-                //System.out.println();
-                //System.out.println("Ant found food!");
-                //System.out.println();
-                //}
-                step(worldTokens[i].getAnt());
-            }
+            step(this.ants.get(i));
         }
     }
 
@@ -83,11 +71,10 @@ public class World
             }
 
             else
-            //  System.out.println("a");
+                //retrieve the ants current instruction by instruction index using state, and execute that instrucction
             {
                 ant.getCurrentInstruction().executeInstruction(ant);
             }
-            //System.out.println("b");}
         }
     }
 

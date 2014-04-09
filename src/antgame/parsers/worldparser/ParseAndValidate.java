@@ -1,14 +1,10 @@
 package antgame.parsers.worldparser;
 
-import antgame.world.worldTokens.WorldToken;
-import antgame.world.worldTokens.MapSizeToken;
-import antgame.world.worldTokens.Token;
 import antgame.world.requirements.CheckRequirement;
 import antgame.model.World;
 import antgame.parsers.exceptions.ColumnNumberException;
 import antgame.parsers.exceptions.RowDoesntStartWithWhitespaceException;
 import antgame.parsers.exceptions.RowNumberException;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,7 +23,6 @@ public class ParseAndValidate {
         catch(Exception e){
             
         }
-        
         //sucess, so create world
         return world;
     }
