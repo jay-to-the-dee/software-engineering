@@ -50,8 +50,6 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         worldFilename = new javax.swing.JTextField();
         heightLabel = new javax.swing.JLabel();
         height = new javax.swing.JLabel();
-        foodBlackLabel2 = new javax.swing.JLabel();
-        blackFoodCount2 = new javax.swing.JLabel();
         width = new javax.swing.JLabel();
         widthLabel = new javax.swing.JLabel();
 
@@ -228,20 +226,6 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(height, gridBagConstraints);
 
-        foodBlackLabel2.setText("Food");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        add(foodBlackLabel2, gridBagConstraints);
-
-        blackFoodCount2.setText("-");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        add(blackFoodCount2, gridBagConstraints);
-
         width.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -273,18 +257,16 @@ public class GameStatsPanelFloat extends javax.swing.JPanel
     private javax.swing.JLabel aliveAntsRedLabel;
     private javax.swing.JLabel blackAliveAntsCount;
     javax.swing.JTextField blackBrainFilename;
-    private javax.swing.JLabel blackFoodCount;
-    private javax.swing.JLabel blackFoodCount2;
+    javax.swing.JLabel blackFoodCount;
     private javax.swing.JLabel blackLabel;
     private javax.swing.JLabel blackRestingCount;
     private javax.swing.JLabel foodBlackLabel;
-    private javax.swing.JLabel foodBlackLabel2;
     private javax.swing.JLabel foodRedLabel;
     javax.swing.JLabel height;
     private javax.swing.JLabel heightLabel;
     private javax.swing.JLabel redAliveAntsCount;
     javax.swing.JTextField redBrainFilename;
-    private javax.swing.JLabel redFoodCount;
+    javax.swing.JLabel redFoodCount;
     private javax.swing.JLabel redLabel;
     private javax.swing.JLabel redRestingCount;
     private javax.swing.JLabel restingBlackLabel;

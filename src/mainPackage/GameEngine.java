@@ -78,7 +78,7 @@ public class GameEngine
             {
                 t.putAnt(AntFactory.generateAnt(t.getAnthillColor(), t.getAnthillColor().getBrain(gameFile), t.getPosition(), currentWorld));
                 currentWorld.addAnt(t.getAnt());
-                 //break is for testing remove for final version
+                //break is for testing remove for final version
                 //break;
                 //TODO need to remove this
             }
@@ -86,14 +86,18 @@ public class GameEngine
     }
 
     public void runSimulator(int getToThisManyCompletedRuns)
-    {if(currentWorld==null){
-    }else{
-        for (int i = executedRounds; i < getToThisManyCompletedRuns; i++)
+    {
+        if (currentWorld == null)
         {
-            currentWorld.executeOneRound();
-            executedRounds++;
         }
-    }
+        else
+        {
+            for (int i = executedRounds; i < getToThisManyCompletedRuns; i++)
+            {
+                currentWorld.executeOneRound();
+                executedRounds++;
+            }
+        }
     }
 
     public static World getCurrentWorld()
@@ -101,10 +105,19 @@ public class GameEngine
         return currentWorld;
     }
 
+    public int getRedScore()
+    {
+        return currentWorld.getRedScore();
+    }
+
+    public int getBlackScore()
+    {
+        return currentWorld.getBlackScore();
+    }
+
     public static void resetCurrentWorld()
     {
         GameEngine.currentWorld = null;
     }
-    
-    
+
 }
