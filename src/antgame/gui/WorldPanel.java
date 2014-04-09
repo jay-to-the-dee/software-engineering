@@ -472,6 +472,9 @@ public final class WorldPanel extends JPanel
         //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) j / columns, 1)));
         //g2d.fill(hexagonShape);
 
+        g2d.setColor(ColourScheme.plainCellColor);
+        g2d.fill(hexagonShape);
+
         if (token.isAnthill())
         {
             if (token.getAnthillColor() instanceof antgame.ant.color.ColorBlack)
