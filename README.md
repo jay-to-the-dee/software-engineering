@@ -5,12 +5,13 @@ This was a university project in which we worked in a small group together to pr
 
 ###To run from JAR without Apache ant
 
-On *nix (Linux/ OS X etc.) run "./run.sh"
-On Windows run "run.bat"
+- On \*nix (Linux/ OS X etc.) run "**./run.sh**"
+- On Windows run "**run.bat**"
 
 ###To run from source with Apache ant
-Just type "ant run" in the root folder
+
+- Just type "**ant run**" in the root folder
 
 ###To edit the source
 
-Clone in NetBeans the Git URL
+- Clone in NetBeans using the Git URL
