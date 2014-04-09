@@ -83,7 +83,7 @@ public final class WorldPanel extends JPanel
         this.repaint();
     }
 
-    public void loadWorld() throws NullPointerException
+    private void loadWorld() throws NullPointerException
     {
         this.world = GameEngine.getCurrentWorld();
         worldtokens = world.getWorldTokens();
@@ -107,6 +107,12 @@ public final class WorldPanel extends JPanel
         }
     }
 
+    /**
+     * Sets the size for all the hexagons to be drawn at. Called by the 
+     * zooming functions
+     * @param hexagonSize the width in pixels that all the hexagons should be 
+     * set at
+     */
     public void setHexagonSize(int hexagonSize)
     {
         this.hexagonSize = hexagonSize;
@@ -181,6 +187,11 @@ public final class WorldPanel extends JPanel
         forceRedraw();
     }
 
+    /**
+     * Sets the rows and columns this WorldPanel is to represent
+     * @param dimension The dimension contains the height and width to set the 
+     * WorldPanel at
+     */
     public void setRowsAndColumns(Dimension dimension)
     {
         this.rows = (int) dimension.getHeight();
@@ -189,7 +200,10 @@ public final class WorldPanel extends JPanel
         forceRedraw();
     }
 
-    public void forceRedraw()
+    /**
+     * Force a redraw - used internally
+     */
+    private void forceRedraw()
     {
         setPreferredSize(currentTotalGridSize());
         this.repaint();
