@@ -214,7 +214,7 @@ public class AntBrainParserImp implements AntBrainParser{
             //collect tokens for case flip
             
         }
-        else throw new InputHasBadFormatException();
+        else throw new InputHasBadFormatException("no Such instruction");
     }
     
     private Direction getSenseDirection(String s) throws Exception{
