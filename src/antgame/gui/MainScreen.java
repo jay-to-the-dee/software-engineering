@@ -832,9 +832,23 @@ public class MainScreen extends javax.swing.JFrame
                     completedRuns = TOTAL_ROUNDS;
                 }
 
+                long startTime = System.nanoTime();
                 gameEngine.runSimulator((int) completedRuns);
+                long endTime = System.nanoTime();
+                long processingDuration = (endTime - startTime) / 1000000;
 
-                Thread.sleep(1000 / UPDATES_PER_SECOND);
+                /* Work out how long we need to sleep for taking into account 
+                processing time */
+                int sleepTime = (int) ((1000 / UPDATES_PER_SECOND) - processingDuration);
+
+                /* User should reduce speed really - but we'll just run as quick
+                as we can */
+                if (sleepTime < 0)
+                {
+                    sleepTime = 0;
+                }
+
+                Thread.sleep(sleepTime);
                 publish();
             }
             return null;
