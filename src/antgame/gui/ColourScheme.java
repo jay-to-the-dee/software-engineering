@@ -4,13 +4,13 @@ import java.awt.Color;
 
 /**
  * This class defines the colour scheme for the paint methods to use
+ *
  * @author jay-to-the-dee <jay-to-the-dee@users.noreply.github.com>
  */
 public class ColourScheme
 {
     static final Color plainCellColor = new Color(255, 255, 204);
 
-    //TODO: make redder - currently just lighter
     static final Color[] blackAntChemicalColors =
     {
         new Color(86, 94, 205),
