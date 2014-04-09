@@ -21,7 +21,7 @@ import org.jdesktop.beansbinding.Converter;
  */
 public class MainScreen extends javax.swing.JFrame
 {
-    final private static int UPDATES_PER_SECOND = 10;
+    final private static int UPDATES_PER_SECOND = 20;
     final public static int TOTAL_ROUNDS = 300000;
     final private static String ICON_IMAGE_PATH = "resources/images/App_Icon/icon128.png";
 
