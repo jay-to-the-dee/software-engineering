@@ -3,8 +3,7 @@ package antgame.gui;
 import java.awt.geom.GeneralPath;
 
 /**
- * Does all the maths to necessary correctly segment a hexagon and holds our 
- * chemical marker colour scheme
+ * Does all the maths to necessary correctly segment up a hexagon into 6 or less
  *
  * @author Jonathan Dilks
  */
