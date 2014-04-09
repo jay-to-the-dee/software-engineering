@@ -12,9 +12,10 @@ public interface Condition {
 
     /**
      *
-     * @param token
-     * @param color
-     * @return
+     * @param token The WorldToken object whose condition is to be checked
+     * @param color The color of the ant checking the condition
+     * @param m A marker object that is to be sensed, null if not a sense operation
+     * @return returns true if the condition is met, false otherwise
      */
     public boolean checkCondition(TerrainToken token,Color color,Marker m);
 }

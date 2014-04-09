@@ -36,6 +36,7 @@ import antgame.ant.markers.Marker2;
 import antgame.ant.markers.Marker3;
 import antgame.ant.markers.Marker4;
 import antgame.ant.markers.Marker5;
+import antgame.parsers.exceptions.InputHasBadFormatException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -84,7 +85,7 @@ public class AntBrainParserImp implements AntBrainParser{
     
     private InstructionSet getInstruction(Queue q) throws Exception{
         //get instruction
-        //System.out.println("show instruction: "+q.peek());
+        //input q is a one line split up into tokens an put in a queue
         
         if(q.peek().toString().equalsIgnoreCase(senseInstruction)){
             q.remove();
@@ -150,7 +151,7 @@ public class AntBrainParserImp implements AntBrainParser{
         }
         else if (q.peek().toString().equalsIgnoreCase(unmarkInstruction)){
             q.remove();
-            //TODO collect tokens for case unmark
+            //collect tokens for case unmark
             int marker = getMarker(q.remove().toString());
             int state = getState(q.remove().toString());
             Marker m = null;
@@ -176,7 +177,7 @@ public class AntBrainParserImp implements AntBrainParser{
             return new InstructionUnmark(m,state);
         }
         else if (q.peek().toString().equalsIgnoreCase(pickUpInstruction)){
-            //TODO collect tokens for case pickup
+            //collect tokens for case pickup
             q.remove();
             int state1 = getState(q.remove().toString());
             int state2 = getState(q.remove().toString());
@@ -184,13 +185,13 @@ public class AntBrainParserImp implements AntBrainParser{
         }
         else if (q.peek().toString().equalsIgnoreCase(dropInstruction)){
             q.remove();
-            //TODO collect tokens for case drop
+            //collect tokens for case drop
             int state = getState(q.remove().toString());
             return new InstructionDrop(state);
         }
         else if (q.peek().toString().equalsIgnoreCase(turnInstruction)){
             q.remove();
-            //TODO collect tokens for case turn
+            //collect tokens for case turn
             LeftOrRight lor = getTurnDirection(q.remove().toString());
             int state = getState(q.remove().toString());
             return new InstructionTurn(lor, state);
@@ -199,7 +200,7 @@ public class AntBrainParserImp implements AntBrainParser{
         }
         else if (q.peek().toString().equalsIgnoreCase(moveInstruction)){
             q.remove();
-            //TODO collect tokens for case move
+            //collect tokens for case move
             int state1 = getState(q.remove().toString());
             int state2 = getState(q.remove().toString());
             return new InstructionMove(state1,state2);
@@ -210,11 +211,10 @@ public class AntBrainParserImp implements AntBrainParser{
             int state1 = getState(q.remove().toString());
             int state2 = getState(q.remove().toString());
             return new InstructionFlip(n,state1,state2);
-            //TODO collect tokens for case flip
-            // not implemented yet
+            //collect tokens for case flip
             
         }
-        else throw new Exception();
+        else throw new InputHasBadFormatException();
     }
     
     private Direction getSenseDirection(String s) throws Exception{
@@ -306,12 +306,12 @@ public class AntBrainParserImp implements AntBrainParser{
            else if (i==5){
                return 5;
            }
-           else throw new Exception("marker not recognised");
+           else throw new InputHasBadFormatException("marker not recognised");
            // do something when integer values comes 
         }  
         catch(NumberFormatException nfe)  
         {  
-            throw new Exception("not a number");
+            throw new InputHasBadFormatException("not a number");
                  // do something when string values comes 
         }
     }
@@ -323,6 +323,6 @@ public class AntBrainParserImp implements AntBrainParser{
         else if(s.equalsIgnoreCase("Right")){
             return new Right();
         }
-        else throw new Exception("no such direction");
+        else throw new InputHasBadFormatException("no such direction");
     }
 }

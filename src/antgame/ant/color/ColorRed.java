@@ -1,6 +1,5 @@
 package antgame.ant.color;
 
-import antgame.ant.instructions.Instruction;
 import antgame.ant.instructions.InstructionSet;
 import mainPackage.GameFile;
 
@@ -25,10 +24,7 @@ public class ColorRed implements Color{
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof ColorRed){
-        return true;
-    }
-        else return false;    
+        return obj instanceof ColorRed;    
     }
 
     @Override
@@ -36,6 +32,4 @@ public class ColorRed implements Color{
         int hashCode = 32412;
         return hashCode;
     }
-    
-    
 }

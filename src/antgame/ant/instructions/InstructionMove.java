@@ -15,6 +15,11 @@ public class InstructionMove extends InstructionSet implements Instruction{
     private final int state2;
     private final int RESTING = 14;
 
+    /**
+     *
+     * @param state1 the state used if execution of instruction is possible
+     * @param state2 the state used if execution of instruction is not possible
+     */
     public InstructionMove(int state1, int state2) {
         this.state1 = state1;
         this.state2 = state2;

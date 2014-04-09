@@ -1,6 +1,5 @@
 package antgame.ant.color;
 
-import antgame.ant.instructions.Instruction;
 import antgame.ant.instructions.InstructionSet;
 import mainPackage.GameFile;
 
@@ -24,10 +23,7 @@ public class ColorBlack implements Color{
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof ColorBlack){
-        return true;
-    }
-        else return false;
+        return obj instanceof ColorBlack;
     }
 
     @Override

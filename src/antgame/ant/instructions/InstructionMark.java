@@ -11,6 +11,11 @@ public class InstructionMark extends InstructionSet implements Instruction{
     private final Marker marker;
     private final int nextState;
     
+    /**
+     *
+     * @param marker the Marker object used by the ant to mark a TerrainToken
+     * @param state the next state the ant has to take
+     */
     public InstructionMark(Marker marker, int state){
         this.marker = marker;
         nextState = state;

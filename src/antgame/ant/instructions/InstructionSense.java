@@ -16,6 +16,14 @@ public class InstructionSense extends InstructionSet implements Instruction{
     Condition condition;
     Marker marker;
 
+    /**
+     *
+     * @param state1 state the ant is to be put in if the Condition holds
+     * @param state2 state the ant is to be put in if the Condition does not hold
+     * @param sensedirection the Direction the nearest TerrainToken is sensed in
+     * @param condition a Condition object that represents the condition to be met
+     * @param marker a Marker object used to sense markers
+     */
     public InstructionSense(int state1, int state2, Direction sensedirection, Condition condition, Marker marker) {
         this.state1 = state1;
         this.state2 = state2;

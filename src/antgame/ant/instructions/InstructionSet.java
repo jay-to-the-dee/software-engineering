@@ -14,6 +14,9 @@ import antgame.model.Ant;
  */
 public abstract class InstructionSet {
 
+    /**
+     * A superclass of all instructions
+     */
     public InstructionSet() {
     }
     public abstract void executeInstruction(Ant ant);

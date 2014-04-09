@@ -9,6 +9,10 @@ import antgame.model.Ant;
 public class InstructionDrop extends InstructionSet implements Instruction{
     private final int nextState;
     
+    /**
+     *
+     * @param state the next state the ant should be put in
+     */
     public InstructionDrop(int state){
         nextState = state;
     }

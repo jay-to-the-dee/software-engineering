@@ -21,6 +21,11 @@ public class SingleAntColorMarkers
         return markers;
     }
 
+    /**
+     *
+     * @param index the index of the marker to be set
+     * @param value The boolean value the marker is to be set to
+     */
     public void setMarker(int index, boolean value)
     {
         markers[index] = value;

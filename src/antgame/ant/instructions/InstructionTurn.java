@@ -11,6 +11,11 @@ public class InstructionTurn extends InstructionSet implements Instruction{
     private LeftOrRight lor;
     private int nextState;
     
+    /**
+     *
+     * @param lor Represents the direction to be turned to
+     * @param state The next state the ant has to take after turning
+     */
     public InstructionTurn(LeftOrRight lor, int state){
         this.lor = lor;
         this.nextState = state;

@@ -14,7 +14,6 @@ public class MarkerCondition  implements Condition{
 
     @Override
     public boolean checkCondition(TerrainToken token, Color color, Marker m) {
-        //may need refactoring
         if (color instanceof ColorRed){
                 return token.getMarkers().getRedAntsmarker().getMarkers()[m.getMarkerIndex()];
         }
