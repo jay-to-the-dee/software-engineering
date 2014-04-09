@@ -12,7 +12,7 @@ import antgame.model.World;
 
 /**
  *
- * @author Main User
+ * @author ItsTheRai
  */
 public class GameFile {
     private InstructionSet[] redBrain;

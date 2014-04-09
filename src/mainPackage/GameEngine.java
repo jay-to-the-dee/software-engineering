@@ -85,16 +85,25 @@ public class GameEngine
     }
 
     public void runSimulator(int getToThisManyCompletedRuns)
-    {
+    {if(currentWorld==null){
+    }else{
         for (int i = executedRounds; i < getToThisManyCompletedRuns; i++)
         {
             currentWorld.executeOneRound();
             executedRounds++;
         }
     }
+    }
 
     public static World getCurrentWorld()
     {
         return currentWorld;
     }
+
+    public static void resetCurrentWorld()
+    {
+        GameEngine.currentWorld = null;
+    }
+    
+    
 }
