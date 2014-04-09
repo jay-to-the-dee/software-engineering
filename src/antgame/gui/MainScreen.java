@@ -669,7 +669,28 @@ public class MainScreen extends javax.swing.JFrame
         gameStatsPanelFloat.worldFilename.setToolTipText("");
         GameEngine.resetCurrentWorld();
         setWorldSizeAndDisplaySize();
+        updateGameStats();
         worldPanel.repaint();
+    }
+
+    private void updateGameStats()
+    {
+        if (gameEngine.getBlackScore() != 0)
+        {
+            gameStatsPanelFloat.blackFoodCount.setText(gameEngine.getBlackScore() + "");
+        }
+        else
+        {
+            gameStatsPanelFloat.blackFoodCount.setText("-");
+        }
+        if (gameEngine.getRedScore() != 0)
+        {
+            gameStatsPanelFloat.blackFoodCount.setText(gameEngine.getRedScore() + "");
+        }
+        else
+        {
+            gameStatsPanelFloat.blackFoodCount.setText("-");
+        }
     }
 
     /**
@@ -823,6 +844,7 @@ public class MainScreen extends javax.swing.JFrame
         protected void process(List<Void> runs)
         {
             simulationOverallProgess.setValue((int) completedRuns);
+            updateGameStats();
             worldPanel.repaint();
         }
 
