@@ -3,7 +3,7 @@ package antgame.gui;
 import java.awt.Color;
 
 /**
- *
+ * This class defines the colour scheme for the paint methods to use
  * @author jay-to-the-dee <jay-to-the-dee@users.noreply.github.com>
  */
 public class ColourScheme

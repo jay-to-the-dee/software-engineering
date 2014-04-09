@@ -32,6 +32,10 @@ public class SingleAntColorMarkers
         markers[index] = value;
     }
 
+    /**
+     * Returns the count of markers in this class
+     * @return the count of markers between 0 - 6
+     */
     public int getSetMarkersCount()
     {
         int count = 0;
@@ -46,9 +50,10 @@ public class SingleAntColorMarkers
     }
 
     /**
-     * Probe to see if there are 1 or more markers in this class. This is 
+     * Probe to see if there are 1 or more markers in this class. This is
      * slightly faster then getSetMarkersCount()
-     * @return true if there are one or more markers in this class, 
+     *
+     * @return true if there are one or more markers in this class,
      * otherwise false
      */
     public boolean gotAnyMarkers()
