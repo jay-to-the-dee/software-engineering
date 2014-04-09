@@ -15,6 +15,9 @@ import java.awt.geom.GeneralPath;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.EmptyStackException;
+import java.util.LinkedList;
+import java.util.Stack;
 import javax.imageio.*;
 import javax.swing.JPanel;
 import mainPackage.GameEngine;
@@ -470,7 +473,6 @@ public final class WorldPanel extends JPanel
         //g2d.fill(hexagonShape);
 
         if (token.getMarkers().getBlackAntsmarker().getSetMarkersCount() > 0 || token.getMarkers().getRedAntsmarker().getSetMarkersCount() > 0)
-
         {
             paintChemicalMarkers(g2d, token);
         }
@@ -479,25 +481,51 @@ public final class WorldPanel extends JPanel
 
     private void paintChemicalMarkers(Graphics2D g2d, TerrainToken token)
     {
+        GeneralPath[] segmentPaths;
+
         //LEFT: BLACK ANTS
-        GeneralPath[] segmentPaths = HexagonSegmentation.getSegments(hexagonSize, token.getMarkers().getBlackAntsmarker().getSetMarkersCount() + 1);
-        for (int i = 0; i < segmentPaths.length; i++)
+        Stack<Color> blackColors = getChemicalMarkerColors(token.getMarkers().getBlackAntsmarker().getMarkers(), HexagonSegmentation.blackAntChemicalColors);
+        if (blackColors.size() > 0)
         {
-            g2d.setColor(HexagonSegmentation.blackAntChemicalColors[i]);
-            g2d.fill(segmentPaths[i]);
+            segmentPaths = HexagonSegmentation.getSegments(hexagonSize, blackColors.size());
+            for (GeneralPath segmentPath : segmentPaths)
+            {
+                g2d.setColor(blackColors.pop());
+                g2d.fill(segmentPath);
+            }
         }
 
         g2d.scale(-1, 1);
         g2d.translate(-hexagonSize, 0);
 
         //RIGHT: RED ANTS
-        segmentPaths = HexagonSegmentation.getSegments(hexagonSize, token.getMarkers().getRedAntsmarker().getSetMarkersCount() + 1);
-        for (int i = 0; i < segmentPaths.length; i++)
+        Stack<Color> redColors = getChemicalMarkerColors(token.getMarkers().getRedAntsmarker().getMarkers(), HexagonSegmentation.redAntChemicalColors);
+        if (redColors.size() > 0)
         {
-            g2d.setColor(HexagonSegmentation.redAntChemicalColors[i]);
-            g2d.fill(segmentPaths[i]);
+            segmentPaths = HexagonSegmentation.getSegments(hexagonSize, redColors.size());
+            for (GeneralPath segmentPath : segmentPaths)
+            {
+                g2d.setColor(redColors.pop());
+                g2d.fill(segmentPath);
+            }
         }
+
         g2d.scale(-1, 1);
         g2d.translate(-hexagonSize, 0);
+    }
+
+    private Stack<Color> getChemicalMarkerColors(boolean[] markers, Color[] colourLookup)
+    {
+        Stack<Color> colors = new Stack<>();
+
+        for (int i = 0; i < markers.length; i++)
+        {
+            if (markers[i] == true)
+            {
+                colors.addElement(colourLookup[i]);
+            }
+        }
+
+        return colors;
     }
 }

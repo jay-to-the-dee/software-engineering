@@ -211,7 +211,7 @@ public class HexagonSegmentation
                 break;
 
             default:
-                throw new Error("Cannot segment by " + markerCount + ". Only value's of 6 or less are supported.");
+                throw new RuntimeException("Cannot segment by " + markerCount + ". Only value's of 6 or less are supported.");
         }
 
         return segments;
