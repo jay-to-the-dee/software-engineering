@@ -3,7 +3,6 @@ package antgame.world.worldTokens;
 import antgame.ant.color.Color;
 import antgame.model.FoodStack;
 import antgame.model.Position;
-import java.util.Stack;
 
 /**
  *
@@ -11,6 +10,11 @@ import java.util.Stack;
  */
 public class AnthillToken extends TerrainToken{
 
+    /**
+     *
+     * @param p of anthill in the world
+     * @param color Color of anthill
+     */
     public AnthillToken(Position p,Color color){
         //not sure if need food stack for anthill
         
@@ -19,8 +23,7 @@ public class AnthillToken extends TerrainToken{
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
-  
+        return super.equals(obj); 
     }
 
     
@@ -29,6 +32,4 @@ public class AnthillToken extends TerrainToken{
     public int hashCode() {
         return super.hashCode();
     }
-    
-    
 }

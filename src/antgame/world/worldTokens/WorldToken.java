@@ -5,19 +5,22 @@ package antgame.world.worldTokens;
  * @author ItsTheRai
  */
 public class WorldToken{
+
+    /**
+     *
+     */
     public WorldToken(){
         
     }
 
     @Override
-    public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
+    
 
     @Override
     public int hashCode() {
-        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+        return super.hashCode();
     }
-    
-    
 }

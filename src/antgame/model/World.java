@@ -1,10 +1,7 @@
 package antgame.model;
 
-import antgame.ant.instructions.Instruction;
 import antgame.world.worldTokens.TerrainToken;
-import antgame.world.worldTokens.WorldToken;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,15 +11,20 @@ import java.util.List;
  */
 public class World
 {
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private TerrainToken[] worldTokens;
     int count = 0;
     private static int blackScore;
     private static int redScore;
-    private List<Ant> ants;
+    private final List<Ant> ants;
     
-
+    /**
+     * create a new World object with width xsize and height ysize containing the TerrainToken array world
+     * @param xsize integer - number of tokens per row
+     * @param ysize integer - number of tokens per column
+     * @param world TerrainToken[] - all the tokens the world contains
+     */
     public World(int xsize, int ysize, TerrainToken[] world)
     {
         width = xsize;
@@ -34,25 +36,46 @@ public class World
         ants = new LinkedList<>();
     }
     
+    /**
+     *add an ant to this location
+     * @param ant An Ant object
+     */
     public void addAnt(Ant ant){
         this.ants.add(ant);
     }
 
+    /**
+     *
+     * @return number of TerrainTokens horizontally
+     */
     public int getWidth()
     {
         return width;
     }
 
+    /**
+     *
+     * @return number of TerrainTokens vertically
+     */
     public int getHeight()
     {
         return height;
     }
 
+    /**
+     *
+     * @return return all TerrainTokens
+     */
     public TerrainToken[] getWorldTokens()
     {
         return worldTokens;
     }
 
+    /**
+     * Executes one instruction for each ant in the world starting with ant with ID 0, then ID1 etc untill all ants
+     * hae executed one instruction
+     * for this every ants step instruction is called
+     */
     public void executeOneRound()
     {
         for (int i = 0; i < this.ants.size(); i++)
@@ -61,6 +84,12 @@ public class World
         }
     }
 
+    /**
+     * executes the current instruction of the ant according to its state if ant
+     * is alive and not resting 
+     * if ant is resting but alive, decrements the resting field of the ant
+     * @param ant Ant object 
+     */
     public void step(Ant ant)
     {
         if (ant.isAlive())
@@ -77,19 +106,33 @@ public class World
             }
         }
     }
-
-    //xposition - index starting from 0 to width -1
-    //yposition - index starting from 0 to heigth -1
-    public TerrainToken getTokenAt(int xposition, int yposition)
+    /**
+     *
+     * @param xposition index starting from 0 to width -1
+     * @param yposition index starting from 0 to height -1
+     * @return return the TerrainToken with coordinates x,y
+     */
+        public TerrainToken getTokenAt(int xposition, int yposition)
     {
         return getWorldTokens()[(yposition * getWidth() + xposition)];
     }
 
+    /**
+     *
+     * @param p Postion object
+     * @return the TerrainToken at Position p
+     */
     public TerrainToken getCell(Position p)
     {
         return (TerrainToken) this.getTokenAt(p.getXlocation(), p.getYlocation());
     }
 
+    /**
+     * returns cell in direction direction of cell in position position
+     * @param direction integer - ants facing direction
+     * @param position Position - ants position in the world
+     * @return TerrainToken in the specified direction
+     */
     public TerrainToken getAdjacentCell(int direction, Position position)
     {
         TerrainToken t = new TerrainToken(false, position, null, false, null);
@@ -146,23 +189,41 @@ public class World
         return t;
     }
 
+    /**
+     *
+     * @return the dimension of the world
+     */
     public Dimension getWorldSize()
     {
         return new Dimension(getWidth(), getHeight());
     }
     
+    /**
+     *increase the score for black ants by one
+     */
     public static void increaseBlackScore(){
         blackScore++;
     }
     
+    /**
+     *increase the score for red ants by one
+     */
     public static void increseRedScore(){
         redScore++;
     }
 
+    /**
+     *
+     * @return the current score for the black ants
+     */
     public static int getBlackScore() {
         return blackScore;
     }
 
+    /**
+     *
+     * @return the current score for the red ants
+     */
     public static int getRedScore() {
         return redScore;
     }

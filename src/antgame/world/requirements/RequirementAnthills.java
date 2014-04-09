@@ -14,7 +14,11 @@ public class RequirementAnthills implements CheckRequirement{
     private static int numberOfAnthills;
     private static int anthillSideLength;
     
-    
+    /**
+     *
+     * @param numberOfAnthills Number of ant hills in the world
+     * @param anthillSideLength number of AntHll tokens forming a side of an anthill
+     */
     public RequirementAnthills(int numberOfAnthills,int anthillSideLength) {
         this.numberOfAnthills = numberOfAnthills;
         this.anthillSideLength = anthillSideLength;
@@ -26,7 +30,7 @@ public class RequirementAnthills implements CheckRequirement{
         while(match && i<world.getWorldTokens().length){
             if(true){
                 if(!(world.getWorldTokens()[i]  instanceof TerrainToken)||world.getWorldTokens()[i] instanceof TerrainToken &&!((TerrainToken)world.getWorldTokens()[i]).isRocky()){
-                    //throw new SomeException();
+                    //TODO implement requrement checker
                 }
             }
             i++;

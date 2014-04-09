@@ -24,7 +24,7 @@ public class TerrainToken extends WorldToken{
     private final Stack food;
     private final boolean anthill;
     private final Color anthillColor;
-    private ChemicalMarkers markers;
+    private final ChemicalMarkers markers;
     private boolean hasAnt;
     
     public TerrainToken (boolean predicate, Position p,FoodStack food, boolean anthill,Color anthillColor){
@@ -47,8 +47,7 @@ public class TerrainToken extends WorldToken{
     }
         
     public void setMarkerAt(Color c,int m){
-        //find a better way of doing this
-        //todo
+        //TODO a bit messy, could do better but works fine for the current impl
        if(c instanceof ColorRed){
            this.getMarkers().getRedAntsmarker().setMarker(m, true);
        }

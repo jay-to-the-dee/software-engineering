@@ -12,17 +12,34 @@ public class Position {
         ylocation = y;
     }
 
+    /**
+     *
+     * @return return x coordinate
+     */
     public int getXlocation() {
         return xlocation;
     }
 
+    /**
+     *
+     * @return return y coordinate
+     */
     public int getYlocation() {
         return ylocation;
     }
+
+    /**
+     *change x coordinate
+     * @param x new x coordinate
+     */
     public void setXlocation(int x){
         xlocation = x;
     }
     
+    /**
+     *change y coordinate
+     * @param y new y coordinate
+     */
     public void setYlocation(int y){
         ylocation = y;
     }
@@ -52,6 +69,4 @@ public class Position {
         }
         return true;
     }
-    
-    
 }

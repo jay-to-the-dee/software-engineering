@@ -9,16 +9,18 @@ import antgame.ant.color.ColorBlack;
  */
 public class BlackAnthillToken extends AnthillToken{
 
+    /**
+     *
+     * @param p of anthill in the world
+     */
     public BlackAnthillToken(Position p) {
-        //Color c= new ColorBlack();
-        //ColorBlack c = new Color();
         super(p, new ColorBlack());
     }
 
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof BlackAnthillToken){
-        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+        return super.equals(obj);
         }
         else return false;
     }

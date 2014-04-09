@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package antgame.model;
 
 import java.util.Stack;
 
 /**
- *
- * @author Main User
+ * Each TerrainToken(except RockToken) has this object
+ * its size represents the number of food particles in the location
+ * @author ItsTheRai
  */
 public class FoodStack extends Stack{
 
@@ -19,7 +14,7 @@ public class FoodStack extends Stack{
 
     @Override
     public synchronized int hashCode() {
-        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+        return super.hashCode();
     }
 
     @Override
@@ -29,9 +24,6 @@ public class FoodStack extends Stack{
                 return true;
             }
         }
-        return false; //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
-    
-    
-    
 }

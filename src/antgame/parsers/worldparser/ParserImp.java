@@ -136,9 +136,11 @@ public class ParserImp implements Parser{
 
     /**
      *
-     * @param input
-     * @return
-     * @throws SomeException
+     * @param input a string representing a numeric value
+     * @return A MapSizeToken object with the specified size
+     * @throws antgame.parsers.exceptions.LineHasNotJustIntegersException expected only integers 
+     * @throws antgame.parsers.exceptions.EmptyLineException empty line 
+     * @throws antgame.parsers.exceptions.NotAnIntException expected only integers
      */
     public MapSizeToken getSize(String input) throws LineHasNotJustIntegersException, EmptyLineException, NotAnIntException{
         int size;
@@ -164,6 +166,14 @@ public class ParserImp implements Parser{
         }
     }
     
+    /**
+     *
+     * @param s representing a single cell identifier
+     * @param xposition x coordinate of the cell in the world
+     * @param yposition y coordinate of the cell in the world
+     * @throws UnsupportedSizeOfSpecifier cell specifier of wrong size
+     * @throws SpecifierNotRecognisedException Could not recognise specifier
+     */
     public void getWorldTokens(String s,int xposition, int yposition) throws UnsupportedSizeOfSpecifier, SpecifierNotRecognisedException{
         if(s.length()!=1){
             throw new UnsupportedSizeOfSpecifier(s+ "is not a valid cell specifier or is missing a whitespace");

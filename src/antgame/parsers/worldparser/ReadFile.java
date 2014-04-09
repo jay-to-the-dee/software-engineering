@@ -14,13 +14,20 @@ import java.nio.file.Paths;
 
 /**
  *
- * @author Main User
+ * @author erickson
  */
 public class ReadFile {
     public ReadFile(){
         
     }
     
+    /**
+     *
+     * @param path the path of the file
+     * @param encoding encoding used for the file
+     * @return a string read from the file
+     * @throws IOException Could not read input
+     */
     public static String readFile(String path, Charset encoding) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return encoding.decode(ByteBuffer.wrap(encoded)).toString();

@@ -8,7 +8,6 @@ import antgame.parsers.worldparser.ParseAndValidate;
 import antgame.parsers.worldparser.ReadFile;
 import antgame.world.requirements.*;
 import antgame.world.worldTokens.*;
-import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -28,6 +27,9 @@ public class GameEngine
     private GameFile gameFile;
     private int executedRounds;
 
+    /**
+     *
+     */
     public GameEngine()
     {
         RandomIntGenerator f = new RandomIntGenerator(new BigInteger("12345"));
@@ -35,16 +37,30 @@ public class GameEngine
         gameFile = new GameFile();
     }
 
+    /**
+     *
+     * @param blackBrainFile InstructionSet[] containing a parsed ant brain
+     * @param redBrainFile InstructionSetp[] containing a parsed ant brain
+     * @throws Exception exception thrown if world cant be populated with ants
+     */
     public void initEngine(File blackBrainFile, File redBrainFile) throws Exception
     {
         gameFile.setBlackBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(blackBrainFile.getPath(), Charset.defaultCharset())));
         gameFile.setRedBrain(AntBrainFactory.generateAntBrainFromString(ReadFile.readFile(redBrainFile.getPath(), Charset.defaultCharset())));
-
         //populate world with ants
         putAnts();
 
     }
 
+    /**
+     *parses the world file into a World object and puts it into the gameFile if successful
+     * @param worldFile a text file
+     * @throws IOException Can't read file
+     * @throws RowNumberException formal and actual number of rows differ
+     * @throws RowDoesntStartWithWhitespaceException Odd row doesn't start with a whitespace
+     * @throws ColumnNumberException formal and actual number of column differ
+     * @throws Exception General exception
+     */
     public void loadWorld(File worldFile) throws IOException, RowNumberException, RowDoesntStartWithWhitespaceException, ColumnNumberException, Exception
     {
         ParseAndValidate pav = new ParseAndValidate();
@@ -60,6 +76,10 @@ public class GameEngine
         currentWorld = gameFile.getWorld();
     }
 
+    /**
+     *uses the WorldFactory to generate a random world according to tournament requirements
+     * and updates the gameFile field by putting this world as the current world
+     */
     public void loadRandomWorld()
     {
         List<CheckRequirement> ls = new LinkedList();
@@ -69,6 +89,10 @@ public class GameEngine
         gameFile.setWorld(WorldFactory.generateRandomWorld(ls));
     }
 
+    //Populates the world with ants
+    //iterates through the whole world and when an anthill is found, an ant is placed in that location of 
+    //its respective color
+    //copies all created ants into the currenWorld.ants field ir rising order of antID
     private void putAnts() throws Exception
     {
         for (int i = 0; i < currentWorld.getWorldTokens().length; i++)
@@ -78,13 +102,15 @@ public class GameEngine
             {
                 t.putAnt(AntFactory.generateAnt(t.getAnthillColor(), t.getAnthillColor().getBrain(gameFile), t.getPosition(), currentWorld));
                 currentWorld.addAnt(t.getAnt());
-                 //break is for testing remove for final version
-                //break;
-                //TODO need to remove this
             }
         }
     }
 
+    /**
+     * the fields currentWorld executeOneROund() instruction is executed as many times as the parameter suggests
+     * the counter executed Rounds is incremented
+     * @param getToThisManyCompletedRuns number of round to be executed
+     */
     public void runSimulator(int getToThisManyCompletedRuns)
     {if(currentWorld==null){
     }else{
@@ -96,11 +122,18 @@ public class GameEngine
     }
     }
 
+    /**
+     *
+     * @return returns the currently loaded world
+     */
     public static World getCurrentWorld()
     {
         return currentWorld;
     }
 
+    /**
+     *resets the currentWorld to null
+     */
     public static void resetCurrentWorld()
     {
         GameEngine.currentWorld = null;

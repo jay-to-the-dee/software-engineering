@@ -11,14 +11,15 @@ import java.util.List;
  */
 public class VerifierImp implements Verifier{
 
+    /**
+     *
+     * @param world World object
+     * @param requirements List of Requirements
+     * @return return a world object if verified
+     * @throws Exception could not verify world
+     */
     @Override
     public World verify(World world,List<CheckRequirement> requirements) throws Exception{
-        
-        //if success 
-        //make sure this always works
-        //int xsize = ((MapSizeToken)world.get(0)).getSize();
-        //int ysize = ((MapSizeToken)world.get(1)).getSize();
-        //////////////////////////////
         for(CheckRequirement req:requirements){
             try {
                 req.checkRequirements(world);
@@ -26,7 +27,7 @@ public class VerifierImp implements Verifier{
                 System.out.println("verifier error");
             }
         }
-        return null;//new World();//xsize,ysize,l);
+        return world;//new World();//xsize,ysize,l)
         //else trow exception
     }
 }

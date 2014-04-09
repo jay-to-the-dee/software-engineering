@@ -12,7 +12,10 @@ public class RequirementBorder implements CheckRequirement{
     private static TerrainToken borderToken = new RockToken(null);
     private static int borderSize;
 
-    
+    /**
+     *
+     * @param borderSize Size of the border to consist of RockTokens
+     */
     public RequirementBorder(int borderSize){
         this.borderSize = borderSize;
     }

@@ -1,10 +1,10 @@
 package mainPackage;
 
 import java.math.BigInteger;
-import java.util.Random;
 
 /**
- *
+ *a random number generator according to the requirement specifications, is not used in program
+ * because of performance issues with BigInteger
  * @author ItsTheRai
  */
 public class RandomIntGenerator {

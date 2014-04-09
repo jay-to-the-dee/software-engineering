@@ -16,6 +16,14 @@ public class RequirementNumberOfResourses implements CheckRequirement{
     private int foodBlobSize;// = 5;
     private int foodInParticle;// = 5;
 
+    /**
+     *
+     * @param numberOfAntHills Number of ant hills
+     * @param numberOfRocks Number of RockToken objects
+     * @param numberOfFoodBlobs Number of food blobs
+     * @param foodBlobSize Size of food blob
+     * @param foodInParticle Number of Food objects in a food particle
+     */
     public RequirementNumberOfResourses(int numberOfAntHills, int numberOfRocks, int numberOfFoodBlobs, int foodBlobSize, int foodInParticle) {
         this.numberOfAntHills = numberOfAntHills;
         this.numberOfRocks = numberOfRocks;
@@ -26,6 +34,8 @@ public class RequirementNumberOfResourses implements CheckRequirement{
     
     @Override
     public boolean checkRequirements(World world){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
+        //TODO implement this method
     }
 }
+

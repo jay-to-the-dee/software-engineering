@@ -21,15 +21,31 @@ import java.util.List;
 public class WorldFactory
 {
 
+    /**
+     *
+     * @param p A ParseAndValidate object for parsing and validating the loaded world
+     * @param input a string representing the world to be loaded
+     * @param req a list of requirements the world should conform to
+     * @return A parser World object if it matches all criteria
+     * @throws RowNumberException actual and formal number of rows differ
+     * @throws RowDoesntStartWithWhitespaceException Odd row doesn't start with a whitespace
+     * @throws ColumnNumberException actual and formal number of columns differ
+     * @throws Exception default Exception
+     */
     public static World loadWorld(ParseAndValidate p, String input, List<CheckRequirement> req) throws RowNumberException, RowDoesntStartWithWhitespaceException, ColumnNumberException, Exception
     {
         return p.parseAndValidate(input, req);
     }
 
+    /**
+     *
+     * @param req A list of requirements the world should conform to
+     * @return A World object conforming to these requirements
+     */
     public static World generateRandomWorld(List<CheckRequirement> req)
     {
         GenRandomMap generator = new GenRandomMap(150);
 
-        return generator.createWorld(); //nick needs to sort this out
+        return generator.createWorld();
     }
 }

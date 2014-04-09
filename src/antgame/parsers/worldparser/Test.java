@@ -4,22 +4,18 @@ import antgame.ant.instructions.InstructionSet;
 import antgame.model.World;
 import antgame.parsers.antbrainparser.AntBrainParser;
 import antgame.parsers.antbrainparser.AntBrainParserImp;
-import antgame.world.requirements.CheckRequirement;
-import antgame.world.requirements.RequirementBorder;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.nio.charset.Charset;
 import mainPackage.GameEngine;
-import mainPackage.RandomIntGenerator;
 /**
  *
- * @author Main User
+ * @author ItsTheRai
  */
 public class Test {
     /**
      * @param args the command line arguments
-     * @throws java.io.IOException
+     * @throws java.io.IOException Could not read input
      */
     public static void main(String[] args) throws IOException, Exception {
         Parser p = new ParserImp();
@@ -38,10 +34,11 @@ public class Test {
         GameEngine g = new GameEngine();
         //File f=new File("./data/worlds/properWorlds/1.world");
         File f=new File("./data/worlds/TestingWorlds/tiny.world");
-        g.loadWorld(f);
+        File gamefile = new File("./data/worlds/properWorlds/1.world");
+        g.loadWorld(gamefile);
         File brain = new File("./data/brains/uni-examples/sample.brain");
         
-        g.loadWorld(f);
+        g.loadWorld(gamefile);
         g.initEngine(brain,brain);
         System.out.println("Here we go");
         AntBrainParser antbrain = new AntBrainParserImp();

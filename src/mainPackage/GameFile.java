@@ -6,7 +6,6 @@
 
 package mainPackage;
 
-import antgame.ant.instructions.Instruction;
 import antgame.ant.instructions.InstructionSet;
 import antgame.model.World;
 
@@ -20,6 +19,12 @@ public class GameFile {
     private World emptyWorld;
     private static final int NUMBER_OF_STEPS = 300000;
 
+    /**
+     *
+     * @param redBrain InstructionSet[] representing the red ant brain
+     * @param blackBrain InstructionSet[] representing the black ant brain
+     * @param world World object
+     */
     public GameFile(InstructionSet[] redBrain, InstructionSet[] blackBrain, World world) {
         this.redBrain = redBrain;
         this.blackBrain = blackBrain;
@@ -30,26 +35,50 @@ public class GameFile {
     {
     }
 
+    /**
+     *
+     * @return red ant brain
+     */
     public InstructionSet[] getRedBrain() {
         return redBrain;
     }
 
+    /**
+     *
+     * @param redBrain InstructionSet[] representing the red ant brain
+     */
     public void setRedBrain(InstructionSet[] redBrain) {
         this.redBrain = redBrain;
     }
 
+    /**
+     *
+     * @return black ant brain
+     */
     public InstructionSet[] getBlackBrain() {
         return blackBrain;
     }
 
+    /**
+     *
+     * @param blackBrain InstructionSet[] representing the black ant brain
+     */
     public void setBlackBrain(InstructionSet[] blackBrain) {
         this.blackBrain = blackBrain;
     }
 
+    /**
+     *
+     * @return returns the current World object
+     */
     public World getWorld() {
         return emptyWorld;
     }
 
+    /**
+     *set the current world to world
+     * @param world World object
+     */
     public void setWorld(World world) {
         this.emptyWorld = world;
     }

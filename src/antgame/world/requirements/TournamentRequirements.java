@@ -14,8 +14,11 @@ import java.util.List;
  * @author ItsTheRai
  */
 public class TournamentRequirements {
-    private List<CheckRequirement> requirements;
+    private final List<CheckRequirement> requirements;
 
+    /**
+     * Use this to verify world for tournaments
+     */
     public TournamentRequirements() {
         //initialise all tournament requirements
         requirements = new ArrayList<>();

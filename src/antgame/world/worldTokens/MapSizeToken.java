@@ -9,6 +9,10 @@ import java.util.Objects;
 public class MapSizeToken extends WorldToken{
     private int size;
     
+    /**
+     *
+     * @param size value of the token
+     */
     public MapSizeToken(int size){
         this.size = size;
     }

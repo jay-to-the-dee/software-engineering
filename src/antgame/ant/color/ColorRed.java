@@ -24,7 +24,7 @@ public class ColorRed implements Color{
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof ColorRed;    
+        return obj instanceof ColorRed;
     }
 
     @Override

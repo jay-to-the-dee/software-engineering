@@ -2,7 +2,6 @@ package antgame.world.worldTokens;
 
 import antgame.model.FoodStack;
 import antgame.model.Position;
-import java.util.Stack;
 
 /**
  *
@@ -10,7 +9,12 @@ import java.util.Stack;
  */
 public class RockToken extends TerrainToken{
     //
-    public RockToken(Position position){
+
+    /**
+     *
+     * @param position position of the token in the world
+     */
+        public RockToken(Position position){
         super(true,position,new FoodStack(),false,null);
     }
     

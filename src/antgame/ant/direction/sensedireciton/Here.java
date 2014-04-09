@@ -12,7 +12,7 @@ public class Here implements Direction{
 
     @Override
     public TerrainToken getTileInDirection(World world, Position position,int direction) {
-        return (TerrainToken)world.getTokenAt(position.getXlocation(), position.getYlocation());
+        return world.getTokenAt(position.getXlocation(), position.getYlocation());
     }
 
 

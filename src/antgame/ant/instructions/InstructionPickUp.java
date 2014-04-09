@@ -22,7 +22,7 @@ public class InstructionPickUp extends InstructionSet implements Instruction{
     
     /**
      *
-     * @param ant
+     * @param ant Ant object
      */
     @Override
     public void executeInstruction(Ant ant){

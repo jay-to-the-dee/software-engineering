@@ -16,10 +16,7 @@ public class RedAnthillToken extends AnthillToken{
     
     @Override
     public boolean equals(Object obj) {
-        //if(obj instanceof RedAnthillToken){
-        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
-        //}
-        //else return false;
+        return super.equals(obj);
     }
 
     @Override

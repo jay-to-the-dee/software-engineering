@@ -10,5 +10,10 @@ import java.util.List;
  */
 public interface CheckRequirement {
     
+    /**
+     *
+     * @param world a World object
+     * @return true if world meets requirement, false otherwise
+     */
     public abstract boolean checkRequirements(World world);
 }
