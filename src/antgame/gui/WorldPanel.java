@@ -104,8 +104,6 @@ public final class WorldPanel extends JPanel
         }
     }
 
-    
-
     public void setHexagonSize(int hexagonSize)
     {
         this.hexagonSize = hexagonSize;
@@ -125,7 +123,7 @@ public final class WorldPanel extends JPanel
         AffineTransformOp op60 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
         tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
-        
+
         AffineTransformOp op120 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
         tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
@@ -137,11 +135,8 @@ public final class WorldPanel extends JPanel
         tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
         AffineTransformOp op300 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
-        
-
         antScaledRotate60 = op60.filter(antScaled, null);
-        
-        
+
         antScaledRotate120 = op120.filter(antScaled, null);
 
         antScaledRotate180 = op180.filter(antScaled, null);
@@ -149,9 +144,9 @@ public final class WorldPanel extends JPanel
         antScaledRotate240 = op240.filter(antScaled, null);
 
         antScaledRotate300 = op300.filter(antScaled, null);
-        
+
         bantScaledRotate60 = op60.filter(bantScaled, null);
-        
+
         bantScaledRotate120 = op120.filter(bantScaled, null);
 
         bantScaledRotate180 = op180.filter(bantScaled, null);
@@ -159,9 +154,9 @@ public final class WorldPanel extends JPanel
         bantScaledRotate240 = op240.filter(bantScaled, null);
 
         bantScaledRotate300 = op300.filter(bantScaled, null);
-        
+
         antScaledRotate60 = op60.filter(antScaled, null);
-        
+
         rfantScaledRotate60 = op60.filter(rfantScaled, null);
         rfantScaledRotate120 = op120.filter(rfantScaled, null);
 
@@ -170,7 +165,7 @@ public final class WorldPanel extends JPanel
         rfantScaledRotate240 = op240.filter(rfantScaled, null);
 
         rfantScaledRotate300 = op300.filter(rfantScaled, null);
-        
+
         bfantScaledRotate60 = op60.filter(bfantScaled, null);
         bfantScaledRotate120 = op120.filter(bfantScaled, null);
 
@@ -268,16 +263,15 @@ public final class WorldPanel extends JPanel
                         g2d.translate(hexagonSize * 0.5, 0); //Odd
                     }
                 }
-                //Draw rate debug changing colours
-                //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) Math.random(), 1)));
-                //Pretty colours
-                //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows * j / columns, 1, 1)));
-                //Functional colours
-                //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) j / columns, 1)));
-                //g2d.fill(hexagonShape);
-                g2d.setColor(Color.BLACK);
 
                 TerrainToken token = (TerrainToken) worldtokens[j + i * (world.getWidth())];
+
+                /* Call method to fill in chemical markers/ anthill/ general 
+                 background color */
+                paintCellBackground(g2d, token);
+
+                g2d.setColor(Color.BLACK);
+
                 if (token.hasFood())
                 {
                     g2d.drawImage(foodScaled, null, 0, 0);
@@ -463,5 +457,47 @@ public final class WorldPanel extends JPanel
             }
             g2d.translate(-hexagonSize * columns, 0);
         }
+    }
+
+    private void paintCellBackground(Graphics2D g2d, TerrainToken token)
+    {
+        //Draw rate debug changing colours
+        //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) Math.random(), 1)));
+        //Pretty colours
+        //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows * j / columns, 1, 1)));
+        //Functional colours
+        //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) j / columns, 1)));
+        //g2d.fill(hexagonShape);
+
+        if (token.getMarkers().getBlackAntsmarker().getSetMarkersCount() > 0 || token.getMarkers().getRedAntsmarker().getSetMarkersCount() > 0)
+
+        {
+            paintChemicalMarkers(g2d, token);
+        }
+
+    }
+
+    private void paintChemicalMarkers(Graphics2D g2d, TerrainToken token)
+    {
+        //LEFT: BLACK ANTS
+        GeneralPath[] segmentPaths = HexagonSegmentation.getSegments(hexagonSize, token.getMarkers().getBlackAntsmarker().getSetMarkersCount() + 1);
+        for (int i = 0; i < segmentPaths.length; i++)
+        {
+            g2d.setColor(HexagonSegmentation.blackAntChemicalColors[i]);
+            g2d.fill(segmentPaths[i]);
+        }
+
+        g2d.scale(-1, 1);
+        g2d.translate(-hexagonSize, 0);
+
+        //RIGHT: RED ANTS
+        segmentPaths = HexagonSegmentation.getSegments(hexagonSize, token.getMarkers().getRedAntsmarker().getSetMarkersCount() + 1);
+        for (int i = 0; i < segmentPaths.length; i++)
+        {
+            g2d.setColor(HexagonSegmentation.redAntChemicalColors[i]);
+            g2d.fill(segmentPaths[i]);
+        }
+        g2d.scale(-1, 1);
+        g2d.translate(-hexagonSize, 0);
     }
 }

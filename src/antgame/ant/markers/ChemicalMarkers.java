@@ -1,7 +1,5 @@
 package antgame.ant.markers;
 
-import antgame.ant.color.Color;
-import antgame.model.Position;
 import java.util.Objects;
 
 /**

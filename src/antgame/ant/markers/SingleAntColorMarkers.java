@@ -3,28 +3,41 @@ package antgame.ant.markers;
 import java.util.Arrays;
 
 /**
- *
+ * This represents the chemical markers for a single ant team
  * @author Jonathan Dilks
  */
 public class SingleAntColorMarkers
+{
+    private final boolean[] markers;
+    private static final int numberOfMarkers = 6;
+
+    public SingleAntColorMarkers()
     {
-        private final boolean[] markers;
-        private static final int numberOfMarkers = 6;
+        markers = new boolean[numberOfMarkers];
+    }
 
-        public SingleAntColorMarkers()
-        {
-            markers = new boolean[numberOfMarkers];
-        }
+    public boolean[] getMarkers()
+    {
+        return markers;
+    }
 
-        public boolean[] getMarkers()
-        {
-            return markers;
-        }
+    public void setMarker(int index, boolean value)
+    {
+        markers[index] = value;
+    }
 
-        public void setMarker(int index, boolean value)
+    public int getSetMarkersCount()
+    {
+        int count = 0;
+        for (int i = 0; i < markers.length; i++)
         {
-            markers[index] = value;
+            if (markers[i] == true)
+            {
+                count++;
+            }
         }
+        return count;
+    }
 
     @Override
     public int hashCode() {
@@ -47,6 +60,5 @@ public class SingleAntColorMarkers
         }
         return true;
     }
-        
-        
-    }
+
+}
