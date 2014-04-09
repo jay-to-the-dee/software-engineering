@@ -1,8 +1,5 @@
 package antgame.gui;
 
-import antgame.parsers.exceptions.ColumnNumberException;
-import antgame.parsers.exceptions.RowDoesntStartWithWhitespaceException;
-import antgame.parsers.exceptions.RowNumberException;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -11,8 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import mainPackage.GameEngine;

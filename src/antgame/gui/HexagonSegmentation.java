@@ -11,27 +11,6 @@ import java.awt.geom.GeneralPath;
  */
 public class HexagonSegmentation
 {
-    //TODO: make redder - currently just lighter
-    static final Color[] blackAntChemicalColors =
-    {
-        new Color(86, 94, 205),
-        new Color(176, 86, 205),
-        new Color(205, 86, 111),
-        new Color(205, 183, 86),
-        new Color(106, 205, 86),
-        new Color(86, 205, 197)
-    };
-
-    static final Color[] redAntChemicalColors =
-    {
-        new Color(131, 136, 206),
-        new Color(188, 131, 206),
-        new Color(206, 131, 147),
-        new Color(206, 192, 131),
-        new Color(144, 206, 131),
-        new Color(131, 206, 201)
-    };
-
     public static GeneralPath[] getSegments(int hexagonSize, int markerCount)
     {
         GeneralPath[] segments;

@@ -6,7 +6,6 @@ import antgame.model.World;
 import antgame.world.worldTokens.TerrainToken;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,8 +14,6 @@ import java.awt.geom.GeneralPath;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.EmptyStackException;
-import java.util.LinkedList;
 import java.util.Stack;
 import javax.imageio.*;
 import javax.swing.JPanel;
@@ -76,6 +73,9 @@ public final class WorldPanel extends JPanel
     private BufferedImage bfantScaledRotate300;
     private BufferedImage rfantScaledRotate60;
 
+    /**
+     * Constructs a WorldPanel and displays it
+     */
     public WorldPanel()
     {
         loadImages();
@@ -89,7 +89,7 @@ public final class WorldPanel extends JPanel
         worldtokens = world.getWorldTokens();
     }
 
-    public void loadImages()
+    private void loadImages()
     {
         try
         {
@@ -271,9 +271,9 @@ public final class WorldPanel extends JPanel
 
                 /* Call method to fill in chemical markers/ anthill/ general 
                  background color */
-                paintCellBackground(g2d, token);
+                paintCellBackground(g2d, token, hexagonShape);
 
-                g2d.setColor(Color.BLACK);
+                g2d.setColor(java.awt.Color.BLACK);
 
                 if (token.hasFood())
                 {
@@ -462,7 +462,7 @@ public final class WorldPanel extends JPanel
         }
     }
 
-    private void paintCellBackground(Graphics2D g2d, TerrainToken token)
+    private void paintCellBackground(Graphics2D g2d, TerrainToken token, GeneralPath hexagonShape)
     {
         //Draw rate debug changing colours
         //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) Math.random(), 1)));
@@ -472,7 +472,20 @@ public final class WorldPanel extends JPanel
         //g2d.setColor(new Color(Color.HSBtoRGB((float) i / rows, 1 - (float) j / columns, 1)));
         //g2d.fill(hexagonShape);
 
-        if (token.getMarkers().getBlackAntsmarker().getSetMarkersCount() > 0 || token.getMarkers().getRedAntsmarker().getSetMarkersCount() > 0)
+        if (token.isAnthill())
+        {
+            if (token.getAnthillColor() instanceof antgame.ant.color.ColorBlack)
+            {
+                g2d.setColor(ColourScheme.blackAnthillColor);
+            }
+            else
+            {
+                g2d.setColor(ColourScheme.redAnthillColor);
+            }
+            g2d.fill(hexagonShape);
+
+        }
+        else if (token.getMarkers().getBlackAntsmarker().getSetMarkersCount() > 0 || token.getMarkers().getRedAntsmarker().getSetMarkersCount() > 0)
         {
             paintChemicalMarkers(g2d, token);
         }
@@ -484,7 +497,7 @@ public final class WorldPanel extends JPanel
         GeneralPath[] segmentPaths;
 
         //LEFT: BLACK ANTS
-        Stack<Color> blackColors = getChemicalMarkerColors(token.getMarkers().getBlackAntsmarker().getMarkers(), HexagonSegmentation.blackAntChemicalColors);
+        Stack<java.awt.Color> blackColors = getChemicalMarkerColors(token.getMarkers().getBlackAntsmarker().getMarkers(), ColourScheme.blackAntChemicalColors);
         if (blackColors.size() > 0)
         {
             segmentPaths = HexagonSegmentation.getSegments(hexagonSize, blackColors.size());
@@ -499,7 +512,7 @@ public final class WorldPanel extends JPanel
         g2d.translate(-hexagonSize, 0);
 
         //RIGHT: RED ANTS
-        Stack<Color> redColors = getChemicalMarkerColors(token.getMarkers().getRedAntsmarker().getMarkers(), HexagonSegmentation.redAntChemicalColors);
+        Stack<java.awt.Color> redColors = getChemicalMarkerColors(token.getMarkers().getRedAntsmarker().getMarkers(), ColourScheme.redAntChemicalColors);
         if (redColors.size() > 0)
         {
             segmentPaths = HexagonSegmentation.getSegments(hexagonSize, redColors.size());
@@ -514,9 +527,9 @@ public final class WorldPanel extends JPanel
         g2d.translate(-hexagonSize, 0);
     }
 
-    private Stack<Color> getChemicalMarkerColors(boolean[] markers, Color[] colourLookup)
+    private Stack<java.awt.Color> getChemicalMarkerColors(boolean[] markers, java.awt.Color[] colourLookup)
     {
-        Stack<Color> colors = new Stack<>();
+        Stack<java.awt.Color> colors = new Stack<>();
 
         for (int i = 0; i < markers.length; i++)
         {
