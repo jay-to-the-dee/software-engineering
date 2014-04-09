@@ -8,7 +8,7 @@ import java.awt.Color;
  */
 public class ColourScheme
 {
-    static final Color plainCellColor = Color.WHITE;
+    static final Color plainCellColor = new Color(255, 255, 204);
 
     //TODO: make redder - currently just lighter
     static final Color[] blackAntChemicalColors =

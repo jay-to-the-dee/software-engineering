@@ -145,7 +145,7 @@ public class GameEngine
         return currentWorld.getBlackScore();
     }
 
-    /**
+     /**
      *resets the currentWorld to null
      */
     public static void resetCurrentWorld()
