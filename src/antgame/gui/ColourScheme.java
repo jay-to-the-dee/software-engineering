@@ -32,5 +32,5 @@ public class ColourScheme
     };
 
     static final Color blackAnthillColor = new Color(96, 96, 96);
-    static final Color redAnthillColor = new Color(255, 45, 45);
+    static final Color redAnthillColor = new Color(255, 74, 74);
 }
