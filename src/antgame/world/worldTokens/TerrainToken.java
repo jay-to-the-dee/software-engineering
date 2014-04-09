@@ -171,7 +171,7 @@ public class TerrainToken extends WorldToken{
                 World.increseRedScore();
             }
             else if(colour instanceof ColorBlack){
-                World.increseRedScore();
+                World.increaseBlackScore();
         }
     }
 

@@ -38,7 +38,7 @@ public class Ant {
         facingDirection = 0;
         state = 0;
         isAlive = true;
-        this.position = position;
+        this.position = new Position(position.getXlocation(),position.getYlocation());
         this.world = world;
         this.resting = 0;
         this.ID = antid++;
@@ -122,7 +122,7 @@ public class Ant {
         if (world.getCell(this.position).hasAnt()) {
             //a bit messy
 
-            if (adjacent_ants(this.getColour().otherColor()) >= 2) {
+            if (adjacent_ants(this.getColour().otherColor()) >= 5) {
                 if (this.isHasFood()) {
                     foodParticles++;
                 }
