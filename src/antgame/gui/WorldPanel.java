@@ -9,7 +9,6 @@ import java.awt.BasicStroke;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.image.*;
 import java.io.File;
@@ -51,8 +50,6 @@ public final class WorldPanel extends JPanel
     private BufferedImage antScaledRotate300;
     private BufferedImage bantScaled;
     private BufferedImage bantImg;
-    private BufferedImage fantImg;
-    private BufferedImage fbantImg;
     private BufferedImage bantScaledRotate60;
     private BufferedImage bantScaledRotate300;
     private BufferedImage bantScaledRotate240;
@@ -72,6 +69,27 @@ public final class WorldPanel extends JPanel
     private BufferedImage bfantScaledRotate240;
     private BufferedImage bfantScaledRotate300;
     private BufferedImage rfantScaledRotate60;
+    private BufferedImage bantImg60;
+    private BufferedImage bantImg120;
+    private BufferedImage bantImg180;
+    private BufferedImage bantImg240;
+    private BufferedImage bantImg400;
+    private BufferedImage bantImg300;
+    private BufferedImage bfantImg60;
+    private BufferedImage bfantImg120;
+    private BufferedImage bfantImg180;
+    private BufferedImage bfantImg240;
+    private BufferedImage bfantImg300;
+    private BufferedImage rfantImg60;
+    private BufferedImage rfantImg120;
+    private BufferedImage rfantImg180;
+    private BufferedImage rfantImg240;
+    private BufferedImage rfantImg300;
+    private BufferedImage antImg60;
+    private BufferedImage antImg120;
+    private BufferedImage antImg180;
+    private BufferedImage antImg240;
+    private BufferedImage antImg300;
 
     /**
      * Constructs a WorldPanel and displays it
@@ -94,12 +112,39 @@ public final class WorldPanel extends JPanel
         try
         {
             //antImg = ImageIO.read(getClass().getResource("/resources/images/Sprites/Ant_rotate_0.png"));
-            antImg = ImageIO.read(new File("resources/images/Sprites/Ant/rant.png"));
-            bantImg = ImageIO.read(new File("resources/images/Sprites/Ant/bant.png"));
-            rfantImg = ImageIO.read(new File("resources/images/Sprites/Ant/rfant.png"));
-            bfantImg = ImageIO.read(new File("resources/images/Sprites/Ant/bfant.png"));
+            antImg = ImageIO.read(new File("resources/images/Sprites/Ant/ranten.png"));
+            antImg60 = ImageIO.read(new File("resources/images/Sprites/Ant/ranten60.png"));
+            antImg120 = ImageIO.read(new File("resources/images/Sprites/Ant/ranten120.png"));
+            antImg180 = ImageIO.read(new File("resources/images/Sprites/Ant/ranten180.png"));
+            antImg240 = ImageIO.read(new File("resources/images/Sprites/Ant/ranten240.png"));
+            antImg300 = ImageIO.read(new File("resources/images/Sprites/Ant/ranten300.png"));
+                        
+            
+            bantImg = ImageIO.read(new File("resources/images/Sprites/Ant/banten.png"));
+            bantImg60 = ImageIO.read(new File("resources/images/Sprites/Ant/banten60.png"));
+            bantImg120 = ImageIO.read(new File("resources/images/Sprites/Ant/banten120.png"));
+            bantImg180 = ImageIO.read(new File("resources/images/Sprites/Ant/banten180.png"));
+            bantImg240 = ImageIO.read(new File("resources/images/Sprites/Ant/banten240.png"));
+            bantImg300 = ImageIO.read(new File("resources/images/Sprites/Ant/banten300.png"));
+            
+            rfantImg = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten.png"));
+            rfantImg60 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten60.png"));
+            rfantImg120 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten120.png"));
+            rfantImg180 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten180.png"));
+            rfantImg240 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten240.png"));
+            rfantImg300 = ImageIO.read(new File("resources/images/Sprites/Ant/rfangten300.png"));
+            
+            
+            bfantImg = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten.png"));
+            bfantImg60 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten60.png"));
+            bfantImg120 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten120.png"));
+            bfantImg180 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten180.png"));
+            bfantImg240 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten240.png"));
+            bfantImg300 = ImageIO.read(new File("resources/images/Sprites/Ant/bfangten300.png"));
+            
+            
             rockImg = ImageIO.read(new File("resources/images/Sprites/Rock/Rock_c.png"));
-            foodImg = ImageIO.read(new File("resources/images/Sprites/Food/Food_c.png"));
+            foodImg = ImageIO.read(new File("resources/images/Sprites/Food/Food_f.png"));
         }
         catch (IOException e)
         {
@@ -118,71 +163,36 @@ public final class WorldPanel extends JPanel
         this.hexagonSize = hexagonSize;
         singleSideSize = (float) (hexagonSize / 2 / Math.cos(Math.toRadians(30)));
 
-        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (0.6 * hexagonSize));
-        bantScaled = Scalr.resize(bantImg, Scalr.Method.SPEED, (int) (0.6 * hexagonSize));
-        rfantScaled = Scalr.resize(rfantImg, Scalr.Method.SPEED, (int) (0.6 * hexagonSize));
-        bfantScaled = Scalr.resize(bfantImg, Scalr.Method.SPEED, (int) (0.6 * hexagonSize));
+        antScaled = Scalr.resize(antImg, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bantScaled = Scalr.resize(bantImg, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        rfantScaled = Scalr.resize(rfantImg, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bfantScaled = Scalr.resize(bfantImg, Scalr.Method.SPEED, (int) (1 * hexagonSize));
         rockScaled = Scalr.resize(rockImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
-        foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (.8 * hexagonSize));
+        foodScaled = Scalr.resize(foodImg, Scalr.Method.SPEED, (int) (1. * hexagonSize));
 
-        AffineTransform tx = new AffineTransform();
+        antScaledRotate60 = Scalr.resize(antImg60, Scalr.Method.SPEED, (int) (1* hexagonSize));
+        antScaledRotate120 = Scalr.resize(antImg120, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        antScaledRotate180 = Scalr.resize(antImg180, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        antScaledRotate240 = Scalr.resize(antImg240, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        antScaledRotate300 = Scalr.resize(antImg300, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bantScaledRotate60 = Scalr.resize(bantImg60, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bantScaledRotate120 = Scalr.resize(bantImg120, Scalr.Method.SPEED, (int) (1 * hexagonSize));;
+        bantScaledRotate180 = Scalr.resize(bantImg180, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bantScaledRotate240 = Scalr.resize(bantImg240, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bantScaledRotate300 = Scalr.resize(bantImg300, Scalr.Method.SPEED, (int) (1 * hexagonSize));
 
-        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
+        
+        rfantScaledRotate60 = Scalr.resize(rfantImg60, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        rfantScaledRotate120 = Scalr.resize(rfantImg120, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        rfantScaledRotate180 = Scalr.resize(rfantImg180, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        rfantScaledRotate240 = Scalr.resize(rfantImg240, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        rfantScaledRotate300 = Scalr.resize(rfantImg300, Scalr.Method.SPEED, (int) (1 * hexagonSize));
 
-        AffineTransformOp op60 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
-
-        AffineTransformOp op120 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
-        AffineTransformOp op180 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
-        AffineTransformOp op240 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        tx.rotate(60.0 * Math.PI / 180.0, antScaled.getWidth(), antScaled.getHeight());
-        AffineTransformOp op300 = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        antScaledRotate60 = op60.filter(antScaled, null);
-
-        antScaledRotate120 = op120.filter(antScaled, null);
-
-        antScaledRotate180 = op180.filter(antScaled, null);
-
-        antScaledRotate240 = op240.filter(antScaled, null);
-
-        antScaledRotate300 = op300.filter(antScaled, null);
-
-        bantScaledRotate60 = op60.filter(bantScaled, null);
-
-        bantScaledRotate120 = op120.filter(bantScaled, null);
-
-        bantScaledRotate180 = op180.filter(bantScaled, null);
-
-        bantScaledRotate240 = op240.filter(bantScaled, null);
-
-        bantScaledRotate300 = op300.filter(bantScaled, null);
-
-        antScaledRotate60 = op60.filter(antScaled, null);
-
-        rfantScaledRotate60 = op60.filter(rfantScaled, null);
-        rfantScaledRotate120 = op120.filter(rfantScaled, null);
-
-        rfantScaledRotate180 = op180.filter(rfantScaled, null);
-
-        rfantScaledRotate240 = op240.filter(rfantScaled, null);
-
-        rfantScaledRotate300 = op300.filter(rfantScaled, null);
-
-        bfantScaledRotate60 = op60.filter(bfantScaled, null);
-        bfantScaledRotate120 = op120.filter(bfantScaled, null);
-
-        bfantScaledRotate180 = op180.filter(bfantScaled, null);
-
-        bfantScaledRotate240 = op240.filter(bfantScaled, null);
-
-        bfantScaledRotate300 = op300.filter(bfantScaled, null);
+        bfantScaledRotate60 = Scalr.resize(bfantImg60, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bfantScaledRotate120 = Scalr.resize(bfantImg120, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bfantScaledRotate180 = Scalr.resize(bfantImg180, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bfantScaledRotate240 = Scalr.resize(bfantImg240, Scalr.Method.SPEED, (int) (1 * hexagonSize));
+        bfantScaledRotate300 = Scalr.resize(bfantImg300, Scalr.Method.SPEED, (int) (1 * hexagonSize));
 
         forceRedraw();
     }
@@ -300,6 +310,7 @@ public final class WorldPanel extends JPanel
                 }
                 else if (token.hasAnt())
                 {
+                    
                     dirrect = token.getAnt().getDirection();//getDirection
 
                     if (token.getAnt().isHasFood())
@@ -462,6 +473,7 @@ public final class WorldPanel extends JPanel
                             //Draw red ant.
                         }
                     }
+                    
                 }
 
                 else
