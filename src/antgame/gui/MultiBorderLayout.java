@@ -14,9 +14,11 @@ import java.util.List;
 /**
  * Extends BorderLayout with multiple components in the northList,
  * southList, eastList, westList and centerList. Layout is used for
- * correct working multiple
- * toolbars.
- *
+ * correct working multiple tool-bars.
+ * 
+ * From http://brixomatic.wordpress.com/2013/03/18/multiple-floating-toolbars-with-swing/
+ * This class was NOT written by Up The Ante or it's team members!
+ * 
  * @author Stanislav Lapitsky (basic idea)
  * @author Wanja Gayk (major rework, layout change)
  * @version 2.0
