@@ -9,7 +9,7 @@ import java.awt.Color;
  */
 public class ColourScheme
 {
-    static final Color plainCellColor = new Color(255, 255, 204);
+    static final Color plainCellColor = new Color(250, 250, 230);
 
     static final Color[] blackAntChemicalColors =
     {
