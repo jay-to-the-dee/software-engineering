@@ -99,7 +99,7 @@ public class MainScreen extends javax.swing.JFrame
 
         roundPerSecondSetter.setMaximum(59);
         roundPerSecondSetter.setToolTipText("Game rounds/second");
-        roundPerSecondSetter.setValue(26);
+        roundPerSecondSetter.setValue(31);
         roundPerSecondSetter.setName("roundPerSecondSetter"); // NOI18N
         gameSpeedToolbar.add(roundPerSecondSetter);
 
