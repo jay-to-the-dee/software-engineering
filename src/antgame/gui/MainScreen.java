@@ -961,19 +961,19 @@ public class MainScreen extends javax.swing.JFrame
                 {
                     redResult = Result.WIN;
                     blackResult = Result.LOSE;
-                    string = "Red win";
+                    string = "Red win!";
                 }
                 else if (gameEngine.getRedScore() < gameEngine.getBlackScore())
                 {
                     blackResult = Result.WIN;
                     redResult = Result.LOSE;
-                    string = "Black win";
+                    string = "Black win!";
                 }
                 else
                 {
                     blackResult = Result.DRAW;
                     redResult = Result.DRAW;
-                    string = "Draw";
+                    string = "Draw!";
                 }
 
                 if (!inTournamentMode)
