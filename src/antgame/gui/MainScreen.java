@@ -395,6 +395,8 @@ public class MainScreen extends javax.swing.JFrame
                 try
                 {
                     (gameExecutionThread = new GameExecutionThread()).execute();
+                    //Stop user messing with GUI during run
+                    toggleFileOptionsEnabled(false);
                 }
                 catch (Exception ex)
                 {
@@ -510,6 +512,9 @@ public class MainScreen extends javax.swing.JFrame
         pauseMenuItem.setEnabled(false);
         resetMenuItem.setEnabled(false);
 
+        //Re-enable disabled menu
+        toggleFileOptionsEnabled(true);
+        
         gameExecutionThread.cancel(true);
         gameExecutionThread = null;
         simulationOverallProgess.setValue(0);
@@ -678,6 +683,14 @@ public class MainScreen extends javax.swing.JFrame
         setWorldSizeAndDisplaySize();
         updateGameStats();
         worldPanel.repaint();
+    }
+
+    private void toggleFileOptionsEnabled(boolean setEnabled)
+    {
+        loadWorldMenuItem.setEnabled(setEnabled);
+        loadRandomWorldMenuItem.setEnabled(setEnabled);
+        loadBlackAntBrainMenuItem.setEnabled(setEnabled);
+        loadRedAntBrainMenuItem.setEnabled(setEnabled);
     }
 
     private void updateGameStats()
