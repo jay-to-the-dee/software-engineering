@@ -311,63 +311,64 @@ public final class WorldPanel extends JPanel
 
                     dirrect = token.getAnt().getDirection();//getDirection
 
-                    if (token.getAnt().isHasFood())
-                    { //.isHasFood
-                        if (token.hasFood())
-                        {
-                            if (token.getAnt().getColour() instanceof ColorRed)
-                            {//.getColour
-                                switch (dirrect)
+                    try
+                    {
+                        if (token.getAnt().isHasFood())
+                        { //.isHasFood
+                            if (token.hasFood())
+                            {
+                                if (token.getAnt().getColour() instanceof ColorRed)
+                                {//.getColour
+                                    switch (dirrect)
+                                    {
+                                        case 0:
+                                            g2d.drawImage(rfantScaled, null, 0, 0);
+                                            break;
+                                        case 1:
+                                            g2d.drawImage(rfantScaledRotate60, null, 0, 0);
+                                            break;
+                                        case 2:
+                                            g2d.drawImage(rfantScaledRotate120, null, 0, 0);
+                                            break;
+                                        case 3:
+                                            g2d.drawImage(rfantScaledRotate180, null, 0, 0);
+                                            break;
+                                        case 4:
+                                            g2d.drawImage(rfantScaledRotate240, null, 0, 0);
+                                            break;
+                                        case 5:
+                                            g2d.drawImage(rfantScaledRotate300, null, 0, 0);
+                                            break;
+                                    }
+                                }
+                                else
                                 {
-                                    case 0:
-                                        g2d.drawImage(rfantScaled, null, 0, 0);
-                                        break;
-                                    case 1:
-                                        g2d.drawImage(rfantScaledRotate60, null, 0, 0);
-                                        break;
-                                    case 2:
-                                        g2d.drawImage(rfantScaledRotate120, null, 0, 0);
-                                        break;
-                                    case 3:
-                                        g2d.drawImage(rfantScaledRotate180, null, 0, 0);
-                                        break;
-                                    case 4:
-                                        g2d.drawImage(rfantScaledRotate240, null, 0, 0);
-                                        break;
-                                    case 5:
-                                        g2d.drawImage(rfantScaledRotate300, null, 0, 0);
-                                        break;
+                                    switch (dirrect)
+                                    {
+                                        case 0:
+                                            g2d.drawImage(bfantScaled, null, 0, 0);
+                                            break;
+                                        case 1:
+                                            g2d.drawImage(bfantScaledRotate60, null, 0, 0);
+                                            break;
+                                        case 2:
+                                            g2d.drawImage(bfantScaledRotate120, null, 0, 0);
+                                            break;
+                                        case 3:
+                                            g2d.drawImage(bfantScaledRotate180, null, 0, 0);
+                                            break;
+                                        case 4:
+                                            g2d.drawImage(bfantScaledRotate240, null, 0, 0);
+                                            break;
+                                        case 5:
+                                            g2d.drawImage(bfantScaledRotate300, null, 0, 0);
+                                            break;
+                                    }
                                 }
                             }
                             else
                             {
-                                switch (dirrect)
-                                {
-                                    case 0:
-                                        g2d.drawImage(bfantScaled, null, 0, 0);
-                                        break;
-                                    case 1:
-                                        g2d.drawImage(bfantScaledRotate60, null, 0, 0);
-                                        break;
-                                    case 2:
-                                        g2d.drawImage(bfantScaledRotate120, null, 0, 0);
-                                        break;
-                                    case 3:
-                                        g2d.drawImage(bfantScaledRotate180, null, 0, 0);
-                                        break;
-                                    case 4:
-                                        g2d.drawImage(bfantScaledRotate240, null, 0, 0);
-                                        break;
-                                    case 5:
-                                        g2d.drawImage(bfantScaledRotate300, null, 0, 0);
-                                        break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            try
-                            {
+
                                 if (token.getAnt().getColour() instanceof ColorBlack)
                                 {
                                     switch (dirrect)
@@ -418,69 +419,69 @@ public final class WorldPanel extends JPanel
                                     }
                                     //Draw red ant with food.
                                 }
-                            }
-                            catch (NullPointerException e)
-                            {
-                                
+
                             }
                         }
-                    }
-                    else
-                    {
-                        if (token.getAnt().getColour() instanceof ColorBlack)//not sure about the chosen colors here
-                        {
-                            switch (dirrect)
-                            {
-                                case 0:
-                                    g2d.drawImage(bantScaled, null, 0, 0);
-                                    break;
-                                case 1:
-                                    g2d.drawImage(bantScaledRotate60, null, 0, 0);
-                                    break;
-                                case 2:
-                                    g2d.drawImage(bantScaledRotate120, null, 0, 0);
-                                    break;
-                                case 3:
-                                    g2d.drawImage(bantScaledRotate180, null, 0, 0);
-                                    break;
-                                case 4:
-                                    g2d.drawImage(bantScaledRotate240, null, 0, 0);
-                                    break;
-                                case 5:
-                                    g2d.drawImage(bantScaledRotate300, null, 0, 0);
-                                    break;
-                            }
-                            //Draw black ant.
-                        }
+
                         else
                         {
-                            switch (dirrect)
+                            if (token.getAnt().getColour() instanceof ColorBlack)//not sure about the chosen colors here
                             {
-                                case 0:
-                                    g2d.drawImage(antScaled, null, 0, 0);
-                                    break;
-                                case 1:
-                                    g2d.drawImage(antScaledRotate60, null, 0, 0);
-                                    break;
-                                case 2:
-                                    g2d.drawImage(antScaledRotate120, null, 0, 0);
-                                    break;
-                                case 3:
-                                    g2d.drawImage(antScaledRotate180, null, 0, 0);
-                                    break;
-                                case 4:
-                                    g2d.drawImage(antScaledRotate240, null, 0, 0);
-                                    break;
-                                case 5:
-                                    g2d.drawImage(antScaledRotate300, null, 0, 0);
-                                    break;
+                                switch (dirrect)
+                                {
+                                    case 0:
+                                        g2d.drawImage(bantScaled, null, 0, 0);
+                                        break;
+                                    case 1:
+                                        g2d.drawImage(bantScaledRotate60, null, 0, 0);
+                                        break;
+                                    case 2:
+                                        g2d.drawImage(bantScaledRotate120, null, 0, 0);
+                                        break;
+                                    case 3:
+                                        g2d.drawImage(bantScaledRotate180, null, 0, 0);
+                                        break;
+                                    case 4:
+                                        g2d.drawImage(bantScaledRotate240, null, 0, 0);
+                                        break;
+                                    case 5:
+                                        g2d.drawImage(bantScaledRotate300, null, 0, 0);
+                                        break;
+                                }
+                                //Draw black ant.
                             }
-                            //Draw red ant.
+                            else
+                            {
+                                switch (dirrect)
+                                {
+                                    case 0:
+                                        g2d.drawImage(antScaled, null, 0, 0);
+                                        break;
+                                    case 1:
+                                        g2d.drawImage(antScaledRotate60, null, 0, 0);
+                                        break;
+                                    case 2:
+                                        g2d.drawImage(antScaledRotate120, null, 0, 0);
+                                        break;
+                                    case 3:
+                                        g2d.drawImage(antScaledRotate180, null, 0, 0);
+                                        break;
+                                    case 4:
+                                        g2d.drawImage(antScaledRotate240, null, 0, 0);
+                                        break;
+                                    case 5:
+                                        g2d.drawImage(antScaledRotate300, null, 0, 0);
+                                        break;
+                                }
+                                //Draw red ant.
+                            }
                         }
                     }
-
+                    catch (NullPointerException e)
+                    {
+                        //Fixes bug #33
+                    }
                 }
-
                 else
                 {
 

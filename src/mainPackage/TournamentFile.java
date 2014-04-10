@@ -31,7 +31,7 @@ public class TournamentFile
     {
         this.brainFile = brainFile;
         brainsBattled = new ArrayList<>();
-        //it can't battle itself so say it has
+        //it can't battle itself so say it has already
         brainsBattled.add(this);
     }
 
