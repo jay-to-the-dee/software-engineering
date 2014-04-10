@@ -1,7 +1,7 @@
-/*
- */
-
 package antgame.gui;
+
+import java.util.ArrayList;
+import mainPackage.TournamentFile;
 
 /**
  *
@@ -10,12 +10,19 @@ package antgame.gui;
 public class TournamentStatsFloat extends javax.swing.JPanel
 {
 
+    private ArrayList tournamentFiles;
+    
     /**
      * Creates new form TournamentStatusFloat
      */
     public TournamentStatsFloat()
     {
         initComponents();
+    }
+
+    public void setTournamentFiles(ArrayList tournamentFiles)
+    {
+        this.tournamentFiles = tournamentFiles;
     }
 
     /**

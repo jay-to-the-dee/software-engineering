@@ -1,6 +1,8 @@
 package antgame.gui;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import mainPackage.TournamentFile;
@@ -13,9 +15,10 @@ public class TournamentUpload extends javax.swing.JFrame
 {
     private DefaultListModel<TournamentFile> brainList;
     private MainScreen mainScreen;
-    
+
     /**
      * Creates new form TournamentUpload
+     *
      * @param mainScreen pass in the MainScreen that called this window
      */
     public TournamentUpload(MainScreen mainScreen)
@@ -138,7 +141,17 @@ public class TournamentUpload extends javax.swing.JFrame
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_acceptButtonActionPerformed
     {//GEN-HEADEREND:event_acceptButtonActionPerformed
         mainScreen.tournamentStatsToolbar.setVisible(true);
-        
+
+        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        Enumeration<TournamentFile> enumeration = model.elements();
+        ArrayList<TournamentFile> allFiles = new ArrayList<>();
+
+        while (enumeration.hasMoreElements())
+        {
+            allFiles.add(enumeration.nextElement());
+        }
+
+        mainScreen.tournamentStatsFloat.setTournamentFiles(allFiles);
         dispose();
     }//GEN-LAST:event_acceptButtonActionPerformed
 
@@ -167,13 +180,13 @@ public class TournamentUpload extends javax.swing.JFrame
         {
             return;
         }
-        
+
         File selectedFile = fc.getSelectedFile();
-        
+
         TournamentFile tournamentFile = new TournamentFile(selectedFile);
-        
+
         DefaultListModel model = (DefaultListModel) jList1.getModel();
-        
+
         model.addElement(tournamentFile);
     }//GEN-LAST:event_addFileButtonActionPerformed
 

@@ -987,7 +987,7 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
     private javax.swing.JMenuItem startTournamentModeMenuItem;
-    private antgame.gui.TournamentStatsFloat tournamentStatsFloat;
+    antgame.gui.TournamentStatsFloat tournamentStatsFloat;
     javax.swing.JToolBar tournamentStatsToolbar;
     private javax.swing.JMenu viewMenu;
     private antgame.gui.WorldPanel worldPanel;
