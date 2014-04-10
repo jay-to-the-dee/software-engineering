@@ -901,8 +901,8 @@ public class MainScreen extends javax.swing.JFrame
                     sleepTime = 0;
                 }
 
-                Thread.sleep(sleepTime);
                 publish();
+                Thread.sleep(sleepTime);
             }
             return null;
         }
