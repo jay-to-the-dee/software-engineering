@@ -79,6 +79,7 @@ public class MainScreen extends javax.swing.JFrame
         loadRandomWorldMenuItem = new javax.swing.JMenuItem();
         loadBlackAntBrainMenuItem = new javax.swing.JMenuItem();
         loadRedAntBrainMenuItem = new javax.swing.JMenuItem();
+        startTournamentModeMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
         simulationMenu = new javax.swing.JMenu();
@@ -248,6 +249,17 @@ public class MainScreen extends javax.swing.JFrame
             }
         });
         fileMenu.add(loadRedAntBrainMenuItem);
+
+        startTournamentModeMenuItem.setMnemonic('t');
+        startTournamentModeMenuItem.setText("Start Tournament Mode");
+        startTournamentModeMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                startTournamentModeMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(startTournamentModeMenuItem);
         fileMenu.add(jSeparator2);
 
         exitMenuItem.setMnemonic('x');
@@ -514,7 +526,7 @@ public class MainScreen extends javax.swing.JFrame
 
         //Re-enable disabled menu
         toggleFileOptionsEnabled(true);
-        
+
         gameExecutionThread.cancel(true);
         gameExecutionThread = null;
         simulationOverallProgess.setValue(0);
@@ -631,6 +643,13 @@ public class MainScreen extends javax.swing.JFrame
         }
     }//GEN-LAST:event_loadRandomWorldMenuItemActionPerformed
 
+    private void startTournamentModeMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startTournamentModeMenuItemActionPerformed
+    {//GEN-HEADEREND:event_startTournamentModeMenuItemActionPerformed
+        TournamentUpload tournamentUpload = new TournamentUpload();
+        tournamentUpload.setLocationRelativeTo(null);
+        tournamentUpload.setVisible(true);
+    }//GEN-LAST:event_startTournamentModeMenuItemActionPerformed
+
     private String simulationOverallProgessStringUpdate()
     {
         NumberFormat nf = NumberFormat.getInstance();
@@ -691,6 +710,7 @@ public class MainScreen extends javax.swing.JFrame
         loadRandomWorldMenuItem.setEnabled(setEnabled);
         loadBlackAntBrainMenuItem.setEnabled(setEnabled);
         loadRedAntBrainMenuItem.setEnabled(setEnabled);
+        startTournamentModeMenuItem.setEnabled(setEnabled);
     }
 
     private void updateGameStats()
@@ -953,6 +973,7 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenu simulationMenu;
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
+    private javax.swing.JMenuItem startTournamentModeMenuItem;
     private javax.swing.JMenu viewMenu;
     private antgame.gui.WorldPanel worldPanel;
     private javax.swing.JScrollPane worldPanelScrollPane;
