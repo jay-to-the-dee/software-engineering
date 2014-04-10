@@ -51,12 +51,19 @@ public class TournamentStatsFloat extends javax.swing.JPanel
             model.removeRow(i);
         }
 
-        for (TournamentFile tournamentFile : tournamentFiles)
+        try
         {
-            model.addRow(new Object[]
+            for (TournamentFile tournamentFile : tournamentFiles)
             {
-                tournamentFile.toString(), tournamentFile.getWins(), tournamentFile.getDraws(), tournamentFile.getLoses()
-            });
+                model.addRow(new Object[]
+                {
+                    tournamentFile.toString(), tournamentFile.getWins(), tournamentFile.getDraws(), tournamentFile.getLoses()
+                });
+            }
+        }
+        catch (NullPointerException e)
+        {
+            // tournamentFile is just empty - ignore
         }
     }
 
@@ -234,7 +241,7 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     private void startTournamentButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startTournamentButtonActionPerformed
     {//GEN-HEADEREND:event_startTournamentButtonActionPerformed
         startTournamentButton.setEnabled(false);
-        
+
         blackBrain = tournamentFiles.get(0);
         redBrain = tournamentFiles.get(1);
 
