@@ -72,6 +72,8 @@ public class MainScreen extends javax.swing.JFrame
         zoomSlider = new javax.swing.JSlider();
         gameStatsToolbar = new javax.swing.JToolBar();
         gameStatsPanelFloat = new antgame.gui.GameStatsPanelFloat();
+        tournamentStatsToolbar = new javax.swing.JToolBar();
+        tournamentStatsFloat = new antgame.gui.TournamentStatsFloat();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadWorldMenuItem = new javax.swing.JMenuItem();
@@ -167,11 +169,11 @@ public class MainScreen extends javax.swing.JFrame
         worldPanel.setLayout(worldPanelLayout);
         worldPanelLayout.setHorizontalGroup(
             worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 3011, Short.MAX_VALUE)
+            .addGap(0, 546, Short.MAX_VALUE)
         );
         worldPanelLayout.setVerticalGroup(
             worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2605, Short.MAX_VALUE)
+            .addGap(0, 523, Short.MAX_VALUE)
         );
 
         worldPanelScrollPane.setViewportView(worldPanel);
@@ -197,6 +199,17 @@ public class MainScreen extends javax.swing.JFrame
         gameStatsToolbar.add(gameStatsPanelFloat);
 
         getContentPane().add(gameStatsToolbar, java.awt.BorderLayout.EAST);
+
+        tournamentStatsToolbar.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        tournamentStatsToolbar.setRollover(true);
+        tournamentStatsToolbar.setFocusable(false);
+        tournamentStatsToolbar.setName("Tournament Stats"); // NOI18N
+
+        tournamentStatsFloat.setPreferredSize(new java.awt.Dimension(250, 494));
+        tournamentStatsFloat.setVisible(false);
+        tournamentStatsToolbar.add(tournamentStatsFloat);
+
+        getContentPane().add(tournamentStatsToolbar, java.awt.BorderLayout.EAST);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -974,6 +987,8 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
     private javax.swing.JMenuItem startTournamentModeMenuItem;
+    private antgame.gui.TournamentStatsFloat tournamentStatsFloat;
+    private javax.swing.JToolBar tournamentStatsToolbar;
     private javax.swing.JMenu viewMenu;
     private antgame.gui.WorldPanel worldPanel;
     private javax.swing.JScrollPane worldPanelScrollPane;
