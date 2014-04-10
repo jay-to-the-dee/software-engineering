@@ -92,7 +92,7 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     {
         updateResults(blackResult, redResult);
 
-        if (battleFirstRound = true)
+        if (battleFirstRound)
         {
             battleFirstRound = false;
             battleTwoBrainFiles();
@@ -100,7 +100,10 @@ public class TournamentStatsFloat extends javax.swing.JPanel
         else
         {
             battleFirstRound = true;
-            //TODO: NEXT BATTLE!
+
+            //Set battled status
+            redBrain.addBrainBattled(blackBrain);
+            blackBrain.addBrainBattled(redBrain);
         }
 
     }
@@ -148,11 +151,9 @@ public class TournamentStatsFloat extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         statsTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         startTournamentButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        endTournamentButton = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout(5, 5));
 
@@ -203,12 +204,6 @@ public class TournamentStatsFloat extends javax.swing.JPanel
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jTextArea1.setColumns(15);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
-
         jPanel2.setLayout(new java.awt.GridLayout(1, 2));
 
         startTournamentButton.setText("Start");
@@ -221,8 +216,15 @@ public class TournamentStatsFloat extends javax.swing.JPanel
         });
         jPanel2.add(startTournamentButton);
 
-        jButton1.setText("End");
-        jPanel2.add(jButton1);
+        endTournamentButton.setText("End");
+        endTournamentButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                endTournamentButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(endTournamentButton);
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.SOUTH);
 
@@ -233,21 +235,28 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     {//GEN-HEADEREND:event_startTournamentButtonActionPerformed
         blackBrain = tournamentFiles.get(0);
         redBrain = tournamentFiles.get(1);
-        
+
         mainScreen.setInTournamentMode(true);
         mainScreen.setMaxSpeed();
-                
+
         battleTwoBrainFiles();
     }//GEN-LAST:event_startTournamentButtonActionPerformed
 
+    private void endTournamentButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_endTournamentButtonActionPerformed
+    {//GEN-HEADEREND:event_endTournamentButtonActionPerformed
+        mainScreen.tournamentStatsToolbar.setVisible(false);
+        mainScreen.setInTournamentMode(false);
+        battleFirstRound = true;
+        tournamentFiles = null;
+        updateTable();
+    }//GEN-LAST:event_endTournamentButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton endTournamentButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton startTournamentButton;
     private javax.swing.JTable statsTable;
     // End of variables declaration//GEN-END:variables

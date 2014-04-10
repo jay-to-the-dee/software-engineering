@@ -67,8 +67,8 @@ public class TournamentUpload extends javax.swing.JFrame
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
-        acceptButton.setMnemonic('R');
-        acceptButton.setText("Accept & run!");
+        acceptButton.setMnemonic('a');
+        acceptButton.setText("Accept");
         acceptButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -85,7 +85,7 @@ public class TournamentUpload extends javax.swing.JFrame
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(acceptButton, gridBagConstraints);
 
-        addFileButton.setMnemonic('a');
+        addFileButton.setMnemonic('d');
         addFileButton.setText("Add file");
         addFileButton.addActionListener(new java.awt.event.ActionListener()
         {

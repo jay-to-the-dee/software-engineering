@@ -47,8 +47,8 @@
     </Container>
     <Component class="javax.swing.JButton" name="acceptButton">
       <Properties>
-        <Property name="mnemonic" type="int" value="82"/>
-        <Property name="text" type="java.lang.String" value="Accept &amp; run!"/>
+        <Property name="mnemonic" type="int" value="97"/>
+        <Property name="text" type="java.lang.String" value="Accept"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acceptButtonActionPerformed"/>
@@ -61,7 +61,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="addFileButton">
       <Properties>
-        <Property name="mnemonic" type="int" value="97"/>
+        <Property name="mnemonic" type="int" value="100"/>
         <Property name="text" type="java.lang.String" value="Add file"/>
       </Properties>
       <Events>

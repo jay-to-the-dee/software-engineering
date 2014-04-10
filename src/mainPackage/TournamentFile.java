@@ -1,6 +1,7 @@
 package mainPackage;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,10 +14,23 @@ public class TournamentFile
     private int wins;
     private int draws;
     private int loses;
+    
+    ArrayList<TournamentFile> brainsBattled;
+
+    public void addBrainBattled(TournamentFile brainBattled)
+    {
+        brainsBattled.add(brainBattled);
+    }
+
+    public ArrayList<TournamentFile> getBrainsBattled()
+    {
+        return brainsBattled;
+    }
 
     public TournamentFile(File brainFile)
     {
         this.brainFile = brainFile;
+        brainsBattled = new ArrayList<>();
     }
 
     public File getBrainFile()
@@ -59,7 +73,5 @@ public class TournamentFile
     {
         loses++;
     }
-    
-    
-    
+       
 }
