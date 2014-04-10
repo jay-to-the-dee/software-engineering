@@ -12,7 +12,7 @@ import antgame.world.worldTokens.TerrainToken;
 
 /**
  *
- * @author Main User
+ * @author ItsTheRai
  */
 public class WorldTestClass2 implements WorldTestClass{
     public WorldTestClass2(){

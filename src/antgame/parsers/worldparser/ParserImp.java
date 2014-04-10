@@ -42,32 +42,16 @@ public class ParserImp implements Parser{
     //init list that stores all parsed tokens
     private List<WorldToken> world = new ArrayList<>();
     @Override
-    public World parse(String input) throws RowNumberException,RowDoesntStartWithWhitespaceException, ColumnNumberException{
+    public World parse(String input) throws RowNumberException,RowDoesntStartWithWhitespaceException, ColumnNumberException,EmptyLineException,NotAnIntException,LineHasNotJustIntegersException,SpecifierNotRecognisedException,UnsupportedSizeOfSpecifierException{
         //should get n+2
         for (String s: input.split("\\r?\\n|\\r")){
             rowQueue.add(s);
         }
-        try {
+        
             //line 1 for xsize
             //line 2 for ysize
             world.add((getSize(rowQueue.remove().toString())));
-        } catch (EmptyLineException ex) {
-            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotAnIntException ex) {
-            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineHasNotJustIntegersException ex) {
-            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
             world.add(getSize(rowQueue.remove().toString()));
-        } catch (LineHasNotJustIntegersException ex) {
-            //TODO
-            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (EmptyLineException ex) {
-            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotAnIntException ex) {
-            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
         //now each object in the queue should contain xsize number of elements
         //and there should be ysize number of objects in the queue alltogether
         //so do a check
@@ -93,8 +77,12 @@ public class ParserImp implements Parser{
             }
             int row=1;
             //we assume that more than one whitespace is allowed between cell specifiers
+            if (rowString==""||rowString.isEmpty()){
+                    throw new EmptyLineException("Line "+(row-1)+" es empty");
+            }else{
             for(String s:rowString.split("\\s+")){
                 comlumnQueue.add(s);
+            }
             }
             if (comlumnQueue.size()!=((MapSizeToken)world.get(0)).getSize()){
                 throw new ColumnNumberException("File states that there are "+
@@ -104,13 +92,8 @@ public class ParserImp implements Parser{
             //parse the current row
             else {
                 while(!comlumnQueue.isEmpty()){
-                    try {//TODO handle exceptions
                         getWorldTokens(comlumnQueue.remove().toString(),row-1,column-1);
-                    } catch (UnsupportedSizeOfSpecifierException ex) {
-                        Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SpecifierNotRecognisedException ex) {
-                        Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    
                     row++;
                 }
             }
@@ -173,7 +156,7 @@ public class ParserImp implements Parser{
      * @throws UnsupportedSizeOfSpecifierException cell specifier of wrong size
      * @throws SpecifierNotRecognisedException Could not recognise specifier
      */
-    public void getWorldTokens(String s,int xposition, int yposition) throws UnsupportedSizeOfSpecifierException, SpecifierNotRecognisedException{
+    public void getWorldTokens(String s,int xposition, int yposition) throws UnsupportedSizeOfSpecifierException, SpecifierNotRecognisedException,EmptyLineException{
         if(s.length()!=1){
             throw new UnsupportedSizeOfSpecifierException(s+ "is not a valid cell specifier or is missing a whitespace");
         }
