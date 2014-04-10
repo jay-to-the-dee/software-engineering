@@ -207,6 +207,7 @@ public class MainScreen extends javax.swing.JFrame
 
         tournamentStatsFloat.setPreferredSize(new java.awt.Dimension(250, 494));
         tournamentStatsToolbar.add(tournamentStatsFloat);
+        tournamentStatsFloat.setMainScreen(this);
 
         tournamentStatsToolbar.setVisible(false);
         getContentPane().add(tournamentStatsToolbar, java.awt.BorderLayout.EAST);
@@ -524,6 +525,20 @@ public class MainScreen extends javax.swing.JFrame
             gameStatsPanelFloat.redBrainFilename.setToolTipText(redBrainFile.getPath());
         }
     }//GEN-LAST:event_loadRedAntBrainMenuItemActionPerformed
+
+    public void setBlackBrainFile(File brainFile)
+    {
+        blackBrainFile = brainFile;
+        gameStatsPanelFloat.blackBrainFilename.setText(blackBrainFile.getName());
+        gameStatsPanelFloat.blackBrainFilename.setToolTipText(blackBrainFile.getPath());
+    }
+
+    public void setRedBrainFile(File brainFile)
+    {
+        redBrainFile = brainFile;
+        gameStatsPanelFloat.redBrainFilename.setText(redBrainFile.getName());
+        gameStatsPanelFloat.redBrainFilename.setToolTipText(redBrainFile.getPath());
+    }
 
     private void exitApplication(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitApplication
     {//GEN-HEADEREND:event_exitApplication
@@ -975,7 +990,7 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuItem loadBlackAntBrainMenuItem;
-    private javax.swing.JMenuItem loadRandomWorldMenuItem;
+    javax.swing.JMenuItem loadRandomWorldMenuItem;
     private javax.swing.JMenuItem loadRedAntBrainMenuItem;
     private javax.swing.JMenuItem loadWorldMenuItem;
     private javax.swing.JMenuBar mainMenuBar;
@@ -985,7 +1000,7 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JSlider roundPerSecondSetter;
     private javax.swing.JMenu simulationMenu;
     private javax.swing.JProgressBar simulationOverallProgess;
-    private javax.swing.JMenuItem startMenuItem;
+    javax.swing.JMenuItem startMenuItem;
     private javax.swing.JMenuItem startTournamentModeMenuItem;
     antgame.gui.TournamentStatsFloat tournamentStatsFloat;
     javax.swing.JToolBar tournamentStatsToolbar;
