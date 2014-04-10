@@ -75,8 +75,7 @@ public class GameEngine
 
         gameFile.setWorld(WorldFactory.loadWorld(pav, input, ls));
 
-        //set world in cache as current world
-        currentWorld = gameFile.getWorld();
+        setWorld();
     }
 
     /**
@@ -92,8 +91,7 @@ public class GameEngine
 
         gameFile.setWorld(WorldFactory.generateRandomWorld(ls));
 
-        //set world in cache as current world
-        currentWorld = gameFile.getWorld();
+        setWorld();
     }
 
     //Populates the world with ants
@@ -157,8 +155,20 @@ public class GameEngine
     /**
      * resets the currentWorld to null
      */
-    public static void resetCurrentWorld()
+    public static void clearCurrentWorld()
     {
         GameEngine.currentWorld = null;
     }
+
+    private void setWorld()
+    {
+        //set world in cache as current world
+        currentWorld = gameFile.getWorld();
+    }
+
+    public void setCurrentWorld(World backupWorld)
+    {
+        GameEngine.currentWorld = backupWorld;
+    }
+
 }

@@ -1,5 +1,6 @@
 package antgame.gui;
 
+import com.rits.cloning.Cloner;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -22,7 +23,7 @@ import org.jdesktop.beansbinding.Converter;
 public class MainScreen extends javax.swing.JFrame
 {
     final private static int UPDATES_PER_SECOND = 20;
-    final public static int TOTAL_ROUNDS = 300000;
+    final private static int TOTAL_ROUNDS = 300000;
     final private static String ICON_IMAGE_PATH = "resources/images/App_Icon/icon128.png";
 
     private GameExecutionThread gameExecutionThread;
@@ -32,9 +33,10 @@ public class MainScreen extends javax.swing.JFrame
     private int startX;
     private int startY;
 
-    private File worldFile;
+    private boolean worldFileSet;
     private File blackBrainFile;
     private File redBrainFile;
+    private antgame.model.World backupWorld;
 
     /**
      * Creates new form MainScreen
@@ -211,7 +213,7 @@ public class MainScreen extends javax.swing.JFrame
         fileMenu.add(loadWorldMenuItem);
         fileMenu.add(jSeparator1);
 
-        loadRandomWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        loadRandomWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         loadRandomWorldMenuItem.setMnemonic('g');
         loadRandomWorldMenuItem.setText("Generate Random World");
         loadRandomWorldMenuItem.addActionListener(new java.awt.event.ActionListener()
@@ -376,6 +378,10 @@ public class MainScreen extends javax.swing.JFrame
 
     private void startMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startMenuItemActionPerformed
     {//GEN-HEADEREND:event_startMenuItemActionPerformed
+        //Clone world now so we can reset later
+        Cloner cloner = new Cloner();
+        backupWorld = cloner.deepClone(GameEngine.getCurrentWorld());
+
         if (gameExecutionThread != null)
         {
             //Resume
@@ -384,7 +390,7 @@ public class MainScreen extends javax.swing.JFrame
         else
         {
             //Start
-            if (worldFile != null && blackBrainFile != null && redBrainFile != null)
+            if (worldFileSet && blackBrainFile != null && redBrainFile != null)
             {
                 try
                 {
@@ -400,7 +406,7 @@ public class MainScreen extends javax.swing.JFrame
             {
                 String errorString = "The simulation can't be started until the following errors are resolved: \n\n";
 
-                if (worldFile == null)
+                if (!worldFileSet)
                 {
                     errorString += "World file must be loaded.\n";
                 }
@@ -440,19 +446,19 @@ public class MainScreen extends javax.swing.JFrame
         {
             return;
         }
-
-        worldFile = fc.getSelectedFile();
+        File worldFile = fc.getSelectedFile();
         try
         {
             gameEngine.loadWorld(worldFile);
             gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
             gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
             setWorldSizeAndDisplaySize();
+            worldFileSet = true;
         }
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-            resetWorldFile();
+            clearLoadedWorld();
         }
     }//GEN-LAST:event_loadWorldMenuItemActionPerformed
 
@@ -512,14 +518,14 @@ public class MainScreen extends javax.swing.JFrame
         gameEngine = new GameEngine();
         try
         {
-            gameEngine.loadWorld(worldFile);
+            gameEngine.setCurrentWorld(backupWorld);
             updateGameStats();
             worldPanel.repaint();
         }
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-            resetWorldFile();
+            clearLoadedWorld();
         }
     }//GEN-LAST:event_resetMenuItemActionPerformed
 
@@ -608,15 +614,15 @@ public class MainScreen extends javax.swing.JFrame
         try
         {
             gameEngine.loadRandomWorld();
-            worldFile = new File(""); //Fake file so sim runs
             gameStatsPanelFloat.worldFilename.setText("GENERATED WORLD");
             gameStatsPanelFloat.worldFilename.setToolTipText("This world was randomly generated and not loaded from a file. ");
             setWorldSizeAndDisplaySize();
+            worldFileSet = true;
         }
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-            resetWorldFile();
+            clearLoadedWorld();
         }
     }//GEN-LAST:event_loadRandomWorldMenuItemActionPerformed
 
@@ -663,12 +669,12 @@ public class MainScreen extends javax.swing.JFrame
         }
     }
 
-    private void resetWorldFile()
+    private void clearLoadedWorld()
     {
-        worldFile = null;
+        worldFileSet = false;
         gameStatsPanelFloat.worldFilename.setText("");
         gameStatsPanelFloat.worldFilename.setToolTipText("");
-        GameEngine.resetCurrentWorld();
+        GameEngine.clearCurrentWorld();
         setWorldSizeAndDisplaySize();
         updateGameStats();
         worldPanel.repaint();
@@ -872,7 +878,27 @@ public class MainScreen extends javax.swing.JFrame
                 pauseMenuItem.setEnabled(false);
                 resetMenuItem.setEnabled(true);
 
-                JOptionPane.showMessageDialog(null, "Game complete! " + completedRuns + " rounds completed!");
+                String string;
+
+                if (gameEngine.getRedScore() > gameEngine.getBlackScore())
+                {
+                    //RED WIN
+                    //BLACK LOSE
+                    string = "Red win";
+                }
+                else if (gameEngine.getRedScore() < gameEngine.getBlackScore())
+                {
+                    //BLACK WIN
+                    //RED LOSE
+                    string = "Black win";
+                }
+                else
+                {
+                    //DRAW
+                    string = "Draw";
+                }
+                JOptionPane.showMessageDialog(null, string);
+
             }
         }
 

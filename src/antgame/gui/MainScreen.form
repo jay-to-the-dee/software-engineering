@@ -27,7 +27,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="loadRandomWorldMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+W"/>
+                  <KeyStroke key="Ctrl+N"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="103"/>
                 <Property name="text" type="java.lang.String" value="Generate Random World"/>
