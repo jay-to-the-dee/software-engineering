@@ -19,7 +19,6 @@ import antgame.ant.direction.sensedireciton.RightAhead;
 import antgame.ant.direction.turndirection.Left;
 import antgame.ant.direction.turndirection.LeftOrRight;
 import antgame.ant.direction.turndirection.Right;
-import antgame.ant.instructions.Instruction;
 import antgame.ant.instructions.InstructionDrop;
 import antgame.ant.instructions.InstructionFlip;
 import antgame.ant.instructions.InstructionMark;
@@ -55,6 +54,7 @@ public class AntBrainParserImp implements AntBrainParser{
     private static final String moveInstruction = "Move";
     private static final String flipInstruction = "Flip";
     Queue rowQueue = new LinkedList();
+    
 
     @Override
     public InstructionSet[] parseAntBrain(String input) {

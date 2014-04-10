@@ -14,8 +14,8 @@ import antgame.world.worldTokens.TerrainToken;
  *
  * @author Main User
  */
-public class WorldTestClass2 implements WorldTestClass{
-    public WorldTestClass2(){
+public class WorldTestClass3 implements WorldTestClass{
+    public WorldTestClass3(){
         
 }
     @Override

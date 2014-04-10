@@ -10,7 +10,7 @@ import antgame.parsers.exceptions.NotAnIntException;
 import antgame.parsers.exceptions.RowDoesntStartWithWhitespaceException;
 import antgame.parsers.exceptions.RowNumberException;
 import antgame.parsers.exceptions.SpecifierNotRecognisedException;
-import antgame.parsers.exceptions.UnsupportedSizeOfSpecifier;
+import antgame.parsers.exceptions.UnsupportedSizeOfSpecifierException;
 import antgame.world.worldTokens.BlackAnthillToken;
 import antgame.world.worldTokens.MapSizeToken;
 import antgame.world.worldTokens.PlainToken;
@@ -51,23 +51,22 @@ public class ParserImp implements Parser{
             //line 1 for xsize
             //line 2 for ysize
             world.add((getSize(rowQueue.remove().toString())));
-        } catch (LineHasNotJustIntegersException ex) {
-            //TODO
-            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
         } catch (EmptyLineException ex) {
-            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotAnIntException ex) {
+            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineHasNotJustIntegersException ex) {
             Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             world.add(getSize(rowQueue.remove().toString()));
         } catch (LineHasNotJustIntegersException ex) {
             //TODO
-            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
         } catch (EmptyLineException ex) {
-            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotAnIntException ex) {
-            Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
         }
         //now each object in the queue should contain xsize number of elements
         //and there should be ysize number of objects in the queue alltogether
@@ -107,7 +106,7 @@ public class ParserImp implements Parser{
                 while(!comlumnQueue.isEmpty()){
                     try {//TODO handle exceptions
                         getWorldTokens(comlumnQueue.remove().toString(),row-1,column-1);
-                    } catch (UnsupportedSizeOfSpecifier ex) {
+                    } catch (UnsupportedSizeOfSpecifierException ex) {
                         Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SpecifierNotRecognisedException ex) {
                         Logger.getLogger(ParserImp.class.getName()).log(Level.SEVERE, null, ex);
@@ -149,7 +148,7 @@ public class ParserImp implements Parser{
             throw new EmptyLineException("Line is empty");
         }
         else if(input.charAt(0) <48 || input.charAt(0) > 57){
-            throw new NotAnIntException("Value :"+input.charAt(0)+" in not an integer");
+            throw new NotAnIntException("Value :"+input.charAt(0)+" is not an integer");
         }
         else{
             int i = 0;
@@ -157,7 +156,7 @@ public class ParserImp implements Parser{
             while(i<(input.length())&&input.charAt(i) >=48 && input.charAt(i) < 57){
 		i++;
             }
-            //checks if the current line has just ints
+            //checks if the current line has just integers
             if (i<input.length()){
                 throw new LineHasNotJustIntegersException("Error in line: "+input);
             }
@@ -171,12 +170,12 @@ public class ParserImp implements Parser{
      * @param s representing a single cell identifier
      * @param xposition x coordinate of the cell in the world
      * @param yposition y coordinate of the cell in the world
-     * @throws UnsupportedSizeOfSpecifier cell specifier of wrong size
+     * @throws UnsupportedSizeOfSpecifierException cell specifier of wrong size
      * @throws SpecifierNotRecognisedException Could not recognise specifier
      */
-    public void getWorldTokens(String s,int xposition, int yposition) throws UnsupportedSizeOfSpecifier, SpecifierNotRecognisedException{
+    public void getWorldTokens(String s,int xposition, int yposition) throws UnsupportedSizeOfSpecifierException, SpecifierNotRecognisedException{
         if(s.length()!=1){
-            throw new UnsupportedSizeOfSpecifier(s+ "is not a valid cell specifier or is missing a whitespace");
+            throw new UnsupportedSizeOfSpecifierException(s+ "is not a valid cell specifier or is missing a whitespace");
         }
         if(s.charAt(0)==redAnthill){
             

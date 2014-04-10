@@ -2,8 +2,10 @@ package antgame.model;
 
 import antgame.world.worldTokens.TerrainToken;
 import java.awt.Dimension;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -208,7 +210,7 @@ public class World
     /**
      *increase the score for red ants by one
      */
-    public static void increseRedScore(){
+    public static void increaseRedScore(){
         redScore++;
     }
 
@@ -227,6 +229,42 @@ public class World
     public static int getRedScore() {
         return redScore;
     }
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 71 * hash + this.width;
+        hash = 71 * hash + this.height;
+        hash = 71 * hash + Arrays.deepHashCode(this.worldTokens);
+        hash = 71 * hash + this.count;
+        hash = 71 * hash + Objects.hashCode(this.ants);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final World other = (World) obj;
+        if (this.width != other.width) {
+            return false;
+        }
+        if (this.height != other.height) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.worldTokens, other.worldTokens)) {
+            return false;
+        }
+        if (this.count != other.count) {
+            return false;
+        }
+        if (!Objects.equals(this.ants, other.ants)) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -168,7 +168,7 @@ public class TerrainToken extends WorldToken{
 
     public void fetchFood(Color colour) {
             if(colour instanceof ColorRed){
-                World.increseRedScore();
+                World.increaseRedScore();
             }
             else if(colour instanceof ColorBlack){
                 World.increaseBlackScore();

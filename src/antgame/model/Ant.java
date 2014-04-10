@@ -4,6 +4,8 @@ import antgame.ant.color.Color;
 import antgame.ant.direction.sensedireciton.Direction;
 import antgame.ant.instructions.InstructionSet;
 import antgame.world.worldTokens.TerrainToken;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  *
@@ -46,7 +48,7 @@ public class Ant {
 
     /**
      *
-     * @param sensedir Direciton object 
+     * @param sensedir Direction object 
      * @return A TerrainToken object in the sensed direction of the ant
      */
     public TerrainToken senseTile(Direction sensedir) {
@@ -248,4 +250,64 @@ public class Ant {
     public void setResting(int RESTING) {
         resting = RESTING;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.ID;
+        hash = 97 * hash + Objects.hashCode(this.position);
+        hash = 97 * hash + Objects.hashCode(this.color);
+        hash = 97 * hash + this.resting;
+        hash = 97 * hash + this.facingDirection;
+        hash = 97 * hash + (this.hasFood ? 1 : 0);
+        hash = 97 * hash + Arrays.deepHashCode(this.brain);
+        hash = 97 * hash + this.state;
+        hash = 97 * hash + (this.isAlive ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.world);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ant other = (Ant) obj;
+        if (this.ID != other.ID) {
+            return false;
+        }
+        if (!Objects.equals(this.position, other.position)) {
+            return false;
+        }
+        if (!Objects.equals(this.color, other.color)) {
+            return false;
+        }
+        if (this.resting != other.resting) {
+            return false;
+        }
+        if (this.facingDirection != other.facingDirection) {
+            return false;
+        }
+        if (this.hasFood != other.hasFood) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.brain, other.brain)) {
+            return false;
+        }
+        if (this.state != other.state) {
+            return false;
+        }
+        if (this.isAlive != other.isAlive) {
+            return false;
+        }
+        if (!Objects.equals(this.world, other.world)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
