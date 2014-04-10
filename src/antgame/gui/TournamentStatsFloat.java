@@ -1,6 +1,7 @@
 package antgame.gui;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mainPackage.TournamentFile;
 
@@ -13,6 +14,7 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     private ArrayList<TournamentFile> tournamentFiles;
     private MainScreen mainScreen;
     private boolean battleFirstRound = true;
+    private boolean tournamentCompleted = false;
 
     enum Result
     {
@@ -71,6 +73,7 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     {
         if (battleFirstRound)
         {
+            mainScreen.resetMenuItem.doClick();
             mainScreen.loadRandomWorldMenuItem.doClick();
             mainScreen.setBlackBrainFile(blackBrain.getBrainFile());
             mainScreen.setRedBrainFile(redBrain.getBrainFile());
@@ -111,8 +114,53 @@ public class TournamentStatsFloat extends javax.swing.JPanel
             //Set battled status
             redBrain.addBrainBattled(blackBrain);
             blackBrain.addBrainBattled(redBrain);
+
+            //Carry on with the logic
+            doTournamentLogic();
+        }
+    }
+
+    private void doTournamentLogic()
+    {
+        if (tournamentFiles.size() < 2)
+        {
+            JOptionPane.showMessageDialog(mainScreen, "Need two or more brain files uploaded to do tournament.");
+            endTournamentButton.doClick();
         }
 
+        tournamentCompleted = true;
+        for (TournamentFile tournamentFile : tournamentFiles)
+        {
+
+            if ((tournamentFile.getBrainsBattled().size() != tournamentFiles.size()) && tournamentCompleted)
+            {
+                for (TournamentFile tournamentFileToBattle : tournamentFiles)
+                {
+                    if (!tournamentFile.getBrainsBattled().contains(tournamentFileToBattle))
+                    {
+                        redBrain = tournamentFile;
+                        blackBrain = tournamentFileToBattle;
+                        tournamentCompleted = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                //All other brains battled for this brain - move on
+                continue;
+            }
+        }
+
+        if (!tournamentCompleted)
+        {
+            battleFirstRound = true;
+            battleTwoBrainFiles();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(mainScreen, "Tournament complete!");
+        }
     }
 
     private void updateResults(Result blackResult, Result redResult)
@@ -242,13 +290,10 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     {//GEN-HEADEREND:event_startTournamentButtonActionPerformed
         startTournamentButton.setEnabled(false);
 
-        blackBrain = tournamentFiles.get(0);
-        redBrain = tournamentFiles.get(1);
-
         mainScreen.setInTournamentMode(true);
         mainScreen.setMaxSpeed();
 
-        battleTwoBrainFiles();
+        doTournamentLogic();
     }//GEN-LAST:event_startTournamentButtonActionPerformed
 
     private void endTournamentButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_endTournamentButtonActionPerformed
@@ -256,7 +301,6 @@ public class TournamentStatsFloat extends javax.swing.JPanel
         mainScreen.tournamentStatsToolbar.setVisible(false);
         mainScreen.setInTournamentMode(false);
         startTournamentButton.setEnabled(true);
-        battleFirstRound = true;
         tournamentFiles = null;
         updateTable();
     }//GEN-LAST:event_endTournamentButtonActionPerformed
