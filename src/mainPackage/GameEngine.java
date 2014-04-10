@@ -169,6 +169,8 @@ public class GameEngine
     public void setCurrentWorld(World backupWorld)
     {
         GameEngine.currentWorld = backupWorld;
+        
+        World.resetScores();
     }
 
 }

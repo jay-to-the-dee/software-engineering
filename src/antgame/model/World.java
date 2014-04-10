@@ -18,9 +18,11 @@ public class World
     private static int blackScore;
     private static int redScore;
     private final List<Ant> ants;
-    
+
     /**
-     * create a new World object with width xsize and height ysize containing the TerrainToken array world
+     * create a new World object with width xsize and height ysize containing
+     * the TerrainToken array world
+     *
      * @param xsize integer - number of tokens per row
      * @param ysize integer - number of tokens per column
      * @param world TerrainToken[] - all the tokens the world contains
@@ -31,16 +33,18 @@ public class World
         height = ysize;
         worldTokens = new TerrainToken[world.length];
         worldTokens = world;
-        blackScore=0;
-        redScore=0;
+        blackScore = 0;
+        redScore = 0;
         ants = new LinkedList<>();
     }
-    
+
     /**
-     *add an ant to this location
+     * add an ant to this location
+     *
      * @param ant An Ant object
      */
-    public void addAnt(Ant ant){
+    public void addAnt(Ant ant)
+    {
         this.ants.add(ant);
     }
 
@@ -72,7 +76,8 @@ public class World
     }
 
     /**
-     * Executes one instruction for each ant in the world starting with ant with ID 0, then ID1 etc untill all ants
+     * Executes one instruction for each ant in the world starting with ant with
+     * ID 0, then ID1 etc untill all ants
      * hae executed one instruction
      * for this every ants step instruction is called
      */
@@ -86,9 +91,10 @@ public class World
 
     /**
      * executes the current instruction of the ant according to its state if ant
-     * is alive and not resting 
+     * is alive and not resting
      * if ant is resting but alive, decrements the resting field of the ant
-     * @param ant Ant object 
+     *
+     * @param ant Ant object
      */
     public void step(Ant ant)
     {
@@ -100,19 +106,20 @@ public class World
             }
 
             else
-                //retrieve the ants current instruction by instruction index using state, and execute that instrucction
+            //retrieve the ants current instruction by instruction index using state, and execute that instrucction
             {
                 ant.getCurrentInstruction().executeInstruction(ant);
             }
         }
     }
+
     /**
      *
      * @param xposition index starting from 0 to width -1
      * @param yposition index starting from 0 to height -1
      * @return return the TerrainToken with coordinates x,y
      */
-        public TerrainToken getTokenAt(int xposition, int yposition)
+    public TerrainToken getTokenAt(int xposition, int yposition)
     {
         return getWorldTokens()[(yposition * getWidth() + xposition)];
     }
@@ -129,6 +136,7 @@ public class World
 
     /**
      * returns cell in direction direction of cell in position position
+     *
      * @param direction integer - ants facing direction
      * @param position Position - ants position in the world
      * @return TerrainToken in the specified direction
@@ -197,18 +205,20 @@ public class World
     {
         return new Dimension(getWidth(), getHeight());
     }
-    
+
     /**
-     *increase the score for black ants by one
+     * increase the score for black ants by one
      */
-    public static void increaseBlackScore(){
+    public static void increaseBlackScore()
+    {
         blackScore++;
     }
-    
+
     /**
-     *increase the score for red ants by one
+     * increase the score for red ants by one
      */
-    public static void increseRedScore(){
+    public static void increseRedScore()
+    {
         redScore++;
     }
 
@@ -216,7 +226,8 @@ public class World
      *
      * @return the current score for the black ants
      */
-    public static int getBlackScore() {
+    public static int getBlackScore()
+    {
         return blackScore;
     }
 
@@ -224,9 +235,15 @@ public class World
      *
      * @return the current score for the red ants
      */
-    public static int getRedScore() {
+    public static int getRedScore()
+    {
         return redScore;
     }
-    
-    
+
+    public static void resetScores()
+    {
+        blackScore = 0;
+        redScore = 0;
+    }
+
 }
