@@ -365,6 +365,10 @@
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="Tournament Stats" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="tournamentStatsToolbar.setVisible(false);"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
+      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="East"/>
@@ -379,9 +383,6 @@
               <Dimension value="[250, 494]"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="tournamentStatsFloat.setVisible(false);"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

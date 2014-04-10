@@ -206,9 +206,9 @@ public class MainScreen extends javax.swing.JFrame
         tournamentStatsToolbar.setName("Tournament Stats"); // NOI18N
 
         tournamentStatsFloat.setPreferredSize(new java.awt.Dimension(250, 494));
-        tournamentStatsFloat.setVisible(false);
         tournamentStatsToolbar.add(tournamentStatsFloat);
 
+        tournamentStatsToolbar.setVisible(false);
         getContentPane().add(tournamentStatsToolbar, java.awt.BorderLayout.EAST);
 
         fileMenu.setMnemonic('f');
@@ -658,7 +658,7 @@ public class MainScreen extends javax.swing.JFrame
 
     private void startTournamentModeMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startTournamentModeMenuItemActionPerformed
     {//GEN-HEADEREND:event_startTournamentModeMenuItemActionPerformed
-        TournamentUpload tournamentUpload = new TournamentUpload();
+        TournamentUpload tournamentUpload = new TournamentUpload(this);
         tournamentUpload.setLocationRelativeTo(null);
         tournamentUpload.setVisible(true);
     }//GEN-LAST:event_startTournamentModeMenuItemActionPerformed
@@ -988,7 +988,7 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenuItem startMenuItem;
     private javax.swing.JMenuItem startTournamentModeMenuItem;
     private antgame.gui.TournamentStatsFloat tournamentStatsFloat;
-    private javax.swing.JToolBar tournamentStatsToolbar;
+    javax.swing.JToolBar tournamentStatsToolbar;
     private javax.swing.JMenu viewMenu;
     private antgame.gui.WorldPanel worldPanel;
     private javax.swing.JScrollPane worldPanelScrollPane;

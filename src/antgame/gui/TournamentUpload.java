@@ -12,13 +12,16 @@ import mainPackage.TournamentFile;
 public class TournamentUpload extends javax.swing.JFrame
 {
     private DefaultListModel<TournamentFile> brainList;
-
+    private MainScreen mainScreen;
+    
     /**
      * Creates new form TournamentUpload
+     * @param mainScreen pass in the MainScreen that called this window
      */
-    public TournamentUpload()
+    public TournamentUpload(MainScreen mainScreen)
     {
         brainList = new DefaultListModel();
+        this.mainScreen = mainScreen;
         initComponents();
     }
 
@@ -134,6 +137,8 @@ public class TournamentUpload extends javax.swing.JFrame
 
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_acceptButtonActionPerformed
     {//GEN-HEADEREND:event_acceptButtonActionPerformed
+        mainScreen.tournamentStatsToolbar.setVisible(true);
+        
         dispose();
     }//GEN-LAST:event_acceptButtonActionPerformed
 
