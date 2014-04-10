@@ -233,6 +233,8 @@ public class TournamentStatsFloat extends javax.swing.JPanel
 
     private void startTournamentButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startTournamentButtonActionPerformed
     {//GEN-HEADEREND:event_startTournamentButtonActionPerformed
+        startTournamentButton.setEnabled(false);
+        
         blackBrain = tournamentFiles.get(0);
         redBrain = tournamentFiles.get(1);
 
@@ -246,6 +248,7 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     {//GEN-HEADEREND:event_endTournamentButtonActionPerformed
         mainScreen.tournamentStatsToolbar.setVisible(false);
         mainScreen.setInTournamentMode(false);
+        startTournamentButton.setEnabled(true);
         battleFirstRound = true;
         tournamentFiles = null;
         updateTable();
