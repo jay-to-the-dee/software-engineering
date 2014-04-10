@@ -24,7 +24,7 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     {
         this.tournamentFiles = tournamentFiles;
     }
-
+    
     /**
      * This method is called from within the constructor to
      * initialize the form.
@@ -35,16 +35,15 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
     {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        statsTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
         setLayout(new java.awt.BorderLayout(5, 5));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        statsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
 
@@ -74,17 +73,17 @@ public class TournamentStatsFloat extends javax.swing.JPanel
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0)
+        jScrollPane1.setViewportView(statsTable);
+        if (statsTable.getColumnModel().getColumnCount() > 0)
         {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(175);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
+            statsTable.getColumnModel().getColumn(0).setMinWidth(50);
+            statsTable.getColumnModel().getColumn(0).setPreferredWidth(175);
+            statsTable.getColumnModel().getColumn(1).setResizable(false);
+            statsTable.getColumnModel().getColumn(1).setPreferredWidth(20);
+            statsTable.getColumnModel().getColumn(2).setResizable(false);
+            statsTable.getColumnModel().getColumn(2).setPreferredWidth(20);
+            statsTable.getColumnModel().getColumn(3).setResizable(false);
+            statsTable.getColumnModel().getColumn(3).setPreferredWidth(20);
         }
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -100,7 +99,7 @@ public class TournamentStatsFloat extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTable statsTable;
     // End of variables declaration//GEN-END:variables
 }

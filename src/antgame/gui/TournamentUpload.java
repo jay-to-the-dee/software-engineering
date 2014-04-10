@@ -41,7 +41,7 @@ public class TournamentUpload extends javax.swing.JFrame
         java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        tournamentFileList = new javax.swing.JList();
         acceptButton = new javax.swing.JButton();
         addFileButton = new javax.swing.JButton();
         deleteFileButton = new javax.swing.JButton();
@@ -51,8 +51,8 @@ public class TournamentUpload extends javax.swing.JFrame
         setTitle("Tournament Upload");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jList1.setModel(brainList);
-        jScrollPane1.setViewportView(jList1);
+        tournamentFileList.setModel(brainList);
+        jScrollPane1.setViewportView(tournamentFileList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -142,7 +142,7 @@ public class TournamentUpload extends javax.swing.JFrame
     {//GEN-HEADEREND:event_acceptButtonActionPerformed
         mainScreen.tournamentStatsToolbar.setVisible(true);
 
-        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        DefaultListModel model = (DefaultListModel) tournamentFileList.getModel();
         Enumeration<TournamentFile> enumeration = model.elements();
         ArrayList<TournamentFile> allFiles = new ArrayList<>();
 
@@ -157,9 +157,8 @@ public class TournamentUpload extends javax.swing.JFrame
 
     private void deleteFileButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_deleteFileButtonActionPerformed
     {//GEN-HEADEREND:event_deleteFileButtonActionPerformed
-
-        int index = jList1.getSelectedIndex();
-        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        int index = tournamentFileList.getSelectedIndex();
+        DefaultListModel model = (DefaultListModel) tournamentFileList.getModel();
 
         if (index != -1)
         {
@@ -185,7 +184,7 @@ public class TournamentUpload extends javax.swing.JFrame
 
         TournamentFile tournamentFile = new TournamentFile(selectedFile);
 
-        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        DefaultListModel model = (DefaultListModel) tournamentFileList.getModel();
 
         model.addElement(tournamentFile);
     }//GEN-LAST:event_addFileButtonActionPerformed
@@ -195,7 +194,7 @@ public class TournamentUpload extends javax.swing.JFrame
     private javax.swing.JButton addFileButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton deleteFileButton;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList tournamentFileList;
     // End of variables declaration//GEN-END:variables
 }
