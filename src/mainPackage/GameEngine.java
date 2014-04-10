@@ -53,11 +53,14 @@ public class GameEngine
     }
 
     /**
-     *parses the world file into a World object and puts it into the gameFile if successful
+     * parses the world file into a World object and puts it into the gameFile
+     * if successful
+     *
      * @param worldFile a text file
      * @throws IOException Can't read file
      * @throws RowNumberException formal and actual number of rows differ
-     * @throws RowDoesntStartWithWhitespaceException Odd row doesn't start with a whitespace
+     * @throws RowDoesntStartWithWhitespaceException Odd row doesn't start with
+     * a whitespace
      * @throws ColumnNumberException formal and actual number of column differ
      * @throws Exception General exception
      */
@@ -72,12 +75,12 @@ public class GameEngine
 
         gameFile.setWorld(WorldFactory.loadWorld(pav, input, ls));
 
-        //set world in cache as current world
-        currentWorld = gameFile.getWorld();
+        setWorld();
     }
 
     /**
-     *uses the WorldFactory to generate a random world according to tournament requirements
+     * uses the WorldFactory to generate a random world according to tournament
+     * requirements
      * and updates the gameFile field by putting this world as the current world
      */
     public void loadRandomWorld()
@@ -87,6 +90,8 @@ public class GameEngine
         ls.add(new RequirementBorder(1));
 
         gameFile.setWorld(WorldFactory.generateRandomWorld(ls));
+
+        setWorld();
     }
 
     //Populates the world with ants
@@ -107,8 +112,10 @@ public class GameEngine
     }
 
     /**
-     * the fields currentWorld executeOneROund() instruction is executed as many times as the parameter suggests
+     * the fields currentWorld executeOneROund() instruction is executed as many
+     * times as the parameter suggests
      * the counter executed Rounds is incremented
+     *
      * @param getToThisManyCompletedRuns number of round to be executed
      */
     public void runSimulator(int getToThisManyCompletedRuns)
@@ -134,7 +141,7 @@ public class GameEngine
     {
         return currentWorld;
     }
-   
+
     public int getRedScore()
     {
         return currentWorld.getRedScore();
@@ -145,11 +152,25 @@ public class GameEngine
         return currentWorld.getBlackScore();
     }
 
-     /**
-     *resets the currentWorld to null
+    /**
+     * resets the currentWorld to null
      */
-    public static void resetCurrentWorld()
+    public static void clearCurrentWorld()
     {
         GameEngine.currentWorld = null;
     }
+
+    private void setWorld()
+    {
+        //set world in cache as current world
+        currentWorld = gameFile.getWorld();
+    }
+
+    public void setCurrentWorld(World backupWorld)
+    {
+        GameEngine.currentWorld = backupWorld;
+        
+        World.resetScores();
+    }
+
 }

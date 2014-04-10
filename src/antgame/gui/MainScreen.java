@@ -1,5 +1,6 @@
 package antgame.gui;
 
+import com.rits.cloning.Cloner;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -22,7 +23,7 @@ import org.jdesktop.beansbinding.Converter;
 public class MainScreen extends javax.swing.JFrame
 {
     final private static int UPDATES_PER_SECOND = 20;
-    final public static int TOTAL_ROUNDS = 300000;
+    final private static int TOTAL_ROUNDS = 300000;
     final private static String ICON_IMAGE_PATH = "resources/images/App_Icon/icon128.png";
 
     private GameExecutionThread gameExecutionThread;
@@ -32,9 +33,10 @@ public class MainScreen extends javax.swing.JFrame
     private int startX;
     private int startY;
 
-    private File worldFile;
+    private boolean worldFileSet;
     private File blackBrainFile;
     private File redBrainFile;
+    private antgame.model.World backupWorld;
 
     /**
      * Creates new form MainScreen
@@ -77,6 +79,7 @@ public class MainScreen extends javax.swing.JFrame
         loadRandomWorldMenuItem = new javax.swing.JMenuItem();
         loadBlackAntBrainMenuItem = new javax.swing.JMenuItem();
         loadRedAntBrainMenuItem = new javax.swing.JMenuItem();
+        startTournamentModeMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
         simulationMenu = new javax.swing.JMenu();
@@ -211,7 +214,7 @@ public class MainScreen extends javax.swing.JFrame
         fileMenu.add(loadWorldMenuItem);
         fileMenu.add(jSeparator1);
 
-        loadRandomWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        loadRandomWorldMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         loadRandomWorldMenuItem.setMnemonic('g');
         loadRandomWorldMenuItem.setText("Generate Random World");
         loadRandomWorldMenuItem.addActionListener(new java.awt.event.ActionListener()
@@ -246,6 +249,17 @@ public class MainScreen extends javax.swing.JFrame
             }
         });
         fileMenu.add(loadRedAntBrainMenuItem);
+
+        startTournamentModeMenuItem.setMnemonic('t');
+        startTournamentModeMenuItem.setText("Start Tournament Mode");
+        startTournamentModeMenuItem.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                startTournamentModeMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(startTournamentModeMenuItem);
         fileMenu.add(jSeparator2);
 
         exitMenuItem.setMnemonic('x');
@@ -383,12 +397,18 @@ public class MainScreen extends javax.swing.JFrame
         }
         else
         {
+            //Clone world now so we can reset later
+            Cloner cloner = new Cloner();
+            backupWorld = cloner.deepClone(GameEngine.getCurrentWorld());
+
             //Start
-            if (worldFile != null && blackBrainFile != null && redBrainFile != null)
+            if (worldFileSet && blackBrainFile != null && redBrainFile != null)
             {
                 try
                 {
                     (gameExecutionThread = new GameExecutionThread()).execute();
+                    //Stop user messing with GUI during run
+                    toggleFileOptionsEnabled(false);
                 }
                 catch (Exception ex)
                 {
@@ -400,7 +420,7 @@ public class MainScreen extends javax.swing.JFrame
             {
                 String errorString = "The simulation can't be started until the following errors are resolved: \n\n";
 
-                if (worldFile == null)
+                if (!worldFileSet)
                 {
                     errorString += "World file must be loaded.\n";
                 }
@@ -440,19 +460,19 @@ public class MainScreen extends javax.swing.JFrame
         {
             return;
         }
-
-        worldFile = fc.getSelectedFile();
+        File worldFile = fc.getSelectedFile();
         try
         {
             gameEngine.loadWorld(worldFile);
             gameStatsPanelFloat.worldFilename.setText(worldFile.getName());
             gameStatsPanelFloat.worldFilename.setToolTipText(worldFile.getPath());
             setWorldSizeAndDisplaySize();
+            worldFileSet = true;
         }
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-            resetWorldFile();
+            clearLoadedWorld();
         }
     }//GEN-LAST:event_loadWorldMenuItemActionPerformed
 
@@ -504,6 +524,9 @@ public class MainScreen extends javax.swing.JFrame
         pauseMenuItem.setEnabled(false);
         resetMenuItem.setEnabled(false);
 
+        //Re-enable disabled menu
+        toggleFileOptionsEnabled(true);
+
         gameExecutionThread.cancel(true);
         gameExecutionThread = null;
         simulationOverallProgess.setValue(0);
@@ -512,14 +535,14 @@ public class MainScreen extends javax.swing.JFrame
         gameEngine = new GameEngine();
         try
         {
-            gameEngine.loadWorld(worldFile);
+            gameEngine.setCurrentWorld(backupWorld);
             updateGameStats();
             worldPanel.repaint();
         }
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-            resetWorldFile();
+            clearLoadedWorld();
         }
     }//GEN-LAST:event_resetMenuItemActionPerformed
 
@@ -608,17 +631,24 @@ public class MainScreen extends javax.swing.JFrame
         try
         {
             gameEngine.loadRandomWorld();
-            worldFile = new File(""); //Fake file so sim runs
             gameStatsPanelFloat.worldFilename.setText("GENERATED WORLD");
             gameStatsPanelFloat.worldFilename.setToolTipText("This world was randomly generated and not loaded from a file. ");
             setWorldSizeAndDisplaySize();
+            worldFileSet = true;
         }
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-            resetWorldFile();
+            clearLoadedWorld();
         }
     }//GEN-LAST:event_loadRandomWorldMenuItemActionPerformed
+
+    private void startTournamentModeMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startTournamentModeMenuItemActionPerformed
+    {//GEN-HEADEREND:event_startTournamentModeMenuItemActionPerformed
+        TournamentUpload tournamentUpload = new TournamentUpload();
+        tournamentUpload.setLocationRelativeTo(null);
+        tournamentUpload.setVisible(true);
+    }//GEN-LAST:event_startTournamentModeMenuItemActionPerformed
 
     private String simulationOverallProgessStringUpdate()
     {
@@ -663,15 +693,24 @@ public class MainScreen extends javax.swing.JFrame
         }
     }
 
-    private void resetWorldFile()
+    private void clearLoadedWorld()
     {
-        worldFile = null;
+        worldFileSet = false;
         gameStatsPanelFloat.worldFilename.setText("");
         gameStatsPanelFloat.worldFilename.setToolTipText("");
-        GameEngine.resetCurrentWorld();
+        GameEngine.clearCurrentWorld();
         setWorldSizeAndDisplaySize();
         updateGameStats();
         worldPanel.repaint();
+    }
+
+    private void toggleFileOptionsEnabled(boolean setEnabled)
+    {
+        loadWorldMenuItem.setEnabled(setEnabled);
+        loadRandomWorldMenuItem.setEnabled(setEnabled);
+        loadBlackAntBrainMenuItem.setEnabled(setEnabled);
+        loadRedAntBrainMenuItem.setEnabled(setEnabled);
+        startTournamentModeMenuItem.setEnabled(setEnabled);
     }
 
     private void updateGameStats()
@@ -872,7 +911,27 @@ public class MainScreen extends javax.swing.JFrame
                 pauseMenuItem.setEnabled(false);
                 resetMenuItem.setEnabled(true);
 
-                JOptionPane.showMessageDialog(null, "Game complete! " + completedRuns + " rounds completed!");
+                String string;
+
+                if (gameEngine.getRedScore() > gameEngine.getBlackScore())
+                {
+                    //RED WIN
+                    //BLACK LOSE
+                    string = "Red win";
+                }
+                else if (gameEngine.getRedScore() < gameEngine.getBlackScore())
+                {
+                    //BLACK WIN
+                    //RED LOSE
+                    string = "Black win";
+                }
+                else
+                {
+                    //DRAW
+                    string = "Draw";
+                }
+                JOptionPane.showMessageDialog(null, string);
+
             }
         }
 
@@ -914,6 +973,7 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenu simulationMenu;
     private javax.swing.JProgressBar simulationOverallProgess;
     private javax.swing.JMenuItem startMenuItem;
+    private javax.swing.JMenuItem startTournamentModeMenuItem;
     private javax.swing.JMenu viewMenu;
     private antgame.gui.WorldPanel worldPanel;
     private javax.swing.JScrollPane worldPanelScrollPane;
