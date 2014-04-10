@@ -768,6 +768,11 @@ public class MainScreen extends javax.swing.JFrame
     {
         this.inTournamentMode = inTournamentMode;
     }
+    
+    public void setMaxSpeed()
+    {
+        roundPerSecondSetter.setValue(roundPerSecondSetter.getMaximum());
+    }
 
     /**
      * Converts the roundPerSecondSetter output from the linear number to the
@@ -1013,7 +1018,7 @@ public class MainScreen extends javax.swing.JFrame
     private javax.swing.JMenuItem loadWorldMenuItem;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenuItem pauseMenuItem;
-    private javax.swing.JMenuItem resetMenuItem;
+    javax.swing.JMenuItem resetMenuItem;
     private javax.swing.JTextField roundPerSecondDisplay;
     private javax.swing.JSlider roundPerSecondSetter;
     private javax.swing.JMenu simulationMenu;

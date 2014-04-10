@@ -44,6 +44,22 @@ public class TournamentFile
     {
         return loses;
     }
+
+    public void increaseWins()
+    {
+        wins++;
+    }
+
+    public void increaseDraws()
+    {
+        draws++;
+    }
+
+    public void increaseLoses()
+    {
+        loses++;
+    }
+    
     
     
 }
