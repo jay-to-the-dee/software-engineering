@@ -246,13 +246,13 @@ public class TournamentStatsFloat extends javax.swing.JPanel
         if (statsTable.getColumnModel().getColumnCount() > 0)
         {
             statsTable.getColumnModel().getColumn(0).setMinWidth(50);
-            statsTable.getColumnModel().getColumn(0).setPreferredWidth(175);
+            statsTable.getColumnModel().getColumn(0).setPreferredWidth(125);
             statsTable.getColumnModel().getColumn(1).setResizable(false);
-            statsTable.getColumnModel().getColumn(1).setPreferredWidth(20);
+            statsTable.getColumnModel().getColumn(1).setPreferredWidth(15);
             statsTable.getColumnModel().getColumn(2).setResizable(false);
-            statsTable.getColumnModel().getColumn(2).setPreferredWidth(20);
+            statsTable.getColumnModel().getColumn(2).setPreferredWidth(15);
             statsTable.getColumnModel().getColumn(3).setResizable(false);
-            statsTable.getColumnModel().getColumn(3).setPreferredWidth(20);
+            statsTable.getColumnModel().getColumn(3).setPreferredWidth(15);
         }
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);

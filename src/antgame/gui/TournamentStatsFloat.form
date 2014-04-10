@@ -43,22 +43,22 @@
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="50" prefWidth="175" resizable="true">
+                <Column maxWidth="-1" minWidth="50" prefWidth="125" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="15" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="15" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="15" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>

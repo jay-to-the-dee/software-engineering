@@ -172,7 +172,7 @@ public class MainScreen extends javax.swing.JFrame
         worldPanel.setLayout(worldPanelLayout);
         worldPanelLayout.setHorizontalGroup(
             worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 598, Short.MAX_VALUE)
         );
         worldPanelLayout.setVerticalGroup(
             worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,6 +207,7 @@ public class MainScreen extends javax.swing.JFrame
         tournamentStatsToolbar.setRollover(true);
         tournamentStatsToolbar.setFocusable(false);
         tournamentStatsToolbar.setName("Tournament Stats"); // NOI18N
+        tournamentStatsToolbar.setPreferredSize(new java.awt.Dimension(200, 506));
 
         tournamentStatsFloat.setPreferredSize(new java.awt.Dimension(250, 494));
         tournamentStatsToolbar.add(tournamentStatsFloat);
