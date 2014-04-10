@@ -1,5 +1,6 @@
 package antgame.gui;
 
+import antgame.gui.TournamentStatsFloat.Result;
 import com.rits.cloning.Cloner;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -37,6 +38,8 @@ public class MainScreen extends javax.swing.JFrame
     private File blackBrainFile;
     private File redBrainFile;
     private antgame.model.World backupWorld;
+
+    private boolean inTournamentMode;
 
     /**
      * Creates new form MainScreen
@@ -761,6 +764,11 @@ public class MainScreen extends javax.swing.JFrame
         }
     }
 
+    public void setInTournamentMode(boolean inTournamentMode)
+    {
+        this.inTournamentMode = inTournamentMode;
+    }
+
     /**
      * Converts the roundPerSecondSetter output from the linear number to the
      * logarithmic rounds per second for the roundPerSecondDisplay
@@ -940,26 +948,36 @@ public class MainScreen extends javax.swing.JFrame
                 resetMenuItem.setEnabled(true);
 
                 String string;
+                Result blackResult;
+                TournamentStatsFloat.Result redResult;
 
                 if (gameEngine.getRedScore() > gameEngine.getBlackScore())
                 {
-                    //RED WIN
-                    //BLACK LOSE
+                    redResult = Result.WIN;
+                    blackResult = Result.LOSE;
                     string = "Red win";
                 }
                 else if (gameEngine.getRedScore() < gameEngine.getBlackScore())
                 {
-                    //BLACK WIN
-                    //RED LOSE
+                    blackResult = Result.WIN;
+                    redResult = Result.LOSE;
                     string = "Black win";
                 }
                 else
                 {
-                    //DRAW
+                    blackResult = Result.DRAW;
+                    redResult = Result.DRAW;
                     string = "Draw";
                 }
-                JOptionPane.showMessageDialog(null, string);
 
+                if (!inTournamentMode)
+                {
+                    JOptionPane.showMessageDialog(null, string);
+                }
+                else
+                {
+                    tournamentStatsFloat.returnGameResults(blackResult, redResult);
+                }
             }
         }
 
