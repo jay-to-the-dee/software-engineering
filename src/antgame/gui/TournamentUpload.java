@@ -152,6 +152,7 @@ public class TournamentUpload extends javax.swing.JFrame
         }
 
         mainScreen.tournamentStatsFloat.setTournamentFiles(allFiles);
+        mainScreen.tournamentStatsFloat.updateTable();
         dispose();
     }//GEN-LAST:event_acceptButtonActionPerformed
 
