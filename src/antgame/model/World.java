@@ -219,7 +219,6 @@ public class World
     /**
      * increase the score for red ants by one
      */
-
     public static void increseRedScore()
     {
         redScore++;
@@ -242,7 +241,7 @@ public class World
     {
         return redScore;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -280,6 +279,7 @@ public class World
         }
         return true;
     }
+
     public static void resetScores()
     {
         blackScore = 0;
