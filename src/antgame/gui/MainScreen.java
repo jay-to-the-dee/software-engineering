@@ -378,10 +378,6 @@ public class MainScreen extends javax.swing.JFrame
 
     private void startMenuItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startMenuItemActionPerformed
     {//GEN-HEADEREND:event_startMenuItemActionPerformed
-        //Clone world now so we can reset later
-        Cloner cloner = new Cloner();
-        backupWorld = cloner.deepClone(GameEngine.getCurrentWorld());
-
         if (gameExecutionThread != null)
         {
             //Resume
@@ -389,6 +385,10 @@ public class MainScreen extends javax.swing.JFrame
         }
         else
         {
+            //Clone world now so we can reset later
+            Cloner cloner = new Cloner();
+            backupWorld = cloner.deepClone(GameEngine.getCurrentWorld());
+
             //Start
             if (worldFileSet && blackBrainFile != null && redBrainFile != null)
             {
